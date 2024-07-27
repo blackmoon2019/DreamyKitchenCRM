@@ -514,7 +514,7 @@ Public Class ValidateControls
             If CountJobD <> "" Then Return False Else Return True
         Else
             sdr.Close()
-            Return True
+            Return False
         End If
     End Function
 

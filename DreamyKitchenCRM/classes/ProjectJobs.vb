@@ -93,8 +93,8 @@ Public Class ProjectJobs
                 navigator.Buttons.Remove.Enabled = False
             Else
                 If sComeFrom = 0 Then
-                    navigator.Buttons.Append.Enabled = False
-                    navigator.Buttons.Remove.Enabled = False
+                    'navigator.Buttons.Append.Enabled = False
+                    'navigator.Buttons.Remove.Enabled = False
                 Else
                     navigator.Buttons.Append.Enabled = True
                     navigator.Buttons.Remove.Enabled = True

@@ -2,7 +2,6 @@
 Imports System.ComponentModel
 Imports System.Data.SqlClient
 Imports System.IO
-Imports DevExpress.DataProcessing.InMemoryDataProcessor
 Imports DevExpress.XtraBars.Navigation
 Imports DevExpress.XtraEditors
 Imports DevExpress.XtraEditors.Controls
@@ -10,8 +9,8 @@ Imports DevExpress.XtraGrid.Views.Base
 Imports DevExpress.XtraGrid.Views.Grid
 Imports DevExpress.XtraGrid.Views.Grid.ViewInfo
 Imports DevExpress.XtraReports.UI
-Imports DevExpress.XtraSpreadsheet.Forms
-Imports DevExpress.XtraSpreadsheet.Import.OpenXml
+
+Imports DreamyKitchenCRM.DM_TRANSTableAdapters
 
 Public Class frmInstEllipse
 
@@ -20,6 +19,7 @@ Public Class frmInstEllipse
     Private Ctrl As DevExpress.XtraGrid.Views.Grid.GridView
     Private Frm As DevExpress.XtraEditors.XtraForm
     Public Mode As Byte
+    Private ScanFile As ScanToPDF
     Private Prog_Prop As New ProgProp
     Private Valid As New ValidateControls
     Private FScrollerExist As Boolean = False
@@ -79,13 +79,19 @@ Public Class frmInstEllipse
         End Set
     End Property
     Private Sub cmdExit_Click(sender As Object, e As EventArgs) Handles cmdExit.Click
-        If CheckForInstName() = False Then Exit Sub
-        If HasConnectedOrder = False Then If CheckIfHasRecordsForOrder() = True Then Exit Sub
-        If sComeFrom = 0 And CheckIfHasSendInfEmail() = False Then Exit Sub
+        If sComeFrom = 0 Then
+            If CheckForInstName() = False Then Exit Sub
+        End If
+        If HasConnectedOrder = False And sComeFrom = 0 Then If CheckIfHasRecordsForOrder() = True Then Exit Sub
+        If sComeFrom = 0 Then
+            If CheckIfHasSendInfEmail() = False Then Exit Sub
+        End If
         Me.Close()
     End Sub
 
     Private Sub frmInstEllipse_Load(sender As Object, e As EventArgs) Handles Me.Load
+        'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_FILE_CAT' table. You can move, or remove it, as needed.
+        Me.Vw_FILE_CATTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_FILE_CAT)
         Me.Vw_ORDER_MANAGERSTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_ORDER_MANAGERS)
         'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_SUP' table. You can move, or remove it, as needed.
         Me.Vw_SUPTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_SUP)
@@ -883,9 +889,13 @@ Public Class frmInstEllipse
                 End Using
             End If
         End If
-        If CheckForInstName() = False Then e.Cancel = True : Exit Sub
-        If HasConnectedOrder = False Then If CheckIfHasRecordsForOrder() = True Then e.Cancel = True : Exit Sub
-        If sComeFrom = 0 And CheckIfHasSendInfEmail() = False Then e.Cancel = True : Exit Sub
+        If sComeFrom = 0 Then
+            If CheckForInstName() = False Then e.Cancel = True : Exit Sub
+        End If
+        If HasConnectedOrder = False And sComeFrom = 0 Then If CheckIfHasRecordsForOrder() = True Then Exit Sub
+        If sComeFrom = 0 Then
+            If CheckIfHasSendInfEmail() = False Then e.Cancel = True : Exit Sub
+        End If
     End Sub
     Private Function CheckForInstName() As Boolean
         If GridView1.DataRowCount > 0 And
@@ -927,6 +937,9 @@ Public Class frmInstEllipse
                 LoadForms.RestoreLayoutFromXml(GridView3, "INST_MAIL_ELLIPSE.xml")
                 'GridView3.Columns("DateOfEmail").DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
                 'GridView3.Columns("DateOfEmail").DisplayFormat.FormatString = "dd/MM/yyyy HH:mm tt"
+            Case 2
+                LoadForms.RestoreLayoutFromXml(GridView5, "vw_TRANSH_F_INST_ELLIPSE_def.xml")
+                If cboTRANSH.EditValue IsNot Nothing Then TRANSH_FTableAdapter.FillByTranshID(DM_TRANS.TRANSH_F, System.Guid.Parse(cboTRANSH.EditValue.ToString))
         End Select
     End Sub
 
@@ -1333,6 +1346,64 @@ Public Class frmInstEllipse
             Case 3 : cboINST.EditValue = Nothing
         End Select
 
+    End Sub
+    Private Sub txtFiles_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles txtFiles.ButtonClick
+        Dim sFilename As String
+        Select Case e.Button.Index
+            Case 0
+                Dim result = XtraInputBox.Show("Πληκτρολογήστε το πλήθος σελίδων που θα σκανάρετε", "Όνομα Αρχείου", "1")
+                ScanFile = New ScanToPDF
+                If ScanFile.Scan(sFilename, Me.VwSCANFILENAMESBindingSource, result) = False Then Exit Sub
+                txtFiles.EditValue = sFilename
+                If txtFiles.Text <> "" Then SaveRecordF(1, sFilename)
+                ScanFile = Nothing
+            Case 1 : FilesSelection(XtraOpenFileDialog1, txtFiles)
+            Case 2 : txtFiles.EditValue = Nothing
+        End Select
+    End Sub
+    Public Sub SaveRecordF(ByVal sMode As Integer, Optional ByVal sFilename As String = "")
+        Dim sResultF As Boolean
+        If cboTanshFCategory.EditValue = Nothing Then XtraMessageBox.Show("Δεν έχετε επιλέξει Κατηγορία.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
+        If txtFiles.Text = "" Then XtraMessageBox.Show("Δεν έχετε επιλέξει Αρχείο.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
+        Select Case sMode
+            Case 0 : sResultF = DBQ.InsertDataFiles(XtraOpenFileDialog1, cboTRANSH.EditValue.ToString, "TRANSH_F", sID, "Αρχεία Εκκρεμοτήτων")
+            Case 1 : sResultF = DBQ.InsertDataFilesFromScanner(sFilename, cboTRANSH.EditValue.ToString, "TRANSH_F", cboTanshFCategory.EditValue.ToString, sID, "Αρχεία Εκκρεμοτήτων")
+        End Select
+        txtFiles.EditValue = Nothing
+        TRANSH_FTableAdapter.FillByTranshID(DM_TRANS.TRANSH_F, System.Guid.Parse(cboTRANSH.EditValue.ToString))
+    End Sub
+    Private Sub cmdSaveTransF_Click(sender As Object, e As EventArgs) Handles cmdSaveTransF.Click
+        XtraOpenFileDialog1.Tag = cboTanshFCategory.EditValue.ToString
+        SaveRecordF(0)
+    End Sub
+    Private Sub cboTanshFCategory_ButtonPressed(sender As Object, e As ButtonPressedEventArgs) Handles cboTanshFCategory.ButtonPressed
+        Select Case e.Button.Index
+            Case 1 : cboTanshFCategory.EditValue = Nothing : ManageCbo.ManageFCategory(cboTanshFCategory, FormMode.NewRecord)
+            Case 2 : If cboTanshFCategory.EditValue IsNot Nothing Then ManageCbo.ManageFCategory(cboTanshFCategory, FormMode.EditRecord)
+            Case 3 : cboTanshFCategory.EditValue = Nothing
+        End Select
+    End Sub
+    Private Sub GridControl2_DoubleClick(sender As Object, e As EventArgs) Handles GridControl2.DoubleClick
+        OpenFileFromGrid(GridView5, "TRANSH_F")
+    End Sub
+    Private Sub GridView5_ValidateRow(sender As Object, e As ValidateRowEventArgs) Handles GridView5.ValidateRow
+        Dim sSQL As New System.Text.StringBuilder
+        Try
+            sSQL.Clear()
+            sSQL.AppendLine("UPDATE TRANSH_F	SET FileCatID= " & toSQLValueS(GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "fileCatID").ToString) & ",")
+            sSQL.AppendLine("modifiedBY = " & toSQLValueS(UserProps.ID.ToString) & ",")
+            sSQL.AppendLine("modifiedON = getdate() ")
+            sSQL.AppendLine("WHERE ID = " & toSQLValueS(GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "ID").ToString))
+            'Εκτέλεση QUERY
+            Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
+                oCmd.ExecuteNonQuery()
+            End Using
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+    Private Sub GridView5_PopupMenuShowing(sender As Object, e As PopupMenuShowingEventArgs) Handles GridView5.PopupMenuShowing
+        If e.MenuType = GridMenuType.Column Then LoadForms.PopupMenuShow(e, GridView5, "vw_TRANSH_F_INST_ELLIPSE_def.xml", "vw_TRANSH_F")
     End Sub
 End Class
 'Private Sub ShowQuestionForm()

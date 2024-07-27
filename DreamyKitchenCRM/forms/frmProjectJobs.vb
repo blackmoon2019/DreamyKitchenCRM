@@ -137,6 +137,12 @@ Public Class frmProjectJobs
                 e.Valid = False
                 Exit Sub
             End If
+            If GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "cost").ToString = "" And sComeFrom = 0 Then
+                e.ErrorText = "Παρακαλώ συμπληρώστε την εργασία"
+                e.Valid = False
+                Exit Sub
+            End If
+
             ProjectJobs.SaveRecordProjectD(True)
         Else
             If GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "descriptionSup").ToString = "" And sComeFrom = 1 Then
