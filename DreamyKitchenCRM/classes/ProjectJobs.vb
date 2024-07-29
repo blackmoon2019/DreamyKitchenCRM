@@ -59,6 +59,9 @@ Public Class ProjectJobs
                 End If
                 Frm.GridControl1.ForceInitialize()
                 If Frm.GridView1.DataRowCount = 0 Then Frm.cmdSendEmail.Enabled = False : Frm.cmdPrintAll.Enabled = False : Frm.cmdSendApointmentEmail.Enabled = False : Frm.cmdDefEmail.Enabled = False
+                If sFields("completed") = "True" Then Frm.dtVisitDate.Enabled = False : Frm.txtTmIN.Enabled = False : Frm.txtTmOUT.Enabled = False : Frm.chkSER.Enabled = False
+                If sFields("emailInfComplete") = "True" Then DisabletxtProjectJobFilenameComplete()
+
         End Select
 
         If sComeFrom = 1 Then
@@ -69,7 +72,6 @@ Public Class ProjectJobs
             Frm.dtVisitDate.Enabled = False
             DisabletxtProjectJobFilenameComplete()
             Frm.GridView1.OptionsBehavior.Editable = True : Frm.cmdViewOrder.Enabled = False : Frm.cmdConvertToOrder.Enabled = False
-
         Else
             Frm.LayoutControlGroup1.Text = "Αφορά Πελάτη"
             LoadForms.RestoreLayoutFromXml(Frm.GridView1, "vw_PROJECT_JOBS_D.xml")
@@ -77,11 +79,117 @@ Public Class ProjectJobs
 
         Frm.cmdSave.Enabled = IIf(Mode = FormMode.NewRecord, UserProps.AllowInsert, UserProps.AllowEdit)
     End Sub
+    Public Function ValidationsExit() As Boolean
+        If HasConnectedOrder = False And sComeFrom = 0 Then If CheckIfHasRecordsForOrder() = True Then Return False
+        If sComeFrom = 0 Then
+            If Frm.GridView1.DataRowCount > 0 Then If CheckIfHasSendInfEmail() = False Then Return False
+            If CheckIfHasSendInfCompleteEmail() = False Then Return False
+            If CheckIfProjectJobsAreCompleted() = True And Frm.txtfProjectNameComplete.EditValue = Nothing Then
+                XtraMessageBox.Show("Όλες οι εργασίες είναι ολοκληρωμένες χωρίς να έχετε επισυνάψει έντυπο ολοκλήρωσης. Δεν μπορεί να αποθηκευθεί η εγγραφή.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Return False
+            End If
+
+        End If
+        Return True
+    End Function
+    Private Function CheckIfHasSendInfEmail() As Boolean
+        Dim Cmd As SqlCommand, sdr As SqlDataReader
+        Dim sSQL As New System.Text.StringBuilder
+        Try
+            sSQL.AppendLine("SELECT count (PJ.id) as CountPJ  
+                        FROM PROJECT_JOBS_D  PJD
+                        inner join PROJECT_JOBS  PJ ON PJ.ID = PJD.projectJobID 
+                        WHERE projectJobID = " & toSQLValueS(ID) & "  AND emailInf IS NOT NULL")
+            Cmd = New SqlCommand(sSQL.ToString, CNDB)
+            sdr = Cmd.ExecuteReader()
+            Dim CountPJ As Integer
+            If (sdr.Read() = True) Then
+                If sdr.IsDBNull(sdr.GetOrdinal("CountPJ")) = False Then CountPJ = sdr.GetInt32(sdr.GetOrdinal("CountPJ")) Else CountPJ = 0
+                sdr.Close()
+                If CountPJ = 0 Then
+                    XtraMessageBox.Show("Παρακαλώ πολύ πρέπει να στείλετε eMail Ενημέρωσης Εργασιών στον πελάτη.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Return False
+                Else
+                    Return True
+                End If
+            Else
+                Return True
+            End If
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return False
+        End Try
+
+
+    End Function
+    Private Function CheckIfHasSendInfCompleteEmail() As Boolean
+        Dim Cmd As SqlCommand, sdr As SqlDataReader
+        Dim sSQL As New System.Text.StringBuilder
+        Try
+            sSQL.AppendLine("SELECT emailInfComplete 
+                        FROM PROJECT_JOBS PJ
+                        WHERE ID= " & toSQLValueS(ID) & "  AND PJ.completed = 1 ")
+            Cmd = New SqlCommand(sSQL.ToString, CNDB)
+            sdr = Cmd.ExecuteReader()
+            Dim emailInfComplete As Boolean
+            If (sdr.Read() = True) Then
+                If sdr.IsDBNull(sdr.GetOrdinal("emailInfComplete")) = False Then emailInfComplete = sdr.GetBoolean(sdr.GetOrdinal("emailInfComplete")) Else emailInfComplete = False
+                sdr.Close()
+                If emailInfComplete = False Then
+                    XtraMessageBox.Show("Παρακαλώ πολύ πρέπει να στείλετε eMail Ολοκλήρωσης Ενημέρωσης εργασιών στον πελάτη.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Return False
+                Else
+                    Return True
+                End If
+            Else
+                Return True
+            End If
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return False
+        End Try
+
+    End Function
+
+    Private Function CheckIfHasRecordsForOrder() As Boolean
+        Dim Cmd As SqlCommand, sdr As SqlDataReader
+        Dim sSQL As New System.Text.StringBuilder
+        Try
+            sSQL.AppendLine("SELECT count (id) as CountPJ  FROM PROJECT_JOBS_D 
+                         WHERE projectJobID= " & toSQLValueS(ID) & " and toOrder = 1 and " & toSQLValueS(ID) &
+                         " Not In (Select Top 1 ID from PROJECT_JOBS  where connectedProjectID = " & toSQLValueS(ID) & ")")
+            Cmd = New SqlCommand(sSQL.ToString, CNDB)
+            sdr = Cmd.ExecuteReader()
+            Dim CountPJ As Integer
+            If (sdr.Read() = True) Then
+                If sdr.IsDBNull(sdr.GetOrdinal("CountPJ")) = False Then CountPJ = sdr.GetInt32(sdr.GetOrdinal("CountPJ")) Else CountPJ = 0
+                sdr.Close()
+                If CountPJ > 0 Then
+                    XtraMessageBox.Show("Υπάρχουν εργασίες προς παραγγελία. Παρακαλώ δημιουργήστε παραγγελία πριν την έξοδο.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Return True
+                Else
+                    Return False
+                End If
+            End If
+            Return False
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Return False
+        End Try
+
+    End Function
+
     Private Sub DisabletxtProjectJobFilenameComplete()
         Frm.txtfProjectNameComplete.ReadOnly = True
         Frm.txtfProjectNameComplete.Properties.Buttons.Item(0).Enabled = False
         Frm.txtfProjectNameComplete.Properties.Buttons.Item(1).Enabled = True
         Frm.txtfProjectNameComplete.Properties.Buttons.Item(2).Enabled = False
+    End Sub
+    Private Sub EnabletxtInstellipseFilenameComplete()
+        Frm.txtfProjectNameComplete.ReadOnly = False
+        Frm.txtfProjectNameComplete.Properties.Buttons.Item(0).Enabled = True
+        Frm.txtfProjectNameComplete.Properties.Buttons.Item(1).Enabled = True
+        Frm.txtfProjectNameComplete.Properties.Buttons.Item(2).Enabled = True
     End Sub
 
     Private Sub HandleGridEmbeddedNavigatorButtons()
@@ -92,13 +200,8 @@ Public Class ProjectJobs
                 navigator.Buttons.Append.Enabled = False
                 navigator.Buttons.Remove.Enabled = False
             Else
-                If sComeFrom = 0 Then
-                    'navigator.Buttons.Append.Enabled = False
-                    'navigator.Buttons.Remove.Enabled = False
-                Else
-                    navigator.Buttons.Append.Enabled = True
-                    navigator.Buttons.Remove.Enabled = True
-                End If
+                navigator.Buttons.Append.Enabled = True
+                navigator.Buttons.Remove.Enabled = True
             End If
         Finally
             navigator.Buttons.EndUpdate()
@@ -300,14 +403,14 @@ Public Class ProjectJobs
     Private Function CheckIfHasProjectJobsDForOrder() As Boolean
         Dim Cmd As SqlCommand, sdr As SqlDataReader
         Dim sSQL As String
-        sSQL = "SELECT top 1 id as toOrderID FROM PROJECT_JOBS_D WHERE toOrder = 1 and projectJobID= " & toSQLValueS(ID)
+        sSQL = "SELECT count(id) as toOrderID FROM PROJECT_JOBS_D WHERE toOrder = 1 and projectJobID= " & toSQLValueS(ID)
         Cmd = New SqlCommand(sSQL.ToString, CNDB)
         sdr = Cmd.ExecuteReader()
-        Dim toOrderID As String
+        Dim toOrderID As Integer
         If (sdr.Read() = True) Then
-            If sdr.IsDBNull(sdr.GetOrdinal("toOrderID")) = False Then toOrderID = sdr.GetGuid(sdr.GetOrdinal("toOrderID")).ToString Else toOrderID = ""
+            If sdr.IsDBNull(sdr.GetOrdinal("toOrderID")) = False Then toOrderID = sdr.GetInt32(sdr.GetOrdinal("toOrderID")) Else toOrderID = 0
             sdr.Close()
-            If toOrderID <> "" Then Return True Else Return False
+            If toOrderID > 0 Then Return True Else Return False
         Else
             sdr.Close()
             Return False
@@ -423,7 +526,7 @@ Public Class ProjectJobs
         Frm.txtCode.Text = DBQ.GetNextId("PROJECT_JOB")
         FillCbo.FillCheckedListINST_ELLIPSE_SER(Frm.chkSER, FormMode.NewRecord)
         Frm.cmdSendEmail.Enabled = False : Frm.cmdPrintAll.Enabled = False : Frm.cmdSendApointmentEmail.Enabled = False : Frm.cmdDefEmail.Enabled = False
-
+        EnabletxtInstellipseFilenameComplete()
         '΅Εισαγωγή εγγραφής απευθείας στην βάση
         Dim sResult As Boolean = sResult = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "PROJECT_JOBS", Frm.LayoutControl1,,, ID, True, "comefrom", sComeFrom)
         If sResult = False Then

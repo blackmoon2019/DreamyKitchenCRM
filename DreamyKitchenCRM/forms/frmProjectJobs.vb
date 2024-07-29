@@ -4,6 +4,7 @@ Imports DevExpress.XtraEditors.Controls
 Imports DevExpress.XtraGrid.Views.Base
 Imports DevExpress.XtraGrid.Views.Grid
 Imports DevExpress.XtraGrid.Views.Grid.ViewInfo
+Imports System.ComponentModel
 Imports System.Data.SqlClient
 
 Public Class frmProjectJobs
@@ -138,7 +139,7 @@ Public Class frmProjectJobs
                 Exit Sub
             End If
             If GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "cost").ToString = "" And sComeFrom = 0 Then
-                e.ErrorText = "Παρακαλώ συμπληρώστε την εργασία"
+                e.ErrorText = "Παρακαλώ συμπληρώστε κόστος"
                 e.Valid = False
                 Exit Sub
             End If
@@ -150,9 +151,19 @@ Public Class frmProjectJobs
                 e.Valid = False
                 Exit Sub
             Else
-                If GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "descriptionSup").ToString <> "" And sComeFrom = 1 Then
-                    ProjectJobs.SaveRecordProjectD(False)
+                If GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "cost").ToString = "" And sComeFrom = 0 Then
+                    e.ErrorText = "Παρακαλώ συμπληρώστε κόστος"
+                    e.Valid = False
+                    Exit Sub
                 End If
+
+                If GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "description").ToString = "" And sComeFrom = 0 Then
+                    e.ErrorText = "Παρακαλώ συμπληρώστε την εργασία"
+                    e.Valid = False
+                    Exit Sub
+                End If
+                ProjectJobs.SaveRecordProjectD(False)
+
             End If
         End If
     End Sub
@@ -248,11 +259,9 @@ Public Class frmProjectJobs
                     txtSubject.EditValue = ProgProps.PJInfSubject
                     txtTo.EditValue = cboCUS.GetColumnValue("email")
                     If txtfProjectNameComplete.EditValue IsNot Nothing Then
-                        cmdSendEmailComplete.Enabled = True
-                        DefProjComplete.Enabled = True
+                        cmdSendEmailComplete.Enabled = True : DefProjComplete.Enabled = True
                     Else
-                        cmdSendEmailComplete.Enabled = False
-                        DefProjComplete.Enabled = False
+                        cmdSendEmailComplete.Enabled = False : DefProjComplete.Enabled = False
                     End If
                 Else
                     txtSubject.EditValue = ProgProps.PJInfSubjectSup
@@ -323,5 +332,12 @@ Public Class frmProjectJobs
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
+    End Sub
+    Private Sub GridControl2_DoubleClick(sender As Object, e As EventArgs) Handles GridControl2.DoubleClick
+        OpenFileFromGrid(GridView4, "TRANSH_F")
+    End Sub
+
+    Private Sub frmProjectJobs_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
+        If ProjectJobs.ValidationsExit = False Then e.Cancel = True : Exit Sub
     End Sub
 End Class

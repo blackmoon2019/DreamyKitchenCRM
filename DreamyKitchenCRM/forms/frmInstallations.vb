@@ -198,9 +198,7 @@ Public Class frmInstallations
             Case 3 : cboTanshFCategory.EditValue = Nothing
         End Select
     End Sub
-    Private Sub GridControl2_DoubleClick(sender As Object, e As EventArgs) Handles GridControl2.DoubleClick
-        OpenFileFromGrid(GridView5, "TRANSH_F")
-    End Sub
+
 
     Private Sub TabPane2_SelectedPageChanged(sender As Object, e As SelectedPageChangedEventArgs) Handles TabPane2.SelectedPageChanged
         'If Me.IsActive = False Then Exit Sub
@@ -317,4 +315,8 @@ Public Class frmInstallations
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
+    Private Sub GridControl2_DoubleClick(sender As Object, e As EventArgs) Handles GridControl2.DoubleClick
+        OpenFileFromGrid(GridView5, "TRANSH_F")
+    End Sub
+
 End Class

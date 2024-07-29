@@ -78,16 +78,6 @@ Public Class frmInstEllipse
             FScrollerExist = value
         End Set
     End Property
-    Private Sub cmdExit_Click(sender As Object, e As EventArgs) Handles cmdExit.Click
-        If sComeFrom = 0 Then
-            If CheckForInstName() = False Then Exit Sub
-        End If
-        If HasConnectedOrder = False And sComeFrom = 0 Then If CheckIfHasRecordsForOrder() = True Then Exit Sub
-        If sComeFrom = 0 Then
-            If CheckIfHasSendInfEmail() = False Then Exit Sub
-        End If
-        Me.Close()
-    End Sub
 
     Private Sub frmInstEllipse_Load(sender As Object, e As EventArgs) Handles Me.Load
         'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_FILE_CAT' table. You can move, or remove it, as needed.
@@ -124,6 +114,8 @@ Public Class frmInstEllipse
                 txtInstellipseFilenameSC.ReadOnly = False
                 GridControl1.ForceInitialize()
                 If GridView1.DataRowCount = 0 Then cmdSendEmail.Enabled = False : cmdPrintAll.Enabled = False : cmdSendApointmentEmail.Enabled = False : cmdDefEmail.Enabled = False
+                If sFields("completed") = "True" Then dtDateDelivered.Enabled = False : txtTmINFrom.Enabled = False : txtTmINTo.Enabled = False : chkSER.Enabled = False
+                If sFields("emailInfComplete") = "True" Then DisabletxtInstellipseFilenameComplete()
         End Select
         LInst.Enabled = False
         If sComeFrom = 1 Then
@@ -135,7 +127,12 @@ Public Class frmInstEllipse
             LoadForms.RestoreLayoutFromXml(GridView1, "INST_ELLIPSE_JOBS_def_SUP.xml")
         Else
             LayoutControlGroup1.Text = "Αφορά Πελάτη"
-            LCus.Enabled = False : LTransh.Enabled = False
+            LCus.Enabled = False
+            cboTRANSH.Properties.Buttons.Item(0).Enabled = False
+            cboTRANSH.Properties.Buttons.Item(1).Enabled = False
+            cboTRANSH.Properties.Buttons.Item(2).Enabled = True
+            cboTRANSH.Properties.Buttons.Item(3).Enabled = False
+            cboTRANSH.ReadOnly = True
             If dtDateDelivered.EditValue IsNot Nothing And
                 (txtInstellipseFilename.EditValue IsNot Nothing Or txtInstellipseFilenameD.EditValue IsNot Nothing Or
                 txtInstellipseFilenameC.EditValue IsNot Nothing Or txtInstellipseFilenameSC.EditValue IsNot Nothing) Then DisabletxtInstellipseFilename()
@@ -146,6 +143,34 @@ Public Class frmInstEllipse
         cmdSave.Enabled = IIf(Mode = FormMode.NewRecord, UserProps.AllowInsert, UserProps.AllowEdit)
 
     End Sub
+    Private Sub cmdExit_Click(sender As Object, e As EventArgs) Handles cmdExit.Click
+        Me.Close()
+    End Sub
+    Private Function ValidationsExit() As Boolean
+        If sID = Nothing Then Return False
+        If SaveButtonPressed = False Then
+            If XtraMessageBox.Show("Θέλετε να σώσετε την εγγραφή?", ProgProps.ProgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbNo Then
+                Dim sSQL As String = "DELETE FROM INST_ELLIPSE WHERE ID = '" & sID & "'"
+                Using oCmd As New SqlCommand(sSQL, CNDB)
+                    oCmd.ExecuteNonQuery()
+                End Using
+            End If
+        End If
+        If sComeFrom = 0 Then If CheckForInstName() = False Then Return False
+        If HasConnectedOrder = False And sComeFrom = 0 Then If CheckIfHasRecordsForOrder() = True Then Return False
+        If sComeFrom = 0 Then
+            If GridView1.DataRowCount > 0 Then
+                If CheckIfHasSendInfEmail() = False Then Return False
+                If CheckIfInstJobsAreCompleted() = True And txtInstellipseFilenameComplete.EditValue = Nothing Then
+                    XtraMessageBox.Show("Όλες οι εκκρεμότητες είναι ολοκληρωμένες χωρίς να έχετε επισυνάψει έντυπο ολοκλήρωσης. Δεν μπορεί να αποθηκευθεί η εγγραφή.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Return False
+                End If
+            End If
+
+            If CheckIfHasSendInfCompleteEmail() = False Then Return False
+        End If
+        Return True
+    End Function
     Private Sub DisabletxtInstellipseFilename()
         txtInstellipseFilename.ReadOnly = True
         txtInstellipseFilename.Properties.Buttons.Item(0).Enabled = False
@@ -168,11 +193,38 @@ Public Class frmInstEllipse
         txtInstellipseFilenameSC.Properties.Buttons.Item(2).Enabled = False
 
     End Sub
+    Private Sub EnabletxtInstellipseFilename()
+        txtInstellipseFilename.ReadOnly = False
+        txtInstellipseFilename.Properties.Buttons.Item(0).Enabled = True
+        txtInstellipseFilename.Properties.Buttons.Item(1).Enabled = True
+        txtInstellipseFilename.Properties.Buttons.Item(2).Enabled = True
+
+        txtInstellipseFilenameD.ReadOnly = False
+        txtInstellipseFilenameD.Properties.Buttons.Item(0).Enabled = True
+        txtInstellipseFilenameD.Properties.Buttons.Item(1).Enabled = True
+        txtInstellipseFilenameD.Properties.Buttons.Item(2).Enabled = True
+
+        txtInstellipseFilenameC.ReadOnly = False
+        txtInstellipseFilenameC.Properties.Buttons.Item(0).Enabled = True
+        txtInstellipseFilenameC.Properties.Buttons.Item(1).Enabled = True
+        txtInstellipseFilenameC.Properties.Buttons.Item(2).Enabled = True
+
+        txtInstellipseFilenameSC.ReadOnly = False
+        txtInstellipseFilenameSC.Properties.Buttons.Item(0).Enabled = True
+        txtInstellipseFilenameSC.Properties.Buttons.Item(1).Enabled = True
+        txtInstellipseFilenameSC.Properties.Buttons.Item(2).Enabled = True
+    End Sub
     Private Sub DisabletxtInstellipseFilenameComplete()
         txtInstellipseFilenameComplete.ReadOnly = True
         txtInstellipseFilenameComplete.Properties.Buttons.Item(0).Enabled = False
         txtInstellipseFilenameComplete.Properties.Buttons.Item(1).Enabled = True
         txtInstellipseFilenameComplete.Properties.Buttons.Item(2).Enabled = False
+    End Sub
+    Private Sub EnabletxtInstellipseFilenameComplete()
+        txtInstellipseFilenameComplete.ReadOnly = False
+        txtInstellipseFilenameComplete.Properties.Buttons.Item(0).Enabled = True
+        txtInstellipseFilenameComplete.Properties.Buttons.Item(1).Enabled = True
+        txtInstellipseFilenameComplete.Properties.Buttons.Item(2).Enabled = True
     End Sub
 
     Private Function CheckIfHasConnectedOrder() As Boolean
@@ -249,15 +301,41 @@ Public Class frmInstEllipse
             If sdr.IsDBNull(sdr.GetOrdinal("CountEllipse")) = False Then CountEllipse = sdr.GetInt32(sdr.GetOrdinal("CountEllipse")) Else CountEllipse = 0
             sdr.Close()
             If CountEllipse = 0 Then
-                XtraMessageBox.Show("Παρακαλώ πολύ πρέπει να στείλετε eMail Ενημέρωσης στον πελάτη.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                XtraMessageBox.Show("Παρακαλώ πολύ πρέπει να στείλετε eMail Ενημέρωσης Εκκρεμοτήτων στον πελάτη.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Return False
             Else
                 Return True
             End If
+        Else
+            Return True
         End If
-        Return False
+    End Function
+
+    Private Function CheckIfHasSendInfCompleteEmail() As Boolean
+        Dim Cmd As SqlCommand, sdr As SqlDataReader
+        Dim sSQL As New System.Text.StringBuilder
+        sSQL.AppendLine("SELECT emailInfComplete
+                        FROM INST_ELLIPSE  IE
+                        WHERE ID= " & toSQLValueS(sID) & " AND IE.completed = 1 ")
+        Cmd = New SqlCommand(sSQL.ToString, CNDB)
+        sdr = Cmd.ExecuteReader()
+        Dim emailInfComplete As Boolean
+        If (sdr.Read() = True) Then
+            If sdr.IsDBNull(sdr.GetOrdinal("emailInfComplete")) = False Then emailInfComplete = sdr.GetBoolean(sdr.GetOrdinal("emailInfComplete")) Else emailInfComplete = False
+            sdr.Close()
+            If emailInfComplete = False Then
+                XtraMessageBox.Show("Παρακαλώ πολύ πρέπει να στείλετε eMail Ολοκλήρωσης Ενημέρωσης εκκρεμοτήτων στον πελάτη.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Return False
+            Else
+                Return True
+            End If
+        Else
+            Return True
+        End If
+
 
     End Function
+
 
     Private Sub AddRecord()
         cmdNewInstEllipse.Enabled = False
@@ -267,7 +345,7 @@ Public Class frmInstEllipse
         cmdSendEmail.Enabled = False : cmdPrintAll.Enabled = False : cmdSendApointmentEmail.Enabled = False : cmdDefEmail.Enabled = False
         txtInstellipseFilename.ReadOnly = False : txtInstellipseFilenameD.ReadOnly = False
         txtInstellipseFilenameC.ReadOnly = False : txtInstellipseFilenameSC.ReadOnly = False
-
+        EnabletxtInstellipseFilename() : EnabletxtInstellipseFilenameComplete()
         '΅Εισαγωγή εγγραφής απευθείας στην βάση
         Dim sResult As Boolean = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "INST_ELLIPSE", LayoutControl1,,, sID, True, "comefrom", sComeFrom)
         If sResult = False Then
@@ -561,7 +639,7 @@ Public Class frmInstEllipse
                 Using oCmd As New SqlCommand(sSQL, CNDB)
                     oCmd.ExecuteNonQuery()
                 End Using
-                If Mode = 1 Then
+                If Mode = 4 Then
                     chkCompleted.CheckState = CheckState.Checked : GridView1.OptionsBehavior.Editable = False
                     cmdNewInstEllipse.Enabled = False : DisabletxtInstellipseFilename() ' txtInstellipseFilename.Enabled = False
                 End If
@@ -880,22 +958,7 @@ Public Class frmInstEllipse
     End Sub
 
     Private Sub frmInstEllipse_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
-        If sID = Nothing Then Exit Sub
-        If SaveButtonPressed = False Then
-            If XtraMessageBox.Show("Θέλετε να σώσετε την εγγραφή?", ProgProps.ProgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbNo Then
-                Dim sSQL As String = "DELETE FROM INST_ELLIPSE WHERE ID = '" & sID & "'"
-                Using oCmd As New SqlCommand(sSQL, CNDB)
-                    oCmd.ExecuteNonQuery()
-                End Using
-            End If
-        End If
-        If sComeFrom = 0 Then
-            If CheckForInstName() = False Then e.Cancel = True : Exit Sub
-        End If
-        If HasConnectedOrder = False And sComeFrom = 0 Then If CheckIfHasRecordsForOrder() = True Then Exit Sub
-        If sComeFrom = 0 Then
-            If CheckIfHasSendInfEmail() = False Then e.Cancel = True : Exit Sub
-        End If
+        If ValidationsExit() = False Then e.Cancel = True : Exit Sub
     End Sub
     Private Function CheckForInstName() As Boolean
         If GridView1.DataRowCount > 0 And
@@ -916,29 +979,29 @@ Public Class frmInstEllipse
                     txtSubject.EditValue = ProgProps.InstEllipseInfSubject
                     txtTo.EditValue = cboINST.GetColumnValue("email")
                     If txtInstellipseFilenameComplete.EditValue IsNot Nothing Then
-                        cmdSendEmailComplete.Enabled = True
-                        DefInstComplete.Enabled = True
+                        cmdSendEmailComplete.Enabled = True : DefInstComplete.Enabled = True
                     Else
-                        cmdSendEmailComplete.Enabled = False
-                        DefInstComplete.Enabled = False
+                        cmdSendEmailComplete.Enabled = False : DefInstComplete.Enabled = False
+                    End If
+                    If txtInstellipseFilename.EditValue IsNot Nothing Or txtInstellipseFilenameD.EditValue IsNot Nothing Or
+                       txtInstellipseFilenameC.EditValue IsNot Nothing Or txtInstellipseFilenameSC.EditValue IsNot Nothing Then
+                        cmdSendEmail.Enabled = True : DefInst.Enabled = True
                     End If
                 Else
                     txtSubject.EditValue = ProgProps.InstEllipseInfSubjectSup
                     txtTo.EditValue = cboSUP.GetColumnValue("email")
-                    DefInstAppointment.Enabled = False
-                    txtBody.EditValue = ProgProps.PJInfBodySup.Replace("{CUS}", cboCUS.Text)
+                    txtBody.EditValue = ProgProps.InstEllipseInfBodySup.Replace("{CUS}", cboCUS.Text)
                     txtSubject.EditValue = ProgProps.PJInfSubjectSup
-                    DefInstAppointment.Enabled = False
-                    DefInstComplete.Enabled = False
+                    DefInstAppointment.Enabled = False : DefInstAppointment.Enabled = False : DefInstComplete.Enabled = False
                     cmdSendEmailComplete.Enabled = False
                 End If
-                If dtDateDelivered.EditValue = Nothing Or txtTmINFrom.EditValue = "00:00" Or txtTmINTo.EditValue = "00:00" Then cmdSendApointmentEmail.Enabled = False Else cmdSendApointmentEmail.Enabled = True
+                cmdDefEmail.Enabled = True
+                If dtDateDelivered.EditValue = Nothing Or txtTmINFrom.EditValue = "00:00" Or txtTmINTo.EditValue = "00:00" Then cmdSendApointmentEmail.Enabled = False : DefInstAppointment.Enabled = False Else cmdSendApointmentEmail.Enabled = True : DefInstAppointment.Enabled = True
                 Me.INST_MAILTableAdapter.FillByinstEllipseID(Me.DmDataSet.INST_MAIL, System.Guid.Parse(sID))
                 LoadForms.RestoreLayoutFromXml(GridView3, "INST_MAIL_ELLIPSE.xml")
-                'GridView3.Columns("DateOfEmail").DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-                'GridView3.Columns("DateOfEmail").DisplayFormat.FormatString = "dd/MM/yyyy HH:mm tt"
             Case 2
                 LoadForms.RestoreLayoutFromXml(GridView5, "vw_TRANSH_F_INST_ELLIPSE_def.xml")
+                GridView5.Columns.Item("belongsTo").OptionsColumn.AllowEdit = False
                 If cboTRANSH.EditValue IsNot Nothing Then TRANSH_FTableAdapter.FillByTranshID(DM_TRANS.TRANSH_F, System.Guid.Parse(cboTRANSH.EditValue.ToString))
         End Select
     End Sub
@@ -1405,6 +1468,7 @@ Public Class frmInstEllipse
     Private Sub GridView5_PopupMenuShowing(sender As Object, e As PopupMenuShowingEventArgs) Handles GridView5.PopupMenuShowing
         If e.MenuType = GridMenuType.Column Then LoadForms.PopupMenuShow(e, GridView5, "vw_TRANSH_F_INST_ELLIPSE_def.xml", "vw_TRANSH_F")
     End Sub
+
 End Class
 'Private Sub ShowQuestionForm()
 '    Dim args As New XtraInputBoxArgs()

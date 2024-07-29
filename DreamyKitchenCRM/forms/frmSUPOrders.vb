@@ -1,16 +1,8 @@
 ﻿Imports System.Data.SqlClient
-Imports DevExpress.Utils
-Imports DevExpress.Utils.Menu
 Imports DevExpress.XtraBars.Navigation
 Imports DevExpress.XtraEditors
 Imports DevExpress.XtraEditors.Controls
-Imports DevExpress.XtraEditors.Repository
-Imports DevExpress.XtraExport.Helpers
-Imports DevExpress.XtraGrid.Columns
-Imports DevExpress.XtraGrid.Menu
-Imports DevExpress.XtraGrid.Views.Base
 Imports DevExpress.XtraGrid.Views.Grid
-Imports DevExpress.XtraLayout
 Imports DevExpress.XtraReports.UI
 Public Class frmSUPOrders
     Private ManageCbo As New CombosManager
@@ -27,7 +19,9 @@ Public Class frmSUPOrders
     Private CtrlCombo As DevExpress.XtraEditors.LookUpEdit
 
     Private sID As String
+    Private sComeFrom As Int16
     Public Mode As Byte
+    Private sFields As New Dictionary(Of String, String)
     Private FScrollerExist As Boolean = False
     Private CalledFromCtrl As Boolean
     Private WorkingTime As Integer
@@ -35,6 +29,14 @@ Public Class frmSUPOrders
     Public WriteOnly Property ID As String
         Set(value As String)
             sID = value
+        End Set
+    End Property
+    Public Property ComeFrom() As Int16
+        Get
+            Return sComeFrom
+        End Get
+        Set(value As Int16)
+            sComeFrom = value
         End Set
     End Property
     Public WriteOnly Property Scroller As DevExpress.XtraGrid.Views.Grid.GridView
@@ -82,7 +84,14 @@ Public Class frmSUPOrders
                 txtCode.Text = DBQ.GetNextId("SUP_ORDERS")
                 cboEMP.EditValue = System.Guid.Parse(UserProps.ID.ToString.ToUpper)
             Case FormMode.EditRecord
-                LoadForms.LoadForm(LayoutControl1, "Select * from SUP_ORDERS where id = " & toSQLValueS(sID))
+
+                LoadForms.LoadForm(LayoutControl1, "Select * from SUP_ORDERS where id = " & toSQLValueS(sID), sFields)
+                sComeFrom = sFields("comeFrom")
+                Select Case sComeFrom
+                    Case 1 : LblComeFrom.Text = "Η παραγγελία δημιουργήθηκε από εκκρεμότητα τοποθέτησης"
+                    Case 2 : LblComeFrom.Text = "Η παραγγελία δημιουργήθηκε από εργασία"
+                    Case Else : LblComeFrom.Text = "" : cmdPrintAll.Enabled = False
+                End Select
                 LoadForms.LoadDataToGrid(GridControl1, GridView1, "select ID,supOrderID,filename,comefrom,createdon,realname From vw_SUP_ORDERS_F where supOrderID = '" & sID & "'")
         End Select
         LoadForms.RestoreLayoutFromXml(GridView1, "vw_SUP_ORDERS_F_def.xml")
@@ -336,5 +345,22 @@ Public Class frmSUPOrders
 
     Private Sub GridView2_PopupMenuShowing(sender As Object, e As DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventArgs) Handles GridView2.PopupMenuShowing
         If e.MenuType = GridMenuType.Column Then LoadForms.PopupMenuShow(e, GridView2, "SUP_ORDERS_MAIL_def.xml",, "select top 1 [ID], [code], [supOrderID], [emailFrom], [emailTo], [emailSubject], [emailBody], [DateOfEmail], [createdOn], [createdBy]  from SUP_ORDERS_MAIL")
+    End Sub
+
+    Private Sub cmdPrintAll_Click(sender As Object, e As EventArgs) Handles cmdPrintAll.Click
+        If sComeFrom = 1 Then
+            Dim report As New RepCUSEllipseForSUP
+            report.Parameters.Item(0).Value = sFields("instEllipseID")
+            report.CreateDocument()
+            Dim printTool As New ReportPrintTool(report)
+            printTool.ShowRibbonPreview()
+        ElseIf sComeFrom = 2 Then
+            Dim report As New RepCUSProjectJobsForSUP
+            report.Parameters.Item(0).Value = sFields("projectJobID")
+            report.CreateDocument()
+            Dim printTool As New ReportPrintTool(report)
+            printTool.ShowRibbonPreview()
+
+        End If
     End Sub
 End Class
