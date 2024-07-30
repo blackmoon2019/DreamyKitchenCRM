@@ -21,12 +21,12 @@ Partial Class frmTransactions
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmTransactions))
-        Dim EditorButtonImageOptions2 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
-        Dim SerializableAppearanceObject5 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject6 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject7 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject8 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim PushTransition2 As DevExpress.Utils.Animation.PushTransition = New DevExpress.Utils.Animation.PushTransition()
+        Dim EditorButtonImageOptions1 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
+        Dim SerializableAppearanceObject1 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject2 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject3 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject4 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim PushTransition1 As DevExpress.Utils.Animation.PushTransition = New DevExpress.Utils.Animation.PushTransition()
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
         Me.TabPane1 = New DevExpress.XtraBars.Navigation.TabPane()
         Me.TabNavigationPage1 = New DevExpress.XtraBars.Navigation.TabNavigationPage()
@@ -264,12 +264,12 @@ Partial Class frmTransactions
         Me.Bar1 = New DevExpress.XtraBars.Bar()
         Me.bbEMP_T = New DevExpress.XtraBars.BarButtonItem()
         Me.BBProjectCosts = New DevExpress.XtraBars.BarButtonItem()
+        Me.BBInstallation = New DevExpress.XtraBars.BarButtonItem()
         Me.BBCctOrdersKitchen = New DevExpress.XtraBars.BarButtonItem()
         Me.BBCctOrdersCloset = New DevExpress.XtraBars.BarButtonItem()
         Me.BBCctOrdersDoor = New DevExpress.XtraBars.BarButtonItem()
         Me.BBCctOrdersSC = New DevExpress.XtraBars.BarButtonItem()
         Me.BBAgreement = New DevExpress.XtraBars.BarButtonItem()
-        Me.BBInstallation = New DevExpress.XtraBars.BarButtonItem()
         Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
@@ -2558,8 +2558,8 @@ Partial Class frmTransactions
         Me.txtFiles.Margin = New System.Windows.Forms.Padding(4)
         Me.txtFiles.Name = "txtFiles"
         Me.txtFiles.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
-        EditorButtonImageOptions2.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_scanner_16
-        Me.txtFiles.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, True, True, False, EditorButtonImageOptions2, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject5, SerializableAppearanceObject6, SerializableAppearanceObject7, SerializableAppearanceObject8, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default]), New DevExpress.XtraEditors.Controls.EditorButton(), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)})
+        EditorButtonImageOptions1.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_scanner_16
+        Me.txtFiles.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, True, True, False, EditorButtonImageOptions1, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject1, SerializableAppearanceObject2, SerializableAppearanceObject3, SerializableAppearanceObject4, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default]), New DevExpress.XtraEditors.Controls.EditorButton(), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)})
         Me.txtFiles.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         Me.txtFiles.Size = New System.Drawing.Size(1221, 26)
         Me.txtFiles.StyleController = Me.LayoutControl4
@@ -3037,6 +3037,15 @@ Partial Class frmTransactions
         Me.BBProjectCosts.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_group_of_projects_24
         Me.BBProjectCosts.Name = "BBProjectCosts"
         '
+        'BBInstallation
+        '
+        Me.BBInstallation.Caption = "Πρόγραμμα Παραδόσεων - Τοποθετήσεων"
+        Me.BBInstallation.Hint = "Πρόγραμμα Παραδόσεων - Τοποθετήσεων"
+        Me.BBInstallation.Id = 9
+        Me.BBInstallation.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_installation_24
+        Me.BBInstallation.ImageOptions.LargeImage = CType(resources.GetObject("BBInstallation.ImageOptions.LargeImage"), System.Drawing.Image)
+        Me.BBInstallation.Name = "BBInstallation"
+        '
         'BBCctOrdersKitchen
         '
         Me.BBCctOrdersKitchen.Caption = "Παραγγελία Κουζίνας"
@@ -3071,15 +3080,6 @@ Partial Class frmTransactions
         Me.BBAgreement.Id = 7
         Me.BBAgreement.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_agreement_24
         Me.BBAgreement.Name = "BBAgreement"
-        '
-        'BBInstallation
-        '
-        Me.BBInstallation.Caption = "Πρόγραμμα Παραδόσεων - Τοποθετήσεων"
-        Me.BBInstallation.Hint = "Πρόγραμμα Παραδόσεων - Τοποθετήσεων"
-        Me.BBInstallation.Id = 9
-        Me.BBInstallation.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_installation_24
-        Me.BBInstallation.ImageOptions.LargeImage = CType(resources.GetObject("BBInstallation.ImageOptions.LargeImage"), System.Drawing.Image)
-        Me.BBInstallation.Name = "BBInstallation"
         '
         'barDockControlTop
         '
@@ -3130,7 +3130,7 @@ Partial Class frmTransactions
         'WorkspaceManager1
         '
         Me.WorkspaceManager1.TargetControl = Me
-        Me.WorkspaceManager1.TransitionType = PushTransition2
+        Me.WorkspaceManager1.TransitionType = PushTransition1
         '
         'Vw_TRANS_EXTRA_CHARGESTableAdapter
         '

@@ -76,6 +76,17 @@ Public Class Parameters
         XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
 
     End Sub
+    Public Sub SaveDefaultProjectJobsEmail()
+        Prog_Prop.SetProgPJEmail(Frm.PJ_BODY_INF.Text, Frm.PJ_EMAIL_SUP_TO.Text, Frm.PJ_SUBJECT_INF.Text, Frm.PJ_EMAIL_SUP_FROM.Text,
+                                 Frm.PJ_SUBJECT_SUP_INF.Text, Frm.PJ_BODY_SUP_INF.Text, Frm.PJ_BODY_INF_APPOINTMENT.Text, Frm.PJ_SUBJECT_INF_APPOINTMENT.Text,
+                                 Frm.PJ_SUBJECT_COMPLETE_INF.Text, Frm.PJ_BODY_COMPLETE_INF.Text, Frm.PJ_EMAIL.Text)
+        Prog_Prop.GetProgEmailPJ(Frm.LayoutControl4)
+        'Prog_Prop.SetProgSupEmailPJ(Frm.PJ_EMAIL_SUP_FROM.Text)
+        Prog_Prop.GetProgEmailSupPJ(Frm.LPJ_EMAIL_SUP_FROM)
+        XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+    End Sub
+
     Public Sub LoadDefaultGen()
         'ΦΠΑ
         Frm.txtVAT.EditValue = Prog_Prop.GetProgvat()
@@ -116,6 +127,12 @@ Public Class Parameters
         Prog_Prop.GetProgEmailSup(Frm.LayoutControlItem76)
         Frm.SUP_ORDERS_MAIL.EditValue = ProgProps.EmailOrders
     End Sub
+    Public Sub LoadDefaultEmailPJ()
+        Prog_Prop.GetProgEmailPJ(Frm.LayoutControl4)
+        Prog_Prop.GetProgEmailSupPJ(Frm.LPJ_EMAIL_SUP_FROM)
+        Frm.PJ_EMAIL_SUP_FROM.EditValue = ProgProps.PJEmailSupFrom
+    End Sub
+
     Private Sub InsertSelectedRows()
         Dim sSQL As String
         Dim I As Integer

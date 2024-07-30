@@ -94,11 +94,7 @@ Public Class frmVersions
         Dim myValue = XtraInputBox.Show(args)
         Try
             If myValue = "" Then Exit Sub
-            If CNDB.Database <> "DreamyKitchen" And Debugger.IsAttached = True Then
-                sSQL = "Update ver set ExeVer = " & toSQLValueS(myValue) & ",DbVer = " & toSQLValueS(myValue) & ", UpdatePath='\\10.10.5.5\crm\DKCRM\DEV\Updates\" & myValue & "\'"
-            Else
-                sSQL = "Update ver set ExeVer = " & toSQLValueS(myValue) & ",DbVer = " & toSQLValueS(myValue) & ", UpdatePath='\\10.10.5.5\crm\DKCRM\Updates\" & myValue & "\'"
-            End If
+            sSQL = "Update ver set ExeVer = " & toSQLValueS(myValue) & ",DbVer = " & toSQLValueS(myValue) & ", UpdatePath=" & toSQLValueS(ProgProps.UpdatesPath & myValue & "\")
 
             Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
                 oCmd.ExecuteNonQuery()
@@ -114,21 +110,12 @@ Public Class frmVersions
             Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
                 oCmd.ExecuteNonQuery()
             End Using
-            If CNDB.Database <> "DreamyKitchen" And Debugger.IsAttached = True Then
-                If My.Computer.FileSystem.DirectoryExists("\\10.10.5.5\crm\DKCRM\DEV\Updates\" & myValue) = False Then
-                    My.Computer.FileSystem.CreateDirectory("\\10.10.5.5\crm\DKCRM\DEV\Updates\" & myValue)
-                    Dim exePath As String = Application.ExecutablePath()
-                    My.Computer.FileSystem.CopyFile(Application.ExecutablePath().Replace("Debug", "Release"), "\\10.10.5.5\crm\DKCRM\DEV\Updates\" & myValue & "\DreamyKitchenCRM.exe")
-                End If
-
-            Else
-                If My.Computer.FileSystem.DirectoryExists("\\10.10.5.5\crm\DKCRM\Updates\" & myValue) = False Then
-                    My.Computer.FileSystem.CreateDirectory("\\10.10.5.5\crm\DKCRM\Updates\" & myValue)
-                    Dim exePath As String = Application.ExecutablePath()
-                    My.Computer.FileSystem.CopyFile(Application.ExecutablePath().Replace("Debug", "Release"), "\\10.10.5.5\crm\DKCRM\Updates\" & myValue & "\DreamyKitchenCRM.exe")
-                End If
-
+            If My.Computer.FileSystem.DirectoryExists(ProgProps.UpdatesPath & myValue) = False Then
+                My.Computer.FileSystem.CreateDirectory(ProgProps.UpdatesPath & myValue)
+                Dim exePath As String = Application.ExecutablePath()
+                My.Computer.FileSystem.CopyFile(Application.ExecutablePath().Replace("Debug", "Release"), ProgProps.UpdatesPath & myValue & "\DreamyKitchenCRM.exe")
             End If
+
             XtraMessageBox.Show("Η έκδοση δημιουργήθηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)

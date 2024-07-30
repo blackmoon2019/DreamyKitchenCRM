@@ -64,6 +64,7 @@ Public Class CusOfferOrderCloset
 
         Select Case Mode
             Case FormMode.NewRecord
+                LoadEquipments()
                 Frm.txtarProt.Text = DBQ.GetNextId("CCT_ORDERS_CLOSET")
                 Frm.cboEMP.EditValue = System.Guid.Parse(UserProps.ID.ToString.ToUpper)
                 Frm.txtdtdaysOfDelivery.EditValue = ProgProps.DAYS_OF_DELIVERY

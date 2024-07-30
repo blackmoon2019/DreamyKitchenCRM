@@ -33187,8 +33187,8 @@ Namespace DM_VALUELISTITEMTableAdapters
             Me._commandCollection(0).CommandText = "SELECT Modifier, ID, code, CustomCode, name, cat, color, Price, comments, modifie"& _ 
                 "dBy, modifiedOn, createdOn, createdBy, doorColorID, ColorName, typeDescr, type, "& _ 
                 "doorType, kasa, dimName, dimID, valueListID, valueListName, closetType, descript"& _ 
-                "ion"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM   vw_VALUELISTITEM"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE (valueListID = 'DE86FD16-2154-4E2A-B025-4D34"& _ 
-                "BDF8C808')"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY name"
+                "ion"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM   vw_VALUELISTITEM"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE valueListID in('DE86FD16-2154-4E2A-B025-4D34"& _ 
+                "BDF8C808','D08B9371-F94A-48F9-8021-C1661120ED8C')"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY name"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
         End Sub
         

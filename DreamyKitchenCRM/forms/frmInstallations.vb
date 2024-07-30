@@ -5,6 +5,7 @@ Imports DevExpress.XtraBars.Navigation
 Imports DevExpress.XtraGrid.Views.Grid
 Imports DreamyKitchenCRM.DM_TRANSTableAdapters
 Imports System.Data.SqlClient
+Imports DevExpress.XtraGrid.Views.Base
 
 
 Public Class frmInstallations
@@ -197,9 +198,7 @@ Public Class frmInstallations
             Case 3 : cboTanshFCategory.EditValue = Nothing
         End Select
     End Sub
-    Private Sub GridControl2_DoubleClick(sender As Object, e As EventArgs) Handles GridControl2.DoubleClick
-        OpenFileFromGrid(GridView5, "TRANSH_F")
-    End Sub
+
 
     Private Sub TabPane2_SelectedPageChanged(sender As Object, e As SelectedPageChangedEventArgs) Handles TabPane2.SelectedPageChanged
         'If Me.IsActive = False Then Exit Sub
@@ -299,4 +298,25 @@ Public Class frmInstallations
     Private Sub cmdDeleteInstCostSC_Click(sender As Object, e As EventArgs) Handles cmdDeleteInstCostSC.Click
         Installations.DeleteInstCost(3)
     End Sub
+
+    Private Sub GridView5_ValidateRow(sender As Object, e As ValidateRowEventArgs) Handles GridView5.ValidateRow
+        Dim sSQL As New System.Text.StringBuilder
+        Try
+            sSQL.Clear()
+            sSQL.AppendLine("UPDATE TRANSH_F	SET FileCatID= " & toSQLValueS(GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "fileCatID").ToString) & ",")
+            sSQL.AppendLine("modifiedBY = " & toSQLValueS(UserProps.ID.ToString) & ",")
+            sSQL.AppendLine("modifiedON = getdate() ")
+            sSQL.AppendLine("WHERE ID = " & toSQLValueS(GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "ID").ToString))
+            'Εκτέλεση QUERY
+            Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
+                oCmd.ExecuteNonQuery()
+            End Using
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+    Private Sub GridControl2_DoubleClick(sender As Object, e As EventArgs) Handles GridControl2.DoubleClick
+        OpenFileFromGrid(GridView5, "TRANSH_F")
+    End Sub
+
 End Class

@@ -220,6 +220,66 @@ Public Class ProgProp
             sdr = Nothing
         End Try
     End Sub
+    Public Sub GetProgEmailPJ(Optional ByVal control As DevExpress.XtraLayout.LayoutControl = Nothing)
+        Dim sSQL As String
+        Dim sVal As String, sPrm As String
+        Dim cmd As SqlCommand
+        Dim sdr As SqlDataReader
+        Try
+            sSQL = "select prm,val FROM PRM where grpName= 'EMAIL_PJ' ORDER by prm"
+            cmd = New SqlCommand(sSQL, CNDB)
+            sdr = cmd.ExecuteReader()
+            While sdr.Read()
+                sPrm = sdr.GetString(sdr.GetOrdinal("prm"))
+                If control Is Nothing Then
+                    If sdr.IsDBNull(sdr.GetOrdinal("val")) = False Then
+                        Select Case sPrm
+                            Case "PJ_EMAIL" : ProgProps.PJEmailOrders = sdr.GetString(sdr.GetOrdinal("val"))
+                            Case "PJ_BODY_INF" : ProgProps.PJInfBody = sdr.GetString(sdr.GetOrdinal("val"))
+                            Case "PJ_SUBJECT_INF" : ProgProps.PJInfSubject = sdr.GetString(sdr.GetOrdinal("val"))
+                            Case "PJ_EMAIL_SUP_FROM" : ProgProps.PJEmailSupFrom = sdr.GetString(sdr.GetOrdinal("val"))
+                            Case "PJ_EMAIL_SUP_TO" : ProgProps.PJEmailSupTo = sdr.GetString(sdr.GetOrdinal("val"))
+                            Case "PJ_BODY_SUP_INF" : ProgProps.PJInfBodySup = sdr.GetString(sdr.GetOrdinal("val"))
+                            Case "PJ_SUBJECT_SUP_INF" : ProgProps.PJInfSubjectSup = sdr.GetString(sdr.GetOrdinal("val"))
+                            Case "PJ_BODY_INF_APPOINTMENT" : ProgProps.PJInfAppointmentBody = sdr.GetString(sdr.GetOrdinal("val"))
+                            Case "PJ_SUBJECT_INF_APPOINTMENT" : ProgProps.PJInfAppointmentSubject = sdr.GetString(sdr.GetOrdinal("val"))
+                            Case "PJ_SUBJECT_COMPLETE_INF" : ProgProps.PJInfSubjectComplete = sdr.GetString(sdr.GetOrdinal("val"))
+                            Case "PJ_BODY_COMPLETE_INF" : ProgProps.PJInfBodyComplete = sdr.GetString(sdr.GetOrdinal("val"))
+                        End Select
+                    End If
+                Else
+                    Dim Ctrl As Control = control.GetControlByName(sPrm)
+                    If Ctrl IsNot Nothing Then
+                        Dim LItem As LayoutControlItem = control.GetItemByControl(Ctrl)
+                        If sdr.IsDBNull(sdr.GetOrdinal("val")) = False Then
+                            SetValueToControl(LItem, sdr.GetString(sdr.GetOrdinal("val")))
+                            Select Case sPrm
+                                Case "PJ_EMAIL" : ProgProps.PJEmailOrders = sdr.GetString(sdr.GetOrdinal("val"))
+                                Case "PJ_BODY_INF" : ProgProps.PJInfBody = sdr.GetString(sdr.GetOrdinal("val"))
+                                Case "INSTALLATIONS_EMAIL" : ProgProps.InstEmailAccount = sdr.GetString(sdr.GetOrdinal("val"))
+                                Case "PJ_SUBJECT_INF" : ProgProps.PJInfSubject = sdr.GetString(sdr.GetOrdinal("val"))
+                                Case "PJ_EMAIL_SUP_FROM" : ProgProps.PJEmailSupFrom = sdr.GetString(sdr.GetOrdinal("val"))
+                                Case "PJ_EMAIL_SUP_TO" : ProgProps.PJEmailSupTo = sdr.GetString(sdr.GetOrdinal("val"))
+                                Case "PJ_BODY_SUP_INF" : ProgProps.PJInfBodySup = sdr.GetString(sdr.GetOrdinal("val"))
+                                Case "PJ_SUBJECT_SUP_INF" : ProgProps.PJInfSubjectSup = sdr.GetString(sdr.GetOrdinal("val"))
+                                Case "PJ_BODY_INF_APPOINTMENT" : ProgProps.PJInfAppointmentBody = sdr.GetString(sdr.GetOrdinal("val"))
+                                Case "PJ_SUBJECT_INF_APPOINTMENT" : ProgProps.PJInfAppointmentSubject = sdr.GetString(sdr.GetOrdinal("val"))
+                                Case "PJ_SUBJECT_COMPLETE_INF" : ProgProps.PJInfSubjectComplete = sdr.GetString(sdr.GetOrdinal("val"))
+                                Case "PJ_BODY_COMPLETE_INF" : ProgProps.PJInfBodyComplete = sdr.GetString(sdr.GetOrdinal("val"))
+                            End Select
+                        End If
+                    End If
+                End If
+            End While
+            sdr.Close()
+            sdr = Nothing
+            'End If
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            sdr.Close()
+            sdr = Nothing
+        End Try
+    End Sub
 
     Private Sub SetValueToControl(ByVal LItem As LayoutControlItem, ByVal sValue As String)
         Try
@@ -398,6 +458,28 @@ Public Class ProgProp
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
+    Public Sub SetProgPJEmail(ByVal sValue As String, ByVal sValue2 As String, ByVal sValue3 As String, ByVal sValue4 As String, ByVal sValue5 As String,
+                                ByVal sValue6 As String, ByVal sValue7 As String, ByVal sValue8 As String, ByVal sValue9 As String, ByVal sValue10 As String, ByVal sValue11 As String)
+        Dim sSQL As String
+        Dim cmd As SqlCommand
+        Try
+
+            If sValue.Length > 0 Then sSQL = "Update PRM set val = '" & sValue & "' where prm= 'PJ_BODY_INF'" : cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
+            If sValue2.Length > 0 Then sSQL = "Update PRM set val = '" & sValue2 & "' where prm= 'PJ_EMAIL_SUP_TO'" : cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
+            If sValue3.Length > 0 Then sSQL = "Update PRM set val = '" & sValue3 & "' where prm= 'PJ_SUBJECT_INF'" : cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
+            If sValue4.Length > 0 Then sSQL = "Update PRM set val = '" & sValue4 & "' where prm= 'PJ_EMAIL_SUP_FROM'" : cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
+            If sValue5.Length > 0 Then sSQL = "Update PRM set val = '" & sValue5 & "' where prm= 'PJ_SUBJECT_SUP_INF'" : cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
+            If sValue6.Length > 0 Then sSQL = "Update PRM set val = '" & sValue6 & "' where prm= 'PJ_BODY_SUP_INF'" : cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
+            If sValue7.Length > 0 Then sSQL = "Update PRM set val = '" & sValue7 & "' where prm= 'PJ_BODY_INF_APPOINTMENT'" : cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
+            If sValue8.Length > 0 Then sSQL = "Update PRM set val = '" & sValue8 & "' where prm= 'PJ_SUBJECT_INF_APPOINTMENT'" : cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
+            If sValue9.Length > 0 Then sSQL = "Update PRM set val = '" & sValue9 & "' where prm= 'PJ_SUBJECT_COMPLETE_INF'" : cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
+            If sValue10.Length > 0 Then sSQL = "Update PRM set val = '" & sValue10 & "' where prm= 'PJ_BODY_COMPLETE_INF'" : cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
+            If sValue11.Length > 0 Then sSQL = "Update PRM set val = '" & sValue11 & "' where prm= 'PJ_EMAIL'" : cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
+
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
 
     Public Sub SetProgSupEmail(ByVal sValue As String)
         Dim sSQL As String
@@ -424,4 +506,30 @@ Public Class ProgProp
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Function
+    Public Sub SetProgSupEmailPJ(ByVal sValue As String)
+        Dim sSQL As String
+        Dim cmd As SqlCommand
+        Try
+
+            If sValue.Length > 0 Then sSQL = "Update PRM set val = '" & sValue & "' where prm= 'PJ_EMAIL_SUP_FROM'" : cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+    Public Function GetProgEmailSupPJ(Optional ByVal LItem As LayoutControlItem = Nothing) As String
+
+        Dim sSQL As String
+        Dim cmd As SqlCommand
+        Dim sdr As SqlDataReader
+        Try
+            sSQL = "select val FROM PRM where prm= 'PJ_EMAIL_SUP_FROM' "
+            cmd = New SqlCommand(sSQL, CNDB)
+            sdr = cmd.ExecuteReader()
+            If (sdr.Read() = True) Then ProgProps.PJEmailSupFrom = sdr.GetString(sdr.GetOrdinal("VAL")) : If LItem IsNot Nothing Then SetValueToControl(LItem, sdr.GetString(sdr.GetOrdinal("val")))
+            Return ProgProps.PJEmailOrders
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Function
+
 End Class

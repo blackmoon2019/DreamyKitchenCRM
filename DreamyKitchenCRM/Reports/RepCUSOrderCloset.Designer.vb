@@ -2552,7 +2552,7 @@ Partial Public Class RepCUSOrderCloset
         Me.Parameters.AddRange(New DevExpress.XtraReports.Parameters.Parameter() {Me.OfferID})
         Me.ScriptLanguage = DevExpress.XtraReports.ScriptLanguage.VisualBasic
         Me.SnapGridSize = 9.84252!
-        Me.Version = "23.1"
+        Me.Version = "23.2"
         CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
 
     End Sub

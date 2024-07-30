@@ -2545,14 +2545,14 @@ Partial Public Class RepCUSOfferCloset
         Me.DataMember = "vw_CCT_ORDERS_CLOSET"
         Me.DataSource = Me.SqlDataSource1
         Me.Font = New DevExpress.Drawing.DXFont("Arial", 9.75!)
-        Me.Margins = New DevExpress.Drawing.DXMargins(51, 51, 84, 21)
+        Me.Margins = New DevExpress.Drawing.DXMargins(51.0!, 51.0!, 84.47618!, 21.0!)
         Me.PageHeight = 1169
         Me.PageWidth = 827
         Me.PaperKind = DevExpress.Drawing.Printing.DXPaperKind.A4
         Me.Parameters.AddRange(New DevExpress.XtraReports.Parameters.Parameter() {Me.OfferID})
         Me.ScriptLanguage = DevExpress.XtraReports.ScriptLanguage.VisualBasic
         Me.SnapGridSize = 9.84252!
-        Me.Version = "21.2"
+        Me.Version = "23.2"
         CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
 
     End Sub
