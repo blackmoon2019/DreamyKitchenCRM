@@ -176,11 +176,10 @@
 	 "vw_CCT_ORDERS_KITCHEN"."visibleVat",
 	 "vw_CCT_ORDERS_KITCHEN"."arProt",
        "vw_CCT_ORDERS_KITCHEN"."CctName", "vw_CCT"."phn",
-       "vw_CCT"."AREAS_Name", "vw_CCT"."ADR_Name",
-       "vw_CCT"."ADR_Name" + "vw_CCT"."ar" as FullAddress
+	 "vw_TRANSH"."AREAS_Name", "vw_TRANSH"."ADR_Name","vw_TRANSH"."ADR_Name"  as FullAddress
   from ("dbo"."vw_CCT_ORDERS_KITCHEN" "vw_CCT_ORDERS_KITCHEN"
-  inner join "dbo"."vw_CCT" "vw_CCT"
-       on ("vw_CCT"."ID" = "vw_CCT_ORDERS_KITCHEN"."cusID"))
+  inner join "dbo"."vw_CCT" "vw_CCT" on ("vw_CCT"."ID" = "vw_CCT_ORDERS_KITCHEN"."cusID"))
+  inner join "dbo"."vw_TRANSH" "vw_TRANSH" on ("vw_TRANSH"."ID" = "vw_CCT_ORDERS_KITCHEN"."transhID")
  where ("vw_CCT_ORDERS_KITCHEN"."ID" = @OfferID)</value>
   </data>
   <data name="CustomSqlQuery3.Sql" xml:space="preserve">
