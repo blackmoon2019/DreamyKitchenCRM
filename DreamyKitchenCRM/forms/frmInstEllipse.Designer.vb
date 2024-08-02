@@ -632,7 +632,7 @@ Partial Class frmInstEllipse
         Me.chkSER.Location = New System.Drawing.Point(24, 261)
         Me.chkSER.Margin = New System.Windows.Forms.Padding(4)
         Me.chkSER.Name = "chkSER"
-        Me.chkSER.Size = New System.Drawing.Size(1507, 136)
+        Me.chkSER.Size = New System.Drawing.Size(1507, 175)
         Me.chkSER.SortOrder = System.Windows.Forms.SortOrder.Ascending
         Me.chkSER.StyleController = Me.LayoutControl1
         Me.chkSER.TabIndex = 5
@@ -641,7 +641,7 @@ Partial Class frmInstEllipse
         'chkCompleted
         '
         Me.chkCompleted.EditValue = CType(0, Byte)
-        Me.chkCompleted.Location = New System.Drawing.Point(1377, 401)
+        Me.chkCompleted.Location = New System.Drawing.Point(1377, 440)
         Me.chkCompleted.Margin = New System.Windows.Forms.Padding(4)
         Me.chkCompleted.Name = "chkCompleted"
         Me.chkCompleted.Properties.Caption = "Ολοκληρώθηκε"
@@ -693,7 +693,7 @@ Partial Class frmInstEllipse
         'dtDateDelivered
         '
         Me.dtDateDelivered.EditValue = Nothing
-        Me.dtDateDelivered.Location = New System.Drawing.Point(172, 401)
+        Me.dtDateDelivered.Location = New System.Drawing.Point(172, 440)
         Me.dtDateDelivered.Margin = New System.Windows.Forms.Padding(4)
         Me.dtDateDelivered.Name = "dtDateDelivered"
         Me.dtDateDelivered.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -706,10 +706,10 @@ Partial Class frmInstEllipse
         '
         'txtComments
         '
-        Me.txtComments.Location = New System.Drawing.Point(24, 454)
+        Me.txtComments.Location = New System.Drawing.Point(24, 493)
         Me.txtComments.Margin = New System.Windows.Forms.Padding(4)
         Me.txtComments.Name = "txtComments"
-        Me.txtComments.Size = New System.Drawing.Size(1507, 134)
+        Me.txtComments.Size = New System.Drawing.Size(1507, 95)
         Me.txtComments.StyleController = Me.LayoutControl1
         Me.txtComments.TabIndex = 11
         Me.txtComments.Tag = "cmt,0,1,2"
@@ -732,7 +732,7 @@ Partial Class frmInstEllipse
         'txtTmINFrom
         '
         Me.txtTmINFrom.EditValue = New Date(2021, 9, 30, 0, 0, 0, 0)
-        Me.txtTmINFrom.Location = New System.Drawing.Point(605, 401)
+        Me.txtTmINFrom.Location = New System.Drawing.Point(605, 440)
         Me.txtTmINFrom.Margin = New System.Windows.Forms.Padding(4)
         Me.txtTmINFrom.Name = "txtTmINFrom"
         Me.txtTmINFrom.Properties.BeepOnError = True
@@ -748,7 +748,7 @@ Partial Class frmInstEllipse
         'txtTmINTo
         '
         Me.txtTmINTo.EditValue = New Date(2021, 9, 30, 0, 0, 0, 0)
-        Me.txtTmINTo.Location = New System.Drawing.Point(789, 401)
+        Me.txtTmINTo.Location = New System.Drawing.Point(789, 440)
         Me.txtTmINTo.Margin = New System.Windows.Forms.Padding(4)
         Me.txtTmINTo.Name = "txtTmINTo"
         Me.txtTmINTo.Properties.BeepOnError = True
@@ -801,7 +801,7 @@ Partial Class frmInstEllipse
         'dtReceipt
         '
         Me.dtReceipt.EditValue = Nothing
-        Me.dtReceipt.Location = New System.Drawing.Point(1064, 401)
+        Me.dtReceipt.Location = New System.Drawing.Point(1064, 440)
         Me.dtReceipt.Margin = New System.Windows.Forms.Padding(4)
         Me.dtReceipt.Name = "dtReceipt"
         Me.dtReceipt.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -947,11 +947,8 @@ Partial Class frmInstEllipse
         '
         Me.LayoutControlItem6.Control = Me.chkSER
         Me.LayoutControlItem6.Location = New System.Drawing.Point(0, 205)
-        Me.LayoutControlItem6.MaxSize = New System.Drawing.Size(0, 180)
-        Me.LayoutControlItem6.MinSize = New System.Drawing.Size(79, 4)
         Me.LayoutControlItem6.Name = "LayoutControlItem6"
-        Me.LayoutControlItem6.Size = New System.Drawing.Size(1511, 140)
-        Me.LayoutControlItem6.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
+        Me.LayoutControlItem6.Size = New System.Drawing.Size(1511, 179)
         Me.LayoutControlItem6.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem6.TextVisible = False
         '
@@ -969,7 +966,7 @@ Partial Class frmInstEllipse
         Me.LdtDateDelivered.Control = Me.dtDateDelivered
         Me.LdtDateDelivered.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LdtDateDelivered.CustomizationFormText = "Ημερ/νία Διεκπεραίωσης"
-        Me.LdtDateDelivered.Location = New System.Drawing.Point(0, 345)
+        Me.LdtDateDelivered.Location = New System.Drawing.Point(0, 384)
         Me.LdtDateDelivered.Name = "LdtDateDelivered"
         Me.LdtDateDelivered.Size = New System.Drawing.Size(411, 31)
         Me.LdtDateDelivered.Tag = ""
@@ -983,7 +980,7 @@ Partial Class frmInstEllipse
         Me.LTmINFrom.Control = Me.txtTmINFrom
         Me.LTmINFrom.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LTmINFrom.CustomizationFormText = "Από"
-        Me.LTmINFrom.Location = New System.Drawing.Point(411, 345)
+        Me.LTmINFrom.Location = New System.Drawing.Point(411, 384)
         Me.LTmINFrom.Name = "LTmINFrom"
         Me.LTmINFrom.Size = New System.Drawing.Size(318, 31)
         Me.LTmINFrom.Text = "Ώρα Άφιξης(Διάστημα)"
@@ -996,7 +993,7 @@ Partial Class frmInstEllipse
         Me.LTmINTo.Control = Me.txtTmINTo
         Me.LTmINTo.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LTmINTo.CustomizationFormText = "Έως"
-        Me.LTmINTo.Location = New System.Drawing.Point(729, 345)
+        Me.LTmINTo.Location = New System.Drawing.Point(729, 384)
         Me.LTmINTo.Name = "LTmINTo"
         Me.LTmINTo.Size = New System.Drawing.Size(157, 31)
         Me.LTmINTo.Text = "Έως"
@@ -1007,7 +1004,7 @@ Partial Class frmInstEllipse
         'LayoutControlItem5
         '
         Me.LayoutControlItem5.Control = Me.chkCompleted
-        Me.LayoutControlItem5.Location = New System.Drawing.Point(1353, 345)
+        Me.LayoutControlItem5.Location = New System.Drawing.Point(1353, 384)
         Me.LayoutControlItem5.Name = "LayoutControlItem5"
         Me.LayoutControlItem5.Size = New System.Drawing.Size(158, 31)
         Me.LayoutControlItem5.TextSize = New System.Drawing.Size(0, 0)
@@ -1019,10 +1016,10 @@ Partial Class frmInstEllipse
         Me.LayoutControlItem14.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem14.CustomizationFormText = "Σχόλια"
         Me.LayoutControlItem14.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LayoutControlItem14.Location = New System.Drawing.Point(0, 376)
+        Me.LayoutControlItem14.Location = New System.Drawing.Point(0, 415)
         Me.LayoutControlItem14.MinSize = New System.Drawing.Size(420, 51)
         Me.LayoutControlItem14.Name = "LayoutControlItem14"
-        Me.LayoutControlItem14.Size = New System.Drawing.Size(1511, 160)
+        Me.LayoutControlItem14.Size = New System.Drawing.Size(1511, 121)
         Me.LayoutControlItem14.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
         Me.LayoutControlItem14.Tag = ""
         Me.LayoutControlItem14.Text = "Σχόλια"
@@ -1058,7 +1055,7 @@ Partial Class frmInstEllipse
         Me.LdtReceipt.Control = Me.dtReceipt
         Me.LdtReceipt.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LdtReceipt.CustomizationFormText = "Ημερ/νία Παραγγελίας"
-        Me.LdtReceipt.Location = New System.Drawing.Point(886, 345)
+        Me.LdtReceipt.Location = New System.Drawing.Point(886, 384)
         Me.LdtReceipt.Name = "LdtReceipt"
         Me.LdtReceipt.Size = New System.Drawing.Size(467, 31)
         Me.LdtReceipt.Text = "Ημερ/νία Παραλαβής"

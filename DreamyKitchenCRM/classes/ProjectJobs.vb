@@ -82,11 +82,13 @@ Public Class ProjectJobs
     Public Function ValidationsExit() As Boolean
         If HasConnectedOrder = False And sComeFrom = 0 Then If CheckIfHasRecordsForOrder() = True Then Return False
         If sComeFrom = 0 Then
-            If Frm.GridView1.DataRowCount > 0 Then If CheckIfHasSendInfEmail() = False Then Return False
-            If CheckIfHasSendInfCompleteEmail() = False Then Return False
-            If CheckIfProjectJobsAreCompleted() = True And Frm.txtfProjectNameComplete.EditValue = Nothing Then
-                XtraMessageBox.Show("Όλες οι εργασίες είναι ολοκληρωμένες χωρίς να έχετε επισυνάψει έντυπο ολοκλήρωσης. Δεν μπορεί να αποθηκευθεί η εγγραφή.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                Return False
+            If Frm.GridView1.DataRowCount > 0 Then
+                If CheckIfHasSendInfEmail() = False Then Return False
+                If CheckIfHasSendInfCompleteEmail() = False Then Return False
+                If CheckIfProjectJobsAreCompleted() = True And Frm.txtfProjectNameComplete.EditValue = Nothing Then
+                    XtraMessageBox.Show("Όλες οι εργασίες είναι ολοκληρωμένες χωρίς να έχετε επισυνάψει έντυπο ολοκλήρωσης. Δεν μπορεί να αποθηκευθεί η εγγραφή.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Return False
+                End If
             End If
 
         End If
@@ -326,6 +328,10 @@ Public Class ProjectJobs
         FillCbo.TRANSH(Frm.cboTRANSH, sSQL)
     End Sub
     Public Sub DeleteRecord()
+        If Frm.GridView1.FocusedRowHandle < 0 Then
+            XtraMessageBox.Show("Δεν μπορείτε να διαγράψετε εγγραφή που επεξεργάζεστε. Αν θέλετε να φύγετε από την εγγραφή πατήστε ESC", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Exit Sub
+        End If
         If Frm.GridView1.GetRowCellValue(Frm.GridView1.FocusedRowHandle, "ID") = Nothing Then Exit Sub
         If XtraMessageBox.Show("Θέλετε να διαγραφεί η τρέχουσα εγγραφή?", ProgProps.ProgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
             Dim sSQL As String = "DELETE FROM PROJECT_JOBS_D WHERE ID = '" & Frm.GridView1.GetRowCellValue(Frm.GridView1.FocusedRowHandle, "ID").ToString & "'"

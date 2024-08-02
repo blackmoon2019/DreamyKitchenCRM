@@ -135,11 +135,13 @@ Public Class frmProjectJobs
         If e.RowHandle = GridControl1.NewItemRowHandle Then
             If GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "description").ToString = "" And sComeFrom = 0 Then
                 e.ErrorText = "Παρακαλώ συμπληρώστε την εργασία"
+                XtraMessageBox.Show(e.ErrorText, ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
                 e.Valid = False
                 Exit Sub
             End If
             If GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "cost").ToString = "" And sComeFrom = 0 Then
                 e.ErrorText = "Παρακαλώ συμπληρώστε κόστος"
+                XtraMessageBox.Show(e.ErrorText, ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
                 e.Valid = False
                 Exit Sub
             End If
@@ -148,22 +150,24 @@ Public Class frmProjectJobs
         Else
             If GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "descriptionSup").ToString = "" And sComeFrom = 1 Then
                 e.ErrorText = "Παρακαλώ συμπληρώστε την εργασία"
+                XtraMessageBox.Show(e.ErrorText, ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
                 e.Valid = False
                 Exit Sub
             Else
                 If GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "cost").ToString = "" And sComeFrom = 0 Then
                     e.ErrorText = "Παρακαλώ συμπληρώστε κόστος"
+                    XtraMessageBox.Show(e.ErrorText, ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
                     e.Valid = False
                     Exit Sub
                 End If
 
                 If GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "description").ToString = "" And sComeFrom = 0 Then
                     e.ErrorText = "Παρακαλώ συμπληρώστε την εργασία"
+                    XtraMessageBox.Show(e.ErrorText, ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
                     e.Valid = False
                     Exit Sub
                 End If
                 ProjectJobs.SaveRecordProjectD(False)
-
             End If
         End If
     End Sub
