@@ -1,6 +1,7 @@
 ﻿Imports DevExpress.XtraEditors
 Imports DevExpress.XtraLayout
 Imports DevExpress.XtraReports.UI
+Imports DreamyKitchenCRM.DM_TRANSTableAdapters
 Imports System.Data.SqlClient
 
 Public Class CusOfferOrderKitchen
@@ -157,7 +158,7 @@ Public Class CusOfferOrderKitchen
                 Frm.TabNavigationPage2.Enabled = True
                 If sFields("GenOffer") = "" Then sFields("GenOffer") = False
                 FillCusTransh(sFields("cusID"), sFields("compTrashID"), sFields("GenOffer"), sFields("transhID")) : FillCompanyProjects(sFields("compID"), sFields("GenOffer"), sFields("compTrashID"))
-                sFields = Nothing 
+                sFields = Nothing
         End Select
 
         If Frm.txtCUSOfferOrderFilename.EditValue IsNot Nothing Then Frm.txtbenchSalesPrice.ReadOnly = False Else Frm.txtbenchSalesPrice.ReadOnly = True
@@ -573,4 +574,23 @@ Public Class CusOfferOrderKitchen
         'cmdConvertToOrder.Enabled = False
         Frm.LConvertToOrder.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
     End Sub
+    Public Sub DeleteRecordF()
+        Try
+            Dim sSQL As String
+            If Frm.GridView3.GetRowCellValue(Frm.GridView3.FocusedRowHandle, "ID") = Nothing Then Exit Sub
+            If SuperUsers() = False Then XtraMessageBox.Show("Δεν έχετε δικαίωμα διαγραφής", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
+            If XtraMessageBox.Show("Θέλετε να διαγραφεί η τρέχουσα εγγραφή?", ProgProps.ProgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+                sSQL = "DELETE FROM TRANSH_F WHERE ID = '" & Frm.GridView3.GetRowCellValue(Frm.GridView3.FocusedRowHandle, "ID").ToString & "'"
+
+                Using oCmd As New SqlCommand(sSQL, CNDB)
+                    oCmd.ExecuteNonQuery()
+                End Using
+                XtraMessageBox.Show("Η εγγραφή διαγράφηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
+                Frm.TRANSH_FTableAdapter.FillByTranshID(Frm.DM_TRANS.TRANSH_F, System.Guid.Parse(Frm.cboTRANSH.EditValue.ToString))
+            End If
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
 End Class

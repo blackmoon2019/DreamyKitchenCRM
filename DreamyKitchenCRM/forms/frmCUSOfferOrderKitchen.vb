@@ -1213,4 +1213,10 @@ Public Class frmCUSOfferOrderKitchen
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
+
+    Private Sub GridView3_KeyDown(sender As Object, e As KeyEventArgs) Handles GridView3.KeyDown
+        Select Case e.KeyCode
+            Case Keys.Delete : CusOfferOrderKitchen.DeleteRecordF()
+        End Select
+    End Sub
 End Class
