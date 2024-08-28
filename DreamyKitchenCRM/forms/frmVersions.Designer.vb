@@ -165,7 +165,7 @@ Partial Class frmVersions
         Me.cboType.Margin = New System.Windows.Forms.Padding(4)
         Me.cboType.Name = "cboType"
         Me.cboType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
-        Me.cboType.Properties.Items.AddRange(New Object() {"ΝΕΑ ΛΕΙΤΟΥΡΓΙΑ", "ΠΡΟΣΘΗΚΗ", "ΔΙΟΡΘΩΣΗ"})
+        Me.cboType.Properties.Items.AddRange(New Object() {"ΝΕΑ ΛΕΙΤΟΥΡΓΙΑ", "ΠΡΟΣΘΗΚΗ", "ΔΙΟΡΘΩΣΗ", "ΕΠΕΚΤΑΣΗ"})
         Me.cboType.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         Me.cboType.Size = New System.Drawing.Size(917, 26)
         Me.cboType.StyleController = Me.LayoutControl1

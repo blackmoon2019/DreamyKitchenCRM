@@ -536,7 +536,7 @@ Public Class ValidateControls
         End If
     End Function
 
-    Private Function AgreementExist() As Boolean
+    Public Function AgreementExist() As Boolean
         Dim sSQL As String
         Dim Cmd As SqlCommand
         Dim ExistAgreement As Integer

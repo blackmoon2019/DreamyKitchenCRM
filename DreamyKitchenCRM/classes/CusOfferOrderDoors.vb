@@ -129,7 +129,7 @@ Public Class CusOfferOrderDoors
         Try
             If Valid.ValidateForm(Frm.LayoutControl1) Then
                 Valid.ID = Frm.cboTRANSH.EditValue.ToString
-                If Valid.ValiDationRules(Frm.Name, Frm) = False Then Exit Sub
+                If Valid.ValiDationRules(Frm.Name, Frm,, sIsOrder) = False Then Exit Sub
                 Select Case Mode
                     Case FormMode.NewRecord
                         sGuid = System.Guid.NewGuid.ToString

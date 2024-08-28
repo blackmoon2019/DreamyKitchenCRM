@@ -35,9 +35,7 @@ Public Class frmVersions
     End Sub
 
     Private Sub frmVersions_Load(sender As Object, e As EventArgs) Handles Me.Load
-        'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_TECH_SUP' table. You can move, or remove it, as needed.
         Me.Vw_TECH_SUPTableAdapter.FillWithNew(Me.DreamyKitchenDataSet.vw_TECH_SUP)
-        'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_DIM' table. You can move, or remove it, as needed.
         If UserProps.ID.ToString.ToUpper <> "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then LayoutControl1.Enabled = False
 
 
@@ -94,6 +92,11 @@ Public Class frmVersions
         Dim myValue = XtraInputBox.Show(args)
         Try
             If myValue = "" Then Exit Sub
+            If My.Computer.FileSystem.DirectoryExists(ProgProps.UpdatesPath & myValue) = False Then
+                My.Computer.FileSystem.CreateDirectory(ProgProps.UpdatesPath & myValue)
+                Dim exePath As String = Application.ExecutablePath()
+                My.Computer.FileSystem.CopyFile(Application.ExecutablePath().Replace("Debug", "Release"), ProgProps.UpdatesPath & myValue & "\DreamyKitchenCRM.exe")
+            End If
             sSQL = "Update ver set ExeVer = " & toSQLValueS(myValue) & ",DbVer = " & toSQLValueS(myValue) & ", UpdatePath=" & toSQLValueS(ProgProps.UpdatesPath & myValue & "\")
 
             Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
@@ -110,11 +113,7 @@ Public Class frmVersions
             Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
                 oCmd.ExecuteNonQuery()
             End Using
-            If My.Computer.FileSystem.DirectoryExists(ProgProps.UpdatesPath & myValue) = False Then
-                My.Computer.FileSystem.CreateDirectory(ProgProps.UpdatesPath & myValue)
-                Dim exePath As String = Application.ExecutablePath()
-                My.Computer.FileSystem.CopyFile(Application.ExecutablePath().Replace("Debug", "Release"), ProgProps.UpdatesPath & myValue & "\DreamyKitchenCRM.exe")
-            End If
+
 
             XtraMessageBox.Show("Η έκδοση δημιουργήθηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
         Catch ex As Exception

@@ -386,6 +386,7 @@ Public Class CusOfferOrderKitchen
     Public Sub InsertSelectedRows(ByVal msg As Boolean)
         Dim sSQL As String
         Dim I As Integer
+        Valid.ID = Frm.cboTRANSH.EditValue.ToString : If Valid.AgreementExist Then Exit Sub
         sSQL = "DELETE FROM CCT_ORDERS_KITCHEN_EQUIPMENT WHERE cctOrdersKitchenID = " & toSQLValueS(ID)
         Using oCmd As New SqlCommand(sSQL, CNDB)
             oCmd.ExecuteNonQuery()
