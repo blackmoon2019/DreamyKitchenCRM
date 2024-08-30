@@ -325,7 +325,7 @@ Public Class frmCUSOfferOrderSpecialConstr
     Private Sub cboPhotoValueListItem_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboPhotoValueListItem.ButtonClick
         Select Case e.Button.Index
             Case 1 : ManageCbo.ManageValueListItem(cboPhotoValueListItem, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808", "MATERIALS")
-            Case 2 : ManageCbo.ManageValueListItem(cboPhotoValueListItem, FormMode.EditRecord)
+            Case 2 : ManageCbo.ManageValueListItem(cboPhotoValueListItem, FormMode.EditRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808", "MATERIALS")
             Case 3 : cboPhotoValueListItem.EditValue = Nothing
         End Select
     End Sub
