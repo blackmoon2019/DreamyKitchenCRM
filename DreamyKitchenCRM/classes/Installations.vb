@@ -88,7 +88,7 @@ Public Class Installations
                 If bHasInstCostKitchen Then Frm.cmdConstInstK.Enabled = True : Frm.cmdDeleteInstCostK.Enabled = True       'ΥΠΑΡΧΕΙ ΚΟΣΤΟΛΟΓΗΣΗ ΚΟΥΖΙΝΑ
                 If bHasInstCostCloset Then Frm.cmdConstInstC.Enabled = True : Frm.cmdDeleteInstCostC.Enabled = True        'ΥΠΑΡΧΕΙ ΚΟΣΤΟΛΟΓΗΣΗ ΝΤΟΥΛΑΠΑ
                 If bHasInstCostDoors Then Frm.cmdConstInstD.Enabled = True : Frm.cmdDeleteInstCostD.Enabled = True         'ΥΠΑΡΧΕΙ ΚΟΣΤΟΛΟΓΗΣΗ ΠΟΡΤΑ
-                If bHasInstCostSC Then Frm.cmdConstInstSC.Enabled = True : Frm.cmdDeleteInstCostSC.Enabled = True           'ΥΠΑΡΧΕΙ ΚΟΣΤΟΛΟΓΗΣΗ ΕΙΔ. ΚΑΤΑΣΚΕΥΗ
+                If bHasInstCostSC Then Frm.cmdConstInstSC.Enabled = True : Frm.cmdDeleteInstCostSC.Enabled = True          'ΥΠΑΡΧΕΙ ΚΟΣΤΟΛΟΓΗΣΗ ΕΙΔ. ΚΑΤΑΣΚΕΥΗ
                 ' Εαν έχει εξοφληθεί η τοποθέτηση για ΚΟΥΖΙΝΑ
                 If bPaidInstCostKitchen Then
                     Frm.dtDeliverDateK.Enabled = False

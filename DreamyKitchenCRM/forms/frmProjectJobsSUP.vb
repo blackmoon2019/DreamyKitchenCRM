@@ -6,6 +6,7 @@ Imports DevExpress.XtraEditors.Controls
 Imports DevExpress.XtraGrid.Views.Base
 Imports DevExpress.XtraGrid.Views.Grid
 Imports DevExpress.XtraGrid.Views.Grid.ViewInfo
+Imports DevExpress.XtraPrinting.Export
 
 Public Class frmProjectJobsSUP
     Private sID As String
@@ -13,7 +14,7 @@ Public Class frmProjectJobsSUP
     Private FScrollerExist As Boolean = False
     Private sComeFrom As Integer
     Private CalledFromCtrl As Boolean
-    Private HasConnectedOrder As Boolean = False
+    Private sEmailSended As Boolean
     Private ScanFile As ScanToPDF
     Private Prog_Prop As New ProgProp
     Private Valid As New ValidateControls
@@ -62,7 +63,14 @@ Public Class frmProjectJobsSUP
             sComeFrom = value
         End Set
     End Property
-
+    Public Property EmailSended() As Boolean
+        Get
+            Return sEmailSended
+        End Get
+        Set(value As Boolean)
+            sEmailSended = value
+        End Set
+    End Property
     Private Sub cmdExit_Click(sender As Object, e As EventArgs) Handles cmdExit.Click
         Me.Close()
     End Sub
@@ -124,6 +132,12 @@ Public Class frmProjectJobsSUP
     Private Sub GridView1_ValidateRow(sender As Object, e As ValidateRowEventArgs) Handles GridView1.ValidateRow
         If GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "description").ToString = "" Then
             e.ErrorText = "Παρακαλώ συμπληρώστε την εργασία"
+            XtraMessageBox.Show(e.ErrorText, ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            e.Valid = False
+            Exit Sub
+        End If
+        If GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "completed").ToString = "True" And sEmailSended = False Then
+            e.ErrorText = "Δεν έχετε στείλει email. Για να ολοκληρώσετε εργασία θα πρέπει να έχει ενημερωθεί ο προμηθευτής με Email."
             XtraMessageBox.Show(e.ErrorText, ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
             e.Valid = False
             Exit Sub

@@ -3,6 +3,7 @@ Imports DevExpress.XtraEditors
 Imports DevExpress.XtraReports.UI
 Imports System.Data.SqlClient
 Imports DevExpress.XtraBars.Navigation
+Imports DevExpress.XtraPrinting.Export
 
 Public Class ProjectJobsSUP
     Dim Frm As frmProjectJobsSUP
@@ -13,9 +14,11 @@ Public Class ProjectJobsSUP
     Private Cls As New ClearControls
     Private UserPermissions As New CheckPermissions
     Private emailMode As Int16
+    Private EmailSended As Boolean = False
     Private ID As String
     Public Mode As Byte
     Private sComeFrom As Int16
+
     Private HasConnectedOrder As Boolean = False
     Private ConnectedOrderID As String = ""
     Public Property ComeFrom() As Int16
@@ -26,6 +29,8 @@ Public Class ProjectJobsSUP
             sComeFrom = value
         End Set
     End Property
+
+
     Public Sub New()
 
     End Sub
@@ -34,6 +39,7 @@ Public Class ProjectJobsSUP
         Frm = sFrm
         ID = sID
         Mode = sMode
+        Frm.EmailSended = False
         HandleGridEmbeddedNavigatorButtons()
         Frm.CCT_TRANSHTableAdapter.Fill(Frm.DM_TRANS.CCT_TRANSH)
         Frm.Vw_SUPTableAdapter.Fill(Frm.DreamyKitchenDataSet.vw_SUP)
@@ -55,7 +61,8 @@ Public Class ProjectJobsSUP
                 If CheckIfHasConnectedOrder() = True Then Frm.cmdConvertToOrder.Text = "Ενημέρωση Παραγγελίας" : HasConnectedOrder = True : 
                 Frm.GridControl1.ForceInitialize()
                 If Frm.GridView1.DataRowCount = 0 Then Frm.cmdSendEmail.Enabled = False : Frm.cmdPrintAll.Enabled = False : Frm.cmdSendEmail.Enabled = False
-                If sFields("emailInfComplete") = "True" Then DisabletxtProjectJobFilenameComplete()
+                'If sFields("emailInfComplete") = "True" Then DisabletxtProjectJobFilenameComplete()
+                If sFields("emailApp") = "True" Then EmailSended = True : Frm.EmailSended = True
 
         End Select
 
@@ -570,6 +577,7 @@ Public Class ProjectJobsSUP
         If Frm.txtBody.Text = "" Then XtraMessageBox.Show("Παρακαλώ συμπληρώστε κείμενο", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
         If Frm.txtSubject.Text = "" Then XtraMessageBox.Show("Παρακαλώ συμπληρώστε το θέμα", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
         If Frm.txtTo.Text.Trim = "" Then XtraMessageBox.Show("Δεν υπάρχει καταχωρήμενο email στον προμηθευτή.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
+        If HasConnectedOrder = False Then XtraMessageBox.Show("Δεν έχετε δημιουργήσει παραγγελία.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
         If XtraMessageBox.Show("Θέλετε να αποσταλεί το Email?", ProgProps.ProgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
             SendEmailExportReport()
             Frm.PROJECT_JOBSSUP_MAILTableAdapter.FillByProjectJobSUPID(Frm.DMDataSet.PROJECT_JOBSSUP_MAIL, System.Guid.Parse(ID))
@@ -621,7 +629,7 @@ Public Class ProjectJobsSUP
                 Using oCmd As New SqlCommand(sSQL, CNDB)
                     oCmd.ExecuteNonQuery()
                 End Using
-
+                EmailSended = True : Frm.EmailSended = True
 
                 XtraMessageBox.Show("Το email στάλθηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
             Else
