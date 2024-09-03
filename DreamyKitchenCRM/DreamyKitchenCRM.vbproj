@@ -332,6 +332,7 @@
     <Compile Include="classes\ProgProp.vb" />
     <Compile Include="classes\ProjectCost.vb" />
     <Compile Include="classes\ProjectJobs.vb" />
+    <Compile Include="classes\ProjectJobsSUP.vb" />
     <Compile Include="classes\Projects.vb" />
     <Compile Include="classes\ScanToPDF.vb" />
     <Compile Include="classes\SendEmail.vb" />
@@ -606,6 +607,12 @@
     <Compile Include="forms\frmPermissionsOld.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="forms\frmProjectJobsSUP.Designer.vb">
+      <DependentUpon>frmProjectJobsSUP.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmProjectJobsSUP.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\frmValueListItem.Designer.vb">
       <DependentUpon>frmValueListItem.vb</DependentUpon>
     </Compile>
@@ -772,6 +779,12 @@
       <DependentUpon>RepCUSProjectJobsForSUP.vb</DependentUpon>
     </Compile>
     <Compile Include="Reports\RepCUSProjectJobsForSUP.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\RepCUSProjectJobsSUP.Designer.vb">
+      <DependentUpon>RepCUSProjectJobsSUP.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RepCUSProjectJobsSUP.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RepTransCostD.Designer.vb">
@@ -1074,6 +1087,9 @@
     <EmbeddedResource Include="forms\frmPermissionsOld.resx">
       <DependentUpon>frmPermissionsOld.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmProjectJobsSUP.resx">
+      <DependentUpon>frmProjectJobsSUP.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="forms\frmValueListItem.resx">
       <DependentUpon>frmValueListItem.vb</DependentUpon>
       <SubType>Designer</SubType>
@@ -1158,6 +1174,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RepCUSProjectJobsForSUP.resx">
       <DependentUpon>RepCUSProjectJobsForSUP.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RepCUSProjectJobsSUP.resx">
+      <DependentUpon>RepCUSProjectJobsSUP.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RepTransCostD.resx">
       <DependentUpon>RepTransCostD.vb</DependentUpon>
@@ -1541,6 +1560,7 @@
     <Content Include="favicon.ico" />
     <Content Include="logo%281%29.ico" />
     <Content Include="logo.ico" />
+    <None Include="Resources\icons8-under-construction-40.png" />
     <None Include="Resources\icons8-schedule-40_constructor.png" />
     <None Include="Resources\icons8-schedule-40.png" />
     <None Include="Resources\icons8-money-transfer-40.png" />

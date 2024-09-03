@@ -318,14 +318,14 @@ Public Class ValidateControls
                         End If
 
                         If f.txtTmKIN.Text = "00:00" Or f.txtTmKOUT.Text = "00:00" Then XtraMessageBox.Show("Η ώρα δεν μπορεί να είναι 00:00", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Return False
-                            f.txtTmKIN.EditValue = f.txtTmKIN.Text : f.txtTmKOUT.EditValue = f.txtTmKOUT.Text
-                            Hours = DateDiff(DateInterval.Hour, f.txtTmKIN.EditValue, f.txtTmKOUT.EditValue)
-                            If Hours < 0 Then XtraMessageBox.Show("Η ώρα ΑΠΟ δεν μπορεί να είναι μικρότερη από την ΕΩΣ", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Return False
-                            Dim date1 As Date = Date.Parse(f.dtDeliverDateKF.EditValue.ToString)
-                            Dim date2 As Date = Date.Parse(f.dtDeliverDateKT.EditValue.ToString)
-                            Dim Days As Int16 = DateDiff(DateInterval.Day, date1, date2)
-                            If DateDiff(DateInterval.Day, date1, date2) < 0 Then XtraMessageBox.Show("Δεν μπορεί η ""ΑΠΟ"" ημερομηνία να είναι μεγαλύτερη από την ""ΕΩΣ""", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Return False
-                        End If
+                        f.txtTmKIN.EditValue = f.txtTmKIN.Text : f.txtTmKOUT.EditValue = f.txtTmKOUT.Text
+                        Hours = DateDiff(DateInterval.Hour, f.txtTmKIN.EditValue, f.txtTmKOUT.EditValue)
+                        If Hours < 0 Then XtraMessageBox.Show("Η ώρα ΑΠΟ δεν μπορεί να είναι μικρότερη από την ΕΩΣ", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Return False
+                        Dim date1 As Date = Date.Parse(f.dtDeliverDateKF.EditValue.ToString)
+                        Dim date2 As Date = Date.Parse(f.dtDeliverDateKT.EditValue.ToString)
+                        Dim Days As Int16 = DateDiff(DateInterval.Day, date1, date2)
+                        If DateDiff(DateInterval.Day, date1, date2) < 0 Then XtraMessageBox.Show("Δεν μπορεί η ""ΑΠΟ"" ημερομηνία να είναι μεγαλύτερη από την ""ΕΩΣ""", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Return False
+                    End If
                     If f.TabPane2.SelectedPageIndex = "1" Then
                         If f.dtDeliverDateCF.EditValue = Nothing Or f.dtDeliverDateCT.EditValue = Nothing Or f.dtDeliverDateC.EditValue = Nothing Then
                             XtraMessageBox.Show("Υπάρχουν υποχρεωτικά πεδία στις ντουλάπες που δεν έχετε συμπληρώσει", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Return False
@@ -511,6 +511,16 @@ Public Class ValidateControls
                             Return False
                         End If
                     End If
+                Case "frmProjectJobsSUP"
+                    Dim f As frmProjectJobsSUP = frm
+                    If CheckIfProjectJobsSUPDAreCompleted() Then
+                        XtraMessageBox.Show("Όλες οι εργασίες είναι ολοκληρωμένες. Δεν μπορεί να αποθηκευθεί η εγγραφή.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        Return False
+                    End If
+                    If f.cboSUP.EditValue = Nothing Then
+                        XtraMessageBox.Show("Δεν έχετε επιλέξει Προμηθευτή.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        Return False
+                    End If
             End Select
             Return True
         Catch ex As Exception
@@ -523,6 +533,22 @@ Public Class ValidateControls
         Dim Cmd As SqlCommand, sdr As SqlDataReader
         Dim sSQL As String
         sSQL = "SELECT id as CountJobD  FROM PROJECT_JOBS_D WHERE completed = 0 and projectJobID= " & toSQLValueS(sID)
+        Cmd = New SqlCommand(sSQL.ToString, CNDB)
+        sdr = Cmd.ExecuteReader()
+        Dim CountJobD As String
+        If (sdr.Read() = True) Then
+            If sdr.IsDBNull(sdr.GetOrdinal("CountJobD")) = False Then CountJobD = sdr.GetGuid(sdr.GetOrdinal("CountJobD")).ToString Else CountJobD = ""
+            sdr.Close()
+            If CountJobD <> "" Then Return False Else Return True
+        Else
+            sdr.Close()
+            Return False
+        End If
+    End Function
+    Private Function CheckIfProjectJobsSUPDAreCompleted() As Boolean
+        Dim Cmd As SqlCommand, sdr As SqlDataReader
+        Dim sSQL As String
+        sSQL = "SELECT id as CountJobD  FROM PROJECT_JOBSSUP_D WHERE completed = 0 and projectJobID= " & toSQLValueS(sID)
         Cmd = New SqlCommand(sSQL.ToString, CNDB)
         sdr = Cmd.ExecuteReader()
         Dim CountJobD As String

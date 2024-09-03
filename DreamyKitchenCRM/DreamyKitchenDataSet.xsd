@@ -1291,7 +1291,19 @@ WHERE (jobID = '446E4C5D-542A-4F48-BB2B-46C2209F6443')</CommandText>
               <Mapping SourceColumn="usrName" DataSetColumn="usrName" />
               <Mapping SourceColumn="active" DataSetColumn="active" />
             </Mappings>
-            <Sources />
+            <Sources>
+              <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_EMP" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillByConstrDep" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="FillByConstrDep" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="FillByConstrDep">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT ID, code, Fullname, CouID, AreaID, AdrID, DoyID, PrfID, salary, hireDate, phn, mob, fax, email, afm, cmt, modifiedBy, modifiedOn, createdOn, createdBy, RealName, CouName, AdrName, AreaName, DoyName, PrfName, depID, DepName, Ar, tk, HasFiles, color, salerID, SalerName, tmIN, tmOUT, arProt, profitPerc, JobName, jobID, 
+           isActive, usrName, active
+FROM   vw_EMP
+WHERE (depID  = '16228C6D-FAE6-4CFD-82D1-A9910D909952')</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </Sources>
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_EPOPTEIATableAdapter" GeneratorDataComponentClassName="vw_EPOPTEIATableAdapter" Name="vw_EPOPTEIA" UserDataComponentName="vw_EPOPTEIATableAdapter">
             <MainSource>

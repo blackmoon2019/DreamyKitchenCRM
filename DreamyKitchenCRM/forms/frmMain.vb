@@ -939,5 +939,12 @@ Public Class frmMain
         form.Show()
     End Sub
 
+    Private Sub BBProjectJobsSUP_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBProjectJobsSUP.ItemClick
+        Dim form As frmScroller = New frmScroller("Εκκρεμότητες Κατασκευαστικού") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
+        form.DataTable = "vw_PROJECT_JOBSSUP"
+        form.DataDetail = "PROJECT_JOBSSUP_D"
+        form.MdiParent = Me
+        form.Show()
+    End Sub
 End Class
 

@@ -90,6 +90,7 @@ Public Class frmSUPOrders
                 Select Case sComeFrom
                     Case 1 : LblComeFrom.Text = "Η παραγγελία δημιουργήθηκε από εκκρεμότητα τοποθέτησης"
                     Case 2 : LblComeFrom.Text = "Η παραγγελία δημιουργήθηκε από εργασία"
+                    Case 3 : LblComeFrom.Text = "Η παραγγελία δημιουργήθηκε από εκκρεμότητα κατασκευαστικού"
                     Case Else : LblComeFrom.Text = "" : cmdPrintAll.Enabled = False
                 End Select
                 LoadForms.LoadDataToGrid(GridControl1, GridView1, "select ID,supOrderID,filename,comefrom,createdon,realname From vw_SUP_ORDERS_F where supOrderID = '" & sID & "'")
@@ -357,6 +358,12 @@ Public Class frmSUPOrders
         ElseIf sComeFrom = 2 Then
             Dim report As New RepCUSProjectJobsForSUP
             report.Parameters.Item(0).Value = sFields("projectJobID")
+            report.CreateDocument()
+            Dim printTool As New ReportPrintTool(report)
+            printTool.ShowRibbonPreview()
+        ElseIf sComeFrom = 3 Then
+            Dim report As New RepCUSProjectJobsSUP
+            report.Parameters.Item(0).Value = sFields("projectJobSupID")
             report.CreateDocument()
             Dim printTool As New ReportPrintTool(report)
             printTool.ShowRibbonPreview()

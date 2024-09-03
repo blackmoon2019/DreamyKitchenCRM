@@ -257,6 +257,7 @@ Public Class frmScroller
                     Case "vw_PAY_TYPE" : sSQL = "DELETE FROM PAY_TYPE WHERE ID = " & sID
                     Case "vw_INST_ELLIPSE" : DeleteSucceed = DeleteInstEllipse()
                     Case "vw_PROJECT_JOBS" : sSQL = "DELETE FROM PROJECT_JOBS WHERE ID = " & sID
+                    Case "vw_PROJECT_JOBSSUP" : sSQL = "DELETE FROM PROJECT_JOBSSUP WHERE ID = " & sID
                     Case "vw_BANKS" : sSQL = "DELETE FROM BANKS WHERE ID = " & sID
                     Case "vw_EMP", "vw_ExtPartners" : sSQL = "DELETE FROM EMP WHERE ID = " & sID
                     Case "vw_EMP_S" : sSQL = "DELETE FROM EMP_S WHERE ID = " & sID
@@ -720,6 +721,7 @@ Public Class frmScroller
                             Exit Sub
                         End If
                     Case "vw_PROJECT_JOBS" : sSQL = "DELETE FROM PROJECT_JOBS WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
+                    Case "vw_PROJECT_JOBSSUP" : sSQL = "DELETE FROM PROJECT_JOBSSUP WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
                     Case "vw_BANKS" : sSQL = "DELETE FROM BANKS WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
                     Case "vw_EMP", "vw_ExtPartners" : sSQL = "DELETE FROM EMP WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
                     Case "vw_EMP_S" : sSQL = "DELETE FROM EMP_S WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
@@ -1834,6 +1836,17 @@ Public Class frmScroller
                 frmProjectJobs.CalledFromControl = False
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmProjectJobs), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 frmProjectJobs.Show()
+            Case "vw_PROJECT_JOBSSUP"
+                Dim frmProjectJobsSUP As New frmProjectJobsSUP
+                frmProjectJobsSUP.Text = "Εκκρεμότητες Κατασκευαστικού"
+                frmProjectJobsSUP.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
+                frmProjectJobsSUP.MdiParent = frmMain
+                frmProjectJobsSUP.Mode = FormMode.EditRecord
+                frmProjectJobsSUP.Scroller = GridView1
+                frmProjectJobsSUP.FormScroller = Me
+                frmProjectJobsSUP.CalledFromControl = False
+                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmProjectJobsSUP), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                frmProjectJobsSUP.Show()
             Case "vw_BANKS"
                 frmGen.Text = "Τράπεζες"
                 frmGen.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
@@ -2734,6 +2747,16 @@ Public Class frmScroller
                 frmProjectJobs.CalledFromControl = False
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmProjectJobs), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 frmProjectJobs.Show()
+            Case "vw_PROJECT_JOBSSUP"
+                Dim frmProjectJobsSUP As New frmProjectJobsSUP
+                frmProjectJobsSUP.Text = "Εκκρεμότητες Κατασκευαστικού"
+                frmProjectJobsSUP.MdiParent = frmMain
+                frmProjectJobsSUP.Mode = FormMode.NewRecord
+                frmProjectJobsSUP.Scroller = GridView1
+                frmProjectJobsSUP.FormScroller = Me
+                frmProjectJobsSUP.CalledFromControl = False
+                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmProjectJobsSUP), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                frmProjectJobsSUP.Show()
             Case "vw_BANKS"
                 frmGen.Text = "Τράπεζες"
                 frmGen.MdiParent = frmMain
@@ -3309,6 +3332,24 @@ Public Class frmScroller
                             'Specify text to be displayed within detail tabs.
                             GrdView.ViewCaption = "Εκκρεμότητες"
                         End If
+                    Case "PROJECT_JOBSSUP_D"
+                        Dim AdapterMaster As New SqlDataAdapter(sSQL, CNDB)
+                        Dim AdapterDetail As New SqlDataAdapter(sSQL2, CNDB)
+                        Dim sdataSet As New DataSet()
+                        AdapterMaster.Fill(sdataSet, IIf(sDataTable = "", sDataTable2, sDataTable))
+                        AdapterDetail.Fill(sdataSet, sDataDetail)
+                        Dim keyColumn As DataColumn = sdataSet.Tables(IIf(sDataTable = "", sDataTable2, sDataTable)).Columns("ID")
+                        Dim foreignKeyColumn As DataColumn = sdataSet.Tables(sDataDetail).Columns("projectJobID")
+                        sdataSet.Relations.Add("Εκκρεμότητες Κατασκευαστικού", keyColumn, foreignKeyColumn, False)
+                        GridView1.Columns.Clear() : GridView2.Columns.Clear()
+                        grdMain.DataSource = sdataSet.Tables(IIf(sDataTable = "", sDataTable2, sDataTable))
+                        grdMain.ForceInitialize()
+                        If grdMain.LevelTree.Nodes.Count = 1 Then
+                            Dim GrdView As New GridView(grdMain)
+                            grdMain.LevelTree.Nodes.Add("Εκκρεμότητες", GridView2)
+                            'Specify text to be displayed within detail tabs.
+                            GrdView.ViewCaption = "Εκκρεμότητες"
+                        End If
                 End Select
             End If
             grdMain.DefaultView.PopulateColumns()
@@ -3384,7 +3425,7 @@ Public Class frmScroller
         GridView2.OptionsSelection.EnableAppearanceFocusedCell = False
         GridView2.OptionsView.EnableAppearanceEvenRow = True
         If CurrentView = "" Then
-            If sDataDetail <> "" Then LoadForms.RestoreLayoutFromXml(GridView2, sDataDetail & "_def.xml")
+            If sDataDetail <> "" Then LoadForms.RestoreLayoutFromXml(GridView2, "D_" & sDataDetail & "_def.xml")
         Else
             If My.Computer.FileSystem.FileExists(Application.StartupPath & "\DSGNS\DEF\D_" & sDataDetail & "\" & BarViews.EditValue) = False Then
                 If sDataDetail <> "" Then GridView2.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\D_" & sDataDetail & "\" & BarViews.EditValue, OptionsLayoutBase.FullLayout)

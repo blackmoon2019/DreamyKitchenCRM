@@ -42139,7 +42139,7 @@ Namespace DreamyKitchenDataSetTableAdapters
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
         Private Sub InitCommandCollection()
-            Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(0) {}
+            Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(1) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
             Me._commandCollection(0).CommandText = "SELECT ID, code, Fullname, CouID, AreaID, AdrID, DoyID, PrfID, salary, hireDate, " &
@@ -42149,6 +42149,15 @@ Namespace DreamyKitchenDataSetTableAdapters
                 "ID, " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "           isActive, usrName, active" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "FROM   vw_EMP" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "WHERE (jobID = '446E4" &
                 "C5D-542A-4F48-BB2B-46C2209F6443')"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(1) = New Global.System.Data.SqlClient.SqlCommand()
+            Me._commandCollection(1).Connection = Me.Connection
+            Me._commandCollection(1).CommandText = "SELECT ID, code, Fullname, CouID, AreaID, AdrID, DoyID, PrfID, salary, hireDate, " &
+                "phn, mob, fax, email, afm, cmt, modifiedBy, modifiedOn, createdOn, createdBy, Re" &
+                "alName, CouName, AdrName, AreaName, DoyName, PrfName, depID, DepName, Ar, tk, Ha" &
+                "sFiles, color, salerID, SalerName, tmIN, tmOUT, arProt, profitPerc, JobName, job" &
+                "ID, " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "           isActive, usrName, active" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "FROM   vw_EMP" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "WHERE (depID  = '1622" &
+                "8C6D-FAE6-4CFD-82D1-A9910D909952')"
+            Me._commandCollection(1).CommandType = Global.System.Data.CommandType.Text
         End Sub
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
@@ -42173,6 +42182,19 @@ Namespace DreamyKitchenDataSetTableAdapters
             Dim dataTable As DreamyKitchenDataSet.vw_ORDER_MANAGERSDataTable = New DreamyKitchenDataSet.vw_ORDER_MANAGERSDataTable()
             Me.Adapter.Fill(dataTable)
             Return dataTable
+        End Function
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, False)>
+        Public Overridable Overloads Function FillByConstrDep(ByVal dataTable As DreamyKitchenDataSet.vw_ORDER_MANAGERSDataTable) As Integer
+            Me.Adapter.SelectCommand = Me.CommandCollection(1)
+            If (Me.ClearBeforeFill = True) Then
+                dataTable.Clear
+            End If
+            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
+            Return returnValue
         End Function
     End Class
 

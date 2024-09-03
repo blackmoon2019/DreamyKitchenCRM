@@ -92,11 +92,9 @@ Public Class frmVersions
         Dim myValue = XtraInputBox.Show(args)
         Try
             If myValue = "" Then Exit Sub
-            If My.Computer.FileSystem.DirectoryExists(ProgProps.UpdatesPath & myValue) = False Then
-                My.Computer.FileSystem.CreateDirectory(ProgProps.UpdatesPath & myValue)
-                Dim exePath As String = Application.ExecutablePath()
-                My.Computer.FileSystem.CopyFile(Application.ExecutablePath().Replace("Debug", "Release"), ProgProps.UpdatesPath & myValue & "\DreamyKitchenCRM.exe")
-            End If
+            If My.Computer.FileSystem.DirectoryExists(ProgProps.UpdatesPath & myValue) = False Then My.Computer.FileSystem.CreateDirectory(ProgProps.UpdatesPath & myValue)
+            Dim exePath As String = Application.ExecutablePath()
+            My.Computer.FileSystem.CopyFile(Application.ExecutablePath().Replace("Debug", "Release"), ProgProps.UpdatesPath & myValue & "\DreamyKitchenCRM.exe")
             sSQL = "Update ver set ExeVer = " & toSQLValueS(myValue) & ",DbVer = " & toSQLValueS(myValue) & ", UpdatePath=" & toSQLValueS(ProgProps.UpdatesPath & myValue & "\")
 
             Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
