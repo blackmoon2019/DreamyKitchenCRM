@@ -50,7 +50,8 @@ Module Main
         Public VAT As Integer
         Public AlternateVAT As Double
         Public Decimals As Integer
-        Public EmailOrders As String
+        Public EmailOrdersFrom As String
+        Public EmailOrdersTo As String
         Public PJEmailOrders As String
         Public SupportEmail As String
         Public InstEllipseInfBody As String
@@ -58,6 +59,7 @@ Module Main
         Public InstEllipseInfSubject As String
         Public InstEllipseInfBodySup As String
         Public InstEllipseInfSubjectSup As String
+
         Public PJInfBody As String
         Public PJInfAppointmentBody As String
         Public PJInfSubject As String
@@ -65,10 +67,11 @@ Module Main
         Public PJInfSubjectSup As String
         Public PJEmailSupFrom As String
         Public PJEmailSupTo As String
-        Public InstEmailAccount As String
-        Public InstEmailAccountSup As String
+        Public InstEmailAccountFrom As String
         Public InstInfSubject As String
         Public InstInfAppointmentBody As String
+        Public InstEllipseEmailAccountSupFrom As String
+        Public InstEllipseEmailAccountSupTo As String
         Public InstEllipseInfAppointmentSubject As String
         Public InstEllipseInfSubjectComplete As String
         Public InstEllipseInfBodyComplete As String
@@ -310,8 +313,9 @@ Module Main
             Dim sSQL As String
             Select Case sTable
                 Case "TRANSH_F" : sSQL = "SELECT files,filename  FROM TRANSH_F WHERE transhID= " & toSQLValueS(ID) & " and ownerID = " & toSQLValueS(ownerID)
-                Case "PROJECT_JOBSSUP" : sSQL = "SELECT fProjectComplete as files,fProjectNameComplete as filename  FROM PROJECT_JOBS WHERE comefrom=0 and ID= " & toSQLValueS(ID)
+                Case "PROJECT_JOBS" : sSQL = "SELECT fProjectComplete as files,fProjectNameComplete as filename  FROM PROJECT_JOBS WHERE comefrom=0 and ID= " & toSQLValueS(ID)
                 Case "PROJECT_JOBSSUP" : sSQL = "SELECT fProjectComplete as files,fProjectNameComplete as filename  FROM PROJECT_JOBSSUP WHERE  ID= " & toSQLValueS(ID)
+                Case "PROJECT_JOBSSUP_MAIL" : sSQL = "SELECT Attachment2 as files,Attachment2Name as filename  FROM PROJECT_JOBSSUP_MAIL WHERE  ID= " & toSQLValueS(ID)
             End Select
 
             Cmd = New SqlCommand(sSQL.ToString, CNDB)

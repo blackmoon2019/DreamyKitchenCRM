@@ -205,8 +205,8 @@ Public Class frmProjectJobsSUP
         Select Case TabPane1.SelectedPageIndex
             Case 1
                 Prog_Prop.GetProgEmailPJ()
-                txtSubject.EditValue = ProgProps.PJInfSubjectSup
-                txtTo.EditValue = cboSUP.GetColumnValue("email")
+                'txtSubject.EditValue = ProgProps.PJInfSubjectSup
+                txtTo.EditValue = ProgProps.PJEmailSupTo
                 Me.PROJECT_JOBSSUP_MAILTableAdapter.FillByProjectJobSUPID(Me.DMDataSet.PROJECT_JOBSSUP_MAIL, System.Guid.Parse(sID))
                 LoadForms.RestoreLayoutFromXml(GridView3, "PROJECT_JOBSSUP_MAIL.xml")
             Case 2
@@ -280,5 +280,21 @@ Public Class frmProjectJobsSUP
             Case 2 : If cboTanshFCategory.EditValue IsNot Nothing Then ManageCbo.ManageFCategory(cboTanshFCategory, FormMode.EditRecord)
             Case 3 : cboTanshFCategory.EditValue = Nothing
         End Select
+    End Sub
+
+    Private Sub txtAttachFile_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles txtAttachFile.ButtonClick
+        Try
+            Select Case e.Button.Index
+                Case 0 : ProjectJobsSUP.AttachmentSelect()
+                Case 1 : txtAttachFile.EditValue = ""
+            End Select
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+
+        End Try
+    End Sub
+
+    Private Sub GridView3_DoubleClick(sender As Object, e As EventArgs) Handles GridView3.DoubleClick
+        If GridView3.IsGroupRow(GridView3.FocusedRowHandle) Then Exit Sub Else OpenFile("PROJECT_JOBSSUP_MAIL", GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "ID").ToString)
     End Sub
 End Class

@@ -553,9 +553,9 @@ Public Class Installations
     End Sub
     Public Sub TabMail()
         If Frm.dtDeliverDateKF.EditValue = Nothing Or Frm.txtTmKIN.Text = "00:00" Or Frm.txtTmKOUT.EditValue = "00:00" Then Frm.cmdSendApointmentEmail.Enabled = False Else Frm.cmdSendApointmentEmail.Enabled = True
-        Frm.INST_MAILTableAdapter.FillByinstID(Frm.DMDataSet.INST_MAIL, System.Guid.Parse(ID))
+        If ID <> Nothing Then Frm.INST_MAILTableAdapter.FillByinstID(Frm.DMDataSet.INST_MAIL, System.Guid.Parse(ID))
         LoadForms.RestoreLayoutFromXml(Frm.GridView3, "INST_MAIL.xml")
-        Prog_Prop.GetProgEmailInst()
+        Prog_Prop.GetProgEmailInstAndEllipse()
         Frm.txtTo.EditValue = Frm.cboCUS.GetColumnValue("email")
         Frm.txtSubject.EditValue = ProgProps.InstInfSubject
         Frm.txtBody.EditValue = ProgProps.InstInfAppointmentBody
@@ -744,7 +744,7 @@ Public Class Installations
             ' sEmailTo = "johnmavroselinos@gmail.com"
 
 
-            If Emails.SendEmail(ProgProps.InstEmailAccount, sSubject, sBody, sEmailTo, sFile, statusMsg) = True Then
+            If Emails.SendEmail(ProgProps.InstEmailAccountFrom, sSubject, sBody, sEmailTo, sFile, statusMsg) = True Then
                 sSQL = "Update INST SET emailApp = 1,DateOfEmailApp=getdate() WHERE ID = " & toSQLValueS(ID)
 
 
@@ -752,7 +752,7 @@ Public Class Installations
 
                 ' Εισαγωγή ιστορικού email
                 sSQL = "INSERT INTO INST_MAIL (instID,emailFrom,emailTo,emailSubject,emailBody,DateofEmail,[createdBy],[createdOn],emailMode,ComeFrom)  
-                        values (" & toSQLValueS(ID) & "," & toSQLValueS(ProgProps.InstEmailAccount.ToString) & "," &
+                        values (" & toSQLValueS(ID) & "," & toSQLValueS(ProgProps.InstEmailAccountFrom.ToString) & "," &
                                     toSQLValue(Frm.txtTo) & "," & toSQLValue(Frm.txtSubject) & "," &
                                     toSQLValue(Frm.txtBody) & ",getdate(), " &
                                     toSQLValueS(UserProps.ID.ToString) & ", getdate(),0,0 )"

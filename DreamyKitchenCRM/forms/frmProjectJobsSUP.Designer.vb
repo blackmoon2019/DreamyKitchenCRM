@@ -104,6 +104,7 @@ Partial Class frmProjectJobsSUP
         Me.txtImageAttachment = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.txtSubject = New DevExpress.XtraEditors.TextEdit()
+        Me.txtAttachFile = New DevExpress.XtraEditors.ButtonEdit()
         Me.LayoutControlGroup2 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem21 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem22 = New DevExpress.XtraLayout.LayoutControlItem()
@@ -112,6 +113,7 @@ Partial Class frmProjectJobsSUP
         Me.LayoutControlItem25 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem26 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
+        Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.TabNavigationPage3 = New DevExpress.XtraBars.Navigation.TabNavigationPage()
         Me.LayoutControl4 = New DevExpress.XtraLayout.LayoutControl()
         Me.cmdSaveTransF = New DevExpress.XtraEditors.SimpleButton()
@@ -203,6 +205,7 @@ Partial Class frmProjectJobsSUP
         CType(Me.txtImageAttachment, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtSubject.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtAttachFile.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlGroup2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem21, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem22, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -211,6 +214,7 @@ Partial Class frmProjectJobsSUP
         CType(Me.LayoutControlItem25, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem26, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabNavigationPage3.SuspendLayout()
         CType(Me.LayoutControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl4.SuspendLayout()
@@ -780,6 +784,7 @@ Partial Class frmProjectJobsSUP
         Me.LayoutControl2.Controls.Add(Me.txtTo)
         Me.LayoutControl2.Controls.Add(Me.grdMain)
         Me.LayoutControl2.Controls.Add(Me.txtSubject)
+        Me.LayoutControl2.Controls.Add(Me.txtAttachFile)
         Me.LayoutControl2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.LayoutControl2.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControl2.Name = "LayoutControl2"
@@ -795,7 +800,7 @@ Partial Class frmProjectJobsSUP
         Me.LabelControl3.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.LabelControl3.Appearance.Options.UseFont = True
         Me.LabelControl3.Appearance.Options.UseForeColor = True
-        Me.LabelControl3.Location = New System.Drawing.Point(12, 244)
+        Me.LabelControl3.Location = New System.Drawing.Point(12, 269)
         Me.LabelControl3.Name = "LabelControl3"
         Me.LabelControl3.Size = New System.Drawing.Size(133, 22)
         Me.LabelControl3.StyleController = Me.LayoutControl2
@@ -805,27 +810,27 @@ Partial Class frmProjectJobsSUP
         'cmdSendEmail
         '
         Me.cmdSendEmail.ImageOptions.Image = CType(resources.GetObject("cmdSendEmail.ImageOptions.Image"), System.Drawing.Image)
-        Me.cmdSendEmail.Location = New System.Drawing.Point(1146, 204)
+        Me.cmdSendEmail.Location = New System.Drawing.Point(1168, 229)
         Me.cmdSendEmail.Margin = New System.Windows.Forms.Padding(4)
         Me.cmdSendEmail.Name = "cmdSendEmail"
-        Me.cmdSendEmail.Size = New System.Drawing.Size(326, 36)
+        Me.cmdSendEmail.Size = New System.Drawing.Size(304, 36)
         Me.cmdSendEmail.StyleController = Me.LayoutControl2
         Me.cmdSendEmail.TabIndex = 7
         Me.cmdSendEmail.Text = "Αποστολή Email Παραγγελίας"
         '
         'txtBody
         '
-        Me.txtBody.Location = New System.Drawing.Point(77, 72)
+        Me.txtBody.Location = New System.Drawing.Point(164, 72)
         Me.txtBody.Name = "txtBody"
-        Me.txtBody.Size = New System.Drawing.Size(1395, 128)
+        Me.txtBody.Size = New System.Drawing.Size(1308, 123)
         Me.txtBody.StyleController = Me.LayoutControl2
         Me.txtBody.TabIndex = 3
         '
         'txtTo
         '
-        Me.txtTo.Location = New System.Drawing.Point(77, 12)
+        Me.txtTo.Location = New System.Drawing.Point(164, 12)
         Me.txtTo.Name = "txtTo"
-        Me.txtTo.Size = New System.Drawing.Size(1395, 26)
+        Me.txtTo.Size = New System.Drawing.Size(1308, 26)
         Me.txtTo.StyleController = Me.LayoutControl2
         Me.txtTo.TabIndex = 0
         '
@@ -834,12 +839,12 @@ Partial Class frmProjectJobsSUP
         Me.grdMain.Cursor = System.Windows.Forms.Cursors.Default
         Me.grdMain.DataSource = Me.PROJECTJOBSSUPMAILBindingSource
         Me.grdMain.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(4)
-        Me.grdMain.Location = New System.Drawing.Point(12, 270)
+        Me.grdMain.Location = New System.Drawing.Point(12, 295)
         Me.grdMain.MainView = Me.GridView3
         Me.grdMain.Margin = New System.Windows.Forms.Padding(4)
         Me.grdMain.Name = "grdMain"
         Me.grdMain.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.txtImageAttachment})
-        Me.grdMain.Size = New System.Drawing.Size(1460, 813)
+        Me.grdMain.Size = New System.Drawing.Size(1460, 788)
         Me.grdMain.TabIndex = 8
         Me.grdMain.UseEmbeddedNavigator = True
         Me.grdMain.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView3, Me.GridView2})
@@ -1012,17 +1017,31 @@ Partial Class frmProjectJobsSUP
         '
         'txtSubject
         '
-        Me.txtSubject.Location = New System.Drawing.Point(77, 42)
+        Me.txtSubject.Location = New System.Drawing.Point(164, 42)
         Me.txtSubject.Name = "txtSubject"
-        Me.txtSubject.Size = New System.Drawing.Size(1395, 26)
+        Me.txtSubject.Size = New System.Drawing.Size(1308, 26)
         Me.txtSubject.StyleController = Me.LayoutControl2
         Me.txtSubject.TabIndex = 2
+        '
+        'txtAttachFile
+        '
+        Me.txtAttachFile.EditValue = ""
+        Me.txtAttachFile.Location = New System.Drawing.Point(164, 199)
+        Me.txtAttachFile.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtAttachFile.Name = "txtAttachFile"
+        Me.txtAttachFile.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
+        Me.txtAttachFile.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)})
+        Me.txtAttachFile.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
+        Me.txtAttachFile.Size = New System.Drawing.Size(1308, 26)
+        Me.txtAttachFile.StyleController = Me.LayoutControl2
+        Me.txtAttachFile.TabIndex = 12
+        Me.txtAttachFile.Tag = "fProjectNameComplete,0,1,2"
         '
         'LayoutControlGroup2
         '
         Me.LayoutControlGroup2.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlGroup2.GroupBordersVisible = False
-        Me.LayoutControlGroup2.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem21, Me.LayoutControlItem22, Me.LayoutControlItem23, Me.LayoutControlItem24, Me.LayoutControlItem25, Me.LayoutControlItem26, Me.EmptySpaceItem1})
+        Me.LayoutControlGroup2.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem21, Me.LayoutControlItem22, Me.LayoutControlItem23, Me.LayoutControlItem24, Me.LayoutControlItem25, Me.LayoutControlItem26, Me.EmptySpaceItem1, Me.LayoutControlItem2})
         Me.LayoutControlGroup2.Name = "Root"
         Me.LayoutControlGroup2.Size = New System.Drawing.Size(1484, 1095)
         Me.LayoutControlGroup2.TextVisible = False
@@ -1030,9 +1049,9 @@ Partial Class frmProjectJobsSUP
         'LayoutControlItem21
         '
         Me.LayoutControlItem21.Control = Me.grdMain
-        Me.LayoutControlItem21.Location = New System.Drawing.Point(0, 258)
+        Me.LayoutControlItem21.Location = New System.Drawing.Point(0, 283)
         Me.LayoutControlItem21.Name = "LayoutControlItem15"
-        Me.LayoutControlItem21.Size = New System.Drawing.Size(1464, 817)
+        Me.LayoutControlItem21.Size = New System.Drawing.Size(1464, 792)
         Me.LayoutControlItem21.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem21.TextVisible = False
         '
@@ -1043,16 +1062,16 @@ Partial Class frmProjectJobsSUP
         Me.LayoutControlItem22.Name = "LayoutControlItem16"
         Me.LayoutControlItem22.Size = New System.Drawing.Size(1464, 30)
         Me.LayoutControlItem22.Text = "Προς"
-        Me.LayoutControlItem22.TextSize = New System.Drawing.Size(53, 19)
+        Me.LayoutControlItem22.TextSize = New System.Drawing.Size(140, 19)
         '
         'LayoutControlItem23
         '
         Me.LayoutControlItem23.Control = Me.txtBody
         Me.LayoutControlItem23.Location = New System.Drawing.Point(0, 60)
         Me.LayoutControlItem23.Name = "LayoutControlItem18"
-        Me.LayoutControlItem23.Size = New System.Drawing.Size(1464, 132)
+        Me.LayoutControlItem23.Size = New System.Drawing.Size(1464, 127)
         Me.LayoutControlItem23.Text = "Κείμενο"
-        Me.LayoutControlItem23.TextSize = New System.Drawing.Size(53, 19)
+        Me.LayoutControlItem23.TextSize = New System.Drawing.Size(140, 19)
         '
         'LayoutControlItem24
         '
@@ -1063,12 +1082,12 @@ Partial Class frmProjectJobsSUP
         Me.LayoutControlItem24.Name = "LayoutControlItem19"
         Me.LayoutControlItem24.Size = New System.Drawing.Size(1464, 30)
         Me.LayoutControlItem24.Text = "Θέμα"
-        Me.LayoutControlItem24.TextSize = New System.Drawing.Size(53, 19)
+        Me.LayoutControlItem24.TextSize = New System.Drawing.Size(140, 19)
         '
         'LayoutControlItem25
         '
         Me.LayoutControlItem25.Control = Me.LabelControl3
-        Me.LayoutControlItem25.Location = New System.Drawing.Point(0, 232)
+        Me.LayoutControlItem25.Location = New System.Drawing.Point(0, 257)
         Me.LayoutControlItem25.Name = "LayoutControlItem20"
         Me.LayoutControlItem25.Size = New System.Drawing.Size(1464, 26)
         Me.LayoutControlItem25.TextSize = New System.Drawing.Size(0, 0)
@@ -1077,19 +1096,30 @@ Partial Class frmProjectJobsSUP
         'LayoutControlItem26
         '
         Me.LayoutControlItem26.Control = Me.cmdSendEmail
-        Me.LayoutControlItem26.Location = New System.Drawing.Point(1134, 192)
+        Me.LayoutControlItem26.Location = New System.Drawing.Point(1156, 217)
         Me.LayoutControlItem26.Name = "LayoutControlItem12"
-        Me.LayoutControlItem26.Size = New System.Drawing.Size(330, 40)
+        Me.LayoutControlItem26.Size = New System.Drawing.Size(308, 40)
         Me.LayoutControlItem26.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem26.TextVisible = False
         '
         'EmptySpaceItem1
         '
         Me.EmptySpaceItem1.AllowHotTrack = False
-        Me.EmptySpaceItem1.Location = New System.Drawing.Point(0, 192)
+        Me.EmptySpaceItem1.Location = New System.Drawing.Point(0, 217)
         Me.EmptySpaceItem1.Name = "EmptySpaceItem1"
-        Me.EmptySpaceItem1.Size = New System.Drawing.Size(1134, 40)
+        Me.EmptySpaceItem1.Size = New System.Drawing.Size(1156, 40)
         Me.EmptySpaceItem1.TextSize = New System.Drawing.Size(0, 0)
+        '
+        'LayoutControlItem2
+        '
+        Me.LayoutControlItem2.Control = Me.txtAttachFile
+        Me.LayoutControlItem2.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem2.CustomizationFormText = "Έντυπο Ολοκλήρωσης(Υπογεγραμμένο)"
+        Me.LayoutControlItem2.Location = New System.Drawing.Point(0, 187)
+        Me.LayoutControlItem2.Name = "LayoutControlItem2"
+        Me.LayoutControlItem2.Size = New System.Drawing.Size(1464, 30)
+        Me.LayoutControlItem2.Text = "Επισύναψη Αρχείου"
+        Me.LayoutControlItem2.TextSize = New System.Drawing.Size(140, 19)
         '
         'TabNavigationPage3
         '
@@ -1493,6 +1523,7 @@ Partial Class frmProjectJobsSUP
         CType(Me.txtImageAttachment, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtSubject.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtAttachFile.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlGroup2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem21, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem22, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1501,6 +1532,7 @@ Partial Class frmProjectJobsSUP
         CType(Me.LayoutControlItem25, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem26, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabNavigationPage3.ResumeLayout(False)
         CType(Me.LayoutControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl4.ResumeLayout(False)
@@ -1644,4 +1676,6 @@ Partial Class frmProjectJobsSUP
     Friend WithEvents colorderError As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents colreplacement As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents colmissing As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents txtAttachFile As DevExpress.XtraEditors.ButtonEdit
+    Friend WithEvents LayoutControlItem2 As DevExpress.XtraLayout.LayoutControlItem
 End Class

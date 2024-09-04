@@ -65,14 +65,16 @@ Public Class Parameters
         Prog_Prop.SetProgTechSupportEmail(Frm.txtEmail.EditValue)
 
     End Sub
-    Public Sub SaveDefaultInstEmail()
-        Prog_Prop.SetProgInstEmail(Frm.ELLIPSE_BODY_INF.Text, Frm.INSTALLATIONS_EMAIL.Text, Frm.ELLIPSE_SUBJECT_INF.Text, Frm.INSTALLATIONS_EMAIL_SUP.Text,
+    Public Sub SaveDefaultInstAndEllipseEmail()
+        Prog_Prop.SetProgInstEmailAndEllipse(
+                                   Frm.ELLIPSE_BODY_INF.Text, Frm.INSTALLATIONS_EMAIL.Text, Frm.ELLIPSE_SUBJECT_INF.Text, Frm.ELLIPSE_EMAIL_SUP_TO.Text,
                                    Frm.ELLIPSE_SUBJECT_SUP_INF.Text, Frm.ELLIPSE_BODY_SUP_INF.Text, Frm.ELLIPSE_BODY_INF_APPOINTMENT.Text, Frm.INSTALLATIONS_SUBJECT_INF.Text,
                                    Frm.INSTALLATIONS_BODY_INF_APPOINTMENT.Text, Frm.ELLIPSE_SUBJECT_INF_APPOINTMENT.Text, Frm.ELLIPSE_SUBJECT_COMPLETE_INF.Text,
-                                   Frm.ELLIPSE_BODY_COMPLETE_INF.Text)
-        Prog_Prop.GetProgEmailInst(Frm.LayoutControl5)
-        Prog_Prop.SetProgSupEmail(Frm.SUP_ORDERS_MAIL.Text)
-        Prog_Prop.GetProgEmailSup(Frm.LayoutControlItem76)
+                                   Frm.ELLIPSE_BODY_COMPLETE_INF.Text, Frm.ELLIPSE_EMAIL_SUP_FROM.Text)
+        Prog_Prop.GetProgEmailInstAndEllipse(Frm.LayoutControl5)
+        Prog_Prop.SetProgSupEmail(Frm.SUP_ORDERS_MAIL_FROM.Text, Frm.SUP_ORDERS_MAIL_TO.Text)
+        Prog_Prop.GetProgEmailSupFROM(Frm.LSUP_ORDERS_MAIL_FROM)
+        Prog_Prop.GetProgEmailSupTO(Frm.LSUP_ORDERS_MAIL_TO)
         XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
 
     End Sub
@@ -81,7 +83,7 @@ Public Class Parameters
                                  Frm.PJ_SUBJECT_SUP_INF.Text, Frm.PJ_BODY_SUP_INF.Text, Frm.PJ_BODY_INF_APPOINTMENT.Text, Frm.PJ_SUBJECT_INF_APPOINTMENT.Text,
                                  Frm.PJ_SUBJECT_COMPLETE_INF.Text, Frm.PJ_BODY_COMPLETE_INF.Text, Frm.PJ_EMAIL.Text)
         Prog_Prop.GetProgEmailPJ(Frm.LayoutControl4)
-        'Prog_Prop.SetProgSupEmailPJ(Frm.PJ_EMAIL_SUP_FROM.Text)
+        Prog_Prop.SetProgSupEmailPJ(Frm.PJ_EMAIL_SUP_FROM.Text)
         Prog_Prop.GetProgEmailSupPJ(Frm.LPJ_EMAIL_SUP_FROM)
         XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
 
@@ -122,15 +124,16 @@ Public Class Parameters
         LoadForms.RestoreLayoutFromXml(Frm.GridView1, "CCT_ORDERS_KITCHEN_EQUIPMENT_CLOSET_PRM_def.xml")
         Frm.GridView1.Columns.Item("name").OptionsColumn.AllowEdit = False : Frm.GridView1.Columns.Item("code").OptionsColumn.AllowEdit = False : Frm.GridView1.Columns.Item("price").OptionsColumn.AllowEdit = False
     End Sub
-    Public Sub LoadDefaultEmailInst()
-        Prog_Prop.GetProgEmailInst(Frm.LayoutControl5)
-        Prog_Prop.GetProgEmailSup(Frm.LayoutControlItem76)
-        Frm.SUP_ORDERS_MAIL.EditValue = ProgProps.EmailOrders
+    Public Sub LoadDefaultEmailInstAndEllipse()
+        Prog_Prop.GetProgEmailInstAndEllipse(Frm.LayoutControl5)
+        Prog_Prop.GetProgEmailSupFROM(Frm.LSUP_ORDERS_MAIL_FROM)
+        Prog_Prop.GetProgEmailSupTO(Frm.LSUP_ORDERS_MAIL_TO)
+        'Frm.SUP_ORDERS_MAIL.EditValue = ProgProps.EmailOrders
     End Sub
     Public Sub LoadDefaultEmailPJ()
         Prog_Prop.GetProgEmailPJ(Frm.LayoutControl4)
         Prog_Prop.GetProgEmailSupPJ(Frm.LPJ_EMAIL_SUP_FROM)
-        Frm.PJ_EMAIL_SUP_FROM.EditValue = ProgProps.PJEmailSupFrom
+        'Frm.PJ_EMAIL_SUP_FROM.EditValue = ProgProps.PJEmailSupFrom
     End Sub
 
     Private Sub InsertSelectedRows()

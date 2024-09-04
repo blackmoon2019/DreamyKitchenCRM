@@ -853,7 +853,7 @@ Public Class FillCombos
         Try
             If sSQL Is Nothing Then
                 sSQL = New System.Text.StringBuilder
-                sSQL.AppendLine("Select id,FullTranshDescription,Totamt,Iskitchen,Iscloset,Isdoor,Issc
+                sSQL.AppendLine("Select id,FullTranshDescription,Totamt,Iskitchen,Iscloset,Isdoor,Issc,offerCusAcceptance
                                 from vw_TRANSH  order by FullTranshDescription")
             End If
             Dim cmd As SqlCommand = New SqlCommand(sSQL.ToString, CNDB)
@@ -869,6 +869,10 @@ Public Class FillCombos
             For i As Integer = 0 To CtrlCombo.Properties.Columns.Count - 1
                 If i <> 1 Then CtrlCombo.Properties.Columns(i).Visible = False
             Next
+            If sSQL.ToString.Contains("offerCusAcceptance") Then
+                CtrlCombo.Properties.Columns("offerCusAcceptance").Caption = "Αποδοχή Προσφοράς"
+                CtrlCombo.Properties.Columns("offerCusAcceptance").Visible = True
+            End If
 
             sdr.Close()
         Catch ex As Exception

@@ -31,6 +31,8 @@ Partial Class frmVersions
         Me.cboType = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.dtFDate = New DevExpress.XtraEditors.DateEdit()
         Me.cbotechnical = New DevExpress.XtraEditors.LookUpEdit()
+        Me.VwTECHSUPBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.DreamyKitchenDataSet = New DreamyKitchenCRM.DreamyKitchenDataSet()
         Me.Root = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem4 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem14 = New DevExpress.XtraLayout.LayoutControlItem()
@@ -42,8 +44,6 @@ Partial Class frmVersions
         Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem6 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem125 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.VwTECHSUPBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.DreamyKitchenDataSet = New DreamyKitchenCRM.DreamyKitchenDataSet()
         Me.Vw_TECH_SUPTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_TECH_SUPTableAdapter()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
@@ -54,6 +54,8 @@ Partial Class frmVersions
         CType(Me.dtFDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dtFDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cbotechnical.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.VwTECHSUPBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Root, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem14, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -65,8 +67,6 @@ Partial Class frmVersions
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem125, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.VwTECHSUPBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
@@ -206,6 +206,16 @@ Partial Class frmVersions
         Me.cbotechnical.TabIndex = 27
         Me.cbotechnical.Tag = "technicalID,0,1,2"
         '
+        'VwTECHSUPBindingSource
+        '
+        Me.VwTECHSUPBindingSource.DataMember = "vw_TECH_SUP"
+        Me.VwTECHSUPBindingSource.DataSource = Me.DreamyKitchenDataSet
+        '
+        'DreamyKitchenDataSet
+        '
+        Me.DreamyKitchenDataSet.DataSetName = "DreamyKitchenDataSet"
+        Me.DreamyKitchenDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
         'Root
         '
         Me.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
@@ -322,16 +332,6 @@ Partial Class frmVersions
         Me.LayoutControlItem125.Text = "TechnicalID"
         Me.LayoutControlItem125.TextSize = New System.Drawing.Size(163, 19)
         '
-        'VwTECHSUPBindingSource
-        '
-        Me.VwTECHSUPBindingSource.DataMember = "vw_TECH_SUP"
-        Me.VwTECHSUPBindingSource.DataSource = Me.DreamyKitchenDataSet
-        '
-        'DreamyKitchenDataSet
-        '
-        Me.DreamyKitchenDataSet.DataSetName = "DreamyKitchenDataSet"
-        Me.DreamyKitchenDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
         'Vw_TECH_SUPTableAdapter
         '
         Me.Vw_TECH_SUPTableAdapter.ClearBeforeFill = True
@@ -354,6 +354,8 @@ Partial Class frmVersions
         CType(Me.dtFDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dtFDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cbotechnical.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.VwTECHSUPBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Root, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem14, System.ComponentModel.ISupportInitialize).EndInit()
@@ -365,8 +367,6 @@ Partial Class frmVersions
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem125, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.VwTECHSUPBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

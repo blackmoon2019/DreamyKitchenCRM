@@ -16018,6 +16018,8 @@ Partial Public Class DMDataSet
         
         Private columnFullname As Global.System.Data.DataColumn
         
+        Private columnAttachment2Name As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Sub New()
@@ -16190,6 +16192,14 @@ Partial Public Class DMDataSet
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property Attachment2NameColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnAttachment2Name
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -16242,9 +16252,10 @@ Partial Public Class DMDataSet
                     ByVal FullTranshDescription As String,  _
                     ByVal CreatedRecUser As String,  _
                     ByVal projectJobID As System.Guid,  _
-                    ByVal Fullname As String) As PROJECT_JOBSSUP_MAILRow
+                    ByVal Fullname As String,  _
+                    ByVal Attachment2Name As String) As PROJECT_JOBSSUP_MAILRow
             Dim rowPROJECT_JOBSSUP_MAILRow As PROJECT_JOBSSUP_MAILRow = CType(Me.NewRow,PROJECT_JOBSSUP_MAILRow)
-            Dim columnValuesArray() As Object = New Object() {ID, Nothing, emailFrom, emailTo, emailSubject, emailBody, DateOfEmail, createdOn, createdBy, comeFrom, EmailModeDescr, ComeFromDescr, emailMode, FullTranshDescription, CreatedRecUser, projectJobID, Fullname}
+            Dim columnValuesArray() As Object = New Object() {ID, Nothing, emailFrom, emailTo, emailSubject, emailBody, DateOfEmail, createdOn, createdBy, comeFrom, EmailModeDescr, ComeFromDescr, emailMode, FullTranshDescription, CreatedRecUser, projectJobID, Fullname, Attachment2Name}
             rowPROJECT_JOBSSUP_MAILRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowPROJECT_JOBSSUP_MAILRow)
             Return rowPROJECT_JOBSSUP_MAILRow
@@ -16290,6 +16301,7 @@ Partial Public Class DMDataSet
             Me.columnCreatedRecUser = MyBase.Columns("CreatedRecUser")
             Me.columnprojectJobID = MyBase.Columns("projectJobID")
             Me.columnFullname = MyBase.Columns("Fullname")
+            Me.columnAttachment2Name = MyBase.Columns("Attachment2Name")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -16329,6 +16341,8 @@ Partial Public Class DMDataSet
             MyBase.Columns.Add(Me.columnprojectJobID)
             Me.columnFullname = New Global.System.Data.DataColumn("Fullname", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnFullname)
+            Me.columnAttachment2Name = New Global.System.Data.DataColumn("Attachment2Name", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnAttachment2Name)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnID}, true))
             Me.columnID.AllowDBNull = false
             Me.columnID.Unique = true
@@ -16355,6 +16369,7 @@ Partial Public Class DMDataSet
             Me.columnprojectJobID.AllowDBNull = false
             Me.columnFullname.AllowDBNull = false
             Me.columnFullname.MaxLength = 200
+            Me.columnAttachment2Name.MaxLength = 500
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -28807,6 +28822,22 @@ Partial Public Class DMDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property Attachment2Name() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tablePROJECT_JOBSSUP_MAIL.Attachment2NameColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Attachment2Name' in table 'PROJECT_JOBSSUP_MAIL' is DBNull."& _ 
+                            "", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablePROJECT_JOBSSUP_MAIL.Attachment2NameColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Function IsDateOfEmailNull() As Boolean
             Return Me.IsNull(Me.tablePROJECT_JOBSSUP_MAIL.DateOfEmailColumn)
         End Function
@@ -28911,6 +28942,18 @@ Partial Public Class DMDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Sub SetCreatedRecUserNull()
             Me(Me.tablePROJECT_JOBSSUP_MAIL.CreatedRecUserColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Function IsAttachment2NameNull() As Boolean
+            Return Me.IsNull(Me.tablePROJECT_JOBSSUP_MAIL.Attachment2NameColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Sub SetAttachment2NameNull()
+            Me(Me.tablePROJECT_JOBSSUP_MAIL.Attachment2NameColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -36119,6 +36162,7 @@ Namespace DMDataSetTableAdapters
             tableMapping.ColumnMappings.Add("CreatedRecUser", "CreatedRecUser")
             tableMapping.ColumnMappings.Add("projectJobID", "projectJobID")
             tableMapping.ColumnMappings.Add("Fullname", "Fullname")
+            tableMapping.ColumnMappings.Add("Attachment2Name", "Attachment2Name")
             Me._adapter.TableMappings.Add(tableMapping)
         End Sub
         
@@ -36137,8 +36181,8 @@ Namespace DMDataSetTableAdapters
             Me._commandCollection(0).Connection = Me.Connection
             Me._commandCollection(0).CommandText = "SELECT ID, code, emailFrom, emailTo, emailSubject, emailBody, DateOfEmail, create"& _ 
                 "dOn, createdBy, comeFrom, EmailModeDescr, ComeFromDescr, emailMode, FullTranshDe"& _ 
-                "scription, CreatedRecUser, projectJobID, Fullname"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM   vw_PROJECT_JOBSSUP_MAI"& _ 
-                "L"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE (projectJobID = @projectJobID)"
+                "scription, CreatedRecUser, projectJobID, Fullname, Attachment2Name"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM   vw_PR"& _ 
+                "OJECT_JOBSSUP_MAIL"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE (projectJobID = @projectJobID)"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@projectJobID", Global.System.Data.SqlDbType.UniqueIdentifier, 16, Global.System.Data.ParameterDirection.Input, 0, 0, "projectJobID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
         End Sub

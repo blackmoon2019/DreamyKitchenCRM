@@ -143,4 +143,8 @@ Public Class frmVersions
         form1.ShowDialog()
     End Sub
 
+    Private Sub cbotechnical_EditValueChanged(sender As Object, e As EventArgs) Handles cbotechnical.EditValueChanged
+        If cbotechnical.GetColumnValue("descr") Is Nothing Then Exit Sub
+        txtComments.EditValue = cbotechnical.GetColumnValue("descr").ToString
+    End Sub
 End Class

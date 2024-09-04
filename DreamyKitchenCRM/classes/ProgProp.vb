@@ -159,13 +159,13 @@ Public Class ProgProp
             sdr = Nothing
         End Try
     End Sub
-    Public Sub GetProgEmailInst(Optional ByVal control As DevExpress.XtraLayout.LayoutControl = Nothing)
+    Public Sub GetProgEmailInstAndEllipse(Optional ByVal control As DevExpress.XtraLayout.LayoutControl = Nothing)
         Dim sSQL As String
         Dim sVal As String, sPrm As String
         Dim cmd As SqlCommand
         Dim sdr As SqlDataReader
         Try
-            sSQL = "select prm,val FROM PRM where grpName= 'EMAIL_INSTALLATIONS' ORDER by prm"
+            sSQL = "select prm,val FROM PRM where grpName IN( 'EMAIL_INSTALLATIONS','EMAIL_ELLIPSE') ORDER by prm"
             cmd = New SqlCommand(sSQL, CNDB)
             sdr = cmd.ExecuteReader()
             While sdr.Read()
@@ -173,15 +173,19 @@ Public Class ProgProp
                 If control Is Nothing Then
                     If sdr.IsDBNull(sdr.GetOrdinal("val")) = False Then
                         Select Case sPrm
+                                ' Email ΑΠΟ (Αφορά Τοποθετήσεις)
+                            Case "INSTALLATIONS_EMAIL" : ProgProps.InstEmailAccountFrom = sdr.GetString(sdr.GetOrdinal("val"))
+                                ' Θέμα (Αφορά Τοποθετήσεις)
+                            Case "INSTALLATIONS_SUBJECT_INF" : ProgProps.InstInfSubject = sdr.GetString(sdr.GetOrdinal("val"))
+                                ' Κείμενο (Αφορά Τοποθετήσεις)
+                            Case "INSTALLATIONS_BODY_INF_APPOINTMENT" : ProgProps.InstInfAppointmentBody = sdr.GetString(sdr.GetOrdinal("val"))
+                            Case "ELLIPSE_EMAIL_SUP_FROM" : ProgProps.InstEllipseEmailAccountSupFrom = sdr.GetString(sdr.GetOrdinal("val"))
+                            Case "ELLIPSE_EMAIL_SUP_TO" : ProgProps.InstEllipseEmailAccountSupTo = sdr.GetString(sdr.GetOrdinal("val"))
                             Case "ELLIPSE_BODY_INF" : ProgProps.InstEllipseInfBody = sdr.GetString(sdr.GetOrdinal("val"))
-                            Case "INSTALLATIONS_EMAIL" : ProgProps.InstEmailAccount = sdr.GetString(sdr.GetOrdinal("val"))
                             Case "ELLIPSE_SUBJECT_INF" : ProgProps.InstEllipseInfSubject = sdr.GetString(sdr.GetOrdinal("val"))
-                            Case "INSTALLATIONS_EMAIL_SUP" : ProgProps.InstEmailAccountSup = sdr.GetString(sdr.GetOrdinal("val"))
                             Case "ELLIPSE_BODY_SUP_INF" : ProgProps.InstEllipseInfBodySup = sdr.GetString(sdr.GetOrdinal("val"))
                             Case "ELLIPSE_SUBJECT_SUP_INF" : ProgProps.InstEllipseInfSubjectSup = sdr.GetString(sdr.GetOrdinal("val"))
                             Case "ELLIPSE_BODY_INF_APPOINTMENT" : ProgProps.InstEllipseInfAppointmentBody = sdr.GetString(sdr.GetOrdinal("val"))
-                            Case "INSTALLATIONS_SUBJECT_INF" : ProgProps.InstInfSubject = sdr.GetString(sdr.GetOrdinal("val"))
-                            Case "INSTALLATIONS_BODY_INF_APPOINTMENT" : ProgProps.InstInfAppointmentBody = sdr.GetString(sdr.GetOrdinal("val"))
                             Case "ELLIPSE_SUBJECT_INF_APPOINTMENT" : ProgProps.InstEllipseInfAppointmentSubject = sdr.GetString(sdr.GetOrdinal("val"))
                             Case "ELLIPSE_SUBJECT_COMPLETE_INF" : ProgProps.InstEllipseInfSubjectComplete = sdr.GetString(sdr.GetOrdinal("val"))
                             Case "ELLIPSE_BODY_COMPLETE_INF" : ProgProps.InstEllipseInfBodyComplete = sdr.GetString(sdr.GetOrdinal("val"))
@@ -194,15 +198,19 @@ Public Class ProgProp
                         If sdr.IsDBNull(sdr.GetOrdinal("val")) = False Then
                             SetValueToControl(LItem, sdr.GetString(sdr.GetOrdinal("val")))
                             Select Case sPrm
+                                ' Email ΑΠΟ (Αφορά Τοποθετήσεις)
+                                Case "INSTALLATIONS_EMAIL" : ProgProps.InstEmailAccountFrom = sdr.GetString(sdr.GetOrdinal("val"))
+                                ' Θέμα (Αφορά Τοποθετήσεις)
+                                Case "INSTALLATIONS_SUBJECT_INF" : ProgProps.InstInfSubject = sdr.GetString(sdr.GetOrdinal("val"))
+                                ' Κείμενο (Αφορά Τοποθετήσεις)
+                                Case "INSTALLATIONS_BODY_INF_APPOINTMENT" : ProgProps.InstInfAppointmentBody = sdr.GetString(sdr.GetOrdinal("val"))
+                                Case "ELLIPSE_EMAIL_SUP_FROM" : ProgProps.InstEllipseEmailAccountSupFrom = sdr.GetString(sdr.GetOrdinal("val"))
+                                Case "ELLIPSE_EMAIL_SUP_TO" : ProgProps.InstEllipseEmailAccountSupTo = sdr.GetString(sdr.GetOrdinal("val"))
                                 Case "ELLIPSE_BODY_INF" : ProgProps.InstEllipseInfBody = sdr.GetString(sdr.GetOrdinal("val"))
-                                Case "INSTALLATIONS_EMAIL" : ProgProps.InstEmailAccount = sdr.GetString(sdr.GetOrdinal("val"))
                                 Case "ELLIPSE_SUBJECT_INF" : ProgProps.InstEllipseInfSubject = sdr.GetString(sdr.GetOrdinal("val"))
-                                Case "INSTALLATIONS_EMAIL_SUP" : ProgProps.InstEmailAccountSup = sdr.GetString(sdr.GetOrdinal("val"))
                                 Case "ELLIPSE_BODY_SUP_INF" : ProgProps.InstEllipseInfBodySup = sdr.GetString(sdr.GetOrdinal("val"))
                                 Case "ELLIPSE_SUBJECT_SUP_INF" : ProgProps.InstEllipseInfSubjectSup = sdr.GetString(sdr.GetOrdinal("val"))
                                 Case "ELLIPSE_BODY_INF_APPOINTMENT" : ProgProps.InstEllipseInfAppointmentBody = sdr.GetString(sdr.GetOrdinal("val"))
-                                Case "INSTALLATIONS_SUBJECT_INF" : ProgProps.InstInfSubject = sdr.GetString(sdr.GetOrdinal("val"))
-                                Case "INSTALLATIONS_BODY_INF_APPOINTMENT" : ProgProps.InstInfAppointmentBody = sdr.GetString(sdr.GetOrdinal("val"))
                                 Case "ELLIPSE_SUBJECT_INF_APPOINTMENT" : ProgProps.InstEllipseInfAppointmentSubject = sdr.GetString(sdr.GetOrdinal("val"))
                                 Case "ELLIPSE_SUBJECT_COMPLETE_INF" : ProgProps.InstEllipseInfSubjectComplete = sdr.GetString(sdr.GetOrdinal("val"))
                                 Case "ELLIPSE_BODY_COMPLETE_INF" : ProgProps.InstEllipseInfBodyComplete = sdr.GetString(sdr.GetOrdinal("val"))
@@ -256,7 +264,7 @@ Public Class ProgProp
                             Select Case sPrm
                                 Case "PJ_EMAIL" : ProgProps.PJEmailOrders = sdr.GetString(sdr.GetOrdinal("val"))
                                 Case "PJ_BODY_INF" : ProgProps.PJInfBody = sdr.GetString(sdr.GetOrdinal("val"))
-                                Case "INSTALLATIONS_EMAIL" : ProgProps.InstEmailAccount = sdr.GetString(sdr.GetOrdinal("val"))
+                                Case "INSTALLATIONS_EMAIL" : ProgProps.InstEmailAccountFrom = sdr.GetString(sdr.GetOrdinal("val"))
                                 Case "PJ_SUBJECT_INF" : ProgProps.PJInfSubject = sdr.GetString(sdr.GetOrdinal("val"))
                                 Case "PJ_EMAIL_SUP_FROM" : ProgProps.PJEmailSupFrom = sdr.GetString(sdr.GetOrdinal("val"))
                                 Case "PJ_EMAIL_SUP_TO" : ProgProps.PJEmailSupTo = sdr.GetString(sdr.GetOrdinal("val"))
@@ -434,9 +442,9 @@ Public Class ProgProp
         End Try
     End Sub
 
-    Public Sub SetProgInstEmail(ByVal sValue As String, ByVal sValue2 As String, ByVal sValue3 As String, ByVal sValue4 As String, ByVal sValue5 As String,
+    Public Sub SetProgInstEmailAndEllipse(ByVal sValue As String, ByVal sValue2 As String, ByVal sValue3 As String, ByVal sValue4 As String, ByVal sValue5 As String,
                                 ByVal sValue6 As String, ByVal sValue7 As String, ByVal sValue8 As String, ByVal sValue9 As String, ByVal sValue10 As String,
-                                ByVal sValue11 As String, ByVal sValue12 As String)
+                                ByVal sValue11 As String, ByVal sValue12 As String, ByVal sValue13 As String)
         Dim sSQL As String
         Dim cmd As SqlCommand
         Try
@@ -444,7 +452,7 @@ Public Class ProgProp
             If sValue.Length > 0 Then sSQL = "Update PRM set val = '" & sValue & "' where prm= 'ELLIPSE_BODY_INF'" : cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
             If sValue2.Length > 0 Then sSQL = "Update PRM set val = '" & sValue2 & "' where prm= 'INSTALLATIONS_EMAIL'" : cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
             If sValue3.Length > 0 Then sSQL = "Update PRM set val = '" & sValue3 & "' where prm= 'ELLIPSE_SUBJECT_INF'" : cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
-            If sValue4.Length > 0 Then sSQL = "Update PRM set val = '" & sValue4 & "' where prm= 'INSTALLATIONS_EMAIL_SUP'" : cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
+            If sValue4.Length > 0 Then sSQL = "Update PRM set val = '" & sValue4 & "' where prm= 'ELLIPSE_EMAIL_SUP_TO'" : cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
             If sValue5.Length > 0 Then sSQL = "Update PRM set val = '" & sValue5 & "' where prm= 'ELLIPSE_SUBJECT_SUP_INF'" : cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
             If sValue6.Length > 0 Then sSQL = "Update PRM set val = '" & sValue6 & "' where prm= 'ELLIPSE_BODY_SUP_INF'" : cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
             If sValue7.Length > 0 Then sSQL = "Update PRM set val = '" & sValue7 & "' where prm= 'ELLIPSE_BODY_INF_APPOINTMENT'" : cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
@@ -453,6 +461,7 @@ Public Class ProgProp
             If sValue10.Length > 0 Then sSQL = "Update PRM set val = '" & sValue10 & "' where prm= 'ELLIPSE_SUBJECT_INF_APPOINTMENT'" : cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
             If sValue11.Length > 0 Then sSQL = "Update PRM set val = '" & sValue11 & "' where prm= 'ELLIPSE_SUBJECT_COMPLETE_INF'" : cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
             If sValue12.Length > 0 Then sSQL = "Update PRM set val = '" & sValue12 & "' where prm= 'ELLIPSE_BODY_COMPLETE_INF'" : cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
+            If sValue13.Length > 0 Then sSQL = "Update PRM set val = '" & sValue13 & "' where prm= 'ELLIPSE_EMAIL_SUP_FROM'" : cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
 
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -481,27 +490,43 @@ Public Class ProgProp
         End Try
     End Sub
 
-    Public Sub SetProgSupEmail(ByVal sValue As String)
+    Public Sub SetProgSupEmail(ByVal sValue As String, ByVal sValue2 As String)
         Dim sSQL As String
         Dim cmd As SqlCommand
         Try
 
-            If sValue.Length > 0 Then sSQL = "Update PRM set val = '" & sValue & "' where prm= 'SUP_ORDERS_EMAIL'" : cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
+            If sValue.Length > 0 Then sSQL = "Update PRM set val = '" & sValue & "' where prm= 'SUP_ORDERS_EMAIL_FROM'" : cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
+            If sValue2.Length > 0 Then sSQL = "Update PRM set val = '" & sValue2 & "' where prm= 'SUP_ORDERS_EMAIL_TO'" : cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
-    Public Function GetProgEmailSup(Optional ByVal LItem As LayoutControlItem = Nothing) As String
+    Public Function GetProgEmailSupFROM(Optional ByVal LItem As LayoutControlItem = Nothing) As String
 
         Dim sSQL As String
         Dim cmd As SqlCommand
         Dim sdr As SqlDataReader
         Try
-            sSQL = "select val FROM PRM where prm= 'SUP_ORDERS_EMAIL' "
+            sSQL = "select val FROM PRM where prm= 'SUP_ORDERS_EMAIL_FROM' "
             cmd = New SqlCommand(sSQL, CNDB)
             sdr = cmd.ExecuteReader()
-            If (sdr.Read() = True) Then ProgProps.EmailOrders = sdr.GetString(sdr.GetOrdinal("VAL")) : If LItem IsNot Nothing Then SetValueToControl(LItem, sdr.GetString(sdr.GetOrdinal("val")))
-            Return ProgProps.EmailOrders
+            If (sdr.Read() = True) Then ProgProps.EmailOrdersFrom = sdr.GetString(sdr.GetOrdinal("VAL")) : If LItem IsNot Nothing Then SetValueToControl(LItem, sdr.GetString(sdr.GetOrdinal("val")))
+            Return ProgProps.EmailOrdersFrom
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Function
+    Public Function GetProgEmailSupTO(Optional ByVal LItem As LayoutControlItem = Nothing) As String
+
+        Dim sSQL As String
+        Dim cmd As SqlCommand
+        Dim sdr As SqlDataReader
+        Try
+            sSQL = "select val FROM PRM where prm= 'SUP_ORDERS_EMAIL_TO' "
+            cmd = New SqlCommand(sSQL, CNDB)
+            sdr = cmd.ExecuteReader()
+            If (sdr.Read() = True) Then ProgProps.EmailOrdersTo = sdr.GetString(sdr.GetOrdinal("VAL")) : If LItem IsNot Nothing Then SetValueToControl(LItem, sdr.GetString(sdr.GetOrdinal("val")))
+            Return ProgProps.EmailOrdersTo
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
@@ -526,7 +551,7 @@ Public Class ProgProp
             cmd = New SqlCommand(sSQL, CNDB)
             sdr = cmd.ExecuteReader()
             If (sdr.Read() = True) Then ProgProps.PJEmailSupFrom = sdr.GetString(sdr.GetOrdinal("VAL")) : If LItem IsNot Nothing Then SetValueToControl(LItem, sdr.GetString(sdr.GetOrdinal("val")))
-            Return ProgProps.PJEmailOrders
+            Return ProgProps.PJEmailSupFrom
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try

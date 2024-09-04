@@ -313,7 +313,7 @@ Public Class ProjectJobsSUP
         Dim sCusID As String
         If Frm.cboCUS.EditValue Is Nothing Then sCusID = toSQLValueS("00000000-0000-0000-0000-000000000000") Else sCusID = toSQLValueS(Frm.cboCUS.EditValue.ToString)
         Dim sSQL As New System.Text.StringBuilder
-        sSQL.AppendLine("Select T.id,FullTranshDescription,Description,Iskitchen,Iscloset,Isdoor,Issc,instdtDeliverDate
+        sSQL.AppendLine("Select T.id,FullTranshDescription,Description,Iskitchen,Iscloset,Isdoor,Issc,instdtDeliverDate,offerCusAcceptance
                         from vw_TRANSH t
                         where  T.cusid = " & sCusID & "order by description")
         FillCbo.TRANSH(Frm.cboTRANSH, sSQL)
@@ -556,6 +556,22 @@ Public Class ProjectJobsSUP
             End Try
         End If
     End Sub
+    Public Sub AttachmentSelect()
+        Frm.XtraOpenFileDialog1.FilterIndex = 1
+        Frm.XtraOpenFileDialog1.InitialDirectory = "C:\"
+        Frm.XtraOpenFileDialog1.Title = "Open File"
+        Frm.XtraOpenFileDialog1.CheckFileExists = False
+        Frm.XtraOpenFileDialog1.Multiselect = False
+        Dim result As DialogResult = Frm.XtraOpenFileDialog1.ShowDialog()
+        If result = DialogResult.OK Then
+            Try
+                My.Computer.FileSystem.CopyFile(Frm.XtraOpenFileDialog1.FileName, ProgProps.ServerPath & Path.GetFileName(Frm.XtraOpenFileDialog1.FileName), True)
+                Frm.txtAttachFile.EditValue = Frm.XtraOpenFileDialog1.FileName
+            Catch ex As Exception
+                XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End Try
+        End If
+    End Sub
     Public Sub DeleteFile()
         If Frm.txtfProjectNameComplete.EditValue = Nothing Then Exit Sub
         If XtraMessageBox.Show("Θέλετε να διαγραφεί το αρχείο?", ProgProps.ProgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
@@ -591,6 +607,7 @@ Public Class ProjectJobsSUP
         Dim sSubject As String
         Dim sBody As String
         Dim sFile As String
+        Dim sFile2 As String
         Dim sSQL As String
         Try
 
@@ -601,31 +618,38 @@ Public Class ProjectJobsSUP
             sBody = Frm.txtBody.EditValue
             sSubject = Frm.txtSubject.EditValue
             sFile = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) & "\Downloads\Ενημερώτικό έντυπο εργασιών προμηθευτή.pdf"
+            sFile2 = Frm.txtAttachFile.EditValue
             report.CreateDocument()
             report.ExportToPdf(sFile)
             report.Dispose()
             report = Nothing
             My.Computer.FileSystem.CopyFile(sFile, ProgProps.ServerPath & Path.GetFileName(sFile), True)
-
+            If sFile2.Length > 0 Then My.Computer.FileSystem.CopyFile(sFile2, ProgProps.ServerPath & Path.GetFileName(sFile2), True)
             'sEmailTo = "dreamykitchen@gmail.com"
             'sEmailTo = "johnmavroselinos@gmail.com"
 
             If CNDB.Database <> "DreamyKitchen" Or Debugger.IsAttached = True Then sEmailTo = "johnmavroselinos@gmail.com;dreamykitchen@gmail.com"
 
-            If Emails.SendEmail(ProgProps.PJEmailSupFrom, sSubject, sBody, sEmailTo, sFile, statusMsg) = True Then
+            If Emails.SendEmail(ProgProps.PJEmailSupFrom, sSubject, sBody, sEmailTo, sFile & IIf(sFile2.Length > 0, ";", "") & sFile2, statusMsg) = True Then
                 Select Case emailMode
                     Case 1 : sSQL = "Update PROJECT_JOBSSUP SET emailApp = 1,DateOfEmailApp=getdate() WHERE ID = " & toSQLValueS(ID)
-                    Case 2 : sSQL = "Update PROJECT_JOBSSUP SET emailInf = 1,DateOfEmailInf=getdate() WHERE ID = " & toSQLValueS(ID)
-                    Case 3 : sSQL = "Update PROJECT_JOBSSUP SET emailInfComplete = 1,DateOfEmailInfComplete=getdate() WHERE ID = " & toSQLValueS(ID)
                 End Select
 
                 Cmd = New SqlCommand(sSQL, CNDB) : Cmd.ExecuteNonQuery()
-
                 ' Εισαγωγή ιστορικού email
-                sSQL = "INSERT INTO [PROJECT_JOBSSUP_MAIL] (projectjobID,emailFrom,emailTo,emailSubject,emailBody,DateofEmail,[createdBy],[createdOn],ComeFrom,emailMode,Attachment)  
-                        Select " & toSQLValueS(ID) & "," & toSQLValueS(ProgProps.PJEmailSupFrom) & "," &
-                                    toSQLValue(Frm.txtTo) & "," & toSQLValue(Frm.txtSubject) & "," & toSQLValue(Frm.txtBody) & ",getdate(), " &
-                                    toSQLValueS(UserProps.ID.ToString) & ", getdate(), " & sComeFrom & "," & emailMode & ",  * FROM  Openrowset( Bulk " & toSQLValueS(ProgProps.ServerPath & Path.GetFileName(sFile)) & ", Single_Blob) as F;"
+                sSQL = "INSERT INTO [PROJECT_JOBSSUP_MAIL] (projectjobID,emailFrom,emailTo,emailSubject,emailBody,DateofEmail,[createdBy],[createdOn],ComeFrom,emailMode,Attachment2Name,Attachment " & IIf(sFile2.Length > 0, ",Attachment2)", ")") &
+                        "Select " & toSQLValueS(ID) & "," &
+                                    toSQLValueS(ProgProps.PJEmailSupFrom) & "," &
+                                    toSQLValue(Frm.txtTo) & "," &
+                                    toSQLValue(Frm.txtSubject) & "," &
+                                    toSQLValue(Frm.txtBody) & ",getdate(), " &
+                                    toSQLValueS(UserProps.ID.ToString) &
+                                    ", getdate(), " &
+                                    sComeFrom & "," &
+                                    emailMode & ", " &
+                                    IIf(sFile2.Length > 0, toSQLValueS(Path.GetFileName(sFile2)), "NULL") & ", " &
+                                     " * FROM  Openrowset( Bulk " & toSQLValueS(ProgProps.ServerPath & Path.GetFileName(sFile)) & ", Single_Blob) as F " &
+                                    IIf(sFile2.Length > 0, ",Openrowset( Bulk " & toSQLValueS(ProgProps.ServerPath & Path.GetFileName(sFile2)) & ", Single_Blob) as F2", "") & ";"
                 Using oCmd As New SqlCommand(sSQL, CNDB)
                     oCmd.ExecuteNonQuery()
                 End Using

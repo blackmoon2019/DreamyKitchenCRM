@@ -300,9 +300,10 @@ Public Class frmSUPOrders
 
             'sEmailTo = "dreamykitchen@gmail.com"
             'sEmailTo = "johnmavroselinos@gmail.com"
+            If CNDB.Database <> "DreamyKitchen" Or Debugger.IsAttached = True Then sEmailTo = "johnmavroselinos@gmail.com;dreamykitchen@gmail.com"
 
             Dim Attachments As New Dictionary(Of String, String) : Attachments.Add(sID, "SUP_ORDERS_F")
-            If Emails.SendEmail(ProgProps.EmailOrders, sSubject, sBody, sEmailTo, sFile, statusMsg, Attachments) = True Then
+            If Emails.SendEmail(ProgProps.EmailOrdersFrom, sSubject, sBody, sEmailTo, sFile, statusMsg, Attachments) = True Then
                 sSQL = "Update SUP_ORDERS SET email = 1,DateOfEmail=getdate() WHERE ID = " & toSQLValueS(sID)
 
 
@@ -333,9 +334,10 @@ Public Class frmSUPOrders
             Case 0
             Case 1
                 If sID IsNot Nothing Then Me.SUP_ORDERS_MAILTableAdapter.FillBYSupOrderID(Me.DMDataSet.SUP_ORDERS_MAIL, System.Guid.Parse(sID))
-                Prog_Prop.GetProgEmailSup()
+                Prog_Prop.GetProgEmailSupFROM()
+                Prog_Prop.GetProgEmailSupTO()
                 LoadForms.RestoreLayoutFromXml(GridView2, "SUP_ORDERS_MAIL_def.xml")
-                txtTo.EditValue = cboSUP.GetColumnValue("email")
+                txtTo.EditValue = ProgProps.EmailOrdersTo
         End Select
 
     End Sub

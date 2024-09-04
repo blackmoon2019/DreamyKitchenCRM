@@ -911,7 +911,7 @@ Public Class frmInstEllipse
             If CNDB.Database <> "DreamyKitchen" Or Debugger.IsAttached = True Then sEmailTo = "johnmavroselinos@gmail.com;dreamykitchen@gmail.com"
 
 
-            If Emails.SendEmail(ProgProps.InstEmailAccount, sSubject, sBody, sEmailTo, sFile, statusMsg) = True Then
+            If Emails.SendEmail(IIf(sComeFrom = 1, ProgProps.InstEllipseEmailAccountSupFrom, ProgProps.InstEmailAccountFrom), sSubject, sBody, sEmailTo, sFile, statusMsg) = True Then
                 Select Case emailMode
                     Case 1 : sSQL = "Update INST_ELLIPSE SET emailApp = 1,DateOfEmailApp=getdate() WHERE ID = " & toSQLValueS(sID)
                     Case 2 : sSQL = "Update INST_ELLIPSE SET emailInf = 1,DateOfEmailInf=getdate() WHERE ID = " & toSQLValueS(sID)
@@ -922,7 +922,7 @@ Public Class frmInstEllipse
 
                 ' Εισαγωγή ιστορικού email
                 sSQL = "INSERT INTO INST_MAIL (instID,instEllipseID,emailFrom,emailTo,emailSubject,emailBody,DateofEmail,[createdBy],[createdOn],ComeFrom,emailMode,Attachment)  
-                        Select " & toSQLValueS(sINST_ID) & "," & toSQLValueS(sID) & "," & toSQLValueS(ProgProps.InstEmailAccount) & "," &
+                        Select " & toSQLValueS(sINST_ID) & "," & toSQLValueS(sID) & "," & toSQLValueS(ProgProps.InstEmailAccountFrom) & "," &
                                     toSQLValue(txtTo) & "," & toSQLValue(txtSubject) & "," &
                                     toSQLValue(txtBody) & ",getdate(), " &
                                     toSQLValueS(UserProps.ID.ToString) & ", getdate(), " & sComeFrom & "," & emailMode & ",  * FROM  Openrowset( Bulk " & toSQLValueS(ProgProps.ServerPath & Path.GetFileName(sFile)) & ", Single_Blob) as F;"
@@ -978,11 +978,11 @@ Public Class frmInstEllipse
     Private Sub TabPane1_SelectedPageChanged(sender As Object, e As SelectedPageChangedEventArgs) Handles TabPane1.SelectedPageChanged
         Select Case TabPane1.SelectedPageIndex
             Case 1
-                Prog_Prop.GetProgEmailInst()
+                Prog_Prop.GetProgEmailInstAndEllipse()
 
                 If sComeFrom = 0 Then
                     txtSubject.EditValue = ProgProps.InstEllipseInfSubject
-                    txtTo.EditValue = cboINST.GetColumnValue("email")
+                    txtTo.EditValue = cboINST.GetColumnValue("email") ' Email Πελάτη
                     If txtInstellipseFilenameComplete.EditValue IsNot Nothing Then
                         cmdSendEmailComplete.Enabled = True : DefInstComplete.Enabled = True
                     Else
@@ -994,7 +994,7 @@ Public Class frmInstEllipse
                     End If
                 Else
                     txtSubject.EditValue = ProgProps.InstEllipseInfSubjectSup
-                    txtTo.EditValue = cboSUP.GetColumnValue("email")
+                    txtTo.EditValue = ProgProps.InstEllipseEmailAccountSupTo
                     txtBody.EditValue = ProgProps.InstEllipseInfBodySup.Replace("{CUS}", cboCUS.Text)
                     txtSubject.EditValue = ProgProps.PJInfSubjectSup
                     DefInstAppointment.Enabled = False : DefInstAppointment.Enabled = False : DefInstComplete.Enabled = False

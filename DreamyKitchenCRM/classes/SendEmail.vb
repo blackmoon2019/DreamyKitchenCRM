@@ -17,6 +17,7 @@ Public Class SendEmail
         Try
             Dim Smtp_Server As New SmtpClient
             Dim e_mail As New MailMessage()
+            Dim sAttachments As String()
             Smtp_Server.UseDefaultCredentials = False
             getEmailProperties(EmailAccount)
             If EmailServer = "" Then
@@ -49,15 +50,19 @@ Public Class SendEmail
             e_mail.DeliveryNotificationOptions = DeliveryNotificationOptions.OnSuccess
             Dim myMailHTMLBody = "<html><head></head><body>" & Body & " </body></html>"
             If sAttachment <> "" Then
-                If System.IO.File.Exists(sAttachment) Then
-                    Dim data As System.Net.Mail.Attachment = New System.Net.Mail.Attachment(sAttachment)
-                    e_mail.Attachments.Add(data)
-                    Smtp_Server.Send(e_mail)
-                Else
-                    statusMsg = "Δεν βρέθηκε το αρχείο " & sAttachment
-                    'XtraMessageBox.Show("Δεν βρέθηκε το αρχείο " & sFile, ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                    Return False
-                End If
+                sAttachments = sAttachment.Split(";")
+                For Each Attchment As String In sAttachments
+                    If Attchment.Length > 0 Then
+                        If System.IO.File.Exists(Attchment) Then
+                            Dim data As System.Net.Mail.Attachment = New System.Net.Mail.Attachment(Attchment)
+                            e_mail.Attachments.Add(data)
+                        Else
+                            statusMsg = "Δεν βρέθηκε το αρχείο " & Attchment
+                            Return False
+                        End If
+                    End If
+                Next
+                Smtp_Server.Send(e_mail)
             ElseIf GetAttachmentsFromTable IsNot Nothing Then
                 Dim sSQL As String = "select files,filename FROM " & GetAttachmentsFromTable.Values(0).ToString & "  where supOrderID = " & toSQLValueS(GetAttachmentsFromTable.Keys(0).ToString)
                 Dim cmd As SqlCommand

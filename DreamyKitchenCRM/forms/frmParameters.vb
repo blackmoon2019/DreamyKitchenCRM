@@ -88,7 +88,7 @@ Public Class frmParameters
                 Parameters.LoadDefaultKitchenEquipment()
                 Parameters.LoadDefaultClosetEquipment()
                 Parameters.LoadDefaultOrder()
-            Case 3 : Parameters.LoadDefaultEmailInst()
+            Case 3 : Parameters.LoadDefaultEmailInstAndEllipse()
             Case 4 : Parameters.LoadDefaultEmailPJ()
             Case Else
         End Select
@@ -122,7 +122,7 @@ Public Class frmParameters
     End Sub
 
     Private Sub cmdSaveInstEmail_Click(sender As Object, e As EventArgs) Handles cmdSaveEmailInst.Click
-        Parameters.SaveDefaultInstEmail()
+        Parameters.SaveDefaultInstAndEllipseEmail()
     End Sub
 
     Private Sub cmdExitInstEmail_Click(sender As Object, e As EventArgs) Handles cmdExitInstEmail.Click
