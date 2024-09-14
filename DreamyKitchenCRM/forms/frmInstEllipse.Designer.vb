@@ -213,6 +213,9 @@ Partial Class frmInstEllipse
         Me.TRANSH_FTableAdapter = New DreamyKitchenCRM.DM_TRANSTableAdapters.TRANSH_FTableAdapter()
         Me.Vw_FILE_CATTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_FILE_CATTableAdapter()
         Me.VwSCANFILENAMESBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.colsupID = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepSup = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
+        Me.VwSUPBindingSource1 = New System.Windows.Forms.BindingSource(Me.components)
         CType(Me.INSTELLIPSEJOBSBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DmDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CCTTRANSHBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -319,6 +322,8 @@ Partial Class frmInstEllipse
         CType(Me.EmptySpaceItem6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BehaviorManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.VwSCANFILENAMESBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepSup, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.VwSUPBindingSource1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'INSTELLIPSEJOBSBindingSource
@@ -535,6 +540,7 @@ Partial Class frmInstEllipse
         Me.GridControl1.Location = New System.Drawing.Point(12, 780)
         Me.GridControl1.MainView = Me.GridView1
         Me.GridControl1.Name = "GridControl1"
+        Me.GridControl1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepSup})
         Me.GridControl1.Size = New System.Drawing.Size(1531, 345)
         Me.GridControl1.TabIndex = 14
         Me.GridControl1.UseEmbeddedNavigator = True
@@ -542,7 +548,7 @@ Partial Class frmInstEllipse
         '
         'GridView1
         '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.colcode, Me.colname, Me.colnameSup, Me.colID, Me.colcompleted, Me.coldtCompleted, Me.colcmt})
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.colcode, Me.colname, Me.colnameSup, Me.colID, Me.colcompleted, Me.coldtCompleted, Me.colcmt, Me.colsupID})
         Me.GridView1.DetailHeight = 289
         Me.GridView1.GridControl = Me.GridControl1
         Me.GridView1.Name = "GridView1"
@@ -566,7 +572,7 @@ Partial Class frmInstEllipse
         Me.colname.Name = "colname"
         Me.colname.Visible = True
         Me.colname.VisibleIndex = 0
-        Me.colname.Width = 852
+        Me.colname.Width = 442
         '
         'colnameSup
         '
@@ -576,7 +582,7 @@ Partial Class frmInstEllipse
         Me.colnameSup.Name = "colnameSup"
         Me.colnameSup.Visible = True
         Me.colnameSup.VisibleIndex = 4
-        Me.colnameSup.Width = 112
+        Me.colnameSup.Width = 151
         '
         'colID
         '
@@ -593,7 +599,7 @@ Partial Class frmInstEllipse
         Me.colcompleted.Name = "colcompleted"
         Me.colcompleted.Visible = True
         Me.colcompleted.VisibleIndex = 2
-        Me.colcompleted.Width = 399
+        Me.colcompleted.Width = 207
         '
         'coldtCompleted
         '
@@ -603,7 +609,7 @@ Partial Class frmInstEllipse
         Me.coldtCompleted.Name = "coldtCompleted"
         Me.coldtCompleted.Visible = True
         Me.coldtCompleted.VisibleIndex = 3
-        Me.coldtCompleted.Width = 939
+        Me.coldtCompleted.Width = 296
         '
         'colcmt
         '
@@ -613,7 +619,7 @@ Partial Class frmInstEllipse
         Me.colcmt.Name = "colcmt"
         Me.colcmt.Visible = True
         Me.colcmt.VisibleIndex = 1
-        Me.colcmt.Width = 904
+        Me.colcmt.Width = 469
         '
         'LabelControl1
         '
@@ -1991,6 +1997,33 @@ Partial Class frmInstEllipse
         '
         Me.VwSCANFILENAMESBindingSource.DataMember = "vw_SCAN_FILE_NAMES"
         '
+        'colsupID
+        '
+        Me.colsupID.Caption = "Προμηθευτής"
+        Me.colsupID.ColumnEdit = Me.RepSup
+        Me.colsupID.FieldName = "supID"
+        Me.colsupID.MinWidth = 30
+        Me.colsupID.Name = "colsupID"
+        Me.colsupID.Visible = True
+        Me.colsupID.VisibleIndex = 5
+        Me.colsupID.Width = 159
+        '
+        'RepSup
+        '
+        Me.RepSup.AutoHeight = False
+        Me.RepSup.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepSup.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "ID", 30, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("code", "code", 46, DevExpress.Utils.FormatType.Numeric, "", False, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("Fullname", "Προμηθευτής", 77, DevExpress.Utils.FormatType.None, "", True, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ttl", "ttl", 27, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("bal", "bal", 34, DevExpress.Utils.FormatType.Numeric, "", False, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("email", "email", 51, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("site", "site", 37, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default])})
+        Me.RepSup.DataSource = Me.VwSUPBindingSource
+        Me.RepSup.DisplayMember = "Fullname"
+        Me.RepSup.Name = "RepSup"
+        Me.RepSup.NullText = ""
+        Me.RepSup.ValueMember = "ID"
+        '
+        'VwSUPBindingSource1
+        '
+        Me.VwSUPBindingSource1.DataMember = "vw_SUP"
+        Me.VwSUPBindingSource1.DataSource = Me.DreamyKitchenDataSet
+        '
         'frmInstEllipse
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 19.0!)
@@ -2111,6 +2144,8 @@ Partial Class frmInstEllipse
         CType(Me.EmptySpaceItem6, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BehaviorManager1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.VwSCANFILENAMESBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepSup, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.VwSUPBindingSource1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -2277,4 +2312,7 @@ Partial Class frmInstEllipse
     Friend WithEvents VwFILECATBindingSource As BindingSource
     Friend WithEvents Vw_FILE_CATTableAdapter As DreamyKitchenDataSetTableAdapters.vw_FILE_CATTableAdapter
     Friend WithEvents VwSCANFILENAMESBindingSource As BindingSource
+    Friend WithEvents colsupID As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepSup As DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit
+    Friend WithEvents VwSUPBindingSource1 As BindingSource
 End Class
