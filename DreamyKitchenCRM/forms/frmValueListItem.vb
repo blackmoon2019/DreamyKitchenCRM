@@ -1,6 +1,7 @@
 ﻿Imports DevExpress.XtraEditors
 Imports DevExpress.XtraEditors.Controls
 Imports DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters
+Imports Org.BouncyCastle.Asn1
 
 Public Class frmValueListItem
     Private sID As String
@@ -116,7 +117,8 @@ Public Class frmValueListItem
                 LName.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.rsz_11rsz_asterisk
                 LName.Tag = "1"
                 LDescription.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
-                cboValueList.ReadOnly = True
+                Lprice.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+                cboValueList.ReadOnly = False
             Case "DE86FD16-2154-4E2A-B025-4D34BDF8C808" ' Κωδικοί Χρωμάτων
                 Me.Text = "Κωδικοί Χρωμάτων"
                 LCat.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
@@ -124,7 +126,8 @@ Public Class frmValueListItem
                 LName.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.rsz_11rsz_asterisk
                 LName.Tag = "1"
                 LDescription.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
-                cboValueList.ReadOnly = True
+                Lprice.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+                cboValueList.ReadOnly = False
             Case "CF47FAEE-7CD7-49AD-9455-3BC69D438DE9" ' Ειδικές Κατασκευές
                 Me.Text = "Ειδικές Κατασκευές"
                 LCat.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
@@ -140,6 +143,16 @@ Public Class frmValueListItem
                 LName.Tag = "1"
                 LName.Text = "Περιγραφή"
                 cboValueList.ReadOnly = True
+            Case "E6733593-7DA0-4180-8951-B09315E1F13D" 'Πόρτες Εσωτερικές
+                Me.Text = "Κατηγορία Πόρτας"
+                LName.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+                LName.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.rsz_11rsz_asterisk
+                LName.Tag = "1"
+                LName.Text = "Περιγραφή"
+                Lkasa.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+                Lprice.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+                cboValueList.ReadOnly = False
+
         End Select
     End Sub
     Private Sub cmdSave_Click(sender As Object, e As EventArgs) Handles cmdSave.Click
@@ -214,9 +227,9 @@ Public Class frmValueListItem
         End Select
     End Sub
 
-    Private Sub cboVALUELISTITEM_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboVALUELISTITEM.ButtonClick
+    Private Sub cboVALUELISTITEM_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboValueListItem.ButtonClick
         Select Case e.Button.Index
-            Case 1 : cboVALUELISTITEM.EditValue = Nothing
+            Case 1 : cboValueListItem.EditValue = Nothing
         End Select
     End Sub
     Private Sub cboValueList_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboValueList.ButtonClick
