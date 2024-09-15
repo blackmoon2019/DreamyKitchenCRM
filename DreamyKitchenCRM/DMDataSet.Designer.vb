@@ -85,6 +85,8 @@ Partial Public Class DMDataSet
     
     Private tablePROJECT_JOBSSUP_MAIL As PROJECT_JOBSSUP_MAILDataTable
     
+    Private tablePRICELISTS_KEYWORDS As PRICELISTS_KEYWORDSDataTable
+    
     Private relationFK_KANELLOPOULOS_O_KANELLOPOULOS As Global.System.Data.DataRelation
     
     Private _schemaSerializationMode As Global.System.Data.SchemaSerializationMode = Global.System.Data.SchemaSerializationMode.IncludeSchema
@@ -205,6 +207,9 @@ Partial Public Class DMDataSet
             End If
             If (Not (ds.Tables("PROJECT_JOBSSUP_MAIL")) Is Nothing) Then
                 MyBase.Tables.Add(New PROJECT_JOBSSUP_MAILDataTable(ds.Tables("PROJECT_JOBSSUP_MAIL")))
+            End If
+            If (Not (ds.Tables("PRICELISTS_KEYWORDS")) Is Nothing) Then
+                MyBase.Tables.Add(New PRICELISTS_KEYWORDSDataTable(ds.Tables("PRICELISTS_KEYWORDS")))
             End If
             Me.DataSetName = ds.DataSetName
             Me.Prefix = ds.Prefix
@@ -525,6 +530,16 @@ Partial Public Class DMDataSet
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
+     Global.System.ComponentModel.Browsable(false),  _
+     Global.System.ComponentModel.DesignerSerializationVisibility(Global.System.ComponentModel.DesignerSerializationVisibility.Content)>  _
+    Public ReadOnly Property PRICELISTS_KEYWORDS() As PRICELISTS_KEYWORDSDataTable
+        Get
+            Return Me.tablePRICELISTS_KEYWORDS
+        End Get
+    End Property
+    
+    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
      Global.System.ComponentModel.BrowsableAttribute(true),  _
      Global.System.ComponentModel.DesignerSerializationVisibilityAttribute(Global.System.ComponentModel.DesignerSerializationVisibility.Visible)>  _
     Public Overrides Property SchemaSerializationMode() As Global.System.Data.SchemaSerializationMode
@@ -679,6 +694,9 @@ Partial Public Class DMDataSet
             End If
             If (Not (ds.Tables("PROJECT_JOBSSUP_MAIL")) Is Nothing) Then
                 MyBase.Tables.Add(New PROJECT_JOBSSUP_MAILDataTable(ds.Tables("PROJECT_JOBSSUP_MAIL")))
+            End If
+            If (Not (ds.Tables("PRICELISTS_KEYWORDS")) Is Nothing) Then
+                MyBase.Tables.Add(New PRICELISTS_KEYWORDSDataTable(ds.Tables("PRICELISTS_KEYWORDS")))
             End If
             Me.DataSetName = ds.DataSetName
             Me.Prefix = ds.Prefix
@@ -892,6 +910,12 @@ Partial Public Class DMDataSet
                 Me.tablePROJECT_JOBSSUP_MAIL.InitVars
             End If
         End If
+        Me.tablePRICELISTS_KEYWORDS = CType(MyBase.Tables("PRICELISTS_KEYWORDS"),PRICELISTS_KEYWORDSDataTable)
+        If (initTable = true) Then
+            If (Not (Me.tablePRICELISTS_KEYWORDS) Is Nothing) Then
+                Me.tablePRICELISTS_KEYWORDS.InitVars
+            End If
+        End If
         Me.relationFK_KANELLOPOULOS_O_KANELLOPOULOS = Me.Relations("FK_KANELLOPOULOS_O_KANELLOPOULOS")
     End Sub
     
@@ -963,6 +987,8 @@ Partial Public Class DMDataSet
         MyBase.Tables.Add(Me.tablevw_PROJECT_JOBSSUP_D)
         Me.tablePROJECT_JOBSSUP_MAIL = New PROJECT_JOBSSUP_MAILDataTable()
         MyBase.Tables.Add(Me.tablePROJECT_JOBSSUP_MAIL)
+        Me.tablePRICELISTS_KEYWORDS = New PRICELISTS_KEYWORDSDataTable()
+        MyBase.Tables.Add(Me.tablePRICELISTS_KEYWORDS)
         Me.relationFK_KANELLOPOULOS_O_KANELLOPOULOS = New Global.System.Data.DataRelation("FK_KANELLOPOULOS_O_KANELLOPOULOS", New Global.System.Data.DataColumn() {Me.tableKANELLOPOULOS.IDColumn}, New Global.System.Data.DataColumn() {Me.tableKANELLOPOULOS_O.kanIDColumn}, false)
         Me.Relations.Add(Me.relationFK_KANELLOPOULOS_O_KANELLOPOULOS)
     End Sub
@@ -1149,6 +1175,12 @@ Partial Public Class DMDataSet
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+    Private Function ShouldSerializePRICELISTS_KEYWORDS() As Boolean
+        Return false
+    End Function
+    
+    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
     Private Sub SchemaChanged(ByVal sender As Object, ByVal e As Global.System.ComponentModel.CollectionChangeEventArgs)
         If (e.Action = Global.System.ComponentModel.CollectionChangeAction.Remove) Then
             Me.InitVars
@@ -1294,6 +1326,9 @@ Partial Public Class DMDataSet
     
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
     Public Delegate Sub PROJECT_JOBSSUP_MAILRowChangeEventHandler(ByVal sender As Object, ByVal e As PROJECT_JOBSSUP_MAILRowChangeEvent)
+    
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+    Public Delegate Sub PRICELISTS_KEYWORDSRowChangeEventHandler(ByVal sender As Object, ByVal e As PRICELISTS_KEYWORDSRowChangeEvent)
     
     '''<summary>
     '''Represents the strongly named DataTable class.
@@ -16500,6 +16535,379 @@ Partial Public Class DMDataSet
     End Class
     
     '''<summary>
+    '''Represents the strongly named DataTable class.
+    '''</summary>
+    <Global.System.Serializable(),  _
+     Global.System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")>  _
+    Partial Public Class PRICELISTS_KEYWORDSDataTable
+        Inherits Global.System.Data.TypedTableBase(Of PRICELISTS_KEYWORDSRow)
+        
+        Private columnID As Global.System.Data.DataColumn
+        
+        Private columncode As Global.System.Data.DataColumn
+        
+        Private columnsupID As Global.System.Data.DataColumn
+        
+        Private columnkeyword As Global.System.Data.DataColumn
+        
+        Private columnvalueListID As Global.System.Data.DataColumn
+        
+        Private columnmodifiedBy As Global.System.Data.DataColumn
+        
+        Private columnmodifiedOn As Global.System.Data.DataColumn
+        
+        Private columncreatedOn As Global.System.Data.DataColumn
+        
+        Private columncreatedBy As Global.System.Data.DataColumn
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Sub New()
+            MyBase.New
+            Me.TableName = "PRICELISTS_KEYWORDS"
+            Me.BeginInit
+            Me.InitClass
+            Me.EndInit
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Friend Sub New(ByVal table As Global.System.Data.DataTable)
+            MyBase.New
+            Me.TableName = table.TableName
+            If (table.CaseSensitive <> table.DataSet.CaseSensitive) Then
+                Me.CaseSensitive = table.CaseSensitive
+            End If
+            If (table.Locale.ToString <> table.DataSet.Locale.ToString) Then
+                Me.Locale = table.Locale
+            End If
+            If (table.Namespace <> table.DataSet.Namespace) Then
+                Me.Namespace = table.Namespace
+            End If
+            Me.Prefix = table.Prefix
+            Me.MinimumCapacity = table.MinimumCapacity
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Protected Sub New(ByVal info As Global.System.Runtime.Serialization.SerializationInfo, ByVal context As Global.System.Runtime.Serialization.StreamingContext)
+            MyBase.New(info, context)
+            Me.InitVars
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property IDColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnID
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property codeColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columncode
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property supIDColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnsupID
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property keywordColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnkeyword
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property valueListIDColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnvalueListID
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property modifiedByColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnmodifiedBy
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property modifiedOnColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnmodifiedOn
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property createdOnColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columncreatedOn
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property createdByColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columncreatedBy
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
+         Global.System.ComponentModel.Browsable(false)>  _
+        Public ReadOnly Property Count() As Integer
+            Get
+                Return Me.Rows.Count
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Default ReadOnly Property Item(ByVal index As Integer) As PRICELISTS_KEYWORDSRow
+            Get
+                Return CType(Me.Rows(index),PRICELISTS_KEYWORDSRow)
+            End Get
+        End Property
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Event PRICELISTS_KEYWORDSRowChanging As PRICELISTS_KEYWORDSRowChangeEventHandler
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Event PRICELISTS_KEYWORDSRowChanged As PRICELISTS_KEYWORDSRowChangeEventHandler
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Event PRICELISTS_KEYWORDSRowDeleting As PRICELISTS_KEYWORDSRowChangeEventHandler
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Event PRICELISTS_KEYWORDSRowDeleted As PRICELISTS_KEYWORDSRowChangeEventHandler
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Overloads Sub AddPRICELISTS_KEYWORDSRow(ByVal row As PRICELISTS_KEYWORDSRow)
+            Me.Rows.Add(row)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Overloads Function AddPRICELISTS_KEYWORDSRow(ByVal ID As System.Guid, ByVal supID As System.Guid, ByVal keyword As String, ByVal valueListID As System.Guid, ByVal modifiedBy As System.Guid, ByVal modifiedOn As Date, ByVal createdOn As Date, ByVal createdBy As System.Guid) As PRICELISTS_KEYWORDSRow
+            Dim rowPRICELISTS_KEYWORDSRow As PRICELISTS_KEYWORDSRow = CType(Me.NewRow,PRICELISTS_KEYWORDSRow)
+            Dim columnValuesArray() As Object = New Object() {ID, Nothing, supID, keyword, valueListID, modifiedBy, modifiedOn, createdOn, createdBy}
+            rowPRICELISTS_KEYWORDSRow.ItemArray = columnValuesArray
+            Me.Rows.Add(rowPRICELISTS_KEYWORDSRow)
+            Return rowPRICELISTS_KEYWORDSRow
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Function FindByID(ByVal ID As System.Guid) As PRICELISTS_KEYWORDSRow
+            Return CType(Me.Rows.Find(New Object() {ID}),PRICELISTS_KEYWORDSRow)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Overrides Function Clone() As Global.System.Data.DataTable
+            Dim cln As PRICELISTS_KEYWORDSDataTable = CType(MyBase.Clone,PRICELISTS_KEYWORDSDataTable)
+            cln.InitVars
+            Return cln
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Protected Overrides Function CreateInstance() As Global.System.Data.DataTable
+            Return New PRICELISTS_KEYWORDSDataTable()
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Friend Sub InitVars()
+            Me.columnID = MyBase.Columns("ID")
+            Me.columncode = MyBase.Columns("code")
+            Me.columnsupID = MyBase.Columns("supID")
+            Me.columnkeyword = MyBase.Columns("keyword")
+            Me.columnvalueListID = MyBase.Columns("valueListID")
+            Me.columnmodifiedBy = MyBase.Columns("modifiedBy")
+            Me.columnmodifiedOn = MyBase.Columns("modifiedOn")
+            Me.columncreatedOn = MyBase.Columns("createdOn")
+            Me.columncreatedBy = MyBase.Columns("createdBy")
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Private Sub InitClass()
+            Me.columnID = New Global.System.Data.DataColumn("ID", GetType(Global.System.Guid), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnID)
+            Me.columncode = New Global.System.Data.DataColumn("code", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columncode)
+            Me.columnsupID = New Global.System.Data.DataColumn("supID", GetType(Global.System.Guid), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnsupID)
+            Me.columnkeyword = New Global.System.Data.DataColumn("keyword", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnkeyword)
+            Me.columnvalueListID = New Global.System.Data.DataColumn("valueListID", GetType(Global.System.Guid), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnvalueListID)
+            Me.columnmodifiedBy = New Global.System.Data.DataColumn("modifiedBy", GetType(Global.System.Guid), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnmodifiedBy)
+            Me.columnmodifiedOn = New Global.System.Data.DataColumn("modifiedOn", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnmodifiedOn)
+            Me.columncreatedOn = New Global.System.Data.DataColumn("createdOn", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columncreatedOn)
+            Me.columncreatedBy = New Global.System.Data.DataColumn("createdBy", GetType(Global.System.Guid), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columncreatedBy)
+            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnID}, true))
+            Me.columnID.AllowDBNull = false
+            Me.columnID.Unique = true
+            Me.columncode.AutoIncrement = true
+            Me.columncode.AutoIncrementSeed = -1
+            Me.columncode.AutoIncrementStep = -1
+            Me.columncode.AllowDBNull = false
+            Me.columncode.ReadOnly = true
+            Me.columnsupID.AllowDBNull = false
+            Me.columnkeyword.AllowDBNull = false
+            Me.columnkeyword.MaxLength = 100
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Function NewPRICELISTS_KEYWORDSRow() As PRICELISTS_KEYWORDSRow
+            Return CType(Me.NewRow,PRICELISTS_KEYWORDSRow)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Protected Overrides Function NewRowFromBuilder(ByVal builder As Global.System.Data.DataRowBuilder) As Global.System.Data.DataRow
+            Return New PRICELISTS_KEYWORDSRow(builder)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Protected Overrides Function GetRowType() As Global.System.Type
+            Return GetType(PRICELISTS_KEYWORDSRow)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Protected Overrides Sub OnRowChanged(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowChanged(e)
+            If (Not (Me.PRICELISTS_KEYWORDSRowChangedEvent) Is Nothing) Then
+                RaiseEvent PRICELISTS_KEYWORDSRowChanged(Me, New PRICELISTS_KEYWORDSRowChangeEvent(CType(e.Row,PRICELISTS_KEYWORDSRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Protected Overrides Sub OnRowChanging(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowChanging(e)
+            If (Not (Me.PRICELISTS_KEYWORDSRowChangingEvent) Is Nothing) Then
+                RaiseEvent PRICELISTS_KEYWORDSRowChanging(Me, New PRICELISTS_KEYWORDSRowChangeEvent(CType(e.Row,PRICELISTS_KEYWORDSRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Protected Overrides Sub OnRowDeleted(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowDeleted(e)
+            If (Not (Me.PRICELISTS_KEYWORDSRowDeletedEvent) Is Nothing) Then
+                RaiseEvent PRICELISTS_KEYWORDSRowDeleted(Me, New PRICELISTS_KEYWORDSRowChangeEvent(CType(e.Row,PRICELISTS_KEYWORDSRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Protected Overrides Sub OnRowDeleting(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowDeleting(e)
+            If (Not (Me.PRICELISTS_KEYWORDSRowDeletingEvent) Is Nothing) Then
+                RaiseEvent PRICELISTS_KEYWORDSRowDeleting(Me, New PRICELISTS_KEYWORDSRowChangeEvent(CType(e.Row,PRICELISTS_KEYWORDSRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Sub RemovePRICELISTS_KEYWORDSRow(ByVal row As PRICELISTS_KEYWORDSRow)
+            Me.Rows.Remove(row)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Shared Function GetTypedTableSchema(ByVal xs As Global.System.Xml.Schema.XmlSchemaSet) As Global.System.Xml.Schema.XmlSchemaComplexType
+            Dim type As Global.System.Xml.Schema.XmlSchemaComplexType = New Global.System.Xml.Schema.XmlSchemaComplexType()
+            Dim sequence As Global.System.Xml.Schema.XmlSchemaSequence = New Global.System.Xml.Schema.XmlSchemaSequence()
+            Dim ds As DMDataSet = New DMDataSet()
+            Dim any1 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
+            any1.Namespace = "http://www.w3.org/2001/XMLSchema"
+            any1.MinOccurs = New Decimal(0)
+            any1.MaxOccurs = Decimal.MaxValue
+            any1.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
+            sequence.Items.Add(any1)
+            Dim any2 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
+            any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1"
+            any2.MinOccurs = New Decimal(1)
+            any2.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
+            sequence.Items.Add(any2)
+            Dim attribute1 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
+            attribute1.Name = "namespace"
+            attribute1.FixedValue = ds.Namespace
+            type.Attributes.Add(attribute1)
+            Dim attribute2 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
+            attribute2.Name = "tableTypeName"
+            attribute2.FixedValue = "PRICELISTS_KEYWORDSDataTable"
+            type.Attributes.Add(attribute2)
+            type.Particle = sequence
+            Dim dsSchema As Global.System.Xml.Schema.XmlSchema = ds.GetSchemaSerializable
+            If xs.Contains(dsSchema.TargetNamespace) Then
+                Dim s1 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream()
+                Dim s2 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream()
+                Try 
+                    Dim schema As Global.System.Xml.Schema.XmlSchema = Nothing
+                    dsSchema.Write(s1)
+                    Dim schemas As Global.System.Collections.IEnumerator = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator
+                    Do While schemas.MoveNext
+                        schema = CType(schemas.Current,Global.System.Xml.Schema.XmlSchema)
+                        s2.SetLength(0)
+                        schema.Write(s2)
+                        If (s1.Length = s2.Length) Then
+                            s1.Position = 0
+                            s2.Position = 0
+                            
+                            Do While ((s1.Position <> s1.Length)  _
+                                        AndAlso (s1.ReadByte = s2.ReadByte))
+                                
+                                
+                            Loop
+                            If (s1.Position = s1.Length) Then
+                                Return type
+                            End If
+                        End If
+                        
+                    Loop
+                Finally
+                    If (Not (s1) Is Nothing) Then
+                        s1.Close
+                    End If
+                    If (Not (s2) Is Nothing) Then
+                        s2.Close
+                    End If
+                End Try
+            End If
+            xs.Add(dsSchema)
+            Return type
+        End Function
+    End Class
+    
+    '''<summary>
     '''Represents strongly named DataRow class.
     '''</summary>
     Partial Public Class vw_CONSTR_TYPERow
@@ -28958,6 +29366,201 @@ Partial Public Class DMDataSet
     End Class
     
     '''<summary>
+    '''Represents strongly named DataRow class.
+    '''</summary>
+    Partial Public Class PRICELISTS_KEYWORDSRow
+        Inherits Global.System.Data.DataRow
+        
+        Private tablePRICELISTS_KEYWORDS As PRICELISTS_KEYWORDSDataTable
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Friend Sub New(ByVal rb As Global.System.Data.DataRowBuilder)
+            MyBase.New(rb)
+            Me.tablePRICELISTS_KEYWORDS = CType(Me.Table,PRICELISTS_KEYWORDSDataTable)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property ID() As System.Guid
+            Get
+                Return CType(Me(Me.tablePRICELISTS_KEYWORDS.IDColumn),Global.System.Guid)
+            End Get
+            Set
+                Me(Me.tablePRICELISTS_KEYWORDS.IDColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property code() As Integer
+            Get
+                Return CType(Me(Me.tablePRICELISTS_KEYWORDS.codeColumn),Integer)
+            End Get
+            Set
+                Me(Me.tablePRICELISTS_KEYWORDS.codeColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property supID() As System.Guid
+            Get
+                Return CType(Me(Me.tablePRICELISTS_KEYWORDS.supIDColumn),Global.System.Guid)
+            End Get
+            Set
+                Me(Me.tablePRICELISTS_KEYWORDS.supIDColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property keyword() As String
+            Get
+                Return CType(Me(Me.tablePRICELISTS_KEYWORDS.keywordColumn),String)
+            End Get
+            Set
+                Me(Me.tablePRICELISTS_KEYWORDS.keywordColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property valueListID() As System.Guid
+            Get
+                Try 
+                    Return CType(Me(Me.tablePRICELISTS_KEYWORDS.valueListIDColumn),Global.System.Guid)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'valueListID' in table 'PRICELISTS_KEYWORDS' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablePRICELISTS_KEYWORDS.valueListIDColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property modifiedBy() As System.Guid
+            Get
+                Try 
+                    Return CType(Me(Me.tablePRICELISTS_KEYWORDS.modifiedByColumn),Global.System.Guid)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'modifiedBy' in table 'PRICELISTS_KEYWORDS' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablePRICELISTS_KEYWORDS.modifiedByColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property modifiedOn() As Date
+            Get
+                Try 
+                    Return CType(Me(Me.tablePRICELISTS_KEYWORDS.modifiedOnColumn),Date)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'modifiedOn' in table 'PRICELISTS_KEYWORDS' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablePRICELISTS_KEYWORDS.modifiedOnColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property createdOn() As Date
+            Get
+                Try 
+                    Return CType(Me(Me.tablePRICELISTS_KEYWORDS.createdOnColumn),Date)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'createdOn' in table 'PRICELISTS_KEYWORDS' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablePRICELISTS_KEYWORDS.createdOnColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property createdBy() As System.Guid
+            Get
+                Try 
+                    Return CType(Me(Me.tablePRICELISTS_KEYWORDS.createdByColumn),Global.System.Guid)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'createdBy' in table 'PRICELISTS_KEYWORDS' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablePRICELISTS_KEYWORDS.createdByColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Function IsvalueListIDNull() As Boolean
+            Return Me.IsNull(Me.tablePRICELISTS_KEYWORDS.valueListIDColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Sub SetvalueListIDNull()
+            Me(Me.tablePRICELISTS_KEYWORDS.valueListIDColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Function IsmodifiedByNull() As Boolean
+            Return Me.IsNull(Me.tablePRICELISTS_KEYWORDS.modifiedByColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Sub SetmodifiedByNull()
+            Me(Me.tablePRICELISTS_KEYWORDS.modifiedByColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Function IsmodifiedOnNull() As Boolean
+            Return Me.IsNull(Me.tablePRICELISTS_KEYWORDS.modifiedOnColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Sub SetmodifiedOnNull()
+            Me(Me.tablePRICELISTS_KEYWORDS.modifiedOnColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Function IscreatedOnNull() As Boolean
+            Return Me.IsNull(Me.tablePRICELISTS_KEYWORDS.createdOnColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Sub SetcreatedOnNull()
+            Me(Me.tablePRICELISTS_KEYWORDS.createdOnColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Function IscreatedByNull() As Boolean
+            Return Me.IsNull(Me.tablePRICELISTS_KEYWORDS.createdByColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Sub SetcreatedByNull()
+            Me(Me.tablePRICELISTS_KEYWORDS.createdByColumn) = Global.System.Convert.DBNull
+        End Sub
+    End Class
+    
+    '''<summary>
     '''Row event argument class
     '''</summary>
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
@@ -30023,6 +30626,42 @@ Partial Public Class DMDataSet
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public ReadOnly Property Row() As PROJECT_JOBSSUP_MAILRow
+            Get
+                Return Me.eventRow
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property Action() As Global.System.Data.DataRowAction
+            Get
+                Return Me.eventAction
+            End Get
+        End Property
+    End Class
+    
+    '''<summary>
+    '''Row event argument class
+    '''</summary>
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+    Public Class PRICELISTS_KEYWORDSRowChangeEvent
+        Inherits Global.System.EventArgs
+        
+        Private eventRow As PRICELISTS_KEYWORDSRow
+        
+        Private eventAction As Global.System.Data.DataRowAction
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Sub New(ByVal row As PRICELISTS_KEYWORDSRow, ByVal action As Global.System.Data.DataRowAction)
+            MyBase.New
+            Me.eventRow = row
+            Me.eventAction = action
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property Row() As PRICELISTS_KEYWORDSRow
             Get
                 Return Me.eventRow
             End Get
@@ -36203,6 +36842,298 @@ Namespace DMDataSetTableAdapters
     End Class
     
     '''<summary>
+    '''Represents the connection and commands used to retrieve and save data.
+    '''</summary>
+    <Global.System.ComponentModel.DesignerCategoryAttribute("code"),  _
+     Global.System.ComponentModel.ToolboxItem(true),  _
+     Global.System.ComponentModel.DataObjectAttribute(true),  _
+     Global.System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner"& _ 
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"),  _
+     Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
+    Partial Public Class PRICELISTS_KEYWORDSTableAdapter
+        Inherits Global.System.ComponentModel.Component
+        
+        Private WithEvents _adapter As Global.System.Data.SqlClient.SqlDataAdapter
+        
+        Private _connection As Global.System.Data.SqlClient.SqlConnection
+        
+        Private _transaction As Global.System.Data.SqlClient.SqlTransaction
+        
+        Private _commandCollection() As Global.System.Data.SqlClient.SqlCommand
+        
+        Private _clearBeforeFill As Boolean
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Sub New()
+            MyBase.New
+            Me.ClearBeforeFill = true
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Protected Friend ReadOnly Property Adapter() As Global.System.Data.SqlClient.SqlDataAdapter
+            Get
+                If (Me._adapter Is Nothing) Then
+                    Me.InitAdapter
+                End If
+                Return Me._adapter
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Friend Property Connection() As Global.System.Data.SqlClient.SqlConnection
+            Get
+                If (Me._connection Is Nothing) Then
+                    Me.InitConnection
+                End If
+                Return Me._connection
+            End Get
+            Set
+                Me._connection = value
+                If (Not (Me.Adapter.InsertCommand) Is Nothing) Then
+                    Me.Adapter.InsertCommand.Connection = value
+                End If
+                If (Not (Me.Adapter.DeleteCommand) Is Nothing) Then
+                    Me.Adapter.DeleteCommand.Connection = value
+                End If
+                If (Not (Me.Adapter.UpdateCommand) Is Nothing) Then
+                    Me.Adapter.UpdateCommand.Connection = value
+                End If
+                Dim i As Integer = 0
+                Do While (i < Me.CommandCollection.Length)
+                    If (Not (Me.CommandCollection(i)) Is Nothing) Then
+                        CType(Me.CommandCollection(i),Global.System.Data.SqlClient.SqlCommand).Connection = value
+                    End If
+                    i = (i + 1)
+                Loop
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Friend Property Transaction() As Global.System.Data.SqlClient.SqlTransaction
+            Get
+                Return Me._transaction
+            End Get
+            Set
+                Me._transaction = value
+                Dim i As Integer = 0
+                Do While (i < Me.CommandCollection.Length)
+                    Me.CommandCollection(i).Transaction = Me._transaction
+                    i = (i + 1)
+                Loop
+                If ((Not (Me.Adapter) Is Nothing)  _
+                            AndAlso (Not (Me.Adapter.DeleteCommand) Is Nothing)) Then
+                    Me.Adapter.DeleteCommand.Transaction = Me._transaction
+                End If
+                If ((Not (Me.Adapter) Is Nothing)  _
+                            AndAlso (Not (Me.Adapter.InsertCommand) Is Nothing)) Then
+                    Me.Adapter.InsertCommand.Transaction = Me._transaction
+                End If
+                If ((Not (Me.Adapter) Is Nothing)  _
+                            AndAlso (Not (Me.Adapter.UpdateCommand) Is Nothing)) Then
+                    Me.Adapter.UpdateCommand.Transaction = Me._transaction
+                End If
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Protected ReadOnly Property CommandCollection() As Global.System.Data.SqlClient.SqlCommand()
+            Get
+                If (Me._commandCollection Is Nothing) Then
+                    Me.InitCommandCollection
+                End If
+                Return Me._commandCollection
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property ClearBeforeFill() As Boolean
+            Get
+                Return Me._clearBeforeFill
+            End Get
+            Set
+                Me._clearBeforeFill = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Private Sub InitAdapter()
+            Me._adapter = New Global.System.Data.SqlClient.SqlDataAdapter()
+            Dim tableMapping As Global.System.Data.Common.DataTableMapping = New Global.System.Data.Common.DataTableMapping()
+            tableMapping.SourceTable = "Table"
+            tableMapping.DataSetTable = "PRICELISTS_KEYWORDS"
+            tableMapping.ColumnMappings.Add("ID", "ID")
+            tableMapping.ColumnMappings.Add("code", "code")
+            tableMapping.ColumnMappings.Add("supID", "supID")
+            tableMapping.ColumnMappings.Add("keyword", "keyword")
+            tableMapping.ColumnMappings.Add("valueListID", "valueListID")
+            tableMapping.ColumnMappings.Add("modifiedBy", "modifiedBy")
+            tableMapping.ColumnMappings.Add("modifiedOn", "modifiedOn")
+            tableMapping.ColumnMappings.Add("createdOn", "createdOn")
+            tableMapping.ColumnMappings.Add("createdBy", "createdBy")
+            Me._adapter.TableMappings.Add(tableMapping)
+            Me._adapter.DeleteCommand = New Global.System.Data.SqlClient.SqlCommand()
+            Me._adapter.DeleteCommand.Connection = Me.Connection
+            Me._adapter.DeleteCommand.CommandText = "DELETE FROM [PRICELISTS_KEYWORDS] WHERE (([ID] = @Original_ID) AND ([code] = @Ori"& _ 
+                "ginal_code) AND ([supID] = @Original_supID) AND ([keyword] = @Original_keyword) "& _ 
+                "AND ((@IsNull_valueListID = 1 AND [valueListID] IS NULL) OR ([valueListID] = @Or"& _ 
+                "iginal_valueListID)) AND ((@IsNull_modifiedBy = 1 AND [modifiedBy] IS NULL) OR ("& _ 
+                "[modifiedBy] = @Original_modifiedBy)) AND ((@IsNull_modifiedOn = 1 AND [modified"& _ 
+                "On] IS NULL) OR ([modifiedOn] = @Original_modifiedOn)) AND ((@IsNull_createdOn ="& _ 
+                " 1 AND [createdOn] IS NULL) OR ([createdOn] = @Original_createdOn)) AND ((@IsNul"& _ 
+                "l_createdBy = 1 AND [createdBy] IS NULL) OR ([createdBy] = @Original_createdBy))"& _ 
+                ")"
+            Me._adapter.DeleteCommand.CommandType = Global.System.Data.CommandType.Text
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_ID", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ID", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_code", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "code", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_supID", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "supID", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_keyword", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "keyword", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_valueListID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "valueListID", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_valueListID", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "valueListID", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_modifiedBy", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "modifiedBy", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_modifiedBy", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "modifiedBy", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_modifiedOn", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "modifiedOn", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_modifiedOn", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "modifiedOn", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_createdOn", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "createdOn", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_createdOn", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "createdOn", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_createdBy", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "createdBy", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_createdBy", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "createdBy", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand = New Global.System.Data.SqlClient.SqlCommand()
+            Me._adapter.InsertCommand.Connection = Me.Connection
+            Me._adapter.InsertCommand.CommandText = "INSERT INTO [PRICELISTS_KEYWORDS] ([ID], [supID], [keyword], [valueListID], [modi"& _ 
+                "fiedBy], [modifiedOn], [createdOn], [createdBy]) VALUES (@ID, @supID, @keyword, "& _ 
+                "@valueListID, @modifiedBy, @modifiedOn, @createdOn, @createdBy);"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT ID, cod"& _ 
+                "e, supID, keyword, valueListID, modifiedBy, modifiedOn, createdOn, createdBy FRO"& _ 
+                "M PRICELISTS_KEYWORDS WHERE (ID = @ID)"
+            Me._adapter.InsertCommand.CommandType = Global.System.Data.CommandType.Text
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@ID", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@supID", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "supID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@keyword", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "keyword", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@valueListID", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "valueListID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@modifiedBy", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "modifiedBy", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@modifiedOn", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "modifiedOn", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@createdOn", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "createdOn", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@createdBy", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "createdBy", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand = New Global.System.Data.SqlClient.SqlCommand()
+            Me._adapter.UpdateCommand.Connection = Me.Connection
+            Me._adapter.UpdateCommand.CommandText = "UPDATE [PRICELISTS_KEYWORDS] SET [ID] = @ID, [supID] = @supID, [keyword] = @keywo"& _ 
+                "rd, [valueListID] = @valueListID, [modifiedBy] = @modifiedBy, [modifiedOn] = @mo"& _ 
+                "difiedOn, [createdOn] = @createdOn, [createdBy] = @createdBy WHERE (([ID] = @Ori"& _ 
+                "ginal_ID) AND ([code] = @Original_code) AND ([supID] = @Original_supID) AND ([ke"& _ 
+                "yword] = @Original_keyword) AND ((@IsNull_valueListID = 1 AND [valueListID] IS N"& _ 
+                "ULL) OR ([valueListID] = @Original_valueListID)) AND ((@IsNull_modifiedBy = 1 AN"& _ 
+                "D [modifiedBy] IS NULL) OR ([modifiedBy] = @Original_modifiedBy)) AND ((@IsNull_"& _ 
+                "modifiedOn = 1 AND [modifiedOn] IS NULL) OR ([modifiedOn] = @Original_modifiedOn"& _ 
+                ")) AND ((@IsNull_createdOn = 1 AND [createdOn] IS NULL) OR ([createdOn] = @Origi"& _ 
+                "nal_createdOn)) AND ((@IsNull_createdBy = 1 AND [createdBy] IS NULL) OR ([create"& _ 
+                "dBy] = @Original_createdBy)));"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT ID, code, supID, keyword, valueListID, mo"& _ 
+                "difiedBy, modifiedOn, createdOn, createdBy FROM PRICELISTS_KEYWORDS WHERE (ID = "& _ 
+                "@ID)"
+            Me._adapter.UpdateCommand.CommandType = Global.System.Data.CommandType.Text
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@ID", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@supID", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "supID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@keyword", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "keyword", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@valueListID", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "valueListID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@modifiedBy", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "modifiedBy", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@modifiedOn", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "modifiedOn", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@createdOn", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "createdOn", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@createdBy", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "createdBy", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_ID", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ID", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_code", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "code", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_supID", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "supID", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_keyword", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "keyword", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_valueListID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "valueListID", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_valueListID", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "valueListID", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_modifiedBy", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "modifiedBy", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_modifiedBy", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "modifiedBy", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_modifiedOn", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "modifiedOn", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_modifiedOn", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "modifiedOn", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_createdOn", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "createdOn", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_createdOn", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "createdOn", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_createdBy", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "createdBy", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_createdBy", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "createdBy", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Private Sub InitConnection()
+            Me._connection = New Global.System.Data.SqlClient.SqlConnection()
+            Me._connection.ConnectionString = Global.DreamyKitchenCRM.My.MySettings.Default.DreamyKitchenConnectionStringRemotely
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Private Sub InitCommandCollection()
+            Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(0) {}
+            Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
+            Me._commandCollection(0).Connection = Me.Connection
+            Me._commandCollection(0).CommandText = "SELECT PRICELISTS_KEYWORDS.*"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM   PRICELISTS_KEYWORDS"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"where supID=@supID"
+            Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@supID", Global.System.Data.SqlDbType.UniqueIdentifier, 16, Global.System.Data.ParameterDirection.Input, 0, 0, "supID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, true)>  _
+        Public Overloads Overridable Function FillBySupID(ByVal dataTable As DMDataSet.PRICELISTS_KEYWORDSDataTable, ByVal supID As System.Guid) As Integer
+            Me.Adapter.SelectCommand = Me.CommandCollection(0)
+            Me.Adapter.SelectCommand.Parameters(0).Value = CType(supID,System.Guid)
+            If (Me.ClearBeforeFill = true) Then
+                dataTable.Clear
+            End If
+            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
+            Return returnValue
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], true)>  _
+        Public Overloads Overridable Function GetData(ByVal supID As System.Guid) As DMDataSet.PRICELISTS_KEYWORDSDataTable
+            Me.Adapter.SelectCommand = Me.CommandCollection(0)
+            Me.Adapter.SelectCommand.Parameters(0).Value = CType(supID,System.Guid)
+            Dim dataTable As DMDataSet.PRICELISTS_KEYWORDSDataTable = New DMDataSet.PRICELISTS_KEYWORDSDataTable()
+            Me.Adapter.Fill(dataTable)
+            Return dataTable
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
+        Public Overloads Overridable Function Update(ByVal dataTable As DMDataSet.PRICELISTS_KEYWORDSDataTable) As Integer
+            Return Me.Adapter.Update(dataTable)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
+        Public Overloads Overridable Function Update(ByVal dataSet As DMDataSet) As Integer
+            Return Me.Adapter.Update(dataSet, "PRICELISTS_KEYWORDS")
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
+        Public Overloads Overridable Function Update(ByVal dataRow As Global.System.Data.DataRow) As Integer
+            Return Me.Adapter.Update(New Global.System.Data.DataRow() {dataRow})
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
+        Public Overloads Overridable Function Update(ByVal dataRows() As Global.System.Data.DataRow) As Integer
+            Return Me.Adapter.Update(dataRows)
+        End Function
+    End Class
+    
+    '''<summary>
     '''TableAdapterManager is used to coordinate TableAdapters in the dataset to enable Hierarchical Update scenarios
     '''</summary>
     <Global.System.ComponentModel.DesignerCategoryAttribute("code"),  _
@@ -36222,6 +37153,8 @@ Namespace DMDataSetTableAdapters
         Private _sUP_ORDERS_MAILTableAdapter As SUP_ORDERS_MAILTableAdapter
         
         Private _bASE_CATTableAdapter As BASE_CATTableAdapter
+        
+        Private _pRICELISTS_KEYWORDSTableAdapter As PRICELISTS_KEYWORDSTableAdapter
         
         Private _backupDataSetBeforeUpdate As Boolean
         
@@ -36295,6 +37228,20 @@ Namespace DMDataSetTableAdapters
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
+         Global.System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso"& _ 
+            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3"& _ 
+            "a", "System.Drawing.Design.UITypeEditor")>  _
+        Public Property PRICELISTS_KEYWORDSTableAdapter() As PRICELISTS_KEYWORDSTableAdapter
+            Get
+                Return Me._pRICELISTS_KEYWORDSTableAdapter
+            End Get
+            Set
+                Me._pRICELISTS_KEYWORDSTableAdapter = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Property BackupDataSetBeforeUpdate() As Boolean
             Get
@@ -36329,6 +37276,10 @@ Namespace DMDataSetTableAdapters
                             AndAlso (Not (Me._bASE_CATTableAdapter.Connection) Is Nothing)) Then
                     Return Me._bASE_CATTableAdapter.Connection
                 End If
+                If ((Not (Me._pRICELISTS_KEYWORDSTableAdapter) Is Nothing)  _
+                            AndAlso (Not (Me._pRICELISTS_KEYWORDSTableAdapter.Connection) Is Nothing)) Then
+                    Return Me._pRICELISTS_KEYWORDSTableAdapter.Connection
+                End If
                 Return Nothing
             End Get
             Set
@@ -36352,6 +37303,9 @@ Namespace DMDataSetTableAdapters
                     count = (count + 1)
                 End If
                 If (Not (Me._bASE_CATTableAdapter) Is Nothing) Then
+                    count = (count + 1)
+                End If
+                If (Not (Me._pRICELISTS_KEYWORDSTableAdapter) Is Nothing) Then
                     count = (count + 1)
                 End If
                 Return count
@@ -36401,6 +37355,15 @@ Namespace DMDataSetTableAdapters
                     allChangedRows.AddRange(updatedRows)
                 End If
             End If
+            If (Not (Me._pRICELISTS_KEYWORDSTableAdapter) Is Nothing) Then
+                Dim updatedRows() As Global.System.Data.DataRow = dataSet.PRICELISTS_KEYWORDS.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
+                updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
+                If ((Not (updatedRows) Is Nothing)  _
+                            AndAlso (0 < updatedRows.Length)) Then
+                    result = (result + Me._pRICELISTS_KEYWORDSTableAdapter.Update(updatedRows))
+                    allChangedRows.AddRange(updatedRows)
+                End If
+            End If
             Return result
         End Function
         
@@ -36443,6 +37406,14 @@ Namespace DMDataSetTableAdapters
                     allAddedRows.AddRange(addedRows)
                 End If
             End If
+            If (Not (Me._pRICELISTS_KEYWORDSTableAdapter) Is Nothing) Then
+                Dim addedRows() As Global.System.Data.DataRow = dataSet.PRICELISTS_KEYWORDS.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
+                If ((Not (addedRows) Is Nothing)  _
+                            AndAlso (0 < addedRows.Length)) Then
+                    result = (result + Me._pRICELISTS_KEYWORDSTableAdapter.Update(addedRows))
+                    allAddedRows.AddRange(addedRows)
+                End If
+            End If
             Return result
         End Function
         
@@ -36453,6 +37424,14 @@ Namespace DMDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Private Function UpdateDeletedRows(ByVal dataSet As DMDataSet, ByVal allChangedRows As Global.System.Collections.Generic.List(Of Global.System.Data.DataRow)) As Integer
             Dim result As Integer = 0
+            If (Not (Me._pRICELISTS_KEYWORDSTableAdapter) Is Nothing) Then
+                Dim deletedRows() As Global.System.Data.DataRow = dataSet.PRICELISTS_KEYWORDS.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
+                If ((Not (deletedRows) Is Nothing)  _
+                            AndAlso (0 < deletedRows.Length)) Then
+                    result = (result + Me._pRICELISTS_KEYWORDSTableAdapter.Update(deletedRows))
+                    allChangedRows.AddRange(deletedRows)
+                End If
+            End If
             If (Not (Me._kANELLOPOULOS_OTableAdapter) Is Nothing) Then
                 Dim deletedRows() As Global.System.Data.DataRow = dataSet.KANELLOPOULOS_O.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
                 If ((Not (deletedRows) Is Nothing)  _
@@ -36546,6 +37525,11 @@ Namespace DMDataSetTableAdapters
                 Throw New Global.System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s"& _ 
                         "tring.")
             End If
+            If ((Not (Me._pRICELISTS_KEYWORDSTableAdapter) Is Nothing)  _
+                        AndAlso (Me.MatchTableAdapterConnection(Me._pRICELISTS_KEYWORDSTableAdapter.Connection) = false)) Then
+                Throw New Global.System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s"& _ 
+                        "tring.")
+            End If
             Dim workConnection As Global.System.Data.IDbConnection = Me.Connection
             If (workConnection Is Nothing) Then
                 Throw New Global.System.ApplicationException("TableAdapterManager contains no connection information. Set each TableAdapterMana"& _ 
@@ -36612,6 +37596,15 @@ Namespace DMDataSetTableAdapters
                     If Me._bASE_CATTableAdapter.Adapter.AcceptChangesDuringUpdate Then
                         Me._bASE_CATTableAdapter.Adapter.AcceptChangesDuringUpdate = false
                         adaptersWithAcceptChangesDuringUpdate.Add(Me._bASE_CATTableAdapter.Adapter)
+                    End If
+                End If
+                If (Not (Me._pRICELISTS_KEYWORDSTableAdapter) Is Nothing) Then
+                    revertConnections.Add(Me._pRICELISTS_KEYWORDSTableAdapter, Me._pRICELISTS_KEYWORDSTableAdapter.Connection)
+                    Me._pRICELISTS_KEYWORDSTableAdapter.Connection = CType(workConnection,Global.System.Data.SqlClient.SqlConnection)
+                    Me._pRICELISTS_KEYWORDSTableAdapter.Transaction = CType(workTransaction,Global.System.Data.SqlClient.SqlTransaction)
+                    If Me._pRICELISTS_KEYWORDSTableAdapter.Adapter.AcceptChangesDuringUpdate Then
+                        Me._pRICELISTS_KEYWORDSTableAdapter.Adapter.AcceptChangesDuringUpdate = false
+                        adaptersWithAcceptChangesDuringUpdate.Add(Me._pRICELISTS_KEYWORDSTableAdapter.Adapter)
                     End If
                 End If
                 '
@@ -36689,6 +37682,10 @@ Namespace DMDataSetTableAdapters
                 If (Not (Me._bASE_CATTableAdapter) Is Nothing) Then
                     Me._bASE_CATTableAdapter.Connection = CType(revertConnections(Me._bASE_CATTableAdapter),Global.System.Data.SqlClient.SqlConnection)
                     Me._bASE_CATTableAdapter.Transaction = Nothing
+                End If
+                If (Not (Me._pRICELISTS_KEYWORDSTableAdapter) Is Nothing) Then
+                    Me._pRICELISTS_KEYWORDSTableAdapter.Connection = CType(revertConnections(Me._pRICELISTS_KEYWORDSTableAdapter),Global.System.Data.SqlClient.SqlConnection)
+                    Me._pRICELISTS_KEYWORDSTableAdapter.Transaction = Nothing
                 End If
                 If (0 < adaptersWithAcceptChangesDuringUpdate.Count) Then
                     Dim adapters((adaptersWithAcceptChangesDuringUpdate.Count) - 1) As Global.System.Data.Common.DataAdapter

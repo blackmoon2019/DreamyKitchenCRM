@@ -145,6 +145,7 @@ Partial Class frmMain
         Me.BBProjectCheckList = New DevExpress.XtraBars.BarButtonItem()
         Me.BBExtPartners = New DevExpress.XtraBars.BarButtonItem()
         Me.BBProjectJobsSUP = New DevExpress.XtraBars.BarButtonItem()
+        Me.BBatchUpdatePriceList = New DevExpress.XtraBars.BarButtonItem()
         Me.bbProjects = New DevExpress.XtraBars.Ribbon.RibbonPage()
         Me.RibbonPageGroup1 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.RibbonPageGroup22 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
@@ -181,6 +182,8 @@ Partial Class frmMain
         Me.RibbonPageGroup14 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.RibbonPage5 = New DevExpress.XtraBars.Ribbon.RibbonPage()
         Me.RibbonPageGroup5 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
+        Me.Μα = New DevExpress.XtraBars.Ribbon.RibbonPage()
+        Me.RibbonPageGroup23 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.RepositoryItemHypertextLabel1 = New DevExpress.XtraEditors.Repository.RepositoryItemHypertextLabel()
         Me.RepositoryItemHypertextLabel2 = New DevExpress.XtraEditors.Repository.RepositoryItemHypertextLabel()
         Me.RepositoryItemHyperLinkEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
@@ -211,13 +214,13 @@ Partial Class frmMain
         '
         Me.RibbonControl1.EmptyAreaImageOptions.ImagePadding = New System.Windows.Forms.Padding(27, 25, 27, 25)
         Me.RibbonControl1.ExpandCollapseItem.Id = 0
-        Me.RibbonControl1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.RibbonControl1.ExpandCollapseItem, Me.bbUsers, Me.bbMailSettings, Me.BarButtonItem1, Me.BarClose, Me.bbRights, Me.SkinDropDownButtonItem1, Me.BarMdiChildrenListItem1, Me.bbDate, Me.BarEditItem1, Me.BarEditItem2, Me.bbUser, Me.bbServer, Me.bbDB, Me.bbLink, Me.bbCCT, Me.bbCOU, Me.bbAreas, Me.bbADR, Me.bbDOY, Me.bbPRF, Me.bbVersion, Me.bbStatus, Me.bbSource, Me.bbSalers, Me.BBCusMovs, Me.BBCalendar, Me.BBCusStatistics1, Me.BBNotes, Me.bbLabels, Me.BBChangeUsr, Me.ΒΒvalueListItem, Me.bbCatErm, Me.bbERM, Me.bbBench, Me.bbMech, Me.bboffer, Me.BarButtonItem2, Me.bbTechnicalSupport, Me.bbTechCateg, Me.bbColors, Me.bbColorCAT, Me.bbEpendisis, Me.bbDimensions, Me.bbCalculations, Me.bbCatSubErm, Me.BBSer, Me.BBInst, Me.BBCalendarInst, Me.bbTRANSH, Me.bbBanks, Me.bbEmploye, Me.bbDep, Me.bbEmpMov, Me.bbStatusPre, Me.BBPersonalCalendar, Me.BBPersonalCalendarStatus, Me.BBInstM, Me.BBPayroll, Me.BBPayrolStatus, Me.bbEMP_T, Me.BBEllipse, Me.bbConstrCat, Me.bbConstr, Me.BBPayrollConstr, Me.bbJobs, Me.BBScanFileNames, Me.BBStatistics2, Me.BBStatistics3, Me.BBProjectCosts, Me.BBUpdate, Me.BBNotes2, Me.BBPay, Me.BBSup, Me.BBBuy_C, Me.BBuy, Me.BBSupInvoicesPayment, Me.BBTransactions, Me.BBPrivateAgreement, Me.BBcctOffer, Me.BBParam, Me.BBCloset, Me.BBDoors, Me.BBSpecialConstr, Me.BBCCctOrdersKitchen, Me.BBEquipment, Me.BBDevices, Me.BBequipmentCat, Me.BBCCctOrdersCloset, Me.BBCCctDoorsCloset, Me.BBSpecialOrder, Me.BBEpStatus, Me.BarMdiChildrenListItem2, Me.BarDockingMenuItem1, Me.BBEpopteia, Me.BarSubItem1, Me.BBSupOrders, Me.BBEpopteiaTrans, Me.BBTransConstr, Me.BBEpopteiaTable, Me.BBEpopteiaChart, Me.BBTransCost, Me.bbDimensionsCat, Me.BBConstruct, Me.BBTechSup, Me.BBVer, Me.BBEMP_P, Me.BBOrderFormNumbers, Me.bbEmpConstrMov, Me.BBinvBuyTypes, Me.BBBulkInsertInvoices, Me.BBProjectJobs, Me.BBBaseCatERP, Me.BBTransh_C, Me.BBPayType, Me.BBProject, Me.BBFileCat, Me.BBProjectCheckList, Me.BBExtPartners, Me.BBProjectJobsSUP})
+        Me.RibbonControl1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.RibbonControl1.ExpandCollapseItem, Me.bbUsers, Me.bbMailSettings, Me.BarButtonItem1, Me.BarClose, Me.bbRights, Me.SkinDropDownButtonItem1, Me.BarMdiChildrenListItem1, Me.bbDate, Me.BarEditItem1, Me.BarEditItem2, Me.bbUser, Me.bbServer, Me.bbDB, Me.bbLink, Me.bbCCT, Me.bbCOU, Me.bbAreas, Me.bbADR, Me.bbDOY, Me.bbPRF, Me.bbVersion, Me.bbStatus, Me.bbSource, Me.bbSalers, Me.BBCusMovs, Me.BBCalendar, Me.BBCusStatistics1, Me.BBNotes, Me.bbLabels, Me.BBChangeUsr, Me.ΒΒvalueListItem, Me.bbCatErm, Me.bbERM, Me.bbBench, Me.bbMech, Me.bboffer, Me.BarButtonItem2, Me.bbTechnicalSupport, Me.bbTechCateg, Me.bbColors, Me.bbColorCAT, Me.bbEpendisis, Me.bbDimensions, Me.bbCalculations, Me.bbCatSubErm, Me.BBSer, Me.BBInst, Me.BBCalendarInst, Me.bbTRANSH, Me.bbBanks, Me.bbEmploye, Me.bbDep, Me.bbEmpMov, Me.bbStatusPre, Me.BBPersonalCalendar, Me.BBPersonalCalendarStatus, Me.BBInstM, Me.BBPayroll, Me.BBPayrolStatus, Me.bbEMP_T, Me.BBEllipse, Me.bbConstrCat, Me.bbConstr, Me.BBPayrollConstr, Me.bbJobs, Me.BBScanFileNames, Me.BBStatistics2, Me.BBStatistics3, Me.BBProjectCosts, Me.BBUpdate, Me.BBNotes2, Me.BBPay, Me.BBSup, Me.BBBuy_C, Me.BBuy, Me.BBSupInvoicesPayment, Me.BBTransactions, Me.BBPrivateAgreement, Me.BBcctOffer, Me.BBParam, Me.BBCloset, Me.BBDoors, Me.BBSpecialConstr, Me.BBCCctOrdersKitchen, Me.BBEquipment, Me.BBDevices, Me.BBequipmentCat, Me.BBCCctOrdersCloset, Me.BBCCctDoorsCloset, Me.BBSpecialOrder, Me.BBEpStatus, Me.BarMdiChildrenListItem2, Me.BarDockingMenuItem1, Me.BBEpopteia, Me.BarSubItem1, Me.BBSupOrders, Me.BBEpopteiaTrans, Me.BBTransConstr, Me.BBEpopteiaTable, Me.BBEpopteiaChart, Me.BBTransCost, Me.bbDimensionsCat, Me.BBConstruct, Me.BBTechSup, Me.BBVer, Me.BBEMP_P, Me.BBOrderFormNumbers, Me.bbEmpConstrMov, Me.BBinvBuyTypes, Me.BBBulkInsertInvoices, Me.BBProjectJobs, Me.BBBaseCatERP, Me.BBTransh_C, Me.BBPayType, Me.BBProject, Me.BBFileCat, Me.BBProjectCheckList, Me.BBExtPartners, Me.BBProjectJobsSUP, Me.BBatchUpdatePriceList})
         Me.RibbonControl1.Location = New System.Drawing.Point(0, 0)
         Me.RibbonControl1.Margin = New System.Windows.Forms.Padding(4)
-        Me.RibbonControl1.MaxItemId = 128
+        Me.RibbonControl1.MaxItemId = 129
         Me.RibbonControl1.Name = "RibbonControl1"
         Me.RibbonControl1.OptionsMenuMinWidth = 495
-        Me.RibbonControl1.Pages.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPage() {Me.bbProjects, Me.RibbonPage1, Me.RibbonPage8, Me.RibbonPage6, Me.ProjectAnalysis, Me.EmpManage, Me.RibbonPage2, Me.RibbonPage7, Me.RibbonPage3, Me.RibbonPage4, Me.RibonSettings, Me.RibbonPage5})
+        Me.RibbonControl1.Pages.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPage() {Me.bbProjects, Me.RibbonPage1, Me.RibbonPage8, Me.RibbonPage6, Me.ProjectAnalysis, Me.EmpManage, Me.RibbonPage2, Me.RibbonPage7, Me.RibbonPage3, Me.RibbonPage4, Me.RibonSettings, Me.RibbonPage5, Me.Μα})
         Me.RibbonControl1.QuickToolbarItemLinks.Add(Me.BarClose)
         Me.RibbonControl1.QuickToolbarItemLinks.Add(Me.BarMdiChildrenListItem2)
         Me.RibbonControl1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCalcEdit1, Me.RepositoryItemDateEdit1, Me.RepositoryItemHyperLinkEdit1, Me.RepositoryItemHypertextLabel1, Me.RepositoryItemHypertextLabel2, Me.RepositoryItemHyperLinkEdit2})
@@ -1206,6 +1209,14 @@ Partial Class frmMain
         Me.BBProjectJobsSUP.Name = "BBProjectJobsSUP"
         Me.BBProjectJobsSUP.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
         '
+        'BBatchUpdatePriceList
+        '
+        Me.BBatchUpdatePriceList.Caption = "Ενημέρωση Τιμοκαταλόγων"
+        Me.BBatchUpdatePriceList.Id = 128
+        Me.BBatchUpdatePriceList.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_price_list_40
+        Me.BBatchUpdatePriceList.Name = "BBatchUpdatePriceList"
+        Me.BBatchUpdatePriceList.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
+        '
         'bbProjects
         '
         Me.bbProjects.Groups.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPageGroup() {Me.RibbonPageGroup1, Me.RibbonPageGroup22})
@@ -1503,6 +1514,18 @@ Partial Class frmMain
         Me.RibbonPageGroup5.Name = "RibbonPageGroup5"
         Me.RibbonPageGroup5.Text = "Βοήθεια"
         '
+        'Μα
+        '
+        Me.Μα.Groups.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPageGroup() {Me.RibbonPageGroup23})
+        Me.Μα.Name = "Μα"
+        Me.Μα.Text = "Μαζικές Λειτουργίες"
+        '
+        'RibbonPageGroup23
+        '
+        Me.RibbonPageGroup23.ItemLinks.Add(Me.BBatchUpdatePriceList)
+        Me.RibbonPageGroup23.Name = "RibbonPageGroup23"
+        Me.RibbonPageGroup23.Text = "Λειτουργίες"
+        '
         'RepositoryItemHypertextLabel1
         '
         Me.RepositoryItemHypertextLabel1.Name = "RepositoryItemHypertextLabel1"
@@ -1788,4 +1811,7 @@ Partial Class frmMain
     Friend WithEvents RibbonPage8 As DevExpress.XtraBars.Ribbon.RibbonPage
     Friend WithEvents BBExtPartners As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents BBProjectJobsSUP As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents Μα As DevExpress.XtraBars.Ribbon.RibbonPage
+    Friend WithEvents RibbonPageGroup23 As DevExpress.XtraBars.Ribbon.RibbonPageGroup
+    Friend WithEvents BBatchUpdatePriceList As DevExpress.XtraBars.BarButtonItem
 End Class

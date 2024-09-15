@@ -946,5 +946,13 @@ Public Class frmMain
         form.MdiParent = Me
         form.Show()
     End Sub
+
+    Private Sub BBatchUpdatePriceList_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBatchUpdatePriceList.ItemClick
+        Dim form As frmPriceListBatchUpdate = New frmPriceListBatchUpdate()
+        form.Text = "Μαζική Ενημέρωση Τιμοκαταλόγων"
+        form.MdiParent = Me
+        form.Show()
+
+    End Sub
 End Class
 

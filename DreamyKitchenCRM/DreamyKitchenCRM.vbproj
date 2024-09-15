@@ -314,10 +314,10 @@
     <Compile Include="classes\ClearControls.vb" />
     <Compile Include="classes\CN.vb" />
     <Compile Include="classes\CombosManager.vb" />
-    <Compile Include="classes\CusOfferOrderCloset.vb" />
-    <Compile Include="classes\CusOfferOrderDoors.vb" />
-    <Compile Include="classes\CusOfferOrderKitchen.vb" />
-    <Compile Include="classes\CUSOfferOrderSpecialConstr.vb" />
+    <Compile Include="classes\OfferOrders\CusOfferOrderCloset.vb" />
+    <Compile Include="classes\OfferOrders\CusOfferOrderDoors.vb" />
+    <Compile Include="classes\OfferOrders\CusOfferOrderKitchen.vb" />
+    <Compile Include="classes\OfferOrders\CUSOfferOrderSpecialConstr.vb" />
     <Compile Include="classes\CusPrivateAgreement.vb" />
     <Compile Include="classes\Customers.vb" />
     <Compile Include="classes\DBQueries.vb" />
@@ -329,6 +329,8 @@
     <Compile Include="classes\InstM.vb" />
     <Compile Include="classes\Localization.vb" />
     <Compile Include="classes\Parameters.vb" />
+    <Compile Include="classes\PriceLists\PriceListBatchUpdateKanellopoulos.vb" />
+    <Compile Include="classes\PriceLists\PriceListKeyWordsKanelopoulos.vb" />
     <Compile Include="classes\ProgProp.vb" />
     <Compile Include="classes\ProjectCost.vb" />
     <Compile Include="classes\ProjectJobs.vb" />
@@ -605,6 +607,18 @@
       <DependentUpon>frmPermissionsOld.vb</DependentUpon>
     </Compile>
     <Compile Include="forms\frmPermissionsOld.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmPriceListBatchUpdate.Designer.vb">
+      <DependentUpon>frmPriceListBatchUpdate.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmPriceListBatchUpdate.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmPriceListsKeywords.Designer.vb">
+      <DependentUpon>frmPriceListsKeywords.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmPriceListsKeywords.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="forms\frmProjectJobsSUP.Designer.vb">
@@ -1087,6 +1101,12 @@
     <EmbeddedResource Include="forms\frmPermissionsOld.resx">
       <DependentUpon>frmPermissionsOld.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmPriceListBatchUpdate.resx">
+      <DependentUpon>frmPriceListBatchUpdate.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmPriceListsKeywords.resx">
+      <DependentUpon>frmPriceListsKeywords.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="forms\frmProjectJobsSUP.resx">
       <DependentUpon>frmProjectJobsSUP.vb</DependentUpon>
     </EmbeddedResource>
@@ -1560,6 +1580,9 @@
     <Content Include="favicon.ico" />
     <Content Include="logo%281%29.ico" />
     <Content Include="logo.ico" />
+    <None Include="Resources\icons8-keyword-241.png" />
+    <None Include="Resources\icons8-keyword-24.png" />
+    <None Include="Resources\icons8-price-list-40.png" />
     <None Include="Resources\icons8-under-construction-40.png" />
     <None Include="Resources\icons8-schedule-40_constructor.png" />
     <None Include="Resources\icons8-schedule-40.png" />

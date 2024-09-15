@@ -1,21 +1,10 @@
 ﻿Imports System.Data.SqlClient
 Imports System.Text
-Imports System.Text.RegularExpressions
-Imports DevExpress.CodeParser
-Imports DevExpress.DataAccess
-Imports DevExpress.DataAccess.Native
-Imports DevExpress.Office.PInvoke.Win32
-Imports DevExpress.Xpo
 Imports DevExpress.XtraBars.Navigation
 Imports DevExpress.XtraEditors
 Imports DevExpress.XtraEditors.Controls
-Imports DevExpress.XtraExport.Helpers
 Imports DevExpress.XtraGrid.Views.Base
 Imports DevExpress.XtraGrid.Views.Grid
-Imports DevExpress.XtraLayout
-Imports DevExpress.XtraMap.Drawing.DirectD3D9
-Imports DevExpress.XtraRichEdit.Utils
-Imports iTextSharp.text
 
 Public Class frmBuyCollectionInsert
     Private DBQ As New DBQueries

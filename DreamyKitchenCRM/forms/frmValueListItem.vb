@@ -1,6 +1,7 @@
 ﻿Imports DevExpress.XtraEditors
 Imports DevExpress.XtraEditors.Controls
 Imports DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters
+Imports Org.BouncyCastle.Asn1
 
 Public Class frmValueListItem
     Private sID As String
@@ -116,7 +117,8 @@ Public Class frmValueListItem
                 LName.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.rsz_11rsz_asterisk
                 LName.Tag = "1"
                 LDescription.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
-                cboValueList.ReadOnly = True
+                Lprice.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+                cboValueList.ReadOnly = False
             Case "DE86FD16-2154-4E2A-B025-4D34BDF8C808" ' Κωδικοί Χρωμάτων
                 Me.Text = "Κωδικοί Χρωμάτων"
                 LCat.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
@@ -124,7 +126,8 @@ Public Class frmValueListItem
                 LName.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.rsz_11rsz_asterisk
                 LName.Tag = "1"
                 LDescription.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
-                cboValueList.ReadOnly = True
+                Lprice.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+                cboValueList.ReadOnly = False
             Case "CF47FAEE-7CD7-49AD-9455-3BC69D438DE9" ' Ειδικές Κατασκευές
                 Me.Text = "Ειδικές Κατασκευές"
                 LCat.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
@@ -140,6 +143,16 @@ Public Class frmValueListItem
                 LName.Tag = "1"
                 LName.Text = "Περιγραφή"
                 cboValueList.ReadOnly = True
+            Case "E6733593-7DA0-4180-8951-B09315E1F13D" 'Πόρτες Εσωτερικές
+                Me.Text = "Κατηγορία Πόρτας"
+                LName.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+                LName.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.rsz_11rsz_asterisk
+                LName.Tag = "1"
+                LName.Text = "Περιγραφή"
+                Lkasa.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+                Lprice.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+                cboValueList.ReadOnly = False
+
         End Select
     End Sub
     Private Sub cmdSave_Click(sender As Object, e As EventArgs) Handles cmdSave.Click
@@ -214,15 +227,15 @@ Public Class frmValueListItem
         End Select
     End Sub
 
-    Private Sub cboVALUELISTITEM_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboVALUELISTITEM.ButtonClick
+    Private Sub cboVALUELISTITEM_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboValueListItem.ButtonClick
         Select Case e.Button.Index
-            Case 1 : cboVALUELISTITEM.EditValue = Nothing
+            Case 1 : cboValueListItem.EditValue = Nothing
         End Select
     End Sub
     Private Sub cboValueList_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboValueList.ButtonClick
         Select Case e.Button.Index
             Case 1 : cboValueList.EditValue = Nothing : ManageDoorCAT()
-            Case 2 : If cboValueList.EditValue isnot Nothing Then ManageDoorCAT()
+            Case 2 : If cboValueList.EditValue IsNot Nothing Then ManageDoorCAT()
             Case 3 : cboValueList.EditValue = Nothing
         End Select
     End Sub
@@ -234,9 +247,9 @@ Public Class frmValueListItem
         form1.DataTable = "VALUELIST"
         form1.CallerControl = cboValueList
         form1.CalledFromControl = True
-        If cboValueList.EditValue isnot Nothing Then form1.ID = cboValueList.EditValue.ToString
+        If cboValueList.EditValue IsNot Nothing Then form1.ID = cboValueList.EditValue.ToString
         form1.MdiParent = frmMain
-        If cboValueList.EditValue isnot Nothing Then form1.Mode = FormMode.EditRecord Else form1.Mode = FormMode.NewRecord
+        If cboValueList.EditValue IsNot Nothing Then form1.Mode = FormMode.EditRecord Else form1.Mode = FormMode.NewRecord
         frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
         form1.Show()
     End Sub
@@ -244,7 +257,7 @@ Public Class frmValueListItem
     Private Sub cboDim_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboDim.ButtonClick
         Select Case e.Button.Index
             Case 1 : cboDim.EditValue = Nothing : ManageDIM()
-            Case 2 : If cboDim.EditValue isnot Nothing Then ManageDIM()
+            Case 2 : If cboDim.EditValue IsNot Nothing Then ManageDIM()
             Case 3 : cboDim.EditValue = Nothing
         End Select
     End Sub
@@ -256,9 +269,9 @@ Public Class frmValueListItem
         form1.DataTable = "DIM"
         form1.CallerControl = cboDim
         form1.CalledFromControl = True
-        If cboDim.EditValue isnot Nothing Then form1.ID = cboDim.EditValue.ToString
+        If cboDim.EditValue IsNot Nothing Then form1.ID = cboDim.EditValue.ToString
         form1.MdiParent = frmMain
-        If cboDim.EditValue isnot Nothing Then form1.Mode = FormMode.EditRecord Else form1.Mode = FormMode.NewRecord
+        If cboDim.EditValue IsNot Nothing Then form1.Mode = FormMode.EditRecord Else form1.Mode = FormMode.NewRecord
         frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
         form1.Show()
     End Sub
