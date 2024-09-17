@@ -1,4 +1,8 @@
 ﻿Imports DevExpress.XtraBars.Navigation
+Imports DevExpress.XtraEditors
+Imports DevExpress.XtraEditors.Controls
+Imports DevExpress.XtraGrid.Views.Base
+Imports DevExpress.XtraGrid.Views.Grid
 
 Public Class frmPriceListBatchUpdate
     Private DBQ As New DBQueries
@@ -22,9 +26,15 @@ Public Class frmPriceListBatchUpdate
         'AddHandler RepCus.EditValueChanged, AddressOf RepCus_Changed
         'AddHandler RepKan_O.KeyDown, AddressOf RepKan_O_KeyDown
         'SupMode = 1
+        LoadForms.RestoreLayoutFromXml(GridView5, "KanellopoulosPriceList.xml")
     End Sub
     Private Sub NavKanelopoulos_ElementClick(sender As Object, e As NavElementEventArgs) Handles NavKanelopoulos.ElementClick
-        sSUP_ID = "89251045-64C7-4E35-9CAF-51D020279CFE" : cmdKeywords.Enabled = True : PriceListBatchUpdateKanellopoulos.FilesSelection()
+        sSUP_ID = "89251045-64C7-4E35-9CAF-51D020279CFE" : cmdKeywords.Enabled = True
+        PriceListBatchUpdateKanellopoulos.SUP_ID = sSUP_ID
+        PriceListBatchUpdateKanellopoulos.Initialize(Me)
+        PRICELIST_TEMPTableAdapter.FillBySupID(DMDataSet.PRICELIST_TEMP, System.Guid.Parse(sSUP_ID))
+        PriceListBatchUpdateKanellopoulos.FilesSelection()
+        LoadForms.RestoreLayoutFromXml(GridView5, "KanellopoulosPriceList.xml")
     End Sub
     'Friend Sub RepTransh_Changed(sender As Object, e As EventArgs)
     '    Dim editor As DevExpress.XtraEditors.LookUpEdit = TryCast(sender, DevExpress.XtraEditors.LookUpEdit)
@@ -96,8 +106,27 @@ Public Class frmPriceListBatchUpdate
                 form.Text = "Λέξεις Κλειδιά"
                 form.SUP_ID = sSUP_ID
                 form.ShowDialog()
+        End Select
+
+    End Sub
+
+    Private Sub ProgressBarControl1_CustomDisplayText(sender As Object, e As CustomDisplayTextEventArgs) Handles ProgressBarControl1.CustomDisplayText
+        Dim progress As ProgressBarControl = TryCast(sender, ProgressBarControl)
+        Dim maximum = progress.Properties.Maximum
+        e.DisplayText = $"{e.Value} ({progress.Position} / {maximum})"
+    End Sub
+
+    Private Sub GridView5_PopupMenuShowing(sender As Object, e As PopupMenuShowingEventArgs) Handles GridView5.PopupMenuShowing
+        Select Case sSUP_ID
+            Case "89251045-64C7-4E35-9CAF-51D020279CFE" 'Κανελλόπουλος
+                If e.MenuType = GridMenuType.Column Then LoadForms.PopupMenuShow(e, GridView5, "KanellopoulosPriceList.xml", "PRICELIST_TEMP")
 
         End Select
+
+    End Sub
+
+    Private Sub GridView5_CustomColumnDisplayText(sender As Object, e As CustomColumnDisplayTextEventArgs) Handles GridView5.CustomColumnDisplayText
+        If e.Column.Name = "colStatus" Then e.DisplayText = String.Empty
 
     End Sub
 
