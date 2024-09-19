@@ -28,11 +28,12 @@ Public Class PriceListKeyWordsKanelopoulos
                     e.Valid = False
                     Exit Sub
                 End If
-                sSQL.AppendLine("INSERT INTO PRICELISTS_KEYWORDS (ID,keyword,supID,valuelistID,[modifiedBy],[createdby],[createdOn])")
+                sSQL.AppendLine("INSERT INTO PRICELISTS_KEYWORDS (ID,keyword,supID,valuelistID,Active,[modifiedBy],[createdby],[createdOn])")
                 sSQL.AppendLine("Select newid()" & ",")
                 sSQL.AppendLine(toSQLValueS(Frm.GridView1.GetRowCellValue(Frm.GridView1.FocusedRowHandle, "keyword").ToString) & ",")
                 sSQL.AppendLine(toSQLValueS(sSUP_ID) & ",")
                 sSQL.AppendLine(toSQLValueS(Frm.GridView1.GetRowCellValue(Frm.GridView1.FocusedRowHandle, "valueListID").ToString) & ",")
+                sSQL.AppendLine(toSQLValueS(Frm.GridView1.GetRowCellValue(Frm.GridView1.FocusedRowHandle, "Active").ToString) & ",")
                 sSQL.Append(toSQLValueS(UserProps.ID.ToString) & "," & toSQLValueS(UserProps.ID.ToString) & ", getdate()")
                 'Εκτέλεση QUERY
                 Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
@@ -41,6 +42,7 @@ Public Class PriceListKeyWordsKanelopoulos
             Else
                 sSQL.AppendLine("UPDATE PRICELISTS_KEYWORDS	SET keyword= " & toSQLValueS(Frm.GridView1.GetRowCellValue(Frm.GridView1.FocusedRowHandle, "keyword").ToString) & ",")
                 sSQL.AppendLine("valuelistID = " & toSQLValueS(Frm.GridView1.GetRowCellValue(Frm.GridView1.FocusedRowHandle, "valueListID").ToString) & ",")
+                sSQL.AppendLine("Active = " & toSQLValueS(Frm.GridView1.GetRowCellValue(Frm.GridView1.FocusedRowHandle, "Active").ToString) & ",")
                 sSQL.AppendLine("modifiedBY = " & toSQLValueS(UserProps.ID.ToString) & ",")
                 sSQL.AppendLine("modifiedON = getdate() ")
                 sSQL.AppendLine("WHERE ID = " & toSQLValueS(Frm.GridView1.GetRowCellValue(Frm.GridView1.FocusedRowHandle, "ID").ToString))

@@ -49,10 +49,29 @@ Partial Class frmPriceListBatchUpdate
         Me.DockPanel1_Container = New DevExpress.XtraBars.Docking.ControlContainer()
         Me.TileNavPane1 = New DevExpress.XtraBars.Navigation.TileNavPane()
         Me.NavKanelopoulos = New DevExpress.XtraBars.Navigation.NavButton()
+        Me.panelContainer1 = New DevExpress.XtraBars.Docking.DockPanel()
+        Me.DockPanel3 = New DevExpress.XtraBars.Docking.DockPanel()
+        Me.DockPanel3_Container = New DevExpress.XtraBars.Docking.ControlContainer()
+        Me.LayoutControl2 = New DevExpress.XtraLayout.LayoutControl()
+        Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
+        Me.PRICELISTSPRMBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.DMDataSet = New DreamyKitchenCRM.DMDataSet()
+        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.colFromValue = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colToValue = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colvalue = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colID = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colsupID1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepValueList = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
+        Me.txtDiscount = New DevExpress.XtraEditors.TextEdit()
+        Me.LayoutControlGroup1 = New DevExpress.XtraLayout.LayoutControlGroup()
+        Me.Lcost3 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem7 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.DockPanel2 = New DevExpress.XtraBars.Docking.DockPanel()
         Me.DockPanel2_Container = New DevExpress.XtraBars.Docking.ControlContainer()
         Me.lstLog = New DevExpress.XtraEditors.ImageListBoxControl()
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
+        Me.cmdExcel = New DevExpress.XtraEditors.SimpleButton()
         Me.cmdKeywords = New DevExpress.XtraEditors.SimpleButton()
         Me.cmdSave = New DevExpress.XtraEditors.SimpleButton()
         Me.ProgressBarControl1 = New DevExpress.XtraEditors.ProgressBarControl()
@@ -60,15 +79,18 @@ Partial Class frmPriceListBatchUpdate
         Me.cmdDelete = New DevExpress.XtraEditors.SimpleButton()
         Me.grdPRICELIST = New DevExpress.XtraGrid.GridControl()
         Me.PRICELISTTEMPBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.DMDataSet = New DreamyKitchenCRM.DMDataSet()
         Me.GridView5 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.colΚωδικός = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.colΠεριγραφή = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.colΛιανικής = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.colValueListName = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.colValueListID = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.colSupID = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colcode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colsupID = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colvaluelistID = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colCustomCode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colname = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.coldescription = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colInitialPrice = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colPriceVat = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.coldiscount = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colPrice = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepCus = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
         Me.txtImageCorrect = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.txtImageError = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
@@ -80,34 +102,35 @@ Partial Class frmPriceListBatchUpdate
         Me.Root = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem3 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem4 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem6 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem4 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem8 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.KANELLOPOULOSBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.XtraOpenFileDialog1 = New DevExpress.XtraEditors.XtraOpenFileDialog(Me.components)
         Me.ImageCollection1 = New DevExpress.Utils.ImageCollection(Me.components)
         Me.PRICELIST_TEMPTableAdapter = New DreamyKitchenCRM.DMDataSetTableAdapters.PRICELIST_TEMPTableAdapter()
-        Me.DockPanel3 = New DevExpress.XtraBars.Docking.DockPanel()
-        Me.DockPanel3_Container = New DevExpress.XtraBars.Docking.ControlContainer()
-        Me.LayoutControl2 = New DevExpress.XtraLayout.LayoutControl()
-        Me.LayoutControlGroup1 = New DevExpress.XtraLayout.LayoutControlGroup()
-        Me.txtDisc1 = New DevExpress.XtraEditors.TextEdit()
-        Me.Lcost3 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
-        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.colID = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.colkeyword = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RepValueList = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
-        Me.LayoutControlItem7 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.panelContainer1 = New DevExpress.XtraBars.Docking.DockPanel()
+        Me.PRICELISTS_PRMTableAdapter = New DreamyKitchenCRM.DMDataSetTableAdapters.PRICELISTS_PRMTableAdapter()
         CType(Me.RepCopyDelete, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DockManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.DockPanel1.SuspendLayout()
         Me.DockPanel1_Container.SuspendLayout()
         CType(Me.TileNavPane1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.panelContainer1.SuspendLayout()
+        Me.DockPanel3.SuspendLayout()
+        Me.DockPanel3_Container.SuspendLayout()
+        CType(Me.LayoutControl2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.LayoutControl2.SuspendLayout()
+        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PRICELISTSPRMBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DMDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepValueList, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtDiscount.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Lcost3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.DockPanel2.SuspendLayout()
         Me.DockPanel2_Container.SuspendLayout()
         CType(Me.lstLog, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -116,7 +139,6 @@ Partial Class frmPriceListBatchUpdate
         CType(Me.ProgressBarControl1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.grdPRICELIST, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PRICELISTTEMPBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DMDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepCus, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtImageCorrect, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -129,35 +151,26 @@ Partial Class frmPriceListBatchUpdate
         CType(Me.Root, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.KANELLOPOULOSBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ImageCollection1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.DockPanel3.SuspendLayout()
-        Me.DockPanel3_Container.SuspendLayout()
-        CType(Me.LayoutControl2, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.LayoutControl2.SuspendLayout()
-        CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtDisc1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.Lcost3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepValueList, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.panelContainer1.SuspendLayout()
         Me.SuspendLayout()
         '
         'colStatus
         '
+        Me.colStatus.AppearanceCell.Options.UseBackColor = True
+        Me.colStatus.Caption = " "
         Me.colStatus.FieldName = "Status"
         Me.colStatus.MinWidth = 30
         Me.colStatus.Name = "colStatus"
         Me.colStatus.OptionsColumn.AllowEdit = False
         Me.colStatus.Visible = True
-        Me.colStatus.VisibleIndex = 5
-        Me.colStatus.Width = 64
+        Me.colStatus.VisibleIndex = 7
+        Me.colStatus.Width = 38
         '
         'RepCopyDelete
         '
@@ -218,6 +231,200 @@ Partial Class frmPriceListBatchUpdate
         Me.NavKanelopoulos.Caption = "ΚΑΝΕΛΛΟΠΟΥΛΟΣ"
         Me.NavKanelopoulos.Name = "NavKanelopoulos"
         '
+        'panelContainer1
+        '
+        Me.panelContainer1.Controls.Add(Me.DockPanel3)
+        Me.panelContainer1.Controls.Add(Me.DockPanel2)
+        Me.panelContainer1.Dock = DevExpress.XtraBars.Docking.DockingStyle.Right
+        Me.panelContainer1.ID = New System.Guid("5a4357ff-89fc-44bd-91a8-cb56a63203a4")
+        Me.panelContainer1.Location = New System.Drawing.Point(1324, 140)
+        Me.panelContainer1.Name = "panelContainer1"
+        Me.panelContainer1.OriginalSize = New System.Drawing.Size(822, 226)
+        Me.panelContainer1.Size = New System.Drawing.Size(822, 1008)
+        Me.panelContainer1.Text = "panelContainer1"
+        '
+        'DockPanel3
+        '
+        Me.DockPanel3.Controls.Add(Me.DockPanel3_Container)
+        Me.DockPanel3.Dock = DevExpress.XtraBars.Docking.DockingStyle.Fill
+        Me.DockPanel3.FloatVertical = True
+        Me.DockPanel3.ID = New System.Guid("8087a73d-6cc1-4366-a744-cc381866efee")
+        Me.DockPanel3.Location = New System.Drawing.Point(0, 0)
+        Me.DockPanel3.Name = "DockPanel3"
+        Me.DockPanel3.OriginalSize = New System.Drawing.Size(200, 200)
+        Me.DockPanel3.Size = New System.Drawing.Size(822, 451)
+        Me.DockPanel3.Text = "Παράμετροι"
+        '
+        'DockPanel3_Container
+        '
+        Me.DockPanel3_Container.Controls.Add(Me.LayoutControl2)
+        Me.DockPanel3_Container.Location = New System.Drawing.Point(7, 38)
+        Me.DockPanel3_Container.Name = "DockPanel3_Container"
+        Me.DockPanel3_Container.Size = New System.Drawing.Size(811, 406)
+        Me.DockPanel3_Container.TabIndex = 0
+        '
+        'LayoutControl2
+        '
+        Me.LayoutControl2.Controls.Add(Me.GridControl1)
+        Me.LayoutControl2.Controls.Add(Me.txtDiscount)
+        Me.LayoutControl2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.LayoutControl2.Location = New System.Drawing.Point(0, 0)
+        Me.LayoutControl2.Name = "LayoutControl2"
+        Me.LayoutControl2.Root = Me.LayoutControlGroup1
+        Me.LayoutControl2.Size = New System.Drawing.Size(811, 406)
+        Me.LayoutControl2.TabIndex = 0
+        Me.LayoutControl2.Text = "LayoutControl2"
+        '
+        'GridControl1
+        '
+        Me.GridControl1.DataSource = Me.PRICELISTSPRMBindingSource
+        Me.GridControl1.EmbeddedNavigator.Buttons.EndEdit.Visible = False
+        Me.GridControl1.EmbeddedNavigator.Buttons.First.Visible = False
+        Me.GridControl1.EmbeddedNavigator.Buttons.Last.Visible = False
+        Me.GridControl1.EmbeddedNavigator.Buttons.Next.Visible = False
+        Me.GridControl1.EmbeddedNavigator.Buttons.NextPage.Visible = False
+        Me.GridControl1.EmbeddedNavigator.Buttons.Prev.Visible = False
+        Me.GridControl1.EmbeddedNavigator.Buttons.PrevPage.Visible = False
+        Me.GridControl1.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(3, 1, 3, 1)
+        Me.GridControl1.Location = New System.Drawing.Point(12, 64)
+        Me.GridControl1.MainView = Me.GridView1
+        Me.GridControl1.Name = "GridControl1"
+        Me.GridControl1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepValueList})
+        Me.GridControl1.Size = New System.Drawing.Size(787, 330)
+        Me.GridControl1.TabIndex = 2
+        Me.GridControl1.UseEmbeddedNavigator = True
+        Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
+        '
+        'PRICELISTSPRMBindingSource
+        '
+        Me.PRICELISTSPRMBindingSource.DataMember = "PRICELISTS_PRM"
+        Me.PRICELISTSPRMBindingSource.DataSource = Me.DMDataSet
+        '
+        'DMDataSet
+        '
+        Me.DMDataSet.DataSetName = "DMDataSet"
+        Me.DMDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'GridView1
+        '
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.colFromValue, Me.colToValue, Me.colvalue, Me.colID, Me.colsupID1})
+        Me.GridView1.DetailHeight = 289
+        Me.GridView1.GridControl = Me.GridControl1
+        Me.GridView1.Name = "GridView1"
+        Me.GridView1.OptionsBehavior.AlignGroupSummaryInGroupRow = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GridView1.OptionsEditForm.PopupEditFormWidth = 720
+        Me.GridView1.OptionsView.ShowGroupPanel = False
+        '
+        'colFromValue
+        '
+        Me.colFromValue.Caption = "Από"
+        Me.colFromValue.DisplayFormat.FormatString = "c2"
+        Me.colFromValue.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.colFromValue.FieldName = "FromValue"
+        Me.colFromValue.MinWidth = 30
+        Me.colFromValue.Name = "colFromValue"
+        Me.colFromValue.Visible = True
+        Me.colFromValue.VisibleIndex = 0
+        Me.colFromValue.Width = 112
+        '
+        'colToValue
+        '
+        Me.colToValue.Caption = "Έως"
+        Me.colToValue.DisplayFormat.FormatString = "c2"
+        Me.colToValue.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.colToValue.FieldName = "ToValue"
+        Me.colToValue.MinWidth = 30
+        Me.colToValue.Name = "colToValue"
+        Me.colToValue.Visible = True
+        Me.colToValue.VisibleIndex = 1
+        Me.colToValue.Width = 112
+        '
+        'colvalue
+        '
+        Me.colvalue.Caption = "Περιγραφή"
+        Me.colvalue.FieldName = "value"
+        Me.colvalue.MinWidth = 30
+        Me.colvalue.Name = "colvalue"
+        Me.colvalue.Visible = True
+        Me.colvalue.VisibleIndex = 2
+        Me.colvalue.Width = 112
+        '
+        'colID
+        '
+        Me.colID.FieldName = "ID"
+        Me.colID.MinWidth = 30
+        Me.colID.Name = "colID"
+        Me.colID.Width = 112
+        '
+        'colsupID1
+        '
+        Me.colsupID1.FieldName = "supID"
+        Me.colsupID1.MinWidth = 30
+        Me.colsupID1.Name = "colsupID1"
+        Me.colsupID1.Width = 112
+        '
+        'RepValueList
+        '
+        Me.RepValueList.AutoHeight = False
+        Me.RepValueList.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepValueList.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "ID", 30, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("name", "Κατηγορία", 52, DevExpress.Utils.FormatType.None, "", True, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("GroupName", "Group Name", 103, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default])})
+        Me.RepValueList.DisplayMember = "name"
+        Me.RepValueList.Name = "RepValueList"
+        Me.RepValueList.NullText = ""
+        Me.RepValueList.ValueMember = "ID"
+        '
+        'txtDiscount
+        '
+        Me.txtDiscount.EditValue = "0%"
+        Me.txtDiscount.Location = New System.Drawing.Point(12, 34)
+        Me.txtDiscount.Margin = New System.Windows.Forms.Padding(15)
+        Me.txtDiscount.Name = "txtDiscount"
+        Me.txtDiscount.Properties.DisplayFormat.FormatString = "c"
+        Me.txtDiscount.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtDiscount.Properties.EditFormat.FormatString = "n2"
+        Me.txtDiscount.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtDiscount.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.txtDiscount.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
+        Me.txtDiscount.Properties.MaskSettings.Set("mask", "P0")
+        Me.txtDiscount.Properties.Tag = "BenchExtraPrice"
+        Me.txtDiscount.Properties.UseReadOnlyAppearance = False
+        Me.txtDiscount.Size = New System.Drawing.Size(787, 26)
+        Me.txtDiscount.StyleController = Me.LayoutControl2
+        Me.txtDiscount.TabIndex = 0
+        Me.txtDiscount.Tag = "discount1,0,1,2"
+        Me.txtDiscount.Visible = False
+        '
+        'LayoutControlGroup1
+        '
+        Me.LayoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
+        Me.LayoutControlGroup1.GroupBordersVisible = False
+        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.Lcost3, Me.LayoutControlItem7})
+        Me.LayoutControlGroup1.Name = "LayoutControlGroup1"
+        Me.LayoutControlGroup1.Size = New System.Drawing.Size(811, 406)
+        Me.LayoutControlGroup1.TextVisible = False
+        '
+        'Lcost3
+        '
+        Me.Lcost3.Control = Me.txtDiscount
+        Me.Lcost3.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.Lcost3.CustomizationFormText = "Έκπτωση"
+        Me.Lcost3.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
+        Me.Lcost3.Location = New System.Drawing.Point(0, 0)
+        Me.Lcost3.Name = "Lcost3"
+        Me.Lcost3.Size = New System.Drawing.Size(791, 52)
+        Me.Lcost3.Text = "Έκπτωση"
+        Me.Lcost3.TextLocation = DevExpress.Utils.Locations.Top
+        Me.Lcost3.TextSize = New System.Drawing.Size(66, 19)
+        '
+        'LayoutControlItem7
+        '
+        Me.LayoutControlItem7.Control = Me.GridControl1
+        Me.LayoutControlItem7.Location = New System.Drawing.Point(0, 52)
+        Me.LayoutControlItem7.Name = "LayoutControlItem7"
+        Me.LayoutControlItem7.Size = New System.Drawing.Size(791, 334)
+        Me.LayoutControlItem7.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem7.TextVisible = False
+        '
         'DockPanel2
         '
         Me.DockPanel2.Controls.Add(Me.DockPanel2_Container)
@@ -250,6 +457,7 @@ Partial Class frmPriceListBatchUpdate
         '
         'LayoutControl1
         '
+        Me.LayoutControl1.Controls.Add(Me.cmdExcel)
         Me.LayoutControl1.Controls.Add(Me.cmdKeywords)
         Me.LayoutControl1.Controls.Add(Me.cmdSave)
         Me.LayoutControl1.Controls.Add(Me.ProgressBarControl1)
@@ -266,12 +474,24 @@ Partial Class frmPriceListBatchUpdate
         Me.LayoutControl1.TabIndex = 2
         Me.LayoutControl1.Text = "LayoutControl1"
         '
+        'cmdExcel
+        '
+        Me.cmdExcel.DialogResult = System.Windows.Forms.DialogResult.Cancel
+        Me.cmdExcel.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.ExportXlsLarge
+        Me.cmdExcel.Location = New System.Drawing.Point(12, 960)
+        Me.cmdExcel.Margin = New System.Windows.Forms.Padding(4)
+        Me.cmdExcel.Name = "cmdExcel"
+        Me.cmdExcel.Size = New System.Drawing.Size(214, 36)
+        Me.cmdExcel.StyleController = Me.LayoutControl1
+        Me.cmdExcel.TabIndex = 6
+        Me.cmdExcel.Text = "Επιλογή Τιμοκαταλόγου"
+        '
         'cmdKeywords
         '
         Me.cmdKeywords.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.cmdKeywords.Enabled = False
         Me.cmdKeywords.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_keyword_241
-        Me.cmdKeywords.Location = New System.Drawing.Point(265, 964)
+        Me.cmdKeywords.Location = New System.Drawing.Point(469, 960)
         Me.cmdKeywords.Margin = New System.Windows.Forms.Padding(4)
         Me.cmdKeywords.Name = "cmdKeywords"
         Me.cmdKeywords.Size = New System.Drawing.Size(134, 32)
@@ -283,7 +503,7 @@ Partial Class frmPriceListBatchUpdate
         '
         Me.cmdSave.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.cmdSave.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_save_close_24
-        Me.cmdSave.Location = New System.Drawing.Point(12, 964)
+        Me.cmdSave.Location = New System.Drawing.Point(230, 960)
         Me.cmdSave.Margin = New System.Windows.Forms.Padding(4)
         Me.cmdSave.Name = "cmdSave"
         Me.cmdSave.Size = New System.Drawing.Size(125, 32)
@@ -293,11 +513,11 @@ Partial Class frmPriceListBatchUpdate
         '
         'ProgressBarControl1
         '
-        Me.ProgressBarControl1.Location = New System.Drawing.Point(403, 964)
+        Me.ProgressBarControl1.Location = New System.Drawing.Point(607, 960)
         Me.ProgressBarControl1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.ProgressBarControl1.Name = "ProgressBarControl1"
         Me.ProgressBarControl1.Properties.ShowTitle = True
-        Me.ProgressBarControl1.Size = New System.Drawing.Size(754, 20)
+        Me.ProgressBarControl1.Size = New System.Drawing.Size(609, 20)
         Me.ProgressBarControl1.StyleController = Me.LayoutControl1
         Me.ProgressBarControl1.TabIndex = 1
         Me.ProgressBarControl1.Visible = False
@@ -306,10 +526,10 @@ Partial Class frmPriceListBatchUpdate
         '
         Me.cmdExit.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.cmdExit.ImageOptions.Image = CType(resources.GetObject("cmdExit.ImageOptions.Image"), System.Drawing.Image)
-        Me.cmdExit.Location = New System.Drawing.Point(1161, 964)
+        Me.cmdExit.Location = New System.Drawing.Point(1220, 960)
         Me.cmdExit.Margin = New System.Windows.Forms.Padding(4)
         Me.cmdExit.Name = "cmdExit"
-        Me.cmdExit.Size = New System.Drawing.Size(151, 32)
+        Me.cmdExit.Size = New System.Drawing.Size(92, 32)
         Me.cmdExit.StyleController = Me.LayoutControl1
         Me.cmdExit.TabIndex = 3
         Me.cmdExit.Text = "Έξοδος"
@@ -318,10 +538,10 @@ Partial Class frmPriceListBatchUpdate
         '
         Me.cmdDelete.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.cmdDelete.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_delete_24
-        Me.cmdDelete.Location = New System.Drawing.Point(141, 964)
+        Me.cmdDelete.Location = New System.Drawing.Point(359, 960)
         Me.cmdDelete.Margin = New System.Windows.Forms.Padding(4)
         Me.cmdDelete.Name = "cmdDelete"
-        Me.cmdDelete.Size = New System.Drawing.Size(120, 32)
+        Me.cmdDelete.Size = New System.Drawing.Size(106, 32)
         Me.cmdDelete.StyleController = Me.LayoutControl1
         Me.cmdDelete.TabIndex = 2
         Me.cmdDelete.Text = "Διαγραφή"
@@ -337,7 +557,7 @@ Partial Class frmPriceListBatchUpdate
         Me.grdPRICELIST.Margin = New System.Windows.Forms.Padding(4)
         Me.grdPRICELIST.Name = "grdPRICELIST"
         Me.grdPRICELIST.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepCus, Me.txtImageCorrect, Me.txtImageError, Me.RepColBtn, Me.RepTransh, Me.RepColExcel, Me.RepCopyDelete, Me.RepKan_O, Me.ReptxtO})
-        Me.grdPRICELIST.Size = New System.Drawing.Size(1300, 948)
+        Me.grdPRICELIST.Size = New System.Drawing.Size(1300, 944)
         Me.grdPRICELIST.TabIndex = 0
         Me.grdPRICELIST.UseEmbeddedNavigator = True
         Me.grdPRICELIST.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView5})
@@ -347,14 +567,9 @@ Partial Class frmPriceListBatchUpdate
         Me.PRICELISTTEMPBindingSource.DataMember = "PRICELIST_TEMP"
         Me.PRICELISTTEMPBindingSource.DataSource = Me.DMDataSet
         '
-        'DMDataSet
-        '
-        Me.DMDataSet.DataSetName = "DMDataSet"
-        Me.DMDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
         'GridView5
         '
-        Me.GridView5.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.colΚωδικός, Me.colΠεριγραφή, Me.colΛιανικής, Me.GridColumn1, Me.colValueListName, Me.colValueListID, Me.colStatus, Me.colSupID})
+        Me.GridView5.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.colcode, Me.colsupID, Me.colvaluelistID, Me.colCustomCode, Me.colname, Me.coldescription, Me.colInitialPrice, Me.colPriceVat, Me.coldiscount, Me.colPrice, Me.colStatus})
         Me.GridView5.DetailHeight = 289
         Me.GridView5.FixedLineWidth = 3
         GridFormatRule1.Column = Me.colStatus
@@ -401,72 +616,123 @@ Partial Class frmPriceListBatchUpdate
         Me.GridView5.OptionsView.ShowGroupPanel = False
         Me.GridView5.PreviewIndent = 0
         '
-        'colΚωδικός
-        '
-        Me.colΚωδικός.Caption = "Κωδικός"
-        Me.colΚωδικός.FieldName = "Κωδικός"
-        Me.colΚωδικός.MinWidth = 30
-        Me.colΚωδικός.Name = "colΚωδικός"
-        Me.colΚωδικός.OptionsColumn.AllowEdit = False
-        Me.colΚωδικός.Visible = True
-        Me.colΚωδικός.VisibleIndex = 1
-        Me.colΚωδικός.Width = 91
-        '
-        'colΠεριγραφή
-        '
-        Me.colΠεριγραφή.Caption = "Περιγραφή"
-        Me.colΠεριγραφή.FieldName = "Περιγραφή"
-        Me.colΠεριγραφή.MinWidth = 30
-        Me.colΠεριγραφή.Name = "colΠεριγραφή"
-        Me.colΠεριγραφή.OptionsColumn.AllowEdit = False
-        Me.colΠεριγραφή.Visible = True
-        Me.colΠεριγραφή.VisibleIndex = 2
-        Me.colΠεριγραφή.Width = 609
-        '
-        'colΛιανικής
-        '
-        Me.colΛιανικής.Caption = "Λιανικής"
-        Me.colΛιανικής.FieldName = "Λιανικής"
-        Me.colΛιανικής.MinWidth = 30
-        Me.colΛιανικής.Name = "colΛιανικής"
-        Me.colΛιανικής.OptionsColumn.AllowEdit = False
-        Me.colΛιανικής.Visible = True
-        Me.colΛιανικής.VisibleIndex = 3
-        Me.colΛιανικής.Width = 93
-        '
         'GridColumn1
         '
-        Me.GridColumn1.FieldName = "Μ#Μ"
+        Me.GridColumn1.AppearanceCell.Options.UseBackColor = True
+        Me.GridColumn1.FieldName = "ID"
         Me.GridColumn1.MinWidth = 30
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.OptionsColumn.AllowEdit = False
-        Me.GridColumn1.Width = 68
+        Me.GridColumn1.Width = 112
         '
-        'colValueListName
+        'colcode
         '
-        Me.colValueListName.FieldName = "ValueListName"
-        Me.colValueListName.MinWidth = 30
-        Me.colValueListName.Name = "colValueListName"
-        Me.colValueListName.OptionsColumn.AllowEdit = False
-        Me.colValueListName.Visible = True
-        Me.colValueListName.VisibleIndex = 4
-        Me.colValueListName.Width = 116
+        Me.colcode.AppearanceCell.Options.UseBackColor = True
+        Me.colcode.FieldName = "code"
+        Me.colcode.MinWidth = 30
+        Me.colcode.Name = "colcode"
+        Me.colcode.OptionsColumn.AllowEdit = False
+        Me.colcode.Width = 112
         '
-        'colValueListID
+        'colsupID
         '
-        Me.colValueListID.FieldName = "ValueListID"
-        Me.colValueListID.MinWidth = 30
-        Me.colValueListID.Name = "colValueListID"
-        Me.colValueListID.OptionsColumn.AllowEdit = False
-        Me.colValueListID.Width = 328
+        Me.colsupID.AppearanceCell.Options.UseBackColor = True
+        Me.colsupID.FieldName = "supID"
+        Me.colsupID.MinWidth = 30
+        Me.colsupID.Name = "colsupID"
+        Me.colsupID.OptionsColumn.AllowEdit = False
+        Me.colsupID.Width = 112
         '
-        'colSupID
+        'colvaluelistID
         '
-        Me.colSupID.FieldName = "SupID"
-        Me.colSupID.MinWidth = 30
-        Me.colSupID.Name = "colSupID"
-        Me.colSupID.OptionsColumn.AllowEdit = False
-        Me.colSupID.Width = 340
+        Me.colvaluelistID.AppearanceCell.Options.UseBackColor = True
+        Me.colvaluelistID.FieldName = "valuelistID"
+        Me.colvaluelistID.MinWidth = 30
+        Me.colvaluelistID.Name = "colvaluelistID"
+        Me.colvaluelistID.OptionsColumn.AllowEdit = False
+        Me.colvaluelistID.Width = 112
+        '
+        'colCustomCode
+        '
+        Me.colCustomCode.AppearanceCell.Options.UseBackColor = True
+        Me.colCustomCode.Caption = "Κωδικός"
+        Me.colCustomCode.FieldName = "CustomCode"
+        Me.colCustomCode.MinWidth = 30
+        Me.colCustomCode.Name = "colCustomCode"
+        Me.colCustomCode.OptionsColumn.AllowEdit = False
+        Me.colCustomCode.Visible = True
+        Me.colCustomCode.VisibleIndex = 1
+        Me.colCustomCode.Width = 91
+        '
+        'colname
+        '
+        Me.colname.AppearanceCell.Options.UseBackColor = True
+        Me.colname.Caption = "Περιγραφή"
+        Me.colname.FieldName = "name"
+        Me.colname.MinWidth = 30
+        Me.colname.Name = "colname"
+        Me.colname.OptionsColumn.AllowEdit = False
+        Me.colname.Visible = True
+        Me.colname.VisibleIndex = 2
+        Me.colname.Width = 609
+        '
+        'coldescription
+        '
+        Me.coldescription.AppearanceCell.Options.UseBackColor = True
+        Me.coldescription.Caption = "Δευτερεόυσα Περιγραφή"
+        Me.coldescription.FieldName = "description"
+        Me.coldescription.MinWidth = 30
+        Me.coldescription.Name = "coldescription"
+        Me.coldescription.OptionsColumn.AllowEdit = False
+        Me.coldescription.Visible = True
+        Me.coldescription.VisibleIndex = 3
+        Me.coldescription.Width = 208
+        '
+        'colInitialPrice
+        '
+        Me.colInitialPrice.AppearanceCell.Options.UseBackColor = True
+        Me.colInitialPrice.Caption = "Αρχική Τιμή"
+        Me.colInitialPrice.FieldName = "InitialPrice"
+        Me.colInitialPrice.MinWidth = 30
+        Me.colInitialPrice.Name = "colInitialPrice"
+        Me.colInitialPrice.OptionsColumn.AllowEdit = False
+        Me.colInitialPrice.Visible = True
+        Me.colInitialPrice.VisibleIndex = 4
+        Me.colInitialPrice.Width = 118
+        '
+        'colPriceVat
+        '
+        Me.colPriceVat.Caption = "Αρχική Τιμή με ΦΠΑ"
+        Me.colPriceVat.FieldName = "PriceVat"
+        Me.colPriceVat.MinWidth = 30
+        Me.colPriceVat.Name = "colPriceVat"
+        Me.colPriceVat.Visible = True
+        Me.colPriceVat.VisibleIndex = 8
+        Me.colPriceVat.Width = 112
+        '
+        'coldiscount
+        '
+        Me.coldiscount.AppearanceCell.Options.UseBackColor = True
+        Me.coldiscount.Caption = "Έκπτωση"
+        Me.coldiscount.FieldName = "discount"
+        Me.coldiscount.MinWidth = 30
+        Me.coldiscount.Name = "coldiscount"
+        Me.coldiscount.OptionsColumn.AllowEdit = False
+        Me.coldiscount.Visible = True
+        Me.coldiscount.VisibleIndex = 5
+        Me.coldiscount.Width = 98
+        '
+        'colPrice
+        '
+        Me.colPrice.AppearanceCell.Options.UseBackColor = True
+        Me.colPrice.Caption = "Τιμή Λιανικής"
+        Me.colPrice.FieldName = "Price"
+        Me.colPrice.MinWidth = 30
+        Me.colPrice.Name = "colPrice"
+        Me.colPrice.OptionsColumn.AllowEdit = False
+        Me.colPrice.Visible = True
+        Me.colPrice.VisibleIndex = 6
+        Me.colPrice.Width = 130
         '
         'RepCus
         '
@@ -544,7 +810,7 @@ Partial Class frmPriceListBatchUpdate
         '
         Me.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.Root.GroupBordersVisible = False
-        Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem3, Me.LayoutControlItem5, Me.LayoutControlItem2, Me.LayoutControlItem6, Me.LayoutControlItem4})
+        Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem3, Me.LayoutControlItem5, Me.LayoutControlItem2, Me.LayoutControlItem6, Me.LayoutControlItem4, Me.LayoutControlItem8})
         Me.Root.Name = "Root"
         Me.Root.Size = New System.Drawing.Size(1324, 1008)
         Me.Root.TextVisible = False
@@ -554,55 +820,64 @@ Partial Class frmPriceListBatchUpdate
         Me.LayoutControlItem1.Control = Me.grdPRICELIST
         Me.LayoutControlItem1.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem1.Name = "LayoutControlItem1"
-        Me.LayoutControlItem1.Size = New System.Drawing.Size(1304, 952)
+        Me.LayoutControlItem1.Size = New System.Drawing.Size(1304, 948)
         Me.LayoutControlItem1.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem1.TextVisible = False
         '
         'LayoutControlItem3
         '
         Me.LayoutControlItem3.Control = Me.cmdExit
-        Me.LayoutControlItem3.Location = New System.Drawing.Point(1149, 952)
+        Me.LayoutControlItem3.Location = New System.Drawing.Point(1208, 948)
         Me.LayoutControlItem3.Name = "LayoutControlItem3"
-        Me.LayoutControlItem3.Size = New System.Drawing.Size(155, 36)
+        Me.LayoutControlItem3.Size = New System.Drawing.Size(96, 40)
         Me.LayoutControlItem3.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem3.TextVisible = False
-        '
-        'LayoutControlItem4
-        '
-        Me.LayoutControlItem4.Control = Me.ProgressBarControl1
-        Me.LayoutControlItem4.Location = New System.Drawing.Point(391, 952)
-        Me.LayoutControlItem4.Name = "LayoutControlItem4"
-        Me.LayoutControlItem4.Size = New System.Drawing.Size(758, 36)
-        Me.LayoutControlItem4.TextSize = New System.Drawing.Size(0, 0)
-        Me.LayoutControlItem4.TextVisible = False
         '
         'LayoutControlItem5
         '
         Me.LayoutControlItem5.Control = Me.cmdSave
-        Me.LayoutControlItem5.Location = New System.Drawing.Point(0, 952)
+        Me.LayoutControlItem5.Location = New System.Drawing.Point(218, 948)
         Me.LayoutControlItem5.Name = "LayoutControlItem5"
-        Me.LayoutControlItem5.Size = New System.Drawing.Size(129, 36)
+        Me.LayoutControlItem5.Size = New System.Drawing.Size(129, 40)
         Me.LayoutControlItem5.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem5.TextVisible = False
         '
         'LayoutControlItem2
         '
         Me.LayoutControlItem2.Control = Me.cmdDelete
-        Me.LayoutControlItem2.Location = New System.Drawing.Point(129, 952)
+        Me.LayoutControlItem2.Location = New System.Drawing.Point(347, 948)
         Me.LayoutControlItem2.Name = "LayoutControlItem2"
-        Me.LayoutControlItem2.Size = New System.Drawing.Size(124, 36)
+        Me.LayoutControlItem2.Size = New System.Drawing.Size(110, 40)
         Me.LayoutControlItem2.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem2.TextVisible = False
         '
         'LayoutControlItem6
         '
         Me.LayoutControlItem6.Control = Me.cmdKeywords
-        Me.LayoutControlItem6.Location = New System.Drawing.Point(253, 952)
+        Me.LayoutControlItem6.Location = New System.Drawing.Point(457, 948)
         Me.LayoutControlItem6.Name = "LayoutControlItem6"
-        Me.LayoutControlItem6.Size = New System.Drawing.Size(138, 36)
+        Me.LayoutControlItem6.Size = New System.Drawing.Size(138, 40)
         Me.LayoutControlItem6.Text = "Λέξεις Κλειδιά"
         Me.LayoutControlItem6.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem6.TextVisible = False
+        '
+        'LayoutControlItem4
+        '
+        Me.LayoutControlItem4.Control = Me.ProgressBarControl1
+        Me.LayoutControlItem4.Location = New System.Drawing.Point(595, 948)
+        Me.LayoutControlItem4.Name = "LayoutControlItem4"
+        Me.LayoutControlItem4.Size = New System.Drawing.Size(613, 40)
+        Me.LayoutControlItem4.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem4.TextVisible = False
+        '
+        'LayoutControlItem8
+        '
+        Me.LayoutControlItem8.Control = Me.cmdExcel
+        Me.LayoutControlItem8.Location = New System.Drawing.Point(0, 948)
+        Me.LayoutControlItem8.Name = "LayoutControlItem8"
+        Me.LayoutControlItem8.Size = New System.Drawing.Size(218, 40)
+        Me.LayoutControlItem8.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem8.TextVisible = False
         '
         'KANELLOPOULOSBindingSource
         '
@@ -626,177 +901,9 @@ Partial Class frmPriceListBatchUpdate
         '
         Me.PRICELIST_TEMPTableAdapter.ClearBeforeFill = True
         '
-        'DockPanel3
+        'PRICELISTS_PRMTableAdapter
         '
-        Me.DockPanel3.Controls.Add(Me.DockPanel3_Container)
-        Me.DockPanel3.Dock = DevExpress.XtraBars.Docking.DockingStyle.Fill
-        Me.DockPanel3.FloatVertical = True
-        Me.DockPanel3.ID = New System.Guid("8087a73d-6cc1-4366-a744-cc381866efee")
-        Me.DockPanel3.Location = New System.Drawing.Point(0, 0)
-        Me.DockPanel3.Name = "DockPanel3"
-        Me.DockPanel3.OriginalSize = New System.Drawing.Size(200, 200)
-        Me.DockPanel3.Size = New System.Drawing.Size(822, 451)
-        Me.DockPanel3.Text = "Παράμετροι"
-        '
-        'DockPanel3_Container
-        '
-        Me.DockPanel3_Container.Controls.Add(Me.LayoutControl2)
-        Me.DockPanel3_Container.Location = New System.Drawing.Point(7, 38)
-        Me.DockPanel3_Container.Name = "DockPanel3_Container"
-        Me.DockPanel3_Container.Size = New System.Drawing.Size(811, 406)
-        Me.DockPanel3_Container.TabIndex = 0
-        '
-        'LayoutControl2
-        '
-        Me.LayoutControl2.Controls.Add(Me.GridControl1)
-        Me.LayoutControl2.Controls.Add(Me.txtDisc1)
-        Me.LayoutControl2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.LayoutControl2.Location = New System.Drawing.Point(0, 0)
-        Me.LayoutControl2.Name = "LayoutControl2"
-        Me.LayoutControl2.Root = Me.LayoutControlGroup1
-        Me.LayoutControl2.Size = New System.Drawing.Size(811, 406)
-        Me.LayoutControl2.TabIndex = 0
-        Me.LayoutControl2.Text = "LayoutControl2"
-        '
-        'LayoutControlGroup1
-        '
-        Me.LayoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LayoutControlGroup1.GroupBordersVisible = False
-        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.Lcost3, Me.LayoutControlItem7})
-        Me.LayoutControlGroup1.Name = "LayoutControlGroup1"
-        Me.LayoutControlGroup1.Size = New System.Drawing.Size(811, 406)
-        Me.LayoutControlGroup1.TextVisible = False
-        '
-        'txtDisc1
-        '
-        Me.txtDisc1.EditValue = "0%"
-        Me.txtDisc1.Location = New System.Drawing.Point(12, 34)
-        Me.txtDisc1.Margin = New System.Windows.Forms.Padding(15)
-        Me.txtDisc1.Name = "txtDisc1"
-        Me.txtDisc1.Properties.DisplayFormat.FormatString = "c"
-        Me.txtDisc1.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtDisc1.Properties.EditFormat.FormatString = "n2"
-        Me.txtDisc1.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtDisc1.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.txtDisc1.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
-        Me.txtDisc1.Properties.MaskSettings.Set("mask", "P0")
-        Me.txtDisc1.Properties.Tag = "BenchExtraPrice"
-        Me.txtDisc1.Properties.UseReadOnlyAppearance = False
-        Me.txtDisc1.Size = New System.Drawing.Size(787, 26)
-        Me.txtDisc1.StyleController = Me.LayoutControl2
-        Me.txtDisc1.TabIndex = 42
-        Me.txtDisc1.Tag = "discount1,0,1,2"
-        Me.txtDisc1.Visible = False
-        '
-        'Lcost3
-        '
-        Me.Lcost3.Control = Me.txtDisc1
-        Me.Lcost3.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.Lcost3.CustomizationFormText = "Έκπτωση"
-        Me.Lcost3.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
-        Me.Lcost3.Location = New System.Drawing.Point(0, 0)
-        Me.Lcost3.Name = "Lcost3"
-        Me.Lcost3.Size = New System.Drawing.Size(791, 52)
-        Me.Lcost3.Text = "Έκπτωση"
-        Me.Lcost3.TextLocation = DevExpress.Utils.Locations.Top
-        Me.Lcost3.TextSize = New System.Drawing.Size(66, 19)
-        '
-        'GridControl1
-        '
-        Me.GridControl1.EmbeddedNavigator.Buttons.EndEdit.Visible = False
-        Me.GridControl1.EmbeddedNavigator.Buttons.First.Visible = False
-        Me.GridControl1.EmbeddedNavigator.Buttons.Last.Visible = False
-        Me.GridControl1.EmbeddedNavigator.Buttons.Next.Visible = False
-        Me.GridControl1.EmbeddedNavigator.Buttons.NextPage.Visible = False
-        Me.GridControl1.EmbeddedNavigator.Buttons.Prev.Visible = False
-        Me.GridControl1.EmbeddedNavigator.Buttons.PrevPage.Visible = False
-        Me.GridControl1.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(3, 1, 3, 1)
-        Me.GridControl1.Location = New System.Drawing.Point(12, 64)
-        Me.GridControl1.MainView = Me.GridView1
-        Me.GridControl1.Name = "GridControl1"
-        Me.GridControl1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepValueList})
-        Me.GridControl1.Size = New System.Drawing.Size(787, 330)
-        Me.GridControl1.TabIndex = 43
-        Me.GridControl1.UseEmbeddedNavigator = True
-        Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
-        '
-        'GridView1
-        '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.colID, Me.GridColumn2, Me.colkeyword, Me.GridColumn3})
-        Me.GridView1.DetailHeight = 289
-        Me.GridView1.GridControl = Me.GridControl1
-        Me.GridView1.Name = "GridView1"
-        Me.GridView1.OptionsEditForm.PopupEditFormWidth = 720
-        Me.GridView1.OptionsView.ShowAutoFilterRow = True
-        Me.GridView1.OptionsView.ShowGroupPanel = False
-        '
-        'colID
-        '
-        Me.colID.FieldName = "ID"
-        Me.colID.MinWidth = 30
-        Me.colID.Name = "colID"
-        Me.colID.Width = 112
-        '
-        'GridColumn2
-        '
-        Me.GridColumn2.FieldName = "supID"
-        Me.GridColumn2.MinWidth = 30
-        Me.GridColumn2.Name = "GridColumn2"
-        Me.GridColumn2.Width = 112
-        '
-        'colkeyword
-        '
-        Me.colkeyword.Caption = "Λέξη"
-        Me.colkeyword.FieldName = "keyword"
-        Me.colkeyword.MinWidth = 30
-        Me.colkeyword.Name = "colkeyword"
-        Me.colkeyword.Visible = True
-        Me.colkeyword.VisibleIndex = 0
-        Me.colkeyword.Width = 112
-        '
-        'GridColumn3
-        '
-        Me.GridColumn3.Caption = "Κατηγορία"
-        Me.GridColumn3.ColumnEdit = Me.RepValueList
-        Me.GridColumn3.FieldName = "valueListID"
-        Me.GridColumn3.MinWidth = 30
-        Me.GridColumn3.Name = "GridColumn3"
-        Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 1
-        Me.GridColumn3.Width = 112
-        '
-        'RepValueList
-        '
-        Me.RepValueList.AutoHeight = False
-        Me.RepValueList.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.RepValueList.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "ID", 30, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("name", "Κατηγορία", 52, DevExpress.Utils.FormatType.None, "", True, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("GroupName", "Group Name", 103, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default])})
-        Me.RepValueList.DisplayMember = "name"
-        Me.RepValueList.Name = "RepValueList"
-        Me.RepValueList.NullText = ""
-        Me.RepValueList.ValueMember = "ID"
-        '
-        'LayoutControlItem7
-        '
-        Me.LayoutControlItem7.Control = Me.GridControl1
-        Me.LayoutControlItem7.Location = New System.Drawing.Point(0, 52)
-        Me.LayoutControlItem7.Name = "LayoutControlItem7"
-        Me.LayoutControlItem7.Size = New System.Drawing.Size(791, 334)
-        Me.LayoutControlItem7.TextSize = New System.Drawing.Size(0, 0)
-        Me.LayoutControlItem7.TextVisible = False
-        '
-        'panelContainer1
-        '
-        Me.panelContainer1.Controls.Add(Me.DockPanel3)
-        Me.panelContainer1.Controls.Add(Me.DockPanel2)
-        Me.panelContainer1.Dock = DevExpress.XtraBars.Docking.DockingStyle.Right
-        Me.panelContainer1.ID = New System.Guid("5a4357ff-89fc-44bd-91a8-cb56a63203a4")
-        Me.panelContainer1.Location = New System.Drawing.Point(1324, 140)
-        Me.panelContainer1.Name = "panelContainer1"
-        Me.panelContainer1.OriginalSize = New System.Drawing.Size(822, 226)
-        Me.panelContainer1.SavedDock = DevExpress.XtraBars.Docking.DockingStyle.Right
-        Me.panelContainer1.SavedIndex = 1
-        Me.panelContainer1.Size = New System.Drawing.Size(822, 1008)
-        Me.panelContainer1.Text = "panelContainer1"
+        Me.PRICELISTS_PRMTableAdapter.ClearBeforeFill = True
         '
         'frmPriceListBatchUpdate
         '
@@ -815,6 +922,20 @@ Partial Class frmPriceListBatchUpdate
         Me.DockPanel1.ResumeLayout(False)
         Me.DockPanel1_Container.ResumeLayout(False)
         CType(Me.TileNavPane1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.panelContainer1.ResumeLayout(False)
+        Me.DockPanel3.ResumeLayout(False)
+        Me.DockPanel3_Container.ResumeLayout(False)
+        CType(Me.LayoutControl2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.LayoutControl2.ResumeLayout(False)
+        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PRICELISTSPRMBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DMDataSet, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepValueList, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtDiscount.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Lcost3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).EndInit()
         Me.DockPanel2.ResumeLayout(False)
         Me.DockPanel2_Container.ResumeLayout(False)
         CType(Me.lstLog, System.ComponentModel.ISupportInitialize).EndInit()
@@ -823,7 +944,6 @@ Partial Class frmPriceListBatchUpdate
         CType(Me.ProgressBarControl1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.grdPRICELIST, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PRICELISTTEMPBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DMDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepCus, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtImageCorrect, System.ComponentModel.ISupportInitialize).EndInit()
@@ -836,24 +956,13 @@ Partial Class frmPriceListBatchUpdate
         CType(Me.Root, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.KANELLOPOULOSBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ImageCollection1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.DockPanel3.ResumeLayout(False)
-        Me.DockPanel3_Container.ResumeLayout(False)
-        CType(Me.LayoutControl2, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.LayoutControl2.ResumeLayout(False)
-        CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtDisc1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.Lcost3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepValueList, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.panelContainer1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -895,28 +1004,37 @@ Partial Class frmPriceListBatchUpdate
     Friend WithEvents cmdKeywords As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LayoutControlItem6 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents PRICELISTTEMPBindingSource As BindingSource
-    Friend WithEvents colΚωδικός As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents colΠεριγραφή As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents colΛιανικής As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents colValueListName As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents colValueListID As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents colStatus As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents colSupID As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents PRICELIST_TEMPTableAdapter As DMDataSetTableAdapters.PRICELIST_TEMPTableAdapter
     Friend WithEvents DockPanel3 As DevExpress.XtraBars.Docking.DockPanel
     Friend WithEvents DockPanel3_Container As DevExpress.XtraBars.Docking.ControlContainer
     Friend WithEvents LayoutControl2 As DevExpress.XtraLayout.LayoutControl
     Friend WithEvents LayoutControlGroup1 As DevExpress.XtraLayout.LayoutControlGroup
-    Friend WithEvents txtDisc1 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents txtDiscount As DevExpress.XtraEditors.TextEdit
     Friend WithEvents Lcost3 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents panelContainer1 As DevExpress.XtraBars.Docking.DockPanel
     Friend WithEvents GridControl1 As DevExpress.XtraGrid.GridControl
     Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents colID As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents colkeyword As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepValueList As DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit
     Friend WithEvents LayoutControlItem7 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents PRICELISTSPRMBindingSource As BindingSource
+    Friend WithEvents colFromValue As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colToValue As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colvalue As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents PRICELISTS_PRMTableAdapter As DMDataSetTableAdapters.PRICELISTS_PRMTableAdapter
+    Friend WithEvents cmdExcel As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents LayoutControlItem8 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents colID As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colsupID1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colcode As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colsupID As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colvaluelistID As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colCustomCode As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colname As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents coldescription As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colInitialPrice As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents coldiscount As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colPrice As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colPriceVat As DevExpress.XtraGrid.Columns.GridColumn
 End Class

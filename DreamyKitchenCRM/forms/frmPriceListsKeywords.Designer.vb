@@ -36,6 +36,7 @@ Partial Class frmPriceListsKeywords
         Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.Vw_VALUELISTTableAdapter = New DreamyKitchenCRM.DM_VALUELISTITEMTableAdapters.vw_VALUELISTTableAdapter()
         Me.PRICELISTS_KEYWORDSTableAdapter = New DreamyKitchenCRM.DMDataSetTableAdapters.PRICELISTS_KEYWORDSTableAdapter()
+        Me.colActive = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -92,7 +93,7 @@ Partial Class frmPriceListsKeywords
         '
         'GridView1
         '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.colID, Me.colsupID, Me.colkeyword, Me.colvalueListID})
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.colID, Me.colsupID, Me.colkeyword, Me.colvalueListID, Me.colActive})
         Me.GridView1.DetailHeight = 289
         Me.GridView1.GridControl = Me.GridControl1
         Me.GridView1.Name = "GridView1"
@@ -182,6 +183,16 @@ Partial Class frmPriceListsKeywords
         '
         Me.PRICELISTS_KEYWORDSTableAdapter.ClearBeforeFill = True
         '
+        'colActive
+        '
+        Me.colActive.Caption = "Ενεργό"
+        Me.colActive.FieldName = "Active"
+        Me.colActive.MinWidth = 30
+        Me.colActive.Name = "colActive"
+        Me.colActive.Visible = True
+        Me.colActive.VisibleIndex = 2
+        Me.colActive.Width = 112
+        '
         'frmPriceListsKeywords
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 19.0!)
@@ -223,4 +234,5 @@ Partial Class frmPriceListsKeywords
     Friend WithEvents PRICELISTSKEYWORDSBindingSource As BindingSource
     Friend WithEvents DMDataSet As DMDataSet
     Friend WithEvents PRICELISTS_KEYWORDSTableAdapter As DMDataSetTableAdapters.PRICELISTS_KEYWORDSTableAdapter
+    Friend WithEvents colActive As DevExpress.XtraGrid.Columns.GridColumn
 End Class

@@ -3,38 +3,70 @@ Imports DevExpress.XtraEditors
 Imports DevExpress.XtraEditors.Controls
 Imports DevExpress.XtraGrid.Views.Base
 Imports DevExpress.XtraGrid.Views.Grid
+Imports DevExpress.XtraGrid.Views.Grid.ViewInfo
 
 Public Class frmPriceListBatchUpdate
     Private DBQ As New DBQueries
     Private LoadForms As New FormLoader
     Private sSUP_ID As String
     Private sFileName As String
-    Private repCCTID As String = ""
-    Private reptranshID As String = ""
-    Private sCmt As String = ""
     Private PriceListBatchUpdateKanellopoulos As New PriceListBatchUpdateKanellopoulos
 
     Private Sub frmPriceListBatchUpdate_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        ''TODO: This line of code loads data into the 'DM_TRANS.CCT_TRANSH' table. You can move, or remove it, as needed.
-        'Me.CCT_TRANSHTableAdapter.Fill(Me.DM_TRANS.CCT_TRANSH)
-        ''TODO: This line of code loads data into the 'DMDataSet.CCT_TRANSH' table. You can move, or remove it, as needed.
-        'Me.CCT_TRANSHTableAdapter.Fill(Me.DM_TRANS.CCT_TRANSH)
-        ''TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_BUY' table. You can move, or remove it, as needed.
-        'Me.KANELLOPOULOSTableAdapter.Fill(Me.DMDataSet.KANELLOPOULOS)
-        'LoadForms.RestoreLayoutFromXml(GridView5, "KANELLOPOULOS.xml")
-        'AddHandler RepTransh.EditValueChanged, AddressOf RepTransh_Changed
-        'AddHandler RepCus.EditValueChanged, AddressOf RepCus_Changed
-        'AddHandler RepKan_O.KeyDown, AddressOf RepKan_O_KeyDown
-        'SupMode = 1
-        LoadForms.RestoreLayoutFromXml(GridView5, "KanellopoulosPriceList.xml")
+
+        AddHandler GridControl1.EmbeddedNavigator.ButtonClick, AddressOf Grid_EmbeddedNavigator_ButtonClick
+
+        cmdExcel.Enabled = False
+        cmdSave.Enabled = False
+        cmdKeywords.Enabled = False
+        cmdDelete.Enabled = False
+        txtDiscount.ReadOnly = True
+        LayoutControlItem7.Enabled = False
     End Sub
     Private Sub NavKanelopoulos_ElementClick(sender As Object, e As NavElementEventArgs) Handles NavKanelopoulos.ElementClick
-        sSUP_ID = "89251045-64C7-4E35-9CAF-51D020279CFE" : cmdKeywords.Enabled = True
+        sSUP_ID = "89251045-64C7-4E35-9CAF-51D020279CFE"
         PriceListBatchUpdateKanellopoulos.SUP_ID = sSUP_ID
         PriceListBatchUpdateKanellopoulos.Initialize(Me)
         PRICELIST_TEMPTableAdapter.FillBySupID(DMDataSet.PRICELIST_TEMP, System.Guid.Parse(sSUP_ID))
-        PriceListBatchUpdateKanellopoulos.FilesSelection()
+        PRICELISTS_PRMTableAdapter.FillBySupID(DMDataSet.PRICELISTS_PRM, System.Guid.Parse(sSUP_ID))
+        PriceListBatchUpdateKanellopoulos.GetDiscount()
         LoadForms.RestoreLayoutFromXml(GridView5, "KanellopoulosPriceList.xml")
+        LoadForms.RestoreLayoutFromXml(GridView1, "KanellopoulosPriceListPRM.xml")
+        cmdExcel.Enabled = True
+        cmdKeywords.Enabled = True
+        cmdSave.Enabled = True
+        cmdDelete.Enabled = True
+        txtDiscount.ReadOnly = False
+        LayoutControlItem7.Enabled = True
+    End Sub
+    Private Sub Grid_EmbeddedNavigator_ButtonClick(ByVal sender As Object, ByVal e As DevExpress.XtraEditors.NavigatorButtonClickEventArgs)
+        Select Case e.Button.ButtonType
+            Case e.Button.ButtonType.Remove
+                Select Case sSUP_ID
+                    Case "89251045-64C7-4E35-9CAF-51D020279CFE" 'Κανελλόπουλος
+                        PriceListBatchUpdateKanellopoulos.DeleteRecordPrm() : e.Handled = True
+                End Select
+
+            Case e.Button.ButtonType.Append
+        End Select
+    End Sub
+    Private Sub GridView1_ValidateRow(sender As Object, e As ValidateRowEventArgs) Handles GridView1.ValidateRow
+        Select Case sSUP_ID
+            Case "89251045-64C7-4E35-9CAF-51D020279CFE" ' ΚΑΝΕΛΛΟΠΟΥΛΟΣ
+                PriceListBatchUpdateKanellopoulos.SaveRecordPRM(e)
+                PriceListBatchUpdateKanellopoulos.ApplyDiscountAndRanges()
+                PRICELIST_TEMPTableAdapter.FillBySupID(DMDataSet.PRICELIST_TEMP, System.Guid.Parse(sSUP_ID))
+        End Select
+    End Sub
+    Private Sub GridView1_KeyDown(sender As Object, e As KeyEventArgs) Handles GridView1.KeyDown
+        If e.KeyCode = Keys.Delete And UserProps.AllowDelete = True Then PriceListBatchUpdateKanellopoulos.DeleteRecordPRM()
+        If e.KeyCode = Keys.Down And UserProps.AllowInsert Then
+            If sender.FocusedRowHandle < 0 Then Exit Sub
+            Dim viewInfo As GridViewInfo = TryCast(sender.GetViewInfo(), GridViewInfo)
+            If sender.FocusedRowHandle = viewInfo.RowsInfo.Last().RowHandle Then
+                GridView1.PostEditor() : GridView1.AddNewRow()
+            End If
+        End If
     End Sub
     'Friend Sub RepTransh_Changed(sender As Object, e As EventArgs)
     '    Dim editor As DevExpress.XtraEditors.LookUpEdit = TryCast(sender, DevExpress.XtraEditors.LookUpEdit)
@@ -127,7 +159,45 @@ Public Class frmPriceListBatchUpdate
 
     Private Sub GridView5_CustomColumnDisplayText(sender As Object, e As CustomColumnDisplayTextEventArgs) Handles GridView5.CustomColumnDisplayText
         If e.Column.Name = "colStatus" Then e.DisplayText = String.Empty
+    End Sub
 
+    Private Sub txtDiscount_Validated(sender As Object, e As EventArgs) Handles txtDiscount.Validated
+        PriceListBatchUpdateKanellopoulos.AddOrUpdateDiscount()
+        PriceListBatchUpdateKanellopoulos.ApplyDiscountAndRanges()
+        PRICELIST_TEMPTableAdapter.FillBySupID(DMDataSet.PRICELIST_TEMP, System.Guid.Parse(sSUP_ID))
+    End Sub
+
+    Private Sub cmdExcel_Click(sender As Object, e As EventArgs) Handles cmdExcel.Click
+        If PriceListBatchUpdateKanellopoulos.FilesSelection() Then
+            PriceListBatchUpdateKanellopoulos.AddOrUpdateDiscount()
+            PriceListBatchUpdateKanellopoulos.ApplyDiscountAndRanges()
+            PRICELIST_TEMPTableAdapter.FillBySupID(DMDataSet.PRICELIST_TEMP, System.Guid.Parse(sSUP_ID))
+            cmdSave.Enabled = True
+            cmdDelete.Enabled = True
+        End If
+        LoadForms.RestoreLayoutFromXml(GridView5, "KanellopoulosPriceList.xml")
+
+    End Sub
+
+    Private Sub GridView1_PopupMenuShowing(sender As Object, e As PopupMenuShowingEventArgs) Handles GridView1.PopupMenuShowing
+        Select Case sSUP_ID
+            Case "89251045-64C7-4E35-9CAF-51D020279CFE" 'Κανελλόπουλος
+                If e.MenuType = GridMenuType.Column Then LoadForms.PopupMenuShow(e, GridView1, "KanellopoulosPriceListPRM.xml", "PRICELISTS_PRM")
+
+        End Select
+
+    End Sub
+
+    Private Sub cmdDelete_Click(sender As Object, e As EventArgs) Handles cmdDelete.Click
+        Select Case sSUP_ID
+            Case "89251045-64C7-4E35-9CAF-51D020279CFE" 'Κανελλόπουλος
+                PriceListBatchUpdateKanellopoulos.DeleteBatchRecords()
+                PRICELIST_TEMPTableAdapter.FillBySupID(DMDataSet.PRICELIST_TEMP, System.Guid.Parse(sSUP_ID))
+        End Select
+    End Sub
+
+    Private Sub cmdSave_Click(sender As Object, e As EventArgs) Handles cmdSave.Click
+        PriceListBatchUpdateKanellopoulos.SaveRecord()
     End Sub
 
     'Private Sub InsertRecordsToBuy()

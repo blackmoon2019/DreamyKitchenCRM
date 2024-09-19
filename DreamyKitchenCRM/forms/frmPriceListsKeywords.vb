@@ -32,6 +32,7 @@ Public Class frmPriceListsKeywords
             Case e.Button.ButtonType.Append
         End Select
     End Sub
+
     Private Sub GridView1_KeyDown(sender As Object, e As KeyEventArgs) Handles GridView1.KeyDown
         If e.KeyCode = Keys.Delete And UserProps.AllowDelete = True Then PriceListKeyword.DeleteRecord()
         If e.KeyCode = Keys.Down And UserProps.AllowInsert Then
@@ -43,7 +44,7 @@ Public Class frmPriceListsKeywords
         End If
     End Sub
     Private Sub GridView1_PopupMenuShowing(sender As Object, e As DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventArgs) Handles GridView1.PopupMenuShowing
-        If e.MenuType = GridMenuType.Column Then LoadForms.PopupMenuShow(e, GridView1, "PRICELISTS_KEYWORDS_def.xml", "PRICELISTS_KEYWORDS")
+        If e.MenuType = GridMenuType.Column Then LoadForms.PopupMenuShow(e, GridView1, "KanellopoulosPriceListKeywords.xml", "PRICELISTS_KEYWORDS")
     End Sub
 
 End Class

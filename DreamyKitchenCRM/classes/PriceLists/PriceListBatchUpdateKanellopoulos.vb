@@ -1,13 +1,9 @@
 ﻿Imports System.Data.SqlClient
-Imports DevExpress.ClipboardSource.SpreadsheetML
-Imports DevExpress.DataAccess.Excel
-Imports DevExpress.Spreadsheet
-Imports System.IO
 Imports DevExpress.XtraEditors
-Imports DevExpress.DataAccess.UI.Excel
-Imports System.ComponentModel
 Imports System.Data.OleDb
-Imports DevExpress.DataAccess.Native.Sql.MasterDetail
+Imports DevExpress.XtraGrid.Views.Base
+Imports DreamyKitchenCRM.DMDataSetTableAdapters
+Imports Microsoft.VisualBasic.Logging
 
 Public Class PriceListBatchUpdateKanellopoulos
     Dim Frm As frmPriceListBatchUpdate
@@ -26,8 +22,86 @@ Public Class PriceListBatchUpdateKanellopoulos
         'Frm.PRICELISTS_KEYWORDSTableAdapter.FillBySupID(Frm.DMDataSet.PRICELISTS_KEYWORDS, System.Guid.Parse(sSUP_ID))
         'LoadForms.RestoreLayoutFromXml(Frm.GridView1, "PRICELISTS_KEYWORDS_def.xml")
     End Sub
+    Public Sub AddOrUpdateDiscount()
+        Using oCmd As New SqlCommand("usp_AddOrUpdatePriceListPrmDiscount", CNDB)
+            oCmd.CommandType = CommandType.StoredProcedure
+            oCmd.Parameters.AddWithValue("@supID", sSUP_ID)
+            oCmd.Parameters.AddWithValue("@Discount", Frm.txtDiscount.EditValue)
+            oCmd.Parameters.AddWithValue("@UserID", UserProps.ID)
+            oCmd.ExecuteNonQuery()
+        End Using
+    End Sub
+    Public Sub ApplyDiscountAndRanges()
+        Using oCmd As New SqlCommand("usp_ApplyDiscountAndRanges", CNDB)
+            oCmd.CommandType = CommandType.StoredProcedure
+            oCmd.Parameters.AddWithValue("@supID", sSUP_ID)
+            oCmd.ExecuteNonQuery()
+        End Using
 
-    Public Sub FilesSelection()
+    End Sub
+    Public Sub DeleteBatchRecords()
+        Dim sSQL As String
+        Dim selectedRowHandles As Int32() = Frm.GridView5.GetSelectedRows()
+        Dim I As Integer
+        Dim ItemsCorrect As Integer = 0, ItemsWrong As Integer = 0
+        Try
+            If selectedRowHandles.Length = 0 Then Exit Sub
+            If XtraMessageBox.Show("Θέλετε να διαγραφούν η τρέχουσες εγγραφές?", ProgProps.ProgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbNo Then Exit Sub
+
+            If selectedRowHandles.Count = Frm.GridView5.DataRowCount Then
+                Frm.lstLog.Items.Clear()
+                Dim Cmd As SqlCommand
+                Cmd = New SqlCommand("DELETE FROM PRICELIST_TEMP WHERE SUPID =  " & toSQLValueS(sSUP_ID), CNDB)
+                Cmd.ExecuteNonQuery()
+                Exit Sub
+            End If
+
+            Frm.LayoutControlItem4.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+            Frm.ProgressBarControl1.EditValue = 0
+            Frm.ProgressBarControl1.Properties.Step = 1
+            Frm.ProgressBarControl1.Properties.PercentView = True
+            Frm.ProgressBarControl1.Properties.Maximum = selectedRowHandles.Length - 1
+            Frm.ProgressBarControl1.Properties.Minimum = 0
+            Frm.lstLog.Items.Clear()
+
+            For I = 0 To selectedRowHandles.Length - 1
+                Dim selectedRowHandle As Int32 = selectedRowHandles(I)
+
+                'If GridView5.GetRowCellValue(selectedRowHandle, "ID") = Nothing Then Exit Sub
+                'If GridView5.GetRowCellValue(selectedRowHandle, "completed") = "False" Then
+
+                sSQL = "DELETE FROM PRICELIST_TEMP WHERE ID = '" & Frm.GridView5.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
+                Try
+                    Using oCmd As New SqlCommand(sSQL, CNDB)
+                        oCmd.ExecuteNonQuery()
+                    End Using
+
+                    Frm.lstLog.Items.Add("Η εγγραφή Διαγράφηκε με επιτυχία!-->" & Frm.GridView5.GetRowCellValue(selectedRowHandle, "CustomCode").ToString)
+                    Frm.lstLog.Items(Frm.lstLog.Items.Count - 1).ImageOptions.Image = Frm.ImageCollection1.Images.Item(0)
+                    ItemsCorrect = ItemsCorrect + 1
+                Catch ex As Exception
+                    Frm.lstLog.Items.Add(ex.Message.ToString.Replace(vbCrLf, ""))
+                    Frm.lstLog.Items(Frm.lstLog.Items.Count - 1).ImageOptions.Image = Frm.ImageCollection1.Images.Item(1)
+                    ItemsWrong = ItemsWrong + 1
+                End Try
+                'Else
+                '    ItemsWrong = ItemsWrong + 1
+                '    lstLog.Items.Add("Η εγγραφή είναι ολοκληρωμένη. Δεν μπορεί να γίνει διαγραφή!-->" & GridView5.GetRowCellValue(selectedRowHandle, "invNumber").ToString)
+                '    lstLog.Items(lstLog.Items.Count - 1).ImageOptions.Image = ImageCollection1.Images.Item(1)
+                'End If
+                Frm.ProgressBarControl1.PerformStep()
+                Frm.ProgressBarControl1.Update()
+            Next I
+            Frm.lstLog.Items.Add("Διαγράφηκαν: " & ItemsCorrect & " Λάθοι: " & ItemsWrong)
+            Frm.lstLog.Items(Frm.lstLog.Items.Count - 1).ImageOptions.Image = Frm.ImageCollection1.Images.Item(2)
+            Frm.LayoutControlItem4.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+            Frm.PRICELIST_TEMPTableAdapter.FillBySupID(Frm.DMDataSet.PRICELIST_TEMP, System.Guid.Parse(sSUP_ID))
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Frm.LayoutControlItem4.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+        End Try
+    End Sub
+    Public Function FilesSelection() As Boolean
         Try
             Frm.XtraOpenFileDialog1.Filter = "Excel files (*.xlsx)|*.xlsx|All files (*.*)|*.*"
             Frm.XtraOpenFileDialog1.Title = "Άνοιγμα αρχείου ΚΑΝΕΛΛΟΠΟΥΛΟΣ"
@@ -41,14 +115,190 @@ Public Class PriceListBatchUpdateKanellopoulos
             If result = DialogResult.OK Then
                 sFileName = Frm.XtraOpenFileDialog1.SafeFileName
                 ReadFromExcelWorkbook()
+                Return True
+            Else
+                Return False
             End If
-
-
         Catch ex As DevExpress.DataAccess.Excel.InvalidWorksheetNameValidationException
             XtraMessageBox.Show("Το excel που επιλέξατε δεν ανήκει στον προμηθευτή Κανελλόπουλο", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return False
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return False
+        End Try
+    End Function
+    Public Sub DeleteRecordPRM()
+        If Frm.GridView1.FocusedRowHandle < 0 Then
+            XtraMessageBox.Show("Δεν μπορείτε να διαγράψετε εγγραφή που επεξεργάζεστε. Αν θέλετε να φύγετε από την εγγραφή πατήστε ESC", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Exit Sub
+        End If
+        If Frm.GridView1.GetRowCellValue(Frm.GridView1.FocusedRowHandle, "ID") = Nothing Then Exit Sub
+        If XtraMessageBox.Show("Θέλετε να διαγραφεί η τρέχουσα εγγραφή?", ProgProps.ProgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+            Dim sSQL As String = "DELETE FROM PRICELISTS_PRM WHERE ID = '" & Frm.GridView1.GetRowCellValue(Frm.GridView1.FocusedRowHandle, "ID").ToString & "'"
+            Using oCmd As New SqlCommand(sSQL, CNDB)
+                oCmd.ExecuteNonQuery()
+            End Using
+            Frm.PRICELISTS_PRMTableAdapter.FillBySupID(Frm.DMDataSet.PRICELISTS_PRM, System.Guid.Parse(sSUP_ID))
+        End If
+    End Sub
+    Public Sub SaveRecord()
+        Dim sSQL As New System.Text.StringBuilder
+        Dim selectedRowHandles As Int32() = Frm.GridView5.GetSelectedRows()
+        Dim I As Integer
+        Dim ItemsCorrect As Integer = 0, ItemsWrong As Integer = 0
+        Try
+            If selectedRowHandles.Length = 0 Then Exit Sub
+            If XtraMessageBox.Show("Θέλετε να ενημερωθεί ο τιμοκατάλογος?", ProgProps.ProgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbNo Then Exit Sub
 
+            Frm.LayoutControlItem4.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+            Frm.ProgressBarControl1.EditValue = 0
+            Frm.ProgressBarControl1.Properties.Step = 1
+            Frm.ProgressBarControl1.Properties.PercentView = True
+            Frm.ProgressBarControl1.Properties.Maximum = selectedRowHandles.Length - 1
+            Frm.ProgressBarControl1.Properties.Minimum = 0
+            Frm.lstLog.Items.Clear()
+
+            For I = 0 To selectedRowHandles.Length - 1
+                Dim selectedRowHandle As Int32 = selectedRowHandles(I)
+
+                If Frm.GridView5.GetRowCellValue(selectedRowHandle, "Status") = 2 Then
+                    Try
+                        'Εισαγωγή εγγραφών από Excel sthn Βάση
+                        sSQL.AppendLine("INSERT INTO VALUELISTITEM (ID,valuelistID,supID,CustomCode,name,description,Price, createdBy,createdOn,cat) ")
+                        sSQL.AppendLine("Select newid()" & ",")
+                        sSQL.AppendLine(toSQLValueS(Frm.GridView5.GetRowCellValue(selectedRowHandle, "valuelistID").ToString) & ",")
+                        sSQL.AppendLine(toSQLValueS(sSUP_ID) & ",")
+                        sSQL.AppendLine(toSQLValueS(Frm.GridView5.GetRowCellValue(selectedRowHandle, "CustomCode").ToString) & ",")
+                        sSQL.AppendLine(toSQLValueS(Frm.GridView5.GetRowCellValue(selectedRowHandle, "name").ToString) & ",")
+                        sSQL.AppendLine(toSQLValueS(Frm.GridView5.GetRowCellValue(selectedRowHandle, "description").ToString) & ",")
+                        sSQL.AppendLine(toSQLValueS(Frm.GridView5.GetRowCellValue(selectedRowHandle, "Price").ToString, True) & ",")
+                        sSQL.Append(toSQLValueS(UserProps.ID.ToString) & ", getdate(),0")
+
+                        Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
+                            oCmd.ExecuteNonQuery()
+                        End Using
+                        Frm.lstLog.Items.Add("Η εγγραφή Καταχωρήθηκε με επιτυχία!-->" & Frm.GridView5.GetRowCellValue(selectedRowHandle, "CustomCode").ToString)
+                        Frm.lstLog.Items(Frm.lstLog.Items.Count - 1).ImageOptions.Image = Frm.ImageCollection1.Images.Item(0)
+                        'Frm.lstLog.Items(Frm.lstLog.Items.Count - 1).Tag = sKanelopoulosID
+                        ItemsCorrect = ItemsCorrect + 1
+                        Frm.lstLog.SelectedIndex = Frm.lstLog.ItemCount + 1
+                        Frm.lstLog.Refresh()
+                    Catch dbException As System.Data.SqlClient.SqlException
+                        Frm.lstLog.Items.Add("Ο κωδικός " & Frm.GridView5.GetRowCellValue(selectedRowHandle, "CustomCode").ToString & "  υπάρχει ήδη.")
+                        Frm.lstLog.Items(Frm.lstLog.Items.Count - 1).ImageOptions.Image = Frm.ImageCollection1.Images.Item(4)
+                        ItemsWrong = ItemsWrong + 1
+                        Frm.lstLog.SelectedIndex = Frm.lstLog.ItemCount + 1
+                        Frm.lstLog.Refresh()
+                    Catch ex As Exception
+                        Frm.lstLog.Items.Add(ex.Message.ToString.Replace(vbCrLf, ""))
+                        Frm.lstLog.Items(Frm.lstLog.Items.Count - 1).ImageOptions.Image = Frm.ImageCollection1.Images.Item(1)
+                        ItemsWrong = ItemsWrong + 1
+                        Frm.lstLog.SelectedIndex = Frm.lstLog.ItemCount + 1
+                        Frm.lstLog.Refresh()
+                    End Try
+                    sSQL.Clear()
+                End If
+                If Frm.GridView5.GetRowCellValue(selectedRowHandle, "Status") = 1 Then
+                    Try
+                        'Εισαγωγή εγγραφών από Excel sthn Βάση
+                        sSQL.AppendLine("UPDATE VALUELISTITEM SET CustomCode= " & toSQLValueS(Frm.GridView5.GetRowCellValue(selectedRowHandle, "CustomCode").ToString) & ",")
+                        sSQL.AppendLine("valuelistID = " & toSQLValueS(Frm.GridView5.GetRowCellValue(selectedRowHandle, "valuelistID").ToString) & ",")
+                        sSQL.AppendLine("name = " & toSQLValueS(Frm.GridView5.GetRowCellValue(selectedRowHandle, "name").ToString) & ",")
+                        sSQL.AppendLine("description = " & toSQLValueS(Frm.GridView5.GetRowCellValue(selectedRowHandle, "description").ToString) & ",")
+                        sSQL.AppendLine("Price = " & toSQLValueS(Frm.GridView5.GetRowCellValue(selectedRowHandle, "Price").ToString, True) & ",")
+                        sSQL.AppendLine("modifiedBY = " & toSQLValueS(UserProps.ID.ToString) & ",")
+                        sSQL.AppendLine("modifiedON = getdate() ")
+                        sSQL.AppendLine("WHERE ID = " & toSQLValueS(Frm.GridView5.GetRowCellValue(selectedRowHandle, "ID").ToString))
+
+                        Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
+                            oCmd.ExecuteNonQuery()
+                        End Using
+                        Frm.lstLog.Items.Add("Η εγγραφή Ενημερώθηκε  με επιτυχία!-->" & Frm.GridView5.GetRowCellValue(selectedRowHandle, "CustomCode").ToString)
+                        Frm.lstLog.Items(Frm.lstLog.Items.Count - 1).ImageOptions.Image = Frm.ImageCollection1.Images.Item(0)
+                        'Frm.lstLog.Items(Frm.lstLog.Items.Count - 1).Tag = sKanelopoulosID
+                        ItemsCorrect = ItemsCorrect + 1
+                        Frm.lstLog.SelectedIndex = Frm.lstLog.ItemCount + 1
+                        Frm.lstLog.Refresh()
+                    Catch dbException As System.Data.SqlClient.SqlException
+                        Frm.lstLog.Items.Add("Ο κωδικός " & Frm.GridView5.GetRowCellValue(selectedRowHandle, "CustomCode").ToString & "  υπάρχει ήδη.")
+                        Frm.lstLog.Items(Frm.lstLog.Items.Count - 1).ImageOptions.Image = Frm.ImageCollection1.Images.Item(4)
+                        ItemsWrong = ItemsWrong + 1
+                        Frm.lstLog.SelectedIndex = Frm.lstLog.ItemCount + 1
+                        Frm.lstLog.Refresh()
+                    Catch ex As Exception
+                        Frm.lstLog.Items.Add(ex.Message.ToString.Replace(vbCrLf, ""))
+                        Frm.lstLog.Items(Frm.lstLog.Items.Count - 1).ImageOptions.Image = Frm.ImageCollection1.Images.Item(1)
+                        ItemsWrong = ItemsWrong + 1
+                        Frm.lstLog.SelectedIndex = Frm.lstLog.ItemCount + 1
+                        Frm.lstLog.Refresh()
+                    End Try
+                    sSQL.Clear()
+                End If
+
+                Frm.ProgressBarControl1.PerformStep()
+                Frm.ProgressBarControl1.Update()
+            Next I
+            Frm.lstLog.Items.Add("Διαγράφηκαν: " & ItemsCorrect & " Λάθοι: " & ItemsWrong)
+            Frm.lstLog.Items(Frm.lstLog.Items.Count - 1).ImageOptions.Image = Frm.ImageCollection1.Images.Item(2)
+            Frm.LayoutControlItem4.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+            Frm.PRICELIST_TEMPTableAdapter.FillBySupID(Frm.DMDataSet.PRICELIST_TEMP, System.Guid.Parse(sSUP_ID))
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Frm.LayoutControlItem4.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+        End Try
+    End Sub
+    Public Sub SaveRecordPRM(ByVal e As ValidateRowEventArgs)
+        Dim sSQL As New System.Text.StringBuilder
+        Try
+            sSQL.Clear()
+            If e.RowHandle = Frm.GridControl1.NewItemRowHandle Then
+                If Frm.GridView1.GetRowCellValue(Frm.GridView1.FocusedRowHandle, "FromValue").ToString = "" Or
+                    Frm.GridView1.GetRowCellValue(Frm.GridView1.FocusedRowHandle, "ToValue").ToString = "" Or
+                    Frm.GridView1.GetRowCellValue(Frm.GridView1.FocusedRowHandle, "value").ToString = "" Then
+                    e.ErrorText = "Παρακαλώ συμπληρώστε τα απαραίτητα πεδία"
+                    e.Valid = False
+                    Exit Sub
+                End If
+                sSQL.AppendLine("INSERT INTO PRICELISTS_PRM (ID,supID,FromValue,ToValue,Value,Parameter,[modifiedBy],[createdby],[createdOn])")
+                sSQL.AppendLine("Select newid()" & ",")
+                sSQL.AppendLine(toSQLValueS(sSUP_ID) & ",")
+                sSQL.AppendLine(toSQLValueS(Frm.GridView1.GetRowCellValue(Frm.GridView1.FocusedRowHandle, "FromValue").ToString, True) & ",")
+                sSQL.AppendLine(toSQLValueS(Frm.GridView1.GetRowCellValue(Frm.GridView1.FocusedRowHandle, "ToValue").ToString, True) & ",")
+                sSQL.AppendLine(toSQLValueS(Frm.GridView1.GetRowCellValue(Frm.GridView1.FocusedRowHandle, "value").ToString) & ",")
+                sSQL.AppendLine("'RANGES'" & ",")
+                sSQL.Append(toSQLValueS(UserProps.ID.ToString) & "," & toSQLValueS(UserProps.ID.ToString) & ", getdate()")
+                'Εκτέλεση QUERY
+                Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
+                    oCmd.ExecuteNonQuery()
+                End Using
+            Else
+                sSQL.AppendLine("UPDATE PRICELISTS_PRM	SET FromValue= " & toSQLValueS(Frm.GridView1.GetRowCellValue(Frm.GridView1.FocusedRowHandle, "FromValue").ToString, True) & ",")
+                sSQL.AppendLine("ToValue = " & toSQLValueS(Frm.GridView1.GetRowCellValue(Frm.GridView1.FocusedRowHandle, "ToValue").ToString, True) & ",")
+                sSQL.AppendLine("Value = " & toSQLValueS(Frm.GridView1.GetRowCellValue(Frm.GridView1.FocusedRowHandle, "value").ToString) & ",")
+                sSQL.AppendLine("modifiedBY = " & toSQLValueS(UserProps.ID.ToString) & ",")
+                sSQL.AppendLine("modifiedON = getdate() ")
+                sSQL.AppendLine("WHERE ID = " & toSQLValueS(Frm.GridView1.GetRowCellValue(Frm.GridView1.FocusedRowHandle, "ID").ToString))
+                'Εκτέλεση QUERY
+                Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
+                    oCmd.ExecuteNonQuery()
+                End Using
+            End If
+            Frm.PRICELISTS_PRMTableAdapter.FillBySupID(Frm.DMDataSet.PRICELISTS_PRM, System.Guid.Parse(sSUP_ID))
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+    Public Sub GetDiscount()
+        Dim sSQL As String
+        Dim cmd As SqlCommand
+        Dim sdr As SqlDataReader
+        Try
+            sSQL = "Select  Value From PRICELISTS_PRM  WHERE supID = " & toSQLValueS(sSUP_ID) & " and parameter = 'DISCOUNT'"
+            cmd = New SqlCommand(sSQL, CNDB) : sdr = cmd.ExecuteReader()
+            If sdr.Read() = True Then Frm.txtDiscount.EditValue = sdr.GetString(sdr.GetOrdinal("Value")).ToString
+            sdr.Close()
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
     Private Sub ReadFromExcelWorkbook()
@@ -66,41 +316,40 @@ Public Class PriceListBatchUpdateKanellopoulos
             Frm.ProgressBarControl1.Properties.Step = 1
             Frm.ProgressBarControl1.Properties.PercentView = True
             Frm.ProgressBarControl1.Properties.Minimum = 0
+            Frm.lstLog.Items.Clear()
             For Each WorksheetRow As DataRow In WorksheetsDataTable.Rows
                 Dim WorksheetName As String = WorksheetRow.Item("TABLE_NAME")
                 Dim ExcelDataTable As New DataTable(WorksheetName)
                 ExcelDataTable.TableName = WorksheetName
+                ' Εαν δεν την κατηγορία πάει στο επόμενο φύλλο
                 sValueListiID = GetValueListID(WorksheetName)
-                Dim Sql As String = "Select * FROM [" & WorksheetName & "]"
-                Dim MyConnection As New OleDbConnection(ExcelConnectionString)
-                MyConnection.Open()
-                Dim MyCommand As New OleDbCommand(Sql, MyConnection)
-                Dim MyDataAdapter As New OleDbDataAdapter(MyCommand)
-                MyDataAdapter.Fill(ExcelDataTable)
-                Frm.ProgressBarControl1.Properties.Maximum = ExcelDataTable.Rows.Count
-                AddColumnsToDataTable(ExcelDataTable, Kanellopoulos)
+                If sValueListiID <> "" Then
+                    Dim Sql As String = "Select * FROM [" & WorksheetName & "]"
+                    Dim MyConnection As New OleDbConnection(ExcelConnectionString)
+                    MyConnection.Open()
+                    Dim MyCommand As New OleDbCommand(Sql, MyConnection)
+                    Dim MyDataAdapter As New OleDbDataAdapter(MyCommand)
+                    MyDataAdapter.Fill(ExcelDataTable)
+                    Frm.ProgressBarControl1.Properties.Maximum = ExcelDataTable.Rows.Count
+                    AddColumnsToDataTable(ExcelDataTable, Kanellopoulos)
 
 
-                For i As Integer = 0 To ExcelDataTable.Rows.Count - 1
+                    For i As Integer = 0 To ExcelDataTable.Rows.Count - 1
 
-                    If IsDBNull(ExcelDataTable.Rows(i)(0)) = False Then
-                        Kanellopoulos.ImportRow(ExcelDataTable.Rows(i))
-                        Kanellopoulos.Rows(TotalRows)("ValueListName") = WorksheetName.Replace("$", "").Replace("'", "")
-                        Kanellopoulos.Rows(TotalRows)("ValueListID") = sValueListiID
-                        Kanellopoulos.Rows(TotalRows)("SupID") = sSUP_ID
-                        If CheckRow(Kanellopoulos, TotalRows, Status) Then InsertRowToPriceListTemp(Kanellopoulos, TotalRows, Status)
-                        TotalRows = TotalRows + 1
-                        Frm.ProgressBarControl1.PerformStep()
-                        Frm.ProgressBarControl1.Update()
-                    End If
-                Next
-                MyConnection.Close()
+                        If IsDBNull(ExcelDataTable.Rows(i)(0)) = False Then
+                            Kanellopoulos.ImportRow(ExcelDataTable.Rows(i))
+                            Kanellopoulos.Rows(TotalRows)("ValueListName") = WorksheetName.Replace("$", "").Replace("'", "")
+                            Kanellopoulos.Rows(TotalRows)("ValueListID") = sValueListiID
+                            Kanellopoulos.Rows(TotalRows)("SupID") = sSUP_ID
+                            If CheckRow(Kanellopoulos, TotalRows, Status) Then InsertRowToPriceListTemp(Kanellopoulos, TotalRows, Status)
+                            TotalRows = TotalRows + 1
+                            Frm.ProgressBarControl1.PerformStep()
+                            Frm.ProgressBarControl1.Update()
+                        End If
+                    Next
+                    MyConnection.Close()
+                End If
             Next
-
-            'Frm.GridView5.Columns.Clear() : Frm.grdPRICELIST.DataSource = Nothing
-            'Frm.grdPRICELIST.DataSource = Kanellopoulos
-            'Frm.grdPRICELIST.ForceInitialize() : Frm.grdPRICELIST.DefaultView.PopulateColumns()
-            Frm.PRICELIST_TEMPTableAdapter.FillBySupID(Frm.DMDataSet.PRICELIST_TEMP, System.Guid.Parse(sSUP_ID))
 
         Catch ex As Exception
             MsgBox(ex.Message & " (" & System.Reflection.MethodBase.GetCurrentMethod.Name & ")")
@@ -115,7 +364,7 @@ Public Class PriceListBatchUpdateKanellopoulos
             sSQL.AppendLine(toSQLValueS(sKanelopoulosID) & ",")
             sSQL.AppendLine(toSQLValueS(Kanellopoulos.Rows(Row)("SupID")) & ",")
             sSQL.AppendLine(toSQLValueS(Kanellopoulos.Rows(Row)("ValueListID")) & ",")
-            sSQL.AppendLine(toSQLValueS(Kanellopoulos.Rows(Row)("Κωδικός")) & ",")
+            sSQL.AppendLine(toSQLValueS(Kanellopoulos.Rows(Row)(0)) & ",")
             sSQL.AppendLine(toSQLValueS(Kanellopoulos.Rows(Row)("Περιγραφή")) & ",")
             sSQL.AppendLine(toSQLValueS("ECO") & ",")
             sSQL.AppendLine(toSQLValueS(IIf(IsDBNull(Kanellopoulos.Rows(Row)("Λιανικής")), 0, Kanellopoulos.Rows(Row)("Λιανικής")), True) & ",")
@@ -126,7 +375,7 @@ Public Class PriceListBatchUpdateKanellopoulos
             Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
                 oCmd.ExecuteNonQuery()
             End Using
-            Frm.lstLog.Items.Add("Η εγγραφή Καταχωρήθηκε με επιτυχία!-->" & Kanellopoulos.Rows(Row)("Κωδικός"))
+            Frm.lstLog.Items.Add("Η εγγραφή Καταχωρήθηκε με επιτυχία!-->" & Kanellopoulos.Rows(Row)(0))
             Frm.lstLog.Items(Frm.lstLog.Items.Count - 1).ImageOptions.Image = Frm.ImageCollection1.Images.Item(0)
             Frm.lstLog.Items(Frm.lstLog.Items.Count - 1).Tag = sKanelopoulosID
             Frm.lstLog.SelectedIndex = Frm.lstLog.ItemCount + 1
@@ -134,7 +383,7 @@ Public Class PriceListBatchUpdateKanellopoulos
 
         Catch dbException As System.Data.SqlClient.SqlException
             If dbException.Number = 2627 Then
-                Frm.lstLog.Items.Add("Ο Κωδικός " & Kanellopoulos.Rows(Row)("Κωδικός") & " υπάρχει ήδη.")
+                Frm.lstLog.Items.Add("Ο Κωδικός " & Kanellopoulos.Rows(Row)(0) & " υπάρχει ήδη.")
                 Frm.lstLog.Items(Frm.lstLog.Items.Count - 1).ImageOptions.Image = Frm.ImageCollection1.Images.Item(4)
             Else
                 Frm.lstLog.Items.Add(dbException.Message.ToString.Replace(vbCrLf, ""))
@@ -160,7 +409,7 @@ Public Class PriceListBatchUpdateKanellopoulos
         Dim sValueListiID As String = ""
         Try
             ' Παίρνω την κατηγορία από τα Keywords
-            Cmd = New SqlCommand("SELECT top 1 valuelistID FROM PRICELISTS_KEYWORDS (nolock) WHERE supID = " & toSQLValueS(sSUP_ID) & " and keyword = " & toSQLValueS(Keyword.Replace("$", "").Replace("'", "")), CNDB)
+            Cmd = New SqlCommand("SELECT top 1 valuelistID FROM PRICELISTS_KEYWORDS (nolock) WHERE Active = 1 and supID = " & toSQLValueS(sSUP_ID) & " and keyword = " & toSQLValueS(Keyword.Replace("$", "").Replace("'", "")), CNDB)
             sdr = Cmd.ExecuteReader()
             If (sdr.Read() = True) Then sValueListiID = sdr.GetGuid(sdr.GetOrdinal("valuelistID")).ToString
             sdr.Close()
