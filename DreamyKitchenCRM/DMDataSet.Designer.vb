@@ -17025,6 +17025,10 @@ Partial Public Class DMDataSet
         
         Private columnDiscountPrice As Global.System.Data.DataColumn
         
+        Private columncompleted As Global.System.Data.DataColumn
+        
+        Private columnvalueListItemID As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Sub New()
@@ -17165,6 +17169,22 @@ Partial Public Class DMDataSet
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property completedColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columncompleted
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property valueListItemIDColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnvalueListItemID
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -17201,9 +17221,9 @@ Partial Public Class DMDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Overloads Function AddPRICELIST_TEMPRow(ByVal ID As System.Guid, ByVal supID As System.Guid, ByVal valuelistID As System.Guid, ByVal CustomCode As String, ByVal name As String, ByVal description As String, ByVal InitialPrice As Decimal, ByVal discount As Integer, ByVal Price As Decimal, ByVal PriceVat As Decimal, ByVal Status As Integer, ByVal DiscountPrice As Decimal) As PRICELIST_TEMPRow
+        Public Overloads Function AddPRICELIST_TEMPRow(ByVal ID As System.Guid, ByVal supID As System.Guid, ByVal valuelistID As System.Guid, ByVal CustomCode As String, ByVal name As String, ByVal description As String, ByVal InitialPrice As Decimal, ByVal discount As Integer, ByVal Price As Decimal, ByVal PriceVat As Decimal, ByVal Status As Integer, ByVal DiscountPrice As Decimal, ByVal completed As Boolean, ByVal valueListItemID As System.Guid) As PRICELIST_TEMPRow
             Dim rowPRICELIST_TEMPRow As PRICELIST_TEMPRow = CType(Me.NewRow,PRICELIST_TEMPRow)
-            Dim columnValuesArray() As Object = New Object() {ID, Nothing, supID, valuelistID, CustomCode, name, description, InitialPrice, discount, Price, PriceVat, Status, DiscountPrice}
+            Dim columnValuesArray() As Object = New Object() {ID, Nothing, supID, valuelistID, CustomCode, name, description, InitialPrice, discount, Price, PriceVat, Status, DiscountPrice, completed, valueListItemID}
             rowPRICELIST_TEMPRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowPRICELIST_TEMPRow)
             Return rowPRICELIST_TEMPRow
@@ -17245,6 +17265,8 @@ Partial Public Class DMDataSet
             Me.columnPriceVat = MyBase.Columns("PriceVat")
             Me.columnStatus = MyBase.Columns("Status")
             Me.columnDiscountPrice = MyBase.Columns("DiscountPrice")
+            Me.columncompleted = MyBase.Columns("completed")
+            Me.columnvalueListItemID = MyBase.Columns("valueListItemID")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -17276,6 +17298,10 @@ Partial Public Class DMDataSet
             MyBase.Columns.Add(Me.columnStatus)
             Me.columnDiscountPrice = New Global.System.Data.DataColumn("DiscountPrice", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnDiscountPrice)
+            Me.columncompleted = New Global.System.Data.DataColumn("completed", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columncompleted)
+            Me.columnvalueListItemID = New Global.System.Data.DataColumn("valueListItemID", GetType(Global.System.Guid), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnvalueListItemID)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnID}, true))
             Me.columnID.AllowDBNull = false
             Me.columnID.Unique = true
@@ -17295,6 +17321,7 @@ Partial Public Class DMDataSet
             Me.columndiscount.AllowDBNull = false
             Me.columnPrice.AllowDBNull = false
             Me.columnPriceVat.AllowDBNull = false
+            Me.columncompleted.AllowDBNull = false
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -30672,6 +30699,32 @@ Partial Public Class DMDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property completed() As Boolean
+            Get
+                Return CType(Me(Me.tablePRICELIST_TEMP.completedColumn),Boolean)
+            End Get
+            Set
+                Me(Me.tablePRICELIST_TEMP.completedColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property valueListItemID() As System.Guid
+            Get
+                Try 
+                    Return CType(Me(Me.tablePRICELIST_TEMP.valueListItemIDColumn),Global.System.Guid)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'valueListItemID' in table 'PRICELIST_TEMP' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablePRICELIST_TEMP.valueListItemIDColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Function IsdescriptionNull() As Boolean
             Return Me.IsNull(Me.tablePRICELIST_TEMP.descriptionColumn)
         End Function
@@ -30704,6 +30757,18 @@ Partial Public Class DMDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Sub SetDiscountPriceNull()
             Me(Me.tablePRICELIST_TEMP.DiscountPriceColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Function IsvalueListItemIDNull() As Boolean
+            Return Me.IsNull(Me.tablePRICELIST_TEMP.valueListItemIDColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Sub SetvalueListItemIDNull()
+            Me(Me.tablePRICELIST_TEMP.valueListItemIDColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -38750,6 +38815,8 @@ Namespace DMDataSetTableAdapters
             tableMapping.ColumnMappings.Add("PriceVat", "PriceVat")
             tableMapping.ColumnMappings.Add("Status", "Status")
             tableMapping.ColumnMappings.Add("DiscountPrice", "DiscountPrice")
+            tableMapping.ColumnMappings.Add("completed", "completed")
+            tableMapping.ColumnMappings.Add("valueListItemID", "valueListItemID")
             Me._adapter.TableMappings.Add(tableMapping)
             Me._adapter.DeleteCommand = New Global.System.Data.SqlClient.SqlCommand()
             Me._adapter.DeleteCommand.Connection = Me.Connection
@@ -38761,7 +38828,9 @@ Namespace DMDataSetTableAdapters
                 "@Original_PriceVat) AND ([discount] = @Original_discount) AND ([Price] = @Origin"& _ 
                 "al_Price) AND ((@IsNull_Status = 1 AND [Status] IS NULL) OR ([Status] = @Origina"& _ 
                 "l_Status)) AND ((@IsNull_DiscountPrice = 1 AND [DiscountPrice] IS NULL) OR ([Dis"& _ 
-                "countPrice] = @Original_DiscountPrice)))"
+                "countPrice] = @Original_DiscountPrice)) AND ([completed] = @Original_completed) "& _ 
+                "AND ((@IsNull_valueListItemID = 1 AND [valueListItemID] IS NULL) OR ([valueListI"& _ 
+                "temID] = @Original_valueListItemID)))"
             Me._adapter.DeleteCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_ID", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ID", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_code", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "code", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
@@ -38779,15 +38848,20 @@ Namespace DMDataSetTableAdapters
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Status", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Status", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_DiscountPrice", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "DiscountPrice", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_DiscountPrice", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 2, "DiscountPrice", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_completed", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "completed", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_valueListItemID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "valueListItemID", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_valueListItemID", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "valueListItemID", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand = New Global.System.Data.SqlClient.SqlCommand()
             Me._adapter.InsertCommand.Connection = Me.Connection
             Me._adapter.InsertCommand.CommandText = "INSERT INTO [PRICELIST_TEMP] ([ID], [supID], [valuelistID], [CustomCode], [name],"& _ 
                 " [description], [InitialPrice], [PriceVat], [discount], [Price], [Status], [Disc"& _ 
-                "ountPrice]) VALUES (@ID, @supID, @valuelistID, @CustomCode, @name, @description,"& _ 
-                " @InitialPrice, @PriceVat, @discount, @Price, @Status, @DiscountPrice);"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT "& _ 
-                "ID, code, supID, valuelistID, CustomCode, name, description, InitialPrice, Price"& _ 
-                "Vat, discount, Price, Status, DiscountPrice FROM PRICELIST_TEMP WHERE (CustomCod"& _ 
-                "e = @CustomCode) AND (supID = @supID) AND (valuelistID = @valuelistID)"
+                "ountPrice], [completed], [valueListItemID]) VALUES (@ID, @supID, @valuelistID, @"& _ 
+                "CustomCode, @name, @description, @InitialPrice, @PriceVat, @discount, @Price, @S"& _ 
+                "tatus, @DiscountPrice, @completed, @valueListItemID);"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT ID, code, supID, v"& _ 
+                "aluelistID, CustomCode, name, description, InitialPrice, PriceVat, discount, Pri"& _ 
+                "ce, Status, DiscountPrice, completed, valueListItemID FROM PRICELIST_TEMP WHERE "& _ 
+                "(CustomCode = @CustomCode) AND (supID = @supID) AND (valuelistID = @valuelistID)"& _ 
+                ""
             Me._adapter.InsertCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@ID", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@supID", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "supID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
@@ -38801,24 +38875,29 @@ Namespace DMDataSetTableAdapters
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Price", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 2, "Price", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Status", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Status", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DiscountPrice", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 2, "DiscountPrice", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@completed", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "completed", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@valueListItemID", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "valueListItemID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand = New Global.System.Data.SqlClient.SqlCommand()
             Me._adapter.UpdateCommand.Connection = Me.Connection
             Me._adapter.UpdateCommand.CommandText = "UPDATE [PRICELIST_TEMP] SET [ID] = @ID, [supID] = @supID, [valuelistID] = @valuel"& _ 
                 "istID, [CustomCode] = @CustomCode, [name] = @name, [description] = @description,"& _ 
                 " [InitialPrice] = @InitialPrice, [PriceVat] = @PriceVat, [discount] = @discount,"& _ 
-                " [Price] = @Price, [Status] = @Status, [DiscountPrice] = @DiscountPrice WHERE (("& _ 
-                "[ID] = @Original_ID) AND ([code] = @Original_code) AND ([supID] = @Original_supI"& _ 
-                "D) AND ([valuelistID] = @Original_valuelistID) AND ([CustomCode] = @Original_Cus"& _ 
-                "tomCode) AND ([name] = @Original_name) AND ((@IsNull_description = 1 AND [descri"& _ 
-                "ption] IS NULL) OR ([description] = @Original_description)) AND ([InitialPrice] "& _ 
-                "= @Original_InitialPrice) AND ([PriceVat] = @Original_PriceVat) AND ([discount] "& _ 
-                "= @Original_discount) AND ([Price] = @Original_Price) AND ((@IsNull_Status = 1 A"& _ 
-                "ND [Status] IS NULL) OR ([Status] = @Original_Status)) AND ((@IsNull_DiscountPri"& _ 
-                "ce = 1 AND [DiscountPrice] IS NULL) OR ([DiscountPrice] = @Original_DiscountPric"& _ 
-                "e)));"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT ID, code, supID, valuelistID, CustomCode, name, description, Initi"& _ 
-                "alPrice, PriceVat, discount, Price, Status, DiscountPrice FROM PRICELIST_TEMP WH"& _ 
-                "ERE (CustomCode = @CustomCode) AND (supID = @supID) AND (valuelistID = @valuelis"& _ 
-                "tID)"
+                " [Price] = @Price, [Status] = @Status, [DiscountPrice] = @DiscountPrice, [comple"& _ 
+                "ted] = @completed, [valueListItemID] = @valueListItemID WHERE (([ID] = @Original"& _ 
+                "_ID) AND ([code] = @Original_code) AND ([supID] = @Original_supID) AND ([valueli"& _ 
+                "stID] = @Original_valuelistID) AND ([CustomCode] = @Original_CustomCode) AND ([n"& _ 
+                "ame] = @Original_name) AND ((@IsNull_description = 1 AND [description] IS NULL) "& _ 
+                "OR ([description] = @Original_description)) AND ([InitialPrice] = @Original_Init"& _ 
+                "ialPrice) AND ([PriceVat] = @Original_PriceVat) AND ([discount] = @Original_disc"& _ 
+                "ount) AND ([Price] = @Original_Price) AND ((@IsNull_Status = 1 AND [Status] IS N"& _ 
+                "ULL) OR ([Status] = @Original_Status)) AND ((@IsNull_DiscountPrice = 1 AND [Disc"& _ 
+                "ountPrice] IS NULL) OR ([DiscountPrice] = @Original_DiscountPrice)) AND ([comple"& _ 
+                "ted] = @Original_completed) AND ((@IsNull_valueListItemID = 1 AND [valueListItem"& _ 
+                "ID] IS NULL) OR ([valueListItemID] = @Original_valueListItemID)));"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT ID, c"& _ 
+                "ode, supID, valuelistID, CustomCode, name, description, InitialPrice, PriceVat, "& _ 
+                "discount, Price, Status, DiscountPrice, completed, valueListItemID FROM PRICELIS"& _ 
+                "T_TEMP WHERE (CustomCode = @CustomCode) AND (supID = @supID) AND (valuelistID = "& _ 
+                "@valuelistID)"
             Me._adapter.UpdateCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@ID", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@supID", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "supID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
@@ -38832,6 +38911,8 @@ Namespace DMDataSetTableAdapters
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Price", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 2, "Price", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Status", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Status", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DiscountPrice", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 2, "DiscountPrice", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@completed", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "completed", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@valueListItemID", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "valueListItemID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_ID", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ID", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_code", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "code", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_supID", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "supID", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
@@ -38848,6 +38929,9 @@ Namespace DMDataSetTableAdapters
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Status", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Status", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_DiscountPrice", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "DiscountPrice", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_DiscountPrice", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 2, "DiscountPrice", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_completed", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "completed", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_valueListItemID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "valueListItemID", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_valueListItemID", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "valueListItemID", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -38864,8 +38948,8 @@ Namespace DMDataSetTableAdapters
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
             Me._commandCollection(0).CommandText = "SELECT ID, code, supID, valuelistID, CustomCode, name, description, InitialPrice,"& _ 
-                " PriceVat, discount, Price, Status, DiscountPrice"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM   PRICELIST_TEMP"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE "& _ 
-                "(supID = @supID)"
+                " PriceVat, discount, Price, Status, DiscountPrice, completed, valueListItemID"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"F"& _ 
+                "ROM   PRICELIST_TEMP"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE (supID = @supID)"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@supID", Global.System.Data.SqlDbType.UniqueIdentifier, 16, Global.System.Data.ParameterDirection.Input, 0, 0, "supID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
         End Sub

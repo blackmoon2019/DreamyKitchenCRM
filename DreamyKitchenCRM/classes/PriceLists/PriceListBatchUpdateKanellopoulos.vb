@@ -160,18 +160,26 @@ Public Class PriceListBatchUpdateKanellopoulos
 
             For I = 0 To selectedRowHandles.Length - 1
                 Dim selectedRowHandle As Int32 = selectedRowHandles(I)
+                If Frm.GridView5.GetRowCellValue(selectedRowHandle, "Status") = 0 Then
+                    sSQL.AppendLine("DELETE FROM PRICELIST_TEMP WHERE ID = " & toSQLValueS(Frm.GridView5.GetRowCellValue(selectedRowHandle, "ID").ToString))
+                    Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
+                        oCmd.ExecuteNonQuery()
+                    End Using
+                End If
 
                 If Frm.GridView5.GetRowCellValue(selectedRowHandle, "Status") = 2 Then
                     Try
                         'Εισαγωγή εγγραφών από Excel sthn Βάση
-                        sSQL.AppendLine("INSERT INTO VALUELISTITEM (ID,valuelistID,supID,CustomCode,name,description,Price, createdBy,createdOn,cat) ")
-                        sSQL.AppendLine("Select newid()" & ",")
+                        sSQL.Clear()
+                        sSQL.AppendLine("INSERT INTO VALUELISTITEM (ID,valuelistID,supID,CustomCode,name,description,Price,SupplierInitialPrice, createdBy,createdOn,cat) ")
+                        sSQL.AppendLine("Select " & toSQLValueS(Frm.GridView5.GetRowCellValue(selectedRowHandle, "ID").ToString) & ",")
                         sSQL.AppendLine(toSQLValueS(Frm.GridView5.GetRowCellValue(selectedRowHandle, "valuelistID").ToString) & ",")
                         sSQL.AppendLine(toSQLValueS(sSUP_ID) & ",")
                         sSQL.AppendLine(toSQLValueS(Frm.GridView5.GetRowCellValue(selectedRowHandle, "CustomCode").ToString) & ",")
                         sSQL.AppendLine(toSQLValueS(Frm.GridView5.GetRowCellValue(selectedRowHandle, "name").ToString) & ",")
                         sSQL.AppendLine(toSQLValueS(Frm.GridView5.GetRowCellValue(selectedRowHandle, "description").ToString) & ",")
                         sSQL.AppendLine(toSQLValueS(Frm.GridView5.GetRowCellValue(selectedRowHandle, "Price").ToString, True) & ",")
+                        sSQL.AppendLine(toSQLValueS(Frm.GridView5.GetRowCellValue(selectedRowHandle, "InitialPrice").ToString, True) & ",")
                         sSQL.Append(toSQLValueS(UserProps.ID.ToString) & ", getdate(),0")
 
                         Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
@@ -179,6 +187,11 @@ Public Class PriceListBatchUpdateKanellopoulos
                         End Using
                         Frm.lstLog.Items.Add("Η εγγραφή Καταχωρήθηκε με επιτυχία!-->" & Frm.GridView5.GetRowCellValue(selectedRowHandle, "CustomCode").ToString)
                         Frm.lstLog.Items(Frm.lstLog.Items.Count - 1).ImageOptions.Image = Frm.ImageCollection1.Images.Item(0)
+                        sSQL.Clear()
+                        sSQL.AppendLine("DELETE FROM PRICELIST_TEMP WHERE ID = " & toSQLValueS(Frm.GridView5.GetRowCellValue(selectedRowHandle, "ID").ToString))
+                        Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
+                            oCmd.ExecuteNonQuery()
+                        End Using
                         'Frm.lstLog.Items(Frm.lstLog.Items.Count - 1).Tag = sKanelopoulosID
                         ItemsCorrect = ItemsCorrect + 1
                         Frm.lstLog.SelectedIndex = Frm.lstLog.ItemCount + 1
@@ -201,20 +214,26 @@ Public Class PriceListBatchUpdateKanellopoulos
                 If Frm.GridView5.GetRowCellValue(selectedRowHandle, "Status") = 1 Then
                     Try
                         'Εισαγωγή εγγραφών από Excel sthn Βάση
+                        sSQL.Clear()
                         sSQL.AppendLine("UPDATE VALUELISTITEM SET CustomCode= " & toSQLValueS(Frm.GridView5.GetRowCellValue(selectedRowHandle, "CustomCode").ToString) & ",")
                         sSQL.AppendLine("valuelistID = " & toSQLValueS(Frm.GridView5.GetRowCellValue(selectedRowHandle, "valuelistID").ToString) & ",")
                         sSQL.AppendLine("name = " & toSQLValueS(Frm.GridView5.GetRowCellValue(selectedRowHandle, "name").ToString) & ",")
                         sSQL.AppendLine("description = " & toSQLValueS(Frm.GridView5.GetRowCellValue(selectedRowHandle, "description").ToString) & ",")
                         sSQL.AppendLine("Price = " & toSQLValueS(Frm.GridView5.GetRowCellValue(selectedRowHandle, "Price").ToString, True) & ",")
+                        sSQL.AppendLine("SupplierInitialPrice = " & toSQLValueS(Frm.GridView5.GetRowCellValue(selectedRowHandle, "InitialPrice").ToString, True) & ",")
                         sSQL.AppendLine("modifiedBY = " & toSQLValueS(UserProps.ID.ToString) & ",")
                         sSQL.AppendLine("modifiedON = getdate() ")
-                        sSQL.AppendLine("WHERE ID = " & toSQLValueS(Frm.GridView5.GetRowCellValue(selectedRowHandle, "ID").ToString))
+                        sSQL.AppendLine("WHERE ID = " & toSQLValueS(Frm.GridView5.GetRowCellValue(selectedRowHandle, "valueListItemID").ToString))
 
                         Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
                             oCmd.ExecuteNonQuery()
                         End Using
                         Frm.lstLog.Items.Add("Η εγγραφή Ενημερώθηκε  με επιτυχία!-->" & Frm.GridView5.GetRowCellValue(selectedRowHandle, "CustomCode").ToString)
                         Frm.lstLog.Items(Frm.lstLog.Items.Count - 1).ImageOptions.Image = Frm.ImageCollection1.Images.Item(0)
+                        sSQL.AppendLine("DELETE FROM PRICELIST_TEMP WHERE ID = " & toSQLValueS(Frm.GridView5.GetRowCellValue(selectedRowHandle, "ID").ToString))
+                        Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
+                            oCmd.ExecuteNonQuery()
+                        End Using
                         'Frm.lstLog.Items(Frm.lstLog.Items.Count - 1).Tag = sKanelopoulosID
                         ItemsCorrect = ItemsCorrect + 1
                         Frm.lstLog.SelectedIndex = Frm.lstLog.ItemCount + 1
@@ -307,7 +326,7 @@ Public Class PriceListBatchUpdateKanellopoulos
 
         Dim ExcelConnectionString As String = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & Frm.XtraOpenFileDialog1.FileName & ";Extended Properties=""Excel 12.0 Xml;HDR=YES"";"
         Dim TotalRows As Int16 = 0
-        Dim sValueListiID As String
+        Dim sValueListiID As String, sValueListItemID As String
         Dim Status As Int16
         Try
             Dim WorksheetsDataTable As DataTable = GetExcelWorksheets(ExcelConnectionString)
@@ -341,7 +360,7 @@ Public Class PriceListBatchUpdateKanellopoulos
                             Kanellopoulos.Rows(TotalRows)("ValueListName") = WorksheetName.Replace("$", "").Replace("'", "")
                             Kanellopoulos.Rows(TotalRows)("ValueListID") = sValueListiID
                             Kanellopoulos.Rows(TotalRows)("SupID") = sSUP_ID
-                            If CheckRow(Kanellopoulos, TotalRows, Status) Then InsertRowToPriceListTemp(Kanellopoulos, TotalRows, Status)
+                            If CheckRow(Kanellopoulos, TotalRows, Status, sValueListItemID) Then InsertRowToPriceListTemp(Kanellopoulos, TotalRows, Status, sValueListItemID)
                             TotalRows = TotalRows + 1
                             Frm.ProgressBarControl1.PerformStep()
                             Frm.ProgressBarControl1.Update()
@@ -355,12 +374,12 @@ Public Class PriceListBatchUpdateKanellopoulos
             MsgBox(ex.Message & " (" & System.Reflection.MethodBase.GetCurrentMethod.Name & ")")
         End Try
     End Sub
-    Private Function InsertRowToPriceListTemp(ByVal Kanellopoulos As DataTable, ByVal Row As Int16, ByVal Status As Int16)
+    Private Function InsertRowToPriceListTemp(ByVal Kanellopoulos As DataTable, ByVal Row As Int16, ByVal Status As Int16, ByVal sValueListItemID As String)
         Try
             Dim sSQL As New System.Text.StringBuilder
             Dim sKanelopoulosID As String = System.Guid.NewGuid.ToString
             sSQL.Clear()
-            sSQL.AppendLine("INSERT INTO PRICELIST_TEMP ([ID], [supID], [valuelistID], [CustomCode], [name], [description], [InitialPrice], [discount], [Price], [Status]) VALUES( ")
+            sSQL.AppendLine("INSERT INTO PRICELIST_TEMP ([ID], [supID], [valuelistID], [CustomCode], [name], [description], [InitialPrice], [discount], [Price],[ValueListItemID], [Status]) VALUES( ")
             sSQL.AppendLine(toSQLValueS(sKanelopoulosID) & ",")
             sSQL.AppendLine(toSQLValueS(Kanellopoulos.Rows(Row)("SupID")) & ",")
             sSQL.AppendLine(toSQLValueS(Kanellopoulos.Rows(Row)("ValueListID")) & ",")
@@ -370,6 +389,7 @@ Public Class PriceListBatchUpdateKanellopoulos
             sSQL.AppendLine(toSQLValueS(IIf(IsDBNull(Kanellopoulos.Rows(Row)("Λιανικής")), 0, Kanellopoulos.Rows(Row)("Λιανικής")), True) & ",")
             sSQL.AppendLine(toSQLValueS(0, True) & ",")
             sSQL.AppendLine(toSQLValueS(0, True) & ",")
+            sSQL.AppendLine(toSQLValueS(sValueListItemID) & ",")
             sSQL.AppendLine(toSQLValueS(Status, True) & ")")
 
             Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
@@ -452,23 +472,27 @@ Public Class PriceListBatchUpdateKanellopoulos
             sourceDT.Columns(3).ColumnName = destinationDT.Columns(3).ColumnName
         End If
     End Sub
-    Private Function CheckRow(ByVal dt As DataTable, ByVal Row As Int16, ByRef Status As Int16) As Boolean
+    Private Function CheckRow(ByVal dt As DataTable, ByVal Row As Int16, ByRef Status As Int16, ByRef valueListItemID As String) As Boolean
         Dim Cmd As SqlCommand, sdr As SqlDataReader
-        Dim sName As String, sOriginalName As String
+        Dim sName As String, sOriginalName As String, sOriginalCustomCode As String, sCustomCode As String
         Dim Price As Double, OriginalPrice As Double
         Try
-            Cmd = New SqlCommand("SELECT Top 1 name,Price from VALUELISTITEM (nolock)  where valuelistID = " & toSQLValueS(dt.Rows(Row)("ValueListID")) & " and " &
+            Cmd = New SqlCommand("SELECT Top 1 ID,name,CustomCode,SupplierInitialPrice from VALUELISTITEM (nolock)  where valuelistID = " & toSQLValueS(dt.Rows(Row)("ValueListID")) & " and " &
                                 "CustomCode = " & toSQLValueS(dt.Rows(Row)(0)) & " and " &
                                 "supID = " & toSQLValueS(sSUP_ID), CNDB)
             sdr = Cmd.ExecuteReader()
             If (sdr.Read() = True) Then
+                If IsDBNull(dt.Rows(Row)(0)) = False Then sCustomCode = dt.Rows(Row)(0) Else sCustomCode = ""
                 If IsDBNull(dt.Rows(Row)(1)) = False Then sName = dt.Rows(Row)(1) Else sName = ""
-                If IsDBNull(dt.Rows(Row)(2)) = False Then Price = dt.Rows(Row)(2) Else Price = 0
+                If IsDBNull(dt.Rows(Row)(2)) = False Then Price = Math.Round(dt.Rows(Row)(2), 2) Else Price = 0
+                sOriginalCustomCode = sdr.GetString(sdr.GetOrdinal("CustomCode")).ToString
                 sOriginalName = sdr.GetString(sdr.GetOrdinal("name")).ToString
-                OriginalPrice = sdr.GetDecimal(sdr.GetOrdinal("Price"))
-                If sOriginalName = sName And Price = OriginalPrice Then dt.Rows(Row)("Status") = 0 Else dt.Rows(Row)("Status") = 1
+                OriginalPrice = Math.Round(sdr.GetDecimal(sdr.GetOrdinal("SupplierInitialPrice")), 2)
+                valueListItemID = sdr.GetGuid(sdr.GetOrdinal("ID")).ToString
+                If sOriginalName = sName And Price = OriginalPrice And sOriginalCustomCode = sCustomCode Then dt.Rows(Row)("Status") = 0 Else dt.Rows(Row)("Status") = 1
             Else
                 dt.Rows(Row)("Status") = 2
+                valueListItemID = ""
             End If
             sdr.Close()
             Status = dt.Rows(Row)("Status")

@@ -91,6 +91,9 @@ Partial Class frmPriceListBatchUpdate
         Me.colPriceVat = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.coldiscount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colPrice = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colcompleted = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colDiscountPrice = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colvalueListItemID = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepCus = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
         Me.txtImageCorrect = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.txtImageError = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
@@ -112,6 +115,7 @@ Partial Class frmPriceListBatchUpdate
         Me.ImageCollection1 = New DevExpress.Utils.ImageCollection(Me.components)
         Me.PRICELIST_TEMPTableAdapter = New DreamyKitchenCRM.DMDataSetTableAdapters.PRICELIST_TEMPTableAdapter()
         Me.PRICELISTS_PRMTableAdapter = New DreamyKitchenCRM.DMDataSetTableAdapters.PRICELISTS_PRMTableAdapter()
+        Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
         CType(Me.RepCopyDelete, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DockManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.DockPanel1.SuspendLayout()
@@ -158,6 +162,7 @@ Partial Class frmPriceListBatchUpdate
         CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.KANELLOPOULOSBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ImageCollection1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'colStatus
@@ -169,7 +174,7 @@ Partial Class frmPriceListBatchUpdate
         Me.colStatus.Name = "colStatus"
         Me.colStatus.OptionsColumn.AllowEdit = False
         Me.colStatus.Visible = True
-        Me.colStatus.VisibleIndex = 7
+        Me.colStatus.VisibleIndex = 10
         Me.colStatus.Width = 38
         '
         'RepCopyDelete
@@ -517,7 +522,7 @@ Partial Class frmPriceListBatchUpdate
         Me.ProgressBarControl1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.ProgressBarControl1.Name = "ProgressBarControl1"
         Me.ProgressBarControl1.Properties.ShowTitle = True
-        Me.ProgressBarControl1.Size = New System.Drawing.Size(609, 20)
+        Me.ProgressBarControl1.Size = New System.Drawing.Size(602, 20)
         Me.ProgressBarControl1.StyleController = Me.LayoutControl1
         Me.ProgressBarControl1.TabIndex = 1
         Me.ProgressBarControl1.Visible = False
@@ -526,10 +531,10 @@ Partial Class frmPriceListBatchUpdate
         '
         Me.cmdExit.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.cmdExit.ImageOptions.Image = CType(resources.GetObject("cmdExit.ImageOptions.Image"), System.Drawing.Image)
-        Me.cmdExit.Location = New System.Drawing.Point(1220, 960)
+        Me.cmdExit.Location = New System.Drawing.Point(1223, 960)
         Me.cmdExit.Margin = New System.Windows.Forms.Padding(4)
         Me.cmdExit.Name = "cmdExit"
-        Me.cmdExit.Size = New System.Drawing.Size(92, 32)
+        Me.cmdExit.Size = New System.Drawing.Size(89, 32)
         Me.cmdExit.StyleController = Me.LayoutControl1
         Me.cmdExit.TabIndex = 3
         Me.cmdExit.Text = "Έξοδος"
@@ -569,7 +574,7 @@ Partial Class frmPriceListBatchUpdate
         '
         'GridView5
         '
-        Me.GridView5.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.colcode, Me.colsupID, Me.colvaluelistID, Me.colCustomCode, Me.colname, Me.coldescription, Me.colInitialPrice, Me.colPriceVat, Me.coldiscount, Me.colPrice, Me.colStatus})
+        Me.GridView5.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.colcode, Me.colsupID, Me.colvaluelistID, Me.colCustomCode, Me.colname, Me.coldescription, Me.colInitialPrice, Me.colPriceVat, Me.coldiscount, Me.colPrice, Me.colStatus, Me.colcompleted, Me.colDiscountPrice, Me.colvalueListItemID})
         Me.GridView5.DetailHeight = 289
         Me.GridView5.FixedLineWidth = 3
         GridFormatRule1.Column = Me.colStatus
@@ -692,6 +697,8 @@ Partial Class frmPriceListBatchUpdate
         '
         Me.colInitialPrice.AppearanceCell.Options.UseBackColor = True
         Me.colInitialPrice.Caption = "Αρχική Τιμή"
+        Me.colInitialPrice.DisplayFormat.FormatString = "c2"
+        Me.colInitialPrice.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.colInitialPrice.FieldName = "InitialPrice"
         Me.colInitialPrice.MinWidth = 30
         Me.colInitialPrice.Name = "colInitialPrice"
@@ -703,36 +710,76 @@ Partial Class frmPriceListBatchUpdate
         'colPriceVat
         '
         Me.colPriceVat.Caption = "Αρχική Τιμή με ΦΠΑ"
+        Me.colPriceVat.DisplayFormat.FormatString = "c2"
+        Me.colPriceVat.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.colPriceVat.FieldName = "PriceVat"
         Me.colPriceVat.MinWidth = 30
         Me.colPriceVat.Name = "colPriceVat"
         Me.colPriceVat.Visible = True
         Me.colPriceVat.VisibleIndex = 8
-        Me.colPriceVat.Width = 112
+        Me.colPriceVat.Width = 154
         '
         'coldiscount
         '
         Me.coldiscount.AppearanceCell.Options.UseBackColor = True
-        Me.coldiscount.Caption = "Έκπτωση"
+        Me.coldiscount.Caption = "Έκπτωση %"
+        Me.coldiscount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.coldiscount.FieldName = "discount"
         Me.coldiscount.MinWidth = 30
         Me.coldiscount.Name = "coldiscount"
         Me.coldiscount.OptionsColumn.AllowEdit = False
         Me.coldiscount.Visible = True
         Me.coldiscount.VisibleIndex = 5
-        Me.coldiscount.Width = 98
+        Me.coldiscount.Width = 123
         '
         'colPrice
         '
         Me.colPrice.AppearanceCell.Options.UseBackColor = True
         Me.colPrice.Caption = "Τιμή Λιανικής"
+        Me.colPrice.DisplayFormat.FormatString = "c2"
+        Me.colPrice.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.colPrice.FieldName = "Price"
         Me.colPrice.MinWidth = 30
         Me.colPrice.Name = "colPrice"
         Me.colPrice.OptionsColumn.AllowEdit = False
         Me.colPrice.Visible = True
-        Me.colPrice.VisibleIndex = 6
+        Me.colPrice.VisibleIndex = 7
         Me.colPrice.Width = 130
+        '
+        'colcompleted
+        '
+        Me.colcompleted.Caption = "Ολοκληρωμένο"
+        Me.colcompleted.FieldName = "completed"
+        Me.colcompleted.MinWidth = 30
+        Me.colcompleted.Name = "colcompleted"
+        Me.colcompleted.Visible = True
+        Me.colcompleted.VisibleIndex = 9
+        Me.colcompleted.Width = 112
+        '
+        'colDiscountPrice
+        '
+        Me.colDiscountPrice.AppearanceCell.BackColor = System.Drawing.Color.Bisque
+        Me.colDiscountPrice.AppearanceCell.Options.UseBackColor = True
+        Me.colDiscountPrice.Caption = "Έκπτωση"
+        Me.colDiscountPrice.DisplayFormat.FormatString = "c2"
+        Me.colDiscountPrice.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.colDiscountPrice.FieldName = "DiscountPrice"
+        Me.colDiscountPrice.MinWidth = 30
+        Me.colDiscountPrice.Name = "colDiscountPrice"
+        Me.colDiscountPrice.Visible = True
+        Me.colDiscountPrice.VisibleIndex = 6
+        Me.colDiscountPrice.Width = 112
+        '
+        'colvalueListItemID
+        '
+        Me.colvalueListItemID.AppearanceCell.BackColor = System.Drawing.Color.Bisque
+        Me.colvalueListItemID.AppearanceCell.Options.UseBackColor = True
+        Me.colvalueListItemID.FieldName = "valueListItemID"
+        Me.colvalueListItemID.MinWidth = 30
+        Me.colvalueListItemID.Name = "colvalueListItemID"
+        Me.colvalueListItemID.Visible = True
+        Me.colvalueListItemID.VisibleIndex = 11
+        Me.colvalueListItemID.Width = 112
         '
         'RepCus
         '
@@ -810,7 +857,7 @@ Partial Class frmPriceListBatchUpdate
         '
         Me.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.Root.GroupBordersVisible = False
-        Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem3, Me.LayoutControlItem5, Me.LayoutControlItem2, Me.LayoutControlItem6, Me.LayoutControlItem4, Me.LayoutControlItem8})
+        Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem3, Me.LayoutControlItem5, Me.LayoutControlItem2, Me.LayoutControlItem6, Me.LayoutControlItem4, Me.LayoutControlItem8, Me.EmptySpaceItem1})
         Me.Root.Name = "Root"
         Me.Root.Size = New System.Drawing.Size(1324, 1008)
         Me.Root.TextVisible = False
@@ -827,9 +874,9 @@ Partial Class frmPriceListBatchUpdate
         'LayoutControlItem3
         '
         Me.LayoutControlItem3.Control = Me.cmdExit
-        Me.LayoutControlItem3.Location = New System.Drawing.Point(1208, 948)
+        Me.LayoutControlItem3.Location = New System.Drawing.Point(1211, 948)
         Me.LayoutControlItem3.Name = "LayoutControlItem3"
-        Me.LayoutControlItem3.Size = New System.Drawing.Size(96, 40)
+        Me.LayoutControlItem3.Size = New System.Drawing.Size(93, 40)
         Me.LayoutControlItem3.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem3.TextVisible = False
         '
@@ -866,7 +913,7 @@ Partial Class frmPriceListBatchUpdate
         Me.LayoutControlItem4.Control = Me.ProgressBarControl1
         Me.LayoutControlItem4.Location = New System.Drawing.Point(595, 948)
         Me.LayoutControlItem4.Name = "LayoutControlItem4"
-        Me.LayoutControlItem4.Size = New System.Drawing.Size(613, 40)
+        Me.LayoutControlItem4.Size = New System.Drawing.Size(606, 40)
         Me.LayoutControlItem4.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem4.TextVisible = False
         '
@@ -904,6 +951,14 @@ Partial Class frmPriceListBatchUpdate
         'PRICELISTS_PRMTableAdapter
         '
         Me.PRICELISTS_PRMTableAdapter.ClearBeforeFill = True
+        '
+        'EmptySpaceItem1
+        '
+        Me.EmptySpaceItem1.AllowHotTrack = False
+        Me.EmptySpaceItem1.Location = New System.Drawing.Point(1201, 948)
+        Me.EmptySpaceItem1.Name = "EmptySpaceItem1"
+        Me.EmptySpaceItem1.Size = New System.Drawing.Size(10, 40)
+        Me.EmptySpaceItem1.TextSize = New System.Drawing.Size(0, 0)
         '
         'frmPriceListBatchUpdate
         '
@@ -963,6 +1018,7 @@ Partial Class frmPriceListBatchUpdate
         CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.KANELLOPOULOSBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ImageCollection1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1037,4 +1093,8 @@ Partial Class frmPriceListBatchUpdate
     Friend WithEvents coldiscount As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents colPrice As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents colPriceVat As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colcompleted As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colvalueListItemID As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colDiscountPrice As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents EmptySpaceItem1 As DevExpress.XtraLayout.EmptySpaceItem
 End Class
