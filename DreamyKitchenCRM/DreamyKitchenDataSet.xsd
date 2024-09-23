@@ -1401,12 +1401,12 @@ FROM   vw_VALUELIST</CommandText>
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_TECH_SUPTableAdapter" GeneratorDataComponentClassName="vw_TECH_SUPTableAdapter" Name="vw_TECH_SUP" UserDataComponentName="vw_TECH_SUPTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_TECH_SUP" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillWithNew" GenerateMethods="Fill" GenerateShortCommands="false" GeneratorSourceName="FillWithNew" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="FillWithNew">
+              <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchen.dbo.TECH_SUP" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillWithNew" GenerateMethods="Fill" GenerateShortCommands="false" GeneratorSourceName="FillWithNew" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="FillWithNew">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT ID, subject, descr, code
-FROM   vw_TECH_SUP
-WHERE (fixed = 0) AND (rejected = 0) AND (moreInfo = 0)</CommandText>
+FROM   TECH_SUP
+WHERE builded=0 AND REJECTED=0 and  id not in(select isnull(technicalID,newid())  from DM_VER ) order by code</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>

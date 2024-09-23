@@ -69,6 +69,7 @@ Public Class frmVersions
                     'Καθαρισμός Controls
                     If Mode = FormMode.NewRecord Then Cls.ClearCtrls(LayoutControl1)
                     txtCode.Text = DBQ.GetNextId("DM_VER")
+                    txtNam.EditValue = Assembly.GetExecutingAssembly().GetName().Version.ToString()
                     XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
                     dtFDate.EditValue = Date.Now
                     Valid.SChanged = False

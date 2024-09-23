@@ -88,7 +88,7 @@ Public Class InstM
                         sSQL = "update INST_COST SET PAID=1,dtPayOFF= " & toSQLValueS(CDate(Frm.dtDeliverDate.Text.ToString).ToString("yyyyMMdd")) &
                                "from INST_COST I 
                             inner join(
-                            SELECT i.instID ,SUM(I.cost + I.extraCost) as InstCostAmt,(SELECT SUM(IM.amt) FROM INST_M im WHERE INSTID=I.INSTID and im.extPartnerID=I.extPartnerID  ) as InstMAmt 
+                            SELECT i.instID ,SUM(I.cost + I.extraCost) as InstCostAmt,(SELECT SUM(IM.amt) FROM INST_M im WHERE INSTID=I.INSTID and im.extPartnerID=I.extPartnerID " & sCategory & " ) as InstMAmt 
                             From INST_COST I
                             where I.ID= " & toSQLValueS(.GetRowCellValue(.FocusedRowHandle, "ID").ToString) & sCategory &
                                 "group by i.instID,I.extPartnerID ) AS S on s.instID = i.instID and InstCostAmt = InstMAmt and InstCostAmt <>0 and paid= 0 " & sCategory

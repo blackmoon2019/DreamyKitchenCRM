@@ -72,7 +72,6 @@ Public Class frmValueListItem
     End Sub
 
     Private Sub frmVALUELISTITEM_Load(sender As Object, e As EventArgs) Handles Me.Load
-        'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_SUP' table. You can move, or remove it, as needed.
         Me.Vw_SUPTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_SUP)
         If sGroupName Is Nothing Then Me.Vw_VALUELISTTableAdapter.Fill(Me.DM_VALUELISTITEM.vw_VALUELIST) Else Me.Vw_VALUELISTTableAdapter.FillByGroupName(Me.DM_VALUELISTITEM.vw_VALUELIST, sGroupName)
         Me.Vw_DIMTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_DIM)
@@ -312,11 +311,11 @@ Public Class frmValueListItem
         frmColors.Show()
     End Sub
 
-    Private Sub cboSUP_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboSUP.ButtonClick
+    Private Sub cboSUP_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboSup.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageSup(cboSUP, FormMode.NewRecord)
-            Case 2 : ManageCbo.ManageSup(cboSUP, FormMode.EditRecord)
-            Case 3 : cboSUP.EditValue = Nothing
+            Case 1 : ManageCbo.ManageSup(cboSup, FormMode.NewRecord)
+            Case 2 : ManageCbo.ManageSup(cboSup, FormMode.EditRecord)
+            Case 3 : cboSup.EditValue = Nothing
         End Select
     End Sub
 End Class

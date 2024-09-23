@@ -1,4 +1,5 @@
-﻿Imports DevExpress.XtraGrid.Views.Base
+﻿Imports DevExpress.XtraExport.Helpers
+Imports DevExpress.XtraGrid.Views.Base
 Imports DevExpress.XtraGrid.Views.Grid
 Imports DevExpress.XtraGrid.Views.Grid.ViewInfo
 
@@ -18,6 +19,7 @@ Public Class frmPriceListsKeywords
             Case "89251045-64C7-4E35-9CAF-51D020279CFE" ' ΚΑΝΕΛΛΟΠΟΥΛΟΣ
                 PriceListKeyword.SUP_ID = sSUP_ID
                 PriceListKeyword.Initialize(Me)
+                LoadForms.RestoreLayoutFromXml(GridView1, "KanellopoulosPriceListKeywords.xml")
         End Select
     End Sub
     Private Sub GridView1_ValidateRow(sender As Object, e As ValidateRowEventArgs) Handles GridView1.ValidateRow
