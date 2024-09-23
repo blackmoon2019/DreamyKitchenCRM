@@ -17,6 +17,7 @@ Public Class frmValueListItem
     Private Cls As New ClearControls
     Private CtrlCombo As DevExpress.XtraEditors.LookUpEdit
     Private CtrlComboChecked As DevExpress.XtraEditors.CheckedComboBoxEdit
+    Private ManageCbo As New CombosManager
     Private CalledFromCtrl As Boolean
     Private sValueListID As String
 
@@ -71,6 +72,8 @@ Public Class frmValueListItem
     End Sub
 
     Private Sub frmVALUELISTITEM_Load(sender As Object, e As EventArgs) Handles Me.Load
+        'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_SUP' table. You can move, or remove it, as needed.
+        Me.Vw_SUPTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_SUP)
         If sGroupName Is Nothing Then Me.Vw_VALUELISTTableAdapter.Fill(Me.DM_VALUELISTITEM.vw_VALUELIST) Else Me.Vw_VALUELISTTableAdapter.FillByGroupName(Me.DM_VALUELISTITEM.vw_VALUELIST, sGroupName)
         Me.Vw_DIMTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_DIM)
         Me.Vw_COLORSBOXTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_COLORSBOX)
@@ -235,7 +238,7 @@ Public Class frmValueListItem
     Private Sub cboValueList_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboValueList.ButtonClick
         Select Case e.Button.Index
             Case 1 : cboValueList.EditValue = Nothing : ManageDoorCAT()
-            Case 2 : If cboValueList.EditValue isnot Nothing Then ManageDoorCAT()
+            Case 2 : If cboValueList.EditValue IsNot Nothing Then ManageDoorCAT()
             Case 3 : cboValueList.EditValue = Nothing
         End Select
     End Sub
@@ -247,9 +250,9 @@ Public Class frmValueListItem
         form1.DataTable = "VALUELIST"
         form1.CallerControl = cboValueList
         form1.CalledFromControl = True
-        If cboValueList.EditValue isnot Nothing Then form1.ID = cboValueList.EditValue.ToString
+        If cboValueList.EditValue IsNot Nothing Then form1.ID = cboValueList.EditValue.ToString
         form1.MdiParent = frmMain
-        If cboValueList.EditValue isnot Nothing Then form1.Mode = FormMode.EditRecord Else form1.Mode = FormMode.NewRecord
+        If cboValueList.EditValue IsNot Nothing Then form1.Mode = FormMode.EditRecord Else form1.Mode = FormMode.NewRecord
         frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
         form1.Show()
     End Sub
@@ -257,7 +260,7 @@ Public Class frmValueListItem
     Private Sub cboDim_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboDim.ButtonClick
         Select Case e.Button.Index
             Case 1 : cboDim.EditValue = Nothing : ManageDIM()
-            Case 2 : If cboDim.EditValue isnot Nothing Then ManageDIM()
+            Case 2 : If cboDim.EditValue IsNot Nothing Then ManageDIM()
             Case 3 : cboDim.EditValue = Nothing
         End Select
     End Sub
@@ -269,9 +272,9 @@ Public Class frmValueListItem
         form1.DataTable = "DIM"
         form1.CallerControl = cboDim
         form1.CalledFromControl = True
-        If cboDim.EditValue isnot Nothing Then form1.ID = cboDim.EditValue.ToString
+        If cboDim.EditValue IsNot Nothing Then form1.ID = cboDim.EditValue.ToString
         form1.MdiParent = frmMain
-        If cboDim.EditValue isnot Nothing Then form1.Mode = FormMode.EditRecord Else form1.Mode = FormMode.NewRecord
+        If cboDim.EditValue IsNot Nothing Then form1.Mode = FormMode.EditRecord Else form1.Mode = FormMode.NewRecord
         frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
         form1.Show()
     End Sub
@@ -286,11 +289,10 @@ Public Class frmValueListItem
 
     Private Sub cboDoorColor_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboDoorColor.ButtonClick
         Select Case e.Button.Index
-            Case 1 : cboDoorColor.EditValue = Nothing : ManageColors(cboDoorColor)
-            Case 2 : If cboDoorColor.EditValue isnot Nothing Then ManageColors(cboDoorColor)
+            Case 1 : ManageCbo.ManageColors(cboDoorColor, FormMode.NewRecord)
+            Case 2 : ManageCbo.ManageColors(cboDoorColor, FormMode.EditRecord)
             Case 3 : cboDoorColor.EditValue = Nothing
         End Select
-
     End Sub
     Private Sub ManageColors(ByVal CallerControl As LookUpEdit)
         Dim frmColors As frmColors = New frmColors
@@ -300,7 +302,7 @@ Public Class frmValueListItem
         frmColors.CallerControlLKUP = CallerControl
         frmColors.CalledFromControl = True
         frmColors.MdiParent = frmMain
-        If CallerControl.EditValue isnot Nothing Then
+        If CallerControl.EditValue IsNot Nothing Then
             frmColors.ID = CallerControl.EditValue.ToString
             frmColors.Mode = FormMode.EditRecord
         Else
@@ -310,4 +312,11 @@ Public Class frmValueListItem
         frmColors.Show()
     End Sub
 
+    Private Sub cboSUP_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboSUP.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : ManageCbo.ManageSup(cboSUP, FormMode.NewRecord)
+            Case 2 : ManageCbo.ManageSup(cboSUP, FormMode.EditRecord)
+            Case 3 : cboSUP.EditValue = Nothing
+        End Select
+    End Sub
 End Class

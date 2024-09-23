@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmValueListItem
     Inherits DevExpress.XtraEditors.XtraForm
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
@@ -17,7 +17,7 @@ Partial Class frmValueListItem
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
@@ -69,6 +69,10 @@ Partial Class frmValueListItem
         Me.Vw_COLORSBOXTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_COLORSBOXTableAdapter()
         Me.Vw_DIMTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_DIMTableAdapter()
         Me.Vw_VALUELISTTableAdapter = New DreamyKitchenCRM.DM_VALUELISTITEMTableAdapters.vw_VALUELISTTableAdapter()
+        Me.cboSUP = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LSup = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.VwSUPBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.Vw_SUPTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_SUPTableAdapter()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.cboDoorColor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -114,10 +118,14 @@ Partial Class frmValueListItem
         CType(Me.LName, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.cboSUP.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LSup, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.VwSUPBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
         '
+        Me.LayoutControl1.Controls.Add(Me.cboSUP)
         Me.LayoutControl1.Controls.Add(Me.cboDoorColor)
         Me.LayoutControl1.Controls.Add(Me.cmdExit)
         Me.LayoutControl1.Controls.Add(Me.cmdSave)
@@ -150,8 +158,8 @@ Partial Class frmValueListItem
         'cboDoorColor
         '
         Me.cboDoorColor.EditValue = ""
-        Me.cboDoorColor.Location = New System.Drawing.Point(222, 164)
-        Me.cboDoorColor.Margin = New System.Windows.Forms.Padding(4)
+        Me.cboDoorColor.Location = New System.Drawing.Point(220, 162)
+        Me.cboDoorColor.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.cboDoorColor.Name = "cboDoorColor"
         Me.cboDoorColor.Properties.AllowMouseWheel = False
         Me.cboDoorColor.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
@@ -201,8 +209,8 @@ Partial Class frmValueListItem
         'ColorPickEdit11
         '
         Me.ColorPickEdit11.EditValue = System.Drawing.Color.Empty
-        Me.ColorPickEdit11.Location = New System.Drawing.Point(222, 404)
-        Me.ColorPickEdit11.Margin = New System.Windows.Forms.Padding(4)
+        Me.ColorPickEdit11.Location = New System.Drawing.Point(220, 402)
+        Me.ColorPickEdit11.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.ColorPickEdit11.Name = "ColorPickEdit11"
         Me.ColorPickEdit11.Properties.AutomaticColor = System.Drawing.Color.Black
         Me.ColorPickEdit11.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -245,10 +253,10 @@ Partial Class frmValueListItem
         '
         'txtComments
         '
-        Me.txtComments.Location = New System.Drawing.Point(222, 434)
-        Me.txtComments.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtComments.Location = New System.Drawing.Point(220, 432)
+        Me.txtComments.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.txtComments.Name = "txtComments"
-        Me.txtComments.Size = New System.Drawing.Size(608, 140)
+        Me.txtComments.Size = New System.Drawing.Size(611, 144)
         Me.txtComments.StyleController = Me.LayoutControl1
         Me.txtComments.TabIndex = 17
         Me.txtComments.Tag = "comments,0,1,2"
@@ -256,8 +264,8 @@ Partial Class frmValueListItem
         'txtOInvTotalPrice
         '
         Me.txtOInvTotalPrice.EditValue = "0,00 €"
-        Me.txtOInvTotalPrice.Location = New System.Drawing.Point(222, 314)
-        Me.txtOInvTotalPrice.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtOInvTotalPrice.Location = New System.Drawing.Point(220, 312)
+        Me.txtOInvTotalPrice.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.txtOInvTotalPrice.Name = "txtOInvTotalPrice"
         Me.txtOInvTotalPrice.Properties.DisplayFormat.FormatString = "c"
         Me.txtOInvTotalPrice.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -290,8 +298,8 @@ Partial Class frmValueListItem
         '
         'txtDescription
         '
-        Me.txtDescription.Location = New System.Drawing.Point(222, 104)
-        Me.txtDescription.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtDescription.Location = New System.Drawing.Point(220, 102)
+        Me.txtDescription.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.txtDescription.Name = "txtDescription"
         Me.txtDescription.Size = New System.Drawing.Size(608, 26)
         Me.txtDescription.StyleController = Me.LayoutControl1
@@ -300,8 +308,8 @@ Partial Class frmValueListItem
         '
         'cboType
         '
-        Me.cboType.Location = New System.Drawing.Point(222, 254)
-        Me.cboType.Margin = New System.Windows.Forms.Padding(4)
+        Me.cboType.Location = New System.Drawing.Point(220, 252)
+        Me.cboType.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.cboType.Name = "cboType"
         Me.cboType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
         Me.cboType.Properties.Items.AddRange(New Object() {"ΠΟΜΟΛΟ", "GOLA"})
@@ -313,8 +321,8 @@ Partial Class frmValueListItem
         '
         'cboKasa
         '
-        Me.cboKasa.Location = New System.Drawing.Point(222, 224)
-        Me.cboKasa.Margin = New System.Windows.Forms.Padding(4)
+        Me.cboKasa.Location = New System.Drawing.Point(220, 222)
+        Me.cboKasa.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.cboKasa.Name = "cboKasa"
         Me.cboKasa.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
         Me.cboKasa.Properties.Items.AddRange(New Object() {"13", "15", "18", "24"})
@@ -327,8 +335,8 @@ Partial Class frmValueListItem
         '
         'cboValueListItem
         '
-        Me.cboValueListItem.Location = New System.Drawing.Point(222, 194)
-        Me.cboValueListItem.Margin = New System.Windows.Forms.Padding(4)
+        Me.cboValueListItem.Location = New System.Drawing.Point(220, 192)
+        Me.cboValueListItem.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.cboValueListItem.Name = "cboValueListItem"
         Me.cboValueListItem.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
         Me.cboValueListItem.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -343,8 +351,8 @@ Partial Class frmValueListItem
         'cboDim
         '
         Me.cboDim.EditValue = ""
-        Me.cboDim.Location = New System.Drawing.Point(222, 134)
-        Me.cboDim.Margin = New System.Windows.Forms.Padding(4)
+        Me.cboDim.Location = New System.Drawing.Point(220, 132)
+        Me.cboDim.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.cboDim.Name = "cboDim"
         Me.cboDim.Properties.AllowMouseWheel = False
         Me.cboDim.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
@@ -393,8 +401,8 @@ Partial Class frmValueListItem
         '
         'cboClosetType
         '
-        Me.cboClosetType.Location = New System.Drawing.Point(222, 284)
-        Me.cboClosetType.Margin = New System.Windows.Forms.Padding(4)
+        Me.cboClosetType.Location = New System.Drawing.Point(220, 282)
+        Me.cboClosetType.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.cboClosetType.Name = "cboClosetType"
         Me.cboClosetType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
         Me.cboClosetType.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -408,8 +416,8 @@ Partial Class frmValueListItem
         '
         'txtName
         '
-        Me.txtName.Location = New System.Drawing.Point(222, 74)
-        Me.txtName.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtName.Location = New System.Drawing.Point(220, 72)
+        Me.txtName.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.txtName.Name = "txtName"
         Me.txtName.Size = New System.Drawing.Size(608, 26)
         Me.txtName.StyleController = Me.LayoutControl1
@@ -419,8 +427,8 @@ Partial Class frmValueListItem
         'txtOInvTotalPrice1
         '
         Me.txtOInvTotalPrice1.EditValue = "0,00 €"
-        Me.txtOInvTotalPrice1.Location = New System.Drawing.Point(222, 344)
-        Me.txtOInvTotalPrice1.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtOInvTotalPrice1.Location = New System.Drawing.Point(220, 342)
+        Me.txtOInvTotalPrice1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.txtOInvTotalPrice1.Name = "txtOInvTotalPrice1"
         Me.txtOInvTotalPrice1.Properties.DisplayFormat.FormatString = "c"
         Me.txtOInvTotalPrice1.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -437,8 +445,8 @@ Partial Class frmValueListItem
         'txtOInvTotalPrice2
         '
         Me.txtOInvTotalPrice2.EditValue = "0,00 €"
-        Me.txtOInvTotalPrice2.Location = New System.Drawing.Point(222, 374)
-        Me.txtOInvTotalPrice2.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtOInvTotalPrice2.Location = New System.Drawing.Point(220, 372)
+        Me.txtOInvTotalPrice2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.txtOInvTotalPrice2.Name = "txtOInvTotalPrice2"
         Me.txtOInvTotalPrice2.Properties.DisplayFormat.FormatString = "c"
         Me.txtOInvTotalPrice2.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -456,7 +464,7 @@ Partial Class frmValueListItem
         '
         Me.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.Root.GroupBordersVisible = False
-        Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem2, Me.LayoutControlItem4, Me.LayoutControlItem14, Me.EmptySpaceItem3, Me.Lprice, Me.color, Me.LayoutControlItem3, Me.LDescription, Me.LayoutControlItem6, Me.LayoutControlItem26, Me.Lkasa, Me.LayoutControlItem7, Me.LayoutControlItem9, Me.LayoutControlItem8, Me.LCat, Me.LClosetType, Me.LName, Me.LayoutControlItem12, Me.LayoutControlItem13})
+        Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem2, Me.LayoutControlItem4, Me.LayoutControlItem14, Me.EmptySpaceItem3, Me.LayoutControlItem56, Me.color, Me.LayoutControlItem3, Me.LDescription, Me.LayoutControlItem6, Me.LayoutControlItem26, Me.LayoutControlItem25, Me.LayoutControlItem7, Me.LayoutControlItem9, Me.LayoutControlItem8, Me.LCat, Me.LClosetType, Me.LName, Me.LayoutControlItem12, Me.LayoutControlItem13})
         Me.Root.Name = "Root"
         Me.Root.Size = New System.Drawing.Size(842, 622)
         Me.Root.TextVisible = False
@@ -495,9 +503,9 @@ Partial Class frmValueListItem
         Me.LayoutControlItem14.Control = Me.txtComments
         Me.LayoutControlItem14.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem14.CustomizationFormText = "Παρατηρήσεις"
-        Me.LayoutControlItem14.Location = New System.Drawing.Point(0, 422)
+        Me.LayoutControlItem14.Location = New System.Drawing.Point(0, 452)
         Me.LayoutControlItem14.Name = "LayoutControlItem14"
-        Me.LayoutControlItem14.Size = New System.Drawing.Size(822, 144)
+        Me.LayoutControlItem14.Size = New System.Drawing.Size(824, 148)
         Me.LayoutControlItem14.Text = "Παρατηρήσεις"
         Me.LayoutControlItem14.TextSize = New System.Drawing.Size(198, 19)
         Me.LayoutControlItem14.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
@@ -512,24 +520,24 @@ Partial Class frmValueListItem
         '
         'Lprice
         '
-        Me.Lprice.Control = Me.txtOInvTotalPrice
-        Me.Lprice.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.Lprice.CustomizationFormText = "Τιμή Λιανικής"
-        Me.Lprice.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
-        Me.Lprice.Location = New System.Drawing.Point(0, 302)
-        Me.Lprice.Name = "Lprice"
-        Me.Lprice.Size = New System.Drawing.Size(822, 30)
-        Me.Lprice.Tag = ""
-        Me.Lprice.Text = "Τιμή Λιανικής"
-        Me.Lprice.TextSize = New System.Drawing.Size(198, 19)
-        Me.Lprice.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+        Me.LayoutControlItem56.Control = Me.txtOInvTotalPrice
+        Me.LayoutControlItem56.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem56.CustomizationFormText = "Τιμή Λιανικής"
+        Me.LayoutControlItem56.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
+        Me.LayoutControlItem56.Location = New System.Drawing.Point(0, 302)
+        Me.LayoutControlItem56.Name = "LayoutControlItem56"
+        Me.LayoutControlItem56.Size = New System.Drawing.Size(824, 30)
+        Me.LayoutControlItem56.Tag = ""
+        Me.LayoutControlItem56.Text = "Τιμή Λιανικής"
+        Me.LayoutControlItem56.TextSize = New System.Drawing.Size(198, 19)
+        Me.LayoutControlItem56.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
         '
         'color
         '
         Me.color.Control = Me.ColorPickEdit11
         Me.color.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.color.CustomizationFormText = "Χρώμα"
-        Me.color.Location = New System.Drawing.Point(0, 392)
+        Me.color.Location = New System.Drawing.Point(0, 422)
         Me.color.Name = "color"
         Me.color.Size = New System.Drawing.Size(822, 30)
         Me.color.Text = "Χρώμα"
@@ -552,7 +560,7 @@ Partial Class frmValueListItem
         Me.LDescription.Control = Me.txtDescription
         Me.LDescription.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LDescription.CustomizationFormText = "Δευτερεύουσα Περιγραφή"
-        Me.LDescription.Location = New System.Drawing.Point(0, 92)
+        Me.LDescription.Location = New System.Drawing.Point(0, 122)
         Me.LDescription.Name = "LDescription"
         Me.LDescription.Size = New System.Drawing.Size(822, 30)
         Me.LDescription.Tag = ""
@@ -563,7 +571,7 @@ Partial Class frmValueListItem
         'LayoutControlItem6
         '
         Me.LayoutControlItem6.Control = Me.cboDoorColor
-        Me.LayoutControlItem6.Location = New System.Drawing.Point(0, 152)
+        Me.LayoutControlItem6.Location = New System.Drawing.Point(0, 182)
         Me.LayoutControlItem6.Name = "LayoutControlItem6"
         Me.LayoutControlItem6.Size = New System.Drawing.Size(822, 30)
         Me.LayoutControlItem6.Text = "Χρώμα Κασώματος"
@@ -575,7 +583,7 @@ Partial Class frmValueListItem
         Me.LayoutControlItem26.Control = Me.cboType
         Me.LayoutControlItem26.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem26.CustomizationFormText = "Τύπος Χειρολαβής"
-        Me.LayoutControlItem26.Location = New System.Drawing.Point(0, 242)
+        Me.LayoutControlItem26.Location = New System.Drawing.Point(0, 272)
         Me.LayoutControlItem26.Name = "LayoutControlItem26"
         Me.LayoutControlItem26.Size = New System.Drawing.Size(822, 30)
         Me.LayoutControlItem26.Text = "Τύπος Χειρολαβής"
@@ -584,22 +592,22 @@ Partial Class frmValueListItem
         '
         'Lkasa
         '
-        Me.Lkasa.Control = Me.cboKasa
-        Me.Lkasa.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.Lkasa.CustomizationFormText = "Πάχος Κάσας"
-        Me.Lkasa.Location = New System.Drawing.Point(0, 212)
-        Me.Lkasa.Name = "Lkasa"
-        Me.Lkasa.Size = New System.Drawing.Size(822, 30)
-        Me.Lkasa.Text = "Πάχος Κάσας"
-        Me.Lkasa.TextSize = New System.Drawing.Size(198, 19)
-        Me.Lkasa.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+        Me.LayoutControlItem25.Control = Me.cboKasa
+        Me.LayoutControlItem25.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem25.CustomizationFormText = "Πάχος Κάσας"
+        Me.LayoutControlItem25.Location = New System.Drawing.Point(0, 212)
+        Me.LayoutControlItem25.Name = "LayoutControlItem25"
+        Me.LayoutControlItem25.Size = New System.Drawing.Size(824, 30)
+        Me.LayoutControlItem25.Text = "Πάχος Κάσας"
+        Me.LayoutControlItem25.TextSize = New System.Drawing.Size(198, 19)
+        Me.LayoutControlItem25.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
         '
         'LayoutControlItem7
         '
         Me.LayoutControlItem7.Control = Me.cboValueListItem
         Me.LayoutControlItem7.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem7.CustomizationFormText = "Είδος Πόρτας(Μεσόπορτα)"
-        Me.LayoutControlItem7.Location = New System.Drawing.Point(0, 182)
+        Me.LayoutControlItem7.Location = New System.Drawing.Point(0, 212)
         Me.LayoutControlItem7.Name = "LayoutControlItem7"
         Me.LayoutControlItem7.Size = New System.Drawing.Size(822, 30)
         Me.LayoutControlItem7.Text = "Είδος Πόρτας(Μεσόπορτα)"
@@ -611,7 +619,7 @@ Partial Class frmValueListItem
         Me.LayoutControlItem9.Control = Me.cboDim
         Me.LayoutControlItem9.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem9.CustomizationFormText = "Διάσταση"
-        Me.LayoutControlItem9.Location = New System.Drawing.Point(0, 122)
+        Me.LayoutControlItem9.Location = New System.Drawing.Point(0, 152)
         Me.LayoutControlItem9.Name = "LayoutControlItem9"
         Me.LayoutControlItem9.Size = New System.Drawing.Size(822, 30)
         Me.LayoutControlItem9.Text = "Διάσταση"
@@ -649,7 +657,7 @@ Partial Class frmValueListItem
         Me.LClosetType.Control = Me.cboClosetType
         Me.LClosetType.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LClosetType.CustomizationFormText = "Είδος Ντουλάπας"
-        Me.LClosetType.Location = New System.Drawing.Point(0, 272)
+        Me.LClosetType.Location = New System.Drawing.Point(0, 302)
         Me.LClosetType.Name = "LClosetType"
         Me.LClosetType.Size = New System.Drawing.Size(822, 30)
         Me.LClosetType.Text = "Είδος Ντουλάπας"
@@ -661,7 +669,7 @@ Partial Class frmValueListItem
         Me.LName.Control = Me.txtName
         Me.LName.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LName.CustomizationFormText = "Κεντρική Περιγραφή Υλικού"
-        Me.LName.Location = New System.Drawing.Point(0, 62)
+        Me.LName.Location = New System.Drawing.Point(0, 92)
         Me.LName.Name = "LName"
         Me.LName.Size = New System.Drawing.Size(822, 30)
         Me.LName.Text = "Κεντρική Περιγραφή Υλικού"
@@ -674,7 +682,7 @@ Partial Class frmValueListItem
         Me.LayoutControlItem12.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem12.CustomizationFormText = "Τιμή Χονδρικής"
         Me.LayoutControlItem12.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LayoutControlItem12.Location = New System.Drawing.Point(0, 332)
+        Me.LayoutControlItem12.Location = New System.Drawing.Point(0, 362)
         Me.LayoutControlItem12.Name = "LayoutControlItem12"
         Me.LayoutControlItem12.Size = New System.Drawing.Size(822, 30)
         Me.LayoutControlItem12.Text = "Τιμή Χονδρικής"
@@ -687,7 +695,7 @@ Partial Class frmValueListItem
         Me.LayoutControlItem13.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem13.CustomizationFormText = "Τιμή Φύλλου"
         Me.LayoutControlItem13.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LayoutControlItem13.Location = New System.Drawing.Point(0, 362)
+        Me.LayoutControlItem13.Location = New System.Drawing.Point(0, 392)
         Me.LayoutControlItem13.Name = "LayoutControlItem13"
         Me.LayoutControlItem13.Size = New System.Drawing.Size(822, 30)
         Me.LayoutControlItem13.Text = "Τιμή Φύλλου"
@@ -702,9 +710,19 @@ Partial Class frmValueListItem
         '
         Me.Vw_DIMTableAdapter.ClearBeforeFill = True
         '
+        'DM_VALUELISTITEM
+        '
+        Me.DM_VALUELISTITEM.DataSetName = "DM_VALUELISTITEM"
+        Me.DM_VALUELISTITEM.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'VwVALUELISTBindingSource
+        '
+        Me.VwVALUELISTBindingSource.DataMember = "vw_VALUELIST"
+        Me.VwVALUELISTBindingSource.DataSource = Me.DM_VALUELISTITEM
+        '
         'Vw_VALUELISTTableAdapter
         '
-        Me.Vw_VALUELISTTableAdapter.ClearBeforeFill = True
+        Me.Vw_SUPTableAdapter.ClearBeforeFill = True
         '
         'frmValueListItem
         '
@@ -763,6 +781,8 @@ Partial Class frmValueListItem
         CType(Me.LName, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DM_VALUELISTITEM, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.VwVALUELISTBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -816,4 +836,8 @@ Partial Class frmValueListItem
     Friend WithEvents DM_VALUELISTITEM As DM_VALUELISTITEM
     Friend WithEvents VwVALUELISTBindingSource As BindingSource
     Friend WithEvents Vw_VALUELISTTableAdapter As DM_VALUELISTITEMTableAdapters.vw_VALUELISTTableAdapter
+    Friend WithEvents cboSUP As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents LSup As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents VwSUPBindingSource As BindingSource
+    Friend WithEvents Vw_SUPTableAdapter As DreamyKitchenDataSetTableAdapters.vw_SUPTableAdapter
 End Class

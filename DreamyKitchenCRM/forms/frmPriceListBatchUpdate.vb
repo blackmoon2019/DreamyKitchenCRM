@@ -1,0 +1,680 @@
+﻿Imports DevExpress.XtraBars.Navigation
+Imports DevExpress.XtraEditors
+Imports DevExpress.XtraEditors.Controls
+Imports DevExpress.XtraGrid.Views.Base
+Imports DevExpress.XtraGrid.Views.Grid
+Imports DevExpress.XtraGrid.Views.Grid.ViewInfo
+
+Public Class frmPriceListBatchUpdate
+    Private DBQ As New DBQueries
+    Private LoadForms As New FormLoader
+    Private sSUP_ID As String
+    Private sFileName As String
+    Private PriceListBatchUpdateKanellopoulos As New PriceListBatchUpdateKanellopoulos
+
+    Private Sub frmPriceListBatchUpdate_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        AddHandler GridControl1.EmbeddedNavigator.ButtonClick, AddressOf Grid_EmbeddedNavigator_ButtonClick
+
+        cmdExcel.Enabled = False
+        cmdSave.Enabled = False
+        cmdKeywords.Enabled = False
+        cmdDelete.Enabled = False
+        txtDiscount.ReadOnly = True
+        LayoutControlItem7.Enabled = False
+    End Sub
+    Private Sub NavKanelopoulos_ElementClick(sender As Object, e As NavElementEventArgs) Handles NavKanelopoulos.ElementClick
+        sSUP_ID = "89251045-64C7-4E35-9CAF-51D020279CFE"
+        PriceListBatchUpdateKanellopoulos.SUP_ID = sSUP_ID
+        PriceListBatchUpdateKanellopoulos.Initialize(Me)
+        PRICELIST_TEMPTableAdapter.FillBySupID(DMDataSet.PRICELIST_TEMP, System.Guid.Parse(sSUP_ID))
+        PRICELISTS_PRMTableAdapter.FillBySupID(DMDataSet.PRICELISTS_PRM, System.Guid.Parse(sSUP_ID))
+        PriceListBatchUpdateKanellopoulos.GetDiscount()
+        LoadForms.RestoreLayoutFromXml(GridView5, "KanellopoulosPriceList.xml")
+        LoadForms.RestoreLayoutFromXml(GridView1, "KanellopoulosPriceListPRM.xml")
+        cmdExcel.Enabled = True
+        cmdKeywords.Enabled = True
+        cmdSave.Enabled = True
+        cmdDelete.Enabled = True
+        txtDiscount.ReadOnly = False
+        LayoutControlItem7.Enabled = True
+    End Sub
+    Private Sub Grid_EmbeddedNavigator_ButtonClick(ByVal sender As Object, ByVal e As DevExpress.XtraEditors.NavigatorButtonClickEventArgs)
+        Select Case e.Button.ButtonType
+            Case e.Button.ButtonType.Remove
+                Select Case sSUP_ID
+                    Case "89251045-64C7-4E35-9CAF-51D020279CFE" 'Κανελλόπουλος
+                        PriceListBatchUpdateKanellopoulos.DeleteRecordPrm() : e.Handled = True
+                End Select
+
+            Case e.Button.ButtonType.Append
+        End Select
+    End Sub
+    Private Sub GridView1_ValidateRow(sender As Object, e As ValidateRowEventArgs) Handles GridView1.ValidateRow
+        Select Case sSUP_ID
+            Case "89251045-64C7-4E35-9CAF-51D020279CFE" ' ΚΑΝΕΛΛΟΠΟΥΛΟΣ
+                PriceListBatchUpdateKanellopoulos.SaveRecordPRM(e)
+                PriceListBatchUpdateKanellopoulos.ApplyDiscountAndRanges()
+                PRICELIST_TEMPTableAdapter.FillBySupID(DMDataSet.PRICELIST_TEMP, System.Guid.Parse(sSUP_ID))
+        End Select
+    End Sub
+    Private Sub GridView1_KeyDown(sender As Object, e As KeyEventArgs) Handles GridView1.KeyDown
+        If e.KeyCode = Keys.Delete And UserProps.AllowDelete = True Then PriceListBatchUpdateKanellopoulos.DeleteRecordPRM()
+        If e.KeyCode = Keys.Down And UserProps.AllowInsert Then
+            If sender.FocusedRowHandle < 0 Then Exit Sub
+            Dim viewInfo As GridViewInfo = TryCast(sender.GetViewInfo(), GridViewInfo)
+            If sender.FocusedRowHandle = viewInfo.RowsInfo.Last().RowHandle Then
+                GridView1.PostEditor() : GridView1.AddNewRow()
+            End If
+        End If
+    End Sub
+    'Friend Sub RepTransh_Changed(sender As Object, e As EventArgs)
+    '    Dim editor As DevExpress.XtraEditors.LookUpEdit = TryCast(sender, DevExpress.XtraEditors.LookUpEdit)
+    '    Dim transhDescription As String = ""
+    '    If editor.EditValue Is Nothing Then GridView5.SetRowCellValue(GridView5.FocusedRowHandle, "FullTranshDescription", "") : Exit Sub
+    '    transhDescription = editor.GetColumnValue("FullTranshDescription").ToString
+    '    GridView5.SetRowCellValue(GridView5.FocusedRowHandle, "FullTranshDescription", transhDescription)
+    '    reptranshID = editor.EditValue.ToString
+    '    repCCTID = GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "cctID").ToString.ToUpper
+    'End Sub
+    'Private Sub RepCus_Changed(sender As Object, e As EventArgs)
+    '    Dim editor As DevExpress.XtraEditors.LookUpEdit = TryCast(sender, DevExpress.XtraEditors.LookUpEdit)
+    '    If editor.EditValue Is Nothing Then Exit Sub
+    '    repCCTID = editor.EditValue.ToString
+    'End Sub
+    'Private Sub RepKan_O_KeyDown(sender As Object, e As EventArgs)
+    '    Dim k As KeyEventArgs = e
+    '    If k.KeyCode = Keys.Enter Then
+    '        Dim editor As DevExpress.XtraEditors.LookUpEdit = TryCast(sender, DevExpress.XtraEditors.LookUpEdit)
+    '        If editor.Controls(0).Text Is Nothing Then Exit Sub
+    '        Dim KanOName As String = editor.Controls(0).Text
+    '        Dim sSQL As New System.Text.StringBuilder
+    '        sSQL.AppendLine("INSERT INTO KANELLOPOULOS_O (kanID,name) VALUES( ")
+    '        sSQL.AppendLine(toSQLValueS(GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "ID").ToString.ToUpper) & ",")
+    '        sSQL.AppendLine(toSQLValueS(KanOName) & ")")
+    '        Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
+    '            oCmd.ExecuteNonQuery()
+    '        End Using
+    '        Dim ID As String = GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "ID").ToString()
+    '        If ID.Length > 0 Then editor.Properties.DataSource = Me.KANELLOPOULOS_OTableAdapter.GetData(System.Guid.Parse(ID))
+    '        editor.EditValue = 0
+    '        editor.Text = ""
+    '    End If
+
+    'End Sub
+
+    'Private Sub GridView5_ShownEditor(sender As Object, e As EventArgs) Handles GridView5.ShownEditor
+    '    Dim view As ColumnView = DirectCast(sender, ColumnView)
+    '    Try
+    '        If GridView5.FocusedRowHandle < 0 Then Exit Sub
+    '        Dim cctID As String = GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "cctID").ToString()
+    '        Dim ID As String = GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "ID").ToString()
+    '        If view.FocusedColumn.FieldName = "transhID" Then
+    '            Dim editor As LookUpEdit = CType(view.ActiveEditor, LookUpEdit)
+    '            If cctID.Length > 0 Then editor.Properties.DataSource = Me.Vw_TRANSHTableAdapter.GetData(System.Guid.Parse(cctID))
+    '        ElseIf view.FocusedColumn.Name = "colKanO" Then
+    '            Dim editor As LookUpEdit = CType(view.ActiveEditor, LookUpEdit)
+    '            If ID.Length > 0 Then editor.Properties.DataSource = Me.KANELLOPOULOS_OTableAdapter.GetData(System.Guid.Parse(ID))
+    '        End If
+    '    Catch ex As Exception
+    '        'XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+    '    End Try
+    'End Sub
+    'Private Sub GridView5_CustomDrawCell(sender As Object, e As RowCellCustomDrawEventArgs) Handles GridView5.CustomDrawCell
+    '    Dim GRD5 As GridView = sender
+    '    If GRD5 Is Nothing Then Exit Sub
+    '    If e.CellValue Is Nothing Then Exit Sub
+    '    If e.Column.FieldName = "transhID" Then
+    '        e.DisplayText = GRD5.GetRowCellValue(e.RowHandle, "FullTranshDescription").ToString()
+    '    End If
+    '    'If e.Column.FieldName = "inhID" Then e.DisplayText = GRD5.GetRowCellValue(e.RowHandle, "completeDate").ToString()
+    'End Sub
+
+
+    Private Sub cmdKeywords_Click(sender As Object, e As EventArgs) Handles cmdKeywords.Click
+        Select Case sSUP_ID
+            Case "89251045-64C7-4E35-9CAF-51D020279CFE" 'Κανελλόπουλος
+                Dim form As frmPriceListsKeywords = New frmPriceListsKeywords()
+                form.Text = "Λέξεις Κλειδιά"
+                form.SUP_ID = sSUP_ID
+                form.ShowDialog()
+        End Select
+
+    End Sub
+
+    Private Sub ProgressBarControl1_CustomDisplayText(sender As Object, e As CustomDisplayTextEventArgs) Handles ProgressBarControl1.CustomDisplayText
+        Dim progress As ProgressBarControl = TryCast(sender, ProgressBarControl)
+        Dim maximum = progress.Properties.Maximum
+        e.DisplayText = $"{e.Value} ({progress.Position} / {maximum})"
+    End Sub
+
+    Private Sub GridView5_PopupMenuShowing(sender As Object, e As PopupMenuShowingEventArgs) Handles GridView5.PopupMenuShowing
+        Select Case sSUP_ID
+            Case "89251045-64C7-4E35-9CAF-51D020279CFE" 'Κανελλόπουλος
+                If e.MenuType = GridMenuType.Column Then LoadForms.PopupMenuShow(e, GridView5, "KanellopoulosPriceList.xml", "PRICELIST_TEMP")
+
+        End Select
+
+    End Sub
+
+    Private Sub GridView5_CustomColumnDisplayText(sender As Object, e As CustomColumnDisplayTextEventArgs) Handles GridView5.CustomColumnDisplayText
+        If e.Column.Name = "colStatus" Then e.DisplayText = String.Empty
+    End Sub
+
+    Private Sub txtDiscount_Validated(sender As Object, e As EventArgs) Handles txtDiscount.Validated
+        PriceListBatchUpdateKanellopoulos.AddOrUpdateDiscount()
+        PriceListBatchUpdateKanellopoulos.ApplyDiscountAndRanges()
+        PRICELIST_TEMPTableAdapter.FillBySupID(DMDataSet.PRICELIST_TEMP, System.Guid.Parse(sSUP_ID))
+    End Sub
+
+    Private Sub cmdExcel_Click(sender As Object, e As EventArgs) Handles cmdExcel.Click
+        If PriceListBatchUpdateKanellopoulos.FilesSelection() Then
+            PriceListBatchUpdateKanellopoulos.AddOrUpdateDiscount()
+            PriceListBatchUpdateKanellopoulos.ApplyDiscountAndRanges()
+            PRICELIST_TEMPTableAdapter.FillBySupID(DMDataSet.PRICELIST_TEMP, System.Guid.Parse(sSUP_ID))
+            cmdSave.Enabled = True
+            cmdDelete.Enabled = True
+        End If
+        LoadForms.RestoreLayoutFromXml(GridView5, "KanellopoulosPriceList.xml")
+
+    End Sub
+
+    Private Sub GridView1_PopupMenuShowing(sender As Object, e As PopupMenuShowingEventArgs) Handles GridView1.PopupMenuShowing
+        Select Case sSUP_ID
+            Case "89251045-64C7-4E35-9CAF-51D020279CFE" 'Κανελλόπουλος
+                If e.MenuType = GridMenuType.Column Then LoadForms.PopupMenuShow(e, GridView1, "KanellopoulosPriceListPRM.xml", "PRICELISTS_PRM")
+
+        End Select
+
+    End Sub
+
+    Private Sub cmdDelete_Click(sender As Object, e As EventArgs) Handles cmdDelete.Click
+        Select Case sSUP_ID
+            Case "89251045-64C7-4E35-9CAF-51D020279CFE" 'Κανελλόπουλος
+                PriceListBatchUpdateKanellopoulos.DeleteBatchRecords()
+                PRICELIST_TEMPTableAdapter.FillBySupID(DMDataSet.PRICELIST_TEMP, System.Guid.Parse(sSUP_ID))
+        End Select
+    End Sub
+
+    Private Sub cmdSave_Click(sender As Object, e As EventArgs) Handles cmdSave.Click
+        PriceListBatchUpdateKanellopoulos.SaveRecord()
+    End Sub
+
+    'Private Sub InsertRecordsToBuy()
+    '    Dim sInvNumber As String, sDate As String, sVatAmount As Double, sNetAmount As Double
+    '    Dim kitchen As Double, materials As Double, general As Double, closet As Double, bathroomFurn As Double, extraCus As Double
+    '    Dim sOrd As String, cmt As String
+    '    Dim supID As String, sdocTypeID As String, sCusID As String, sTranshID As String, sPayID As String
+    '    Dim selectedRowHandles As Int32() = GridView5.GetSelectedRows
+    '    Dim ItemsCorrect As Integer = 0, ItemsWrong As Integer = 0
+    '    Dim sbuyID As String
+    '    Dim Found As Integer = 0
+    '    Try
+    '        LayoutControlItem4.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+    '        ProgressBarControl1.EditValue = 0
+    '        ProgressBarControl1.Properties.Step = 1
+    '        ProgressBarControl1.Properties.PercentView = True
+    '        ProgressBarControl1.Properties.Maximum = GridView5.DataRowCount - 1
+    '        ProgressBarControl1.Properties.Minimum = 0
+    '        lstLog.Items.Clear()
+    '        Dim sSQL As New System.Text.StringBuilder
+    '        For I = 0 To selectedRowHandles.Length - 1
+    '            Try
+    '                Dim selectedRowHandle As Int32 = selectedRowHandles(I)
+    '                If GridView5.GetRowCellValue(selectedRowHandle, "completed") = "False" Then
+
+    '                    sbuyID = System.Guid.NewGuid.ToString
+    '                    supID = GridView5.GetRowCellValue(selectedRowHandle, "supID").ToString
+    '                    sInvNumber = GridView5.GetRowCellValue(selectedRowHandle, "invNumber")
+    '                    cmt = GridView5.GetRowCellValue(selectedRowHandle, "cmt").ToString
+    '                    sDate = CDate(GridView5.GetRowCellValue(selectedRowHandle, "invDate"))
+    '                    sdocTypeID = GridView5.GetRowCellValue(selectedRowHandle, "docTypeID").ToString
+    '                    sOrd = "(select isnull(max(ord),0) + 1 FROM BUY where supID = " & toSQLValueS(supID) & " and dtYBuy = " & toSQLValueS(Year(GridView5.GetRowCellValue(selectedRowHandle, "invDate")), True) & ")"
+    '                    sCusID = GridView5.GetRowCellValue(selectedRowHandle, "cctID").ToString
+    '                    sTranshID = GridView5.GetRowCellValue(selectedRowHandle, "transhID").ToString
+    '                    sPayID = "(select PAY.ID from PAY inner join sup on sup.payID=PAY.id where sup.id = " & toSQLValueS(supID) & ")"
+    '                    kitchen = GridView5.GetRowCellValue(selectedRowHandle, "kitchen")
+    '                    materials = GridView5.GetRowCellValue(selectedRowHandle, "materials")
+    '                    general = GridView5.GetRowCellValue(selectedRowHandle, "general")
+    '                    closet = GridView5.GetRowCellValue(selectedRowHandle, "closet")
+    '                    bathroomFurn = GridView5.GetRowCellValue(selectedRowHandle, "bathroomFurn")
+    '                    extraCus = GridView5.GetRowCellValue(selectedRowHandle, "extraCus")
+    '                    sNetAmount = GridView5.GetRowCellValue(selectedRowHandle, "netAmount")
+    '                    sVatAmount = GridView5.GetRowCellValue(selectedRowHandle, "vatAmount")
+    '                    If kitchen <> 0 Then Found = Found + 1
+    '                    If materials <> 0 Then Found = Found + 1
+    '                    If general <> 0 Then Found = Found + 1
+    '                    If closet <> 0 Then Found = Found + 1
+    '                    If bathroomFurn <> 0 Then Found = Found + 1
+    '                    If extraCus <> 0 Then Found = Found + 1
+
+    '                    'Εαν έχει περάσει έστω και ένα ποσό μόνο τότε θα γίνει η καταχώρηση στις αγορές
+    '                    If Found > 0 Then
+
+
+    '                        sSQL.AppendLine("INSERT INTO BUY (ID, ord, dtBuy, invoiceNumber, docTypeID, supID, cusID, transhID, payID, paid, kitchen, closet,extraCus, general, materials, bathroomFurn, netAmount, " &
+    '                                        " vatAmount,ComeFrom,cmt,createdOn,createdBy) VALUES( ")
+    '                        sSQL.AppendLine(toSQLValueS(sbuyID) & ",")
+    '                        sSQL.AppendLine(sOrd & ",")
+    '                        sSQL.AppendLine(toSQLValueS(CDate(sDate).ToString("yyyyMMdd")) & ",")
+    '                        sSQL.AppendLine(toSQLValueS(sInvNumber) & ",")
+    '                        sSQL.AppendLine(toSQLValueS(sdocTypeID) & ",")
+    '                        sSQL.AppendLine(toSQLValueS(supID) & ",")
+    '                        sSQL.AppendLine(toSQLValueS(sCusID) & ",")
+    '                        sSQL.AppendLine(toSQLValueS(sTranshID) & ",")
+    '                        sSQL.AppendLine(sPayID & ",")
+    '                        sSQL.AppendLine("0" & ",")
+    '                        sSQL.AppendLine(toSQLValueS(kitchen, True) & ",")
+    '                        sSQL.AppendLine(toSQLValueS(closet, True) & ",")
+    '                        sSQL.AppendLine(toSQLValueS(extraCus, True) & ",")
+    '                        sSQL.AppendLine(toSQLValueS(general, True) & ",")
+    '                        sSQL.AppendLine(toSQLValueS(materials, True) & ",")
+    '                        sSQL.AppendLine(toSQLValueS(bathroomFurn, True) & ",")
+    '                        sSQL.AppendLine(toSQLValueS(sNetAmount, True) & ",")
+    '                        sSQL.AppendLine(toSQLValueS(sVatAmount, True) & ",")
+    '                        sSQL.AppendLine("1" & ",")
+    '                        sSQL.AppendLine(toSQLValueS(cmt) & ",")
+    '                        sSQL.AppendLine("getdate(),")
+    '                        sSQL.AppendLine(toSQLValueS(UserProps.ID.ToString) & ")")
+
+    '                        Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
+    '                            oCmd.ExecuteNonQuery()
+    '                        End Using
+    '                        lstLog.Items.Add("Η εγγραφή με ημερομηνία " & sDate & " Καταχωρήθηκε με επιτυχία!-->" & sInvNumber)
+    '                        lstLog.Items(lstLog.Items.Count - 1).ImageOptions.Image = ImageCollection1.Images.Item(0)
+
+    '                        'Ενημέρωση πίνακα KANELLOPOYLOS με ολοκληρωμένο
+    '                        Using oCmd As New SqlCommand("UPDATE KANELLOPOULOS SET buyID = " & toSQLValueS(sbuyID) & ", completed = 1 where ID = " & toSQLValueS(GridView5.GetRowCellValue(selectedRowHandle, "ID").ToString), CNDB)
+    '                            oCmd.ExecuteNonQuery()
+    '                        End Using
+
+    '                        Dim ssSQL = "DELETE FROM SUP_PAYMENTS_P  WHERE buyID = " & toSQLValueS(sbuyID)
+    '                        Using oCmd As New SqlCommand(ssSQL, CNDB)
+    '                            oCmd.ExecuteNonQuery()
+    '                        End Using
+    '                        ssSQL = "INSERT SUP_PAYMENTS_P  SELECT NEWID(),ID,vatAmount from BUY WHERE ID = " & toSQLValueS(sbuyID)
+    '                        Using oCmd As New SqlCommand(ssSQL, CNDB)
+    '                            oCmd.ExecuteNonQuery()
+    '                        End Using
+
+    '                        ' Διαγραφή δελτίων Παραγγελίας
+    '                        ssSQL = "DELETE FROM BUY_O WHERE buyID = " & toSQLValueS(sbuyID)
+    '                        Using oCmd As New SqlCommand(ssSQL, CNDB)
+    '                            oCmd.ExecuteNonQuery()
+    '                        End Using
+    '                        ' ΚΑταχώρηση δελτίων Παραγγελίας
+    '                        ssSQL = "INSERT INTO BUY_O (name,buyID,createdON,createdBy,modifiedBy) SELECT name," & toSQLValueS(sbuyID) & ",getdate()," & toSQLValueS(UserProps.ID.ToString) & "," & toSQLValueS(UserProps.ID.ToString) & " FROM KANELLOPOULOS_O where kanID = " & toSQLValueS(GridView5.GetRowCellValue(selectedRowHandle, "ID").ToString)
+    '                        Using oCmd As New SqlCommand(ssSQL, CNDB)
+    '                            oCmd.ExecuteNonQuery()
+    '                        End Using
+
+    '                        If sTranshID.Length > 0 Then
+    '                            ' Άνοιγμα έργου αν δεν υπάρχει ή ενημέρωση ποσών
+    '                            Using oCmd As New SqlCommand("usp_AddOrUpdateProjectcost", CNDB)
+    '                                oCmd.CommandType = CommandType.StoredProcedure
+    '                                oCmd.Parameters.AddWithValue("@transhID", sTranshID)
+    '                                oCmd.ExecuteNonQuery()
+    '                            End Using
+    '                        End If
+
+
+    '                        ItemsCorrect = ItemsCorrect + 1
+    '                        ProgressBarControl1.PerformStep()
+    '                        ProgressBarControl1.Update()
+    '                    Else
+    '                        lstLog.Items.Add("Η εγγραφή με ημερομηνία " & sDate & " είναι και παραστατικό-->" & sInvNumber & " δεν έχει ποσά περασμένα")
+    '                        lstLog.Items(lstLog.Items.Count - 1).ImageOptions.Image = ImageCollection1.Images.Item(1)
+    '                        Found = 0
+    '                    End If
+    '                Else
+    '                    lstLog.Items.Add("Η εγγραφή με ημερομηνία " & sDate & " είναι ήδη ολοκληρωμένη και δεν θα καταχωρηθεί ξανά!-->" & sInvNumber)
+    '                    lstLog.Items(lstLog.Items.Count - 1).ImageOptions.Image = ImageCollection1.Images.Item(1)
+    '                End If
+    '            Catch dbException As System.Data.SqlClient.SqlException
+    '                lstLog.Items.Add("Το τιμολόγιο με αριθμό " & sInvNumber & " και ημερομηνία " & sDate & " υπάρχει ήδη.")
+    '                lstLog.Items(lstLog.Items.Count - 1).ImageOptions.Image = ImageCollection1.Images.Item(4)
+    '                ItemsWrong = ItemsWrong + 1
+    '            Catch ex As Exception
+    '                lstLog.Items.Add(ex.Message.ToString.Replace(vbCrLf, ""))
+    '                lstLog.Items(lstLog.Items.Count - 1).ImageOptions.Image = ImageCollection1.Images.Item(1)
+    '                ItemsWrong = ItemsWrong + 1
+    '            End Try
+    '            sSQL.Clear() : Found = 0
+    '        Next I
+
+    '        If ItemsCorrect > 0 Then
+    '            'Ενημέρωση υπολοίπου προμηθευτή όταν το τιμολόγιο δεν είναι πληρωμένο και δεν είναι μετρητοίς
+    '            Using oCmd As New SqlCommand("FIX_SUP_BAL", CNDB)
+    '                oCmd.CommandType = CommandType.StoredProcedure
+    '                oCmd.Parameters.AddWithValue("@supplierID", supID)
+    '                oCmd.ExecuteNonQuery()
+    '            End Using
+    '        End If
+
+    '        grdINVOICES.DataSource = Nothing
+    '        Me.KANELLOPOULOSTableAdapter.Fill(Me.DMDataSet.KANELLOPOULOS)
+    '        grdINVOICES.DataSource = Me.DMDataSet.KANELLOPOULOS
+    '        grdINVOICES.ForceInitialize() : grdINVOICES.DefaultView.PopulateColumns()
+    '        LoadForms.RestoreLayoutFromXml(GridView5, "KANELLOPOULOS.xml")
+
+
+    '        lstLog.Items.Add("Καταχωρήθηκαν: " & ItemsCorrect & " Λάθοι: " & ItemsWrong)
+    '        lstLog.Items(lstLog.Items.Count - 1).ImageOptions.Image = ImageCollection1.Images.Item(2)
+
+    '        LayoutControlItem4.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+    '    Catch ex As Exception
+    '        XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+    '        LayoutControlItem4.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+    '    End Try
+
+    'End Sub
+    'Private Sub GridView5_ValidatingEditor(sender As Object, e As BaseContainerValidateEditorEventArgs) Handles GridView5.ValidatingEditor
+    '    Dim kitchen As Double, materials As Double, general As Double, closet As Double, bathroomFurn As Double, extraCus As Double
+    '    Dim Found As Integer = 0
+    '    If GridView5.FocusedColumn.Name = "colKanO" Then Exit Sub
+    '    If GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "completed") = "True" And sender.FocusedColumn.FieldName <> "completed" Then
+    '        e.ErrorText = "Δεν μπορείτε να αλλάξετε Ολοκληρωμένη εγγραφή"
+    '        e.Valid = False
+    '        Exit Sub
+    '    End If
+
+
+    '    kitchen = GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "kitchen")
+    '    materials = GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "materials")
+    '    general = GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "general")
+    '    closet = GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "closet")
+    '    bathroomFurn = GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "bathroomFurn")
+    '    extraCus = GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "extraCus")
+
+    '    If kitchen <> 0 Then Found = Found + 1
+    '    If materials <> 0 Then Found = Found + 1
+    '    If general <> 0 Then Found = Found + 1
+    '    If closet <> 0 Then Found = Found + 1
+    '    If bathroomFurn <> 0 Then Found = Found + 1
+    '    If extraCus <> 0 Then Found = Found + 1
+
+    '    If Found > 1 Then
+    '        e.ErrorText = "Έχετε συμπληρώσει περισσότερες από 2 στήλες με ποσό στο ίδιο παραστατικό"
+    '        GridView5.SetRowCellValue(GridView5.FocusedRowHandle, GridView5.FocusedColumn.FieldName, 0)
+    '        e.Valid = False
+    '        Exit Sub
+    '    End If
+    '    If Found = 0 And sender.FocusedColumn.FieldName = "completed" And e.Value = Nothing Then
+    '        e.ErrorText = "Δεν μπορείτε να κάνετε ολοκληρωμένο το Παραστατικό χωρίς να έχετε περάσει ποσά"
+    '        e.Valid = False
+    '        Exit Sub
+    '    End If
+    '    If e.Value IsNot Nothing Then
+    '        If Found = 0 And sender.FocusedColumn.FieldName = "completed" And e.Value.ToString = "True" Then
+    '            e.ErrorText = "Δεν μπορείτε να κάνετε ολοκληρωμένο το Παραστατικό χωρίς να έχετε περάσει ποσά"
+    '            e.Valid = False
+    '            Exit Sub
+    '        End If
+    '    End If
+
+    '    If sender.FocusedColumn.FieldName = "cmt" Then GridView5.SetRowCellValue(GridView5.FocusedRowHandle, "cmt", e.Value)
+
+    '    Dim CellValue As String = ""
+    '    If e.Value IsNot Nothing Then CellValue = e.Value.ToString.ToUpper
+    '    If sender.FocusedColumn.FieldName = "cctID" And CellValue = "" Then
+    '        GridView5.SetRowCellValue(GridView5.FocusedRowHandle, "transhID", "") : GridView5.SetRowCellValue(GridView5.FocusedRowHandle, "FullTranshDescription", "")
+    '    ElseIf sender.FocusedColumn.FieldName = "cctID" And CellValue <> GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "cctID").ToString.ToUpper Then
+    '        GridView5.SetRowCellValue(GridView5.FocusedRowHandle, "transhID", "") : GridView5.SetRowCellValue(GridView5.FocusedRowHandle, "FullTranshDescription", "")
+    '    End If
+    '    If sender.FocusedColumn.FieldName = "completed" Then UpdateColBuy(CellValue) Else UpdateColBuy()
+    'End Sub
+
+    'Private Sub RepCopy_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles RepCopyDelete.ButtonClick
+    '    Select Case e.Button.Index
+    '        Case 0 : GridView5.SetRowCellValue(GridView5.FocusedRowHandle, GridView5.FocusedColumn.FieldName, GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "netAmount"))
+    '        Case 1 : GridView5.SetRowCellValue(GridView5.FocusedRowHandle, GridView5.FocusedColumn.FieldName, 0)
+    '    End Select
+    '    repCCTID = GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "cctID").ToString.ToUpper
+    '    reptranshID = GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "transhID").ToString.ToUpper
+    '    GridView5.ValidateEditor()
+    'End Sub
+
+    'Private Sub cmdExit_Click(sender As Object, e As EventArgs) Handles cmdExit.Click
+    '    Me.Close()
+    'End Sub
+
+    'Private Sub GridView5_PopupMenuShowing(sender As Object, e As DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventArgs) Handles GridView5.PopupMenuShowing
+    '    If e.MenuType = GridMenuType.Column Then
+    '        LoadForms.PopupMenuShow(e, GridView5, "KANELLOPOULOS.xml", "KANELLOPOULOS")
+    '    End If
+    'End Sub
+    'Private Sub RepColExcel_Click(sender As Object, e As EventArgs) Handles RepColExcel.Click
+    '    Dim sFName As String
+    '    If GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "buyFID") Is DBNull.Value Then Exit Sub
+
+    '    Dim b() As Byte = GetFile(GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "buyFID").ToString, sFName)
+    '    If b Is Nothing Then XtraMessageBox.Show("Δεν έχει αντιστοιχηθεί αρχείο με την εγγραφή", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
+    '    If My.Computer.FileSystem.FileExists(My.Computer.FileSystem.SpecialDirectories.Temp & "\" & sFName) Then My.Computer.FileSystem.DeleteFile(My.Computer.FileSystem.SpecialDirectories.Temp & "\" & sFName)
+    '    Try
+    '        'Dim fs As IO.FileStream = New IO.FileStream(ProgProps.ServerPath & sFName, IO.FileMode.Create)
+    '        Dim fs As System.IO.FileStream = New System.IO.FileStream(My.Computer.FileSystem.SpecialDirectories.Temp & "\" & sFName, System.IO.FileMode.Create)
+    '        fs.Write(b, 0, b.Length)
+    '        fs.Close()
+    '        ShellExecute(My.Computer.FileSystem.SpecialDirectories.Temp & "\" & sFName)
+    '    Catch ex As Exception
+    '        XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+    '    End Try
+    'End Sub
+    'Private Function GetFile(ByVal sRowID As String, ByRef sFName As String) As Byte()
+    '    Dim sSQL As String
+    '    Dim cmd As SqlCommand
+    '    Dim sdr As SqlDataReader
+    '    Dim bytes As Byte()
+
+    '    sSQL = "Select  filename,files From BUY_F  WHERE ID = " & toSQLValueS(sRowID)
+    '    cmd = New SqlCommand(sSQL, CNDB) : sdr = cmd.ExecuteReader()
+    '    If sdr.Read() = True Then
+    '        bytes = DirectCast(sdr("files"), Byte())
+    '        sFName = sdr("filename")
+    '        Return bytes
+    '    End If
+    '    sdr.Close()
+
+    'End Function
+    'Private Sub ShellExecute(ByVal File As String)
+    '    Dim myProcess As New Process
+    '    myProcess.StartInfo.FileName = File
+    '    myProcess.StartInfo.UseShellExecute = True
+    '    myProcess.StartInfo.RedirectStandardOutput = False
+    '    myProcess.Start()
+    '    myProcess.Dispose()
+    '    myProcess.Close()
+    'End Sub
+    'Private Sub DeleteBatchRecords()
+    '    Dim sSQL As String
+    '    Dim selectedRowHandles As Int32() = GridView5.GetSelectedRows()
+    '    Dim I As Integer
+    '    Dim ItemsCorrect As Integer = 0, ItemsWrong As Integer = 0
+    '    Try
+    '        If selectedRowHandles.Length = 0 Then Exit Sub
+    '        If XtraMessageBox.Show("Θέλετε να διαγραφούν η τρέχουσες εγγραφές?", ProgProps.ProgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbNo Then Exit Sub
+    '        LayoutControlItem4.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+    '        ProgressBarControl1.EditValue = 0
+    '        ProgressBarControl1.Properties.Step = 1
+    '        ProgressBarControl1.Properties.PercentView = True
+    '        ProgressBarControl1.Properties.Maximum = selectedRowHandles.Length - 1
+    '        ProgressBarControl1.Properties.Minimum = 0
+    '        lstLog.Items.Clear()
+
+    '        For I = 0 To selectedRowHandles.Length - 1
+    '            Dim selectedRowHandle As Int32 = selectedRowHandles(I)
+
+    '            'If GridView5.GetRowCellValue(selectedRowHandle, "ID") = Nothing Then Exit Sub
+    '            If GridView5.GetRowCellValue(selectedRowHandle, "completed") = "False" Then
+
+    '                Select Case SupMode
+    '                    Case 1 : sSQL = "DELETE FROM KANELLOPOULOS WHERE ID = '" & GridView5.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
+    '                End Select
+    '                Try
+
+    '                    Using oCmd As New SqlCommand(sSQL, CNDB)
+    '                        oCmd.ExecuteNonQuery()
+    '                    End Using
+
+    '                    lstLog.Items.Add("Η εγγραφή Διαγράφηκε με επιτυχία!-->" & GridView5.GetRowCellValue(selectedRowHandle, "invNumber").ToString)
+    '                    lstLog.Items(lstLog.Items.Count - 1).ImageOptions.Image = ImageCollection1.Images.Item(0)
+    '                    ItemsCorrect = ItemsCorrect + 1
+    '                Catch ex As Exception
+    '                    lstLog.Items.Add(ex.Message.ToString.Replace(vbCrLf, ""))
+    '                    lstLog.Items(lstLog.Items.Count - 1).ImageOptions.Image = ImageCollection1.Images.Item(1)
+    '                    ItemsWrong = ItemsWrong + 1
+    '                End Try
+    '            Else
+    '                ItemsWrong = ItemsWrong + 1
+    '                lstLog.Items.Add("Η εγγραφή είναι ολοκληρωμένη. Δεν μπορεί να γίνει διαγραφή!-->" & GridView5.GetRowCellValue(selectedRowHandle, "invNumber").ToString)
+    '                lstLog.Items(lstLog.Items.Count - 1).ImageOptions.Image = ImageCollection1.Images.Item(1)
+    '            End If
+    '            ProgressBarControl1.PerformStep()
+    '            ProgressBarControl1.Update()
+    '        Next I
+    '        grdINVOICES.DataSource = Nothing
+    '        Select Case SupMode
+    '            Case 1
+    '                Me.KANELLOPOULOSTableAdapter.Fill(Me.DMDataSet.KANELLOPOULOS)
+    '                grdINVOICES.DataSource = Me.DMDataSet.KANELLOPOULOS
+    '                grdINVOICES.ForceInitialize() : grdINVOICES.DefaultView.PopulateColumns()
+    '                LoadForms.RestoreLayoutFromXml(GridView5, "KANELLOPOULOS.xml")
+    '            Case 2
+    '            Case 3
+    '            Case 4
+    '        End Select
+    '        lstLog.Items.Add("Διαγράφηκαν: " & ItemsCorrect & " Λάθοι: " & ItemsWrong)
+    '        lstLog.Items(lstLog.Items.Count - 1).ImageOptions.Image = ImageCollection1.Images.Item(2)
+    '        LayoutControlItem4.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+
+    '    Catch ex As Exception
+    '        XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+    '        LayoutControlItem4.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+    '    End Try
+    'End Sub
+
+    'Private Sub cmdDelete_Click(sender As Object, e As EventArgs) Handles cmdDelete.Click
+    '    DeleteBatchRecords()
+    'End Sub
+    'Private Sub UpdateColBuy(Optional ByVal Completed As String = "")
+    '    Dim sSQL As New StringBuilder
+    '    Dim CompletedCell As String = Completed
+    '    Try
+
+    '        '   If GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "completed").ToString = "True" Then Exit Sub
+    '        sSQL.Clear()
+    '        Select Case SupMode
+    '            Case 1 : sSQL.AppendLine("UPDATE KANELLOPOULOS SET ")
+    '        End Select
+
+    '        If CompletedCell = "" Then CompletedCell = GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "completed").ToString
+    '        sSQL.AppendLine("Completed= " & toSQLValueS(CompletedCell) & ",")
+    '        sSQL.AppendLine("cctID = " & toSQLValueS(repCCTID) & ",")
+    '        sSQL.AppendLine("transhID = " & toSQLValueS(reptranshID) & ",")
+    '        sSQL.AppendLine("FullTranshDescription = " & toSQLValueS(GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "FullTranshDescription").ToString) & ",")
+    '        sSQL.AppendLine("cmt= " & toSQLValueS(GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "cmt").ToString) & ",")
+    '        sSQL.AppendLine("kitchen= " & toSQLValueS(GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "kitchen").ToString, True) & ",")
+    '        sSQL.AppendLine("closet= " & toSQLValueS(GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "closet").ToString, True) & ",")
+    '        sSQL.AppendLine("general= " & toSQLValueS(GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "general").ToString, True) & ",")
+    '        sSQL.AppendLine("materials= " & toSQLValueS(GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "materials").ToString, True) & ",")
+    '        sSQL.AppendLine("extraCus= " & toSQLValueS(GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "extraCus").ToString, True) & ",")
+    '        sSQL.AppendLine("bathroomFurn= " & toSQLValueS(GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "bathroomFurn").ToString, True))
+
+    '        sSQL.AppendLine("WHERE ID = " & toSQLValueS(GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "ID").ToString))
+    '        Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
+    '            oCmd.ExecuteNonQuery()
+    '        End Using
+    '        repCCTID = "" : reptranshID = ""
+
+    '        lstLog.Items.Add("Η εγγραφή Ενημερώθηκε Επιτυχώς!")
+    '        lstLog.Items(lstLog.Items.Count - 1).ImageOptions.Image = ImageCollection1.Images.Item(2)
+    '    Catch ex As Exception
+    '        XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+    '        lstLog.Items.Add("Η εγγραφή δεν ενημερώθηκε: " & ex.Message)
+    '        lstLog.Items(lstLog.Items.Count - 1).ImageOptions.Image = ImageCollection1.Images.Item(1)
+    '    End Try
+
+    'End Sub
+
+    'Private Sub RepTransh_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles RepTransh.ButtonClick
+    '    Select Case e.Button.Index
+    '        Case 0
+    '        Case 1 : reptranshID = "" : GridView5.ActiveEditor.EditValue = Nothing : GridView5.ValidateEditor()
+    '        Case 2
+    '            reptranshID = GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "transhID").ToString.ToUpper
+    '            If reptranshID <> "" Then
+    '                Dim frmTransactions As frmTransactions = New frmTransactions()
+    '                frmTransactions.CalledFromControl = True
+    '                frmTransactions.Text = "Έργα"
+    '                frmTransactions.ID = reptranshID
+    '                frmTransactions.MdiParent = frmMain
+    '                frmTransactions.Mode = FormMode.EditRecord
+    '                frmTransactions.FormScroller = Me
+    '                frmTransactions.Scroller = GridView5
+    '                frmTransactions.Show()
+    '            End If
+    '    End Select
+    'End Sub
+
+    'Private Sub RepCus_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles RepCus.ButtonClick
+    '    Select Case e.Button.Index
+    '        Case 0
+    '        Case 1 : repCCTID = "" : GridView5.ActiveEditor.EditValue = Nothing : GridView5.ValidateEditor()
+    '        Case 2
+    '            repCCTID = GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "cctID").ToString.ToUpper
+    '            If repCCTID <> "" Then
+    '                Dim frmCustomers As frmCustomers = New frmCustomers()
+    '                frmCustomers.Text = "Πελάτες"
+    '                frmCustomers.ID = repCCTID
+    '                frmCustomers.CalledFromControl = True
+    '                frmCustomers.MdiParent = frmMain
+    '                frmCustomers.Mode = FormMode.EditRecord
+    '                frmCustomers.FormScroller = Me
+    '                frmCustomers.Scroller = GridView5
+    '                frmCustomers.Show()
+    '            End If
+    '    End Select
+    'End Sub
+
+    'Private Sub cmdSave_Click(sender As Object, e As EventArgs) Handles cmdSave.Click
+    '    InsertRecordsToBuy()
+    'End Sub
+
+    'Private Sub GridView5_DoubleClick(sender As Object, e As EventArgs) Handles GridView5.DoubleClick
+    '    Dim sBuyID As String
+    '    If sender.FocusedColumn.FieldName <> "invNumber" Then Exit Sub
+    '    sBuyID = GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "buyID").ToString.ToUpper
+    '    If sBuyID <> "" Then
+    '        Dim frmBUY As frmBUY = New frmBUY()
+    '        frmBUY.Text = "Αγορές"
+    '        frmBUY.ID = GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "buyID").ToString
+    '        frmBUY.MdiParent = frmMain
+    '        frmBUY.Mode = FormMode.EditRecord
+    '        frmBUY.Scroller = GridView5
+    '        frmBUY.FormScroller = Me
+    '        frmBUY.Show()
+    '    End If
+    'End Sub
+
+    'Private Sub RepKan_O_ButtonPressed(sender As Object, e As ButtonPressedEventArgs) Handles RepKan_O.ButtonPressed
+    '    Select Case e.Button.Index
+    '        Case 1
+    '            Dim editor As DevExpress.XtraEditors.LookUpEdit = TryCast(sender, DevExpress.XtraEditors.LookUpEdit)
+    '            If editor.Controls(0).Text Is Nothing Then Exit Sub
+    '            Dim KanOName As String = editor.Controls(0).Text
+    '            If KanOName = "" Then Exit Sub
+    '            Dim sSQL As New System.Text.StringBuilder
+    '            sSQL.AppendLine("DELETE FROM KANELLOPOULOS_O WHERE ID = " & toSQLValueS(editor.EditValue.ToString))
+    '            Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
+    '                oCmd.ExecuteNonQuery()
+    '            End Using
+    '            Dim ID As String = GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "ID").ToString()
+    '            If ID.Length > 0 Then editor.Properties.DataSource = Me.KANELLOPOULOS_OTableAdapter.GetData(System.Guid.Parse(ID))
+    '    End Select
+
+    'End Sub
+
+    'Private Sub RepKan_O_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles RepKan_O.ProcessNewValue
+
+    'End Sub
+End Class
