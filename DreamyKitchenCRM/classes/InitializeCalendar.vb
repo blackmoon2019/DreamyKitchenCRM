@@ -179,23 +179,89 @@ Public Class InitializeCalendar
                             End If
                             sDate = "" : sCusName = "" : sID = "" : sColor = Color.Black : sStatus = "" : FTime = "" : TTime = "" : Cmt = "" : SalersCode = 0 : SerCode = 0 : sCompleted = False : sSalerName = ""
                         Case "2" 'Δημιουργία ραντεβού για παραδόσεις
-                            If sdr.IsDBNull(sdr.GetOrdinal("dtDeliverDate")) = False Then sDate = sdr.GetDateTime(sdr.GetOrdinal("dtDeliverDate"))
-                            If sDate <> "" Then
-                                If sdr.IsDBNull(sdr.GetOrdinal("cctName")) = False Then sCusName = sdr.GetString(sdr.GetOrdinal("cctName"))
-                                sID = sdr.GetGuid(sdr.GetOrdinal("ID")).ToString
-                                If sdr.IsDBNull(sdr.GetOrdinal("color")) = False Then sColor = Color.FromArgb(sdr.GetInt32(sdr.GetOrdinal("color")))
-                                If sdr.IsDBNull(sdr.GetOrdinal("SerName")) = False Then sStatus = "Συνεργείο: " & sdr.GetString(sdr.GetOrdinal("SerName"))
-                                sRemValues = ""
-                                If sdr.IsDBNull(sdr.GetOrdinal("tmIN")) = False Then FTime = sdr.GetString(sdr.GetOrdinal("tmIN"))
-                                If sdr.IsDBNull(sdr.GetOrdinal("tmOUT")) = False Then TTime = sdr.GetString(sdr.GetOrdinal("tmOUT"))
-                                If sdr.IsDBNull(sdr.GetOrdinal("cmt")) = False Then Cmt = sdr.GetString(sdr.GetOrdinal("cmt"))
-                                If sdr.IsDBNull(sdr.GetOrdinal("code")) = False Then SalersCode = sdr.GetInt32(sdr.GetOrdinal("code"))
-                                If sdr.IsDBNull(sdr.GetOrdinal("SerCode")) = False Then SerCode = sdr.GetInt32(sdr.GetOrdinal("SerCode"))
-                                If sdr.IsDBNull(sdr.GetOrdinal("completed")) = False Then sCompleted = sdr.GetBoolean(sdr.GetOrdinal("completed"))
-                                If sdr.IsDBNull(sdr.GetOrdinal("SalerName")) = False Then sSalerName = sdr.GetString(sdr.GetOrdinal("SalerName"))
-                                CreateAppointmentInstDelivery(sID, SCH_Storage, sDate, sStatus, sReminder, sColor, Cmt, SerCode, sCusName, sRemValues, FTime, sCompleted, sSalerName, Reminder, TTime)
+                            ' Κουζίνα
+                            If sdr.GetInt32(sdr.GetOrdinal("kitchen")) = 1 Then
+                                If sdr.IsDBNull(sdr.GetOrdinal("dtDeliverDate")) = False Then sDate = sdr.GetDateTime(sdr.GetOrdinal("dtDeliverDate"))
+                                If sDate <> "" Then
+                                    If sdr.IsDBNull(sdr.GetOrdinal("cctName")) = False Then sCusName = sdr.GetString(sdr.GetOrdinal("cctName"))
+                                    sID = sdr.GetGuid(sdr.GetOrdinal("ID")).ToString
+                                    If sdr.IsDBNull(sdr.GetOrdinal("color")) = False Then sColor = Color.FromArgb(sdr.GetInt32(sdr.GetOrdinal("color")))
+                                    If sdr.IsDBNull(sdr.GetOrdinal("SerName")) = False Then sStatus = "Συνεργείο: " & sdr.GetString(sdr.GetOrdinal("SerName"))
+                                    sRemValues = ""
+                                    If sdr.IsDBNull(sdr.GetOrdinal("tmIN")) = False Then FTime = sdr.GetString(sdr.GetOrdinal("tmIN"))
+                                    If sdr.IsDBNull(sdr.GetOrdinal("tmOUT")) = False Then TTime = sdr.GetString(sdr.GetOrdinal("tmOUT"))
+                                    If sdr.IsDBNull(sdr.GetOrdinal("cmt")) = False Then Cmt = sdr.GetString(sdr.GetOrdinal("cmt"))
+                                    If sdr.IsDBNull(sdr.GetOrdinal("code")) = False Then SalersCode = sdr.GetInt32(sdr.GetOrdinal("code"))
+                                    If sdr.IsDBNull(sdr.GetOrdinal("SerCode")) = False Then SerCode = sdr.GetInt32(sdr.GetOrdinal("SerCode"))
+                                    If sdr.IsDBNull(sdr.GetOrdinal("completed")) = False Then sCompleted = sdr.GetBoolean(sdr.GetOrdinal("completed"))
+                                    If sdr.IsDBNull(sdr.GetOrdinal("SalerName")) = False Then sSalerName = sdr.GetString(sdr.GetOrdinal("SalerName"))
+                                    CreateAppointmentInstDelivery(sID, SCH_Storage, sDate, sStatus, sReminder, sColor, Cmt, SerCode, sCusName, sRemValues, FTime, sCompleted, sSalerName, Reminder, TTime)
+                                End If
+                                sDate = "" : sCusName = "" : sID = "" : sColor = Color.Black : sStatus = "" : FTime = "" : TTime = "" : Cmt = "" : SalersCode = 0 : SerCode = 0 : sCompleted = False : sSalerName = ""
                             End If
-                            sDate = "" : sCusName = "" : sID = "" : sColor = Color.Black : sStatus = "" : FTime = "" : TTime = "" : Cmt = "" : SalersCode = 0 : SerCode = 0 : sCompleted = False : sSalerName = ""
+                            ' Ντουλάπα
+                            If sdr.GetInt32(sdr.GetOrdinal("closet")) = 1 Then
+                                If sdr.IsDBNull(sdr.GetOrdinal("dtDeliverDateC")) = False Then sDate = sdr.GetDateTime(sdr.GetOrdinal("dtDeliverDateC"))
+                                If sDate <> "" Then
+                                    If sdr.IsDBNull(sdr.GetOrdinal("cctName")) = False Then sCusName = sdr.GetString(sdr.GetOrdinal("cctName"))
+                                    sID = sdr.GetGuid(sdr.GetOrdinal("ID")).ToString
+                                    If sdr.IsDBNull(sdr.GetOrdinal("ColorC")) = False Then sColor = Color.FromArgb(sdr.GetInt32(sdr.GetOrdinal("ColorC")))
+                                    If sdr.IsDBNull(sdr.GetOrdinal("SerNameC")) = False Then sStatus = "Συνεργείο: " & sdr.GetString(sdr.GetOrdinal("SerNameC"))
+                                    sRemValues = ""
+                                    If sdr.IsDBNull(sdr.GetOrdinal("tmINC")) = False Then FTime = sdr.GetString(sdr.GetOrdinal("tmINC"))
+                                    If sdr.IsDBNull(sdr.GetOrdinal("tmOUTC")) = False Then TTime = sdr.GetString(sdr.GetOrdinal("tmOUTC"))
+                                    If sdr.IsDBNull(sdr.GetOrdinal("cmt")) = False Then Cmt = sdr.GetString(sdr.GetOrdinal("cmt"))
+                                    If sdr.IsDBNull(sdr.GetOrdinal("code")) = False Then SalersCode = sdr.GetInt32(sdr.GetOrdinal("code"))
+                                    If sdr.IsDBNull(sdr.GetOrdinal("SerCodeC")) = False Then SerCode = sdr.GetInt32(sdr.GetOrdinal("SerCodeC"))
+                                    If sdr.IsDBNull(sdr.GetOrdinal("completed")) = False Then sCompleted = sdr.GetBoolean(sdr.GetOrdinal("completed"))
+                                    If sdr.IsDBNull(sdr.GetOrdinal("SalerName")) = False Then sSalerName = sdr.GetString(sdr.GetOrdinal("SalerName"))
+                                    CreateAppointmentInstDelivery(sID, SCH_Storage, sDate, sStatus, sReminder, sColor, Cmt, SerCode, sCusName, sRemValues, FTime, sCompleted, sSalerName, Reminder, TTime)
+                                End If
+                                sDate = "" : sCusName = "" : sID = "" : sColor = Color.Black : sStatus = "" : FTime = "" : TTime = "" : Cmt = "" : SalersCode = 0 : SerCode = 0 : sCompleted = False : sSalerName = ""
+
+                            End If
+                            ' Πόρτα
+                            If sdr.GetInt32(sdr.GetOrdinal("doors")) = 1 Then
+                                If sdr.IsDBNull(sdr.GetOrdinal("dtDeliverDateD")) = False Then sDate = sdr.GetDateTime(sdr.GetOrdinal("dtDeliverDateD"))
+                                If sDate <> "" Then
+                                    If sdr.IsDBNull(sdr.GetOrdinal("dtDeliverDateTD")) = False Then sDateT = sdr.GetDateTime(sdr.GetOrdinal("dtDeliverDateTD")) : sDate = sDate & "-" & sDateT
+                                    If sdr.IsDBNull(sdr.GetOrdinal("cctName")) = False Then sCusName = sdr.GetString(sdr.GetOrdinal("cctName"))
+                                    sID = sdr.GetGuid(sdr.GetOrdinal("ID")).ToString
+                                    If sdr.IsDBNull(sdr.GetOrdinal("ColorD")) = False Then sColor = Color.FromArgb(sdr.GetInt32(sdr.GetOrdinal("ColorD")))
+                                    If sdr.IsDBNull(sdr.GetOrdinal("SerNameD")) = False Then sStatus = "Συνεργείο: " & sdr.GetString(sdr.GetOrdinal("SerNameD"))
+                                    sRemValues = ""
+                                    If sdr.IsDBNull(sdr.GetOrdinal("tmIND")) = False Then FTime = sdr.GetString(sdr.GetOrdinal("tmIND"))
+                                    If sdr.IsDBNull(sdr.GetOrdinal("tmOUTD")) = False Then TTime = sdr.GetString(sdr.GetOrdinal("tmOUTD"))
+                                    If sdr.IsDBNull(sdr.GetOrdinal("cmt")) = False Then Cmt = sdr.GetString(sdr.GetOrdinal("cmt"))
+                                    If sdr.IsDBNull(sdr.GetOrdinal("code")) = False Then SalersCode = sdr.GetInt32(sdr.GetOrdinal("code"))
+                                    If sdr.IsDBNull(sdr.GetOrdinal("SerCodeD")) = False Then SerCode = sdr.GetInt32(sdr.GetOrdinal("SerCodeD"))
+                                    If sdr.IsDBNull(sdr.GetOrdinal("completed")) = False Then sCompleted = sdr.GetBoolean(sdr.GetOrdinal("completed"))
+                                    If sdr.IsDBNull(sdr.GetOrdinal("SalerName")) = False Then sSalerName = sdr.GetString(sdr.GetOrdinal("SalerName"))
+                                    CreateAppointmentInst(sID, SCH_Storage, sDate, sStatus, sReminder, sColor, Cmt, SerCode, sCusName, sRemValues, FTime, sCompleted, sSalerName, Reminder, TTime)
+                                    sDate = "" : sCusName = "" : sID = "" : sColor = Color.Black : sStatus = "" : FTime = "" : TTime = "" : Cmt = "" : SalersCode = 0 : SerCode = 0 : sCompleted = False : sSalerName = ""
+                                End If
+                            End If
+                            ' Ειδική Κατασκευή
+                            If sdr.GetInt32(sdr.GetOrdinal("sc")) = 1 Then
+                                If sdr.IsDBNull(sdr.GetOrdinal("dtDeliverDateSC")) = False Then sDate = sdr.GetDateTime(sdr.GetOrdinal("dtDeliverDateSC"))
+                                If sDate <> "" Then
+                                    If sdr.IsDBNull(sdr.GetOrdinal("dtDeliverDateTSC")) = False Then sDateT = sdr.GetDateTime(sdr.GetOrdinal("dtDeliverDateTSC")) : sDate = sDate & "-" & sDateT
+                                    If sdr.IsDBNull(sdr.GetOrdinal("cctName")) = False Then sCusName = sdr.GetString(sdr.GetOrdinal("cctName"))
+                                    sID = sdr.GetGuid(sdr.GetOrdinal("ID")).ToString
+                                    If sdr.IsDBNull(sdr.GetOrdinal("ColorSC")) = False Then sColor = Color.FromArgb(sdr.GetInt32(sdr.GetOrdinal("ColorSC")))
+                                    If sdr.IsDBNull(sdr.GetOrdinal("SerNameSC")) = False Then sStatus = "Συνεργείο: " & sdr.GetString(sdr.GetOrdinal("SerNameSC"))
+                                    sRemValues = ""
+                                    If sdr.IsDBNull(sdr.GetOrdinal("tmINSC")) = False Then FTime = sdr.GetString(sdr.GetOrdinal("tmINSC"))
+                                    If sdr.IsDBNull(sdr.GetOrdinal("tmOUTSC")) = False Then TTime = sdr.GetString(sdr.GetOrdinal("tmOUTSC"))
+                                    If sdr.IsDBNull(sdr.GetOrdinal("cmt")) = False Then Cmt = sdr.GetString(sdr.GetOrdinal("cmt"))
+                                    If sdr.IsDBNull(sdr.GetOrdinal("code")) = False Then SalersCode = sdr.GetInt32(sdr.GetOrdinal("code"))
+                                    If sdr.IsDBNull(sdr.GetOrdinal("SerCodeSC")) = False Then SerCode = sdr.GetInt32(sdr.GetOrdinal("SerCodeSC"))
+                                    If sdr.IsDBNull(sdr.GetOrdinal("completed")) = False Then sCompleted = sdr.GetBoolean(sdr.GetOrdinal("completed"))
+                                    If sdr.IsDBNull(sdr.GetOrdinal("SalerName")) = False Then sSalerName = sdr.GetString(sdr.GetOrdinal("SalerName"))
+                                    CreateAppointmentInst(sID, SCH_Storage, sDate, sStatus, sReminder, sColor, Cmt, SerCode, sCusName, sRemValues, FTime, sCompleted, sSalerName, Reminder, TTime)
+                                    sDate = "" : sCusName = "" : sID = "" : sColor = Color.Black : sStatus = "" : FTime = "" : TTime = "" : Cmt = "" : SalersCode = 0 : SerCode = 0 : sCompleted = False : sSalerName = ""
+                                End If
+                            End If
                         Case "3" 'Δημιουργία ραντεβού για εργασίες
                             If sdr.IsDBNull(sdr.GetOrdinal("dtDeliverDate")) = False Then sDate = sdr.GetDateTime(sdr.GetOrdinal("dtDeliverDate"))
                             If sDate <> "" Then

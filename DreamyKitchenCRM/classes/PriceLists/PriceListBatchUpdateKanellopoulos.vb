@@ -160,12 +160,12 @@ Public Class PriceListBatchUpdateKanellopoulos
 
             For I = 0 To selectedRowHandles.Length - 1
                 Dim selectedRowHandle As Int32 = selectedRowHandles(I)
-                If Frm.GridView5.GetRowCellValue(selectedRowHandle, "Status") = 0 Then
-                    sSQL.AppendLine("DELETE FROM PRICELIST_TEMP WHERE ID = " & toSQLValueS(Frm.GridView5.GetRowCellValue(selectedRowHandle, "ID").ToString))
-                    Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
-                        oCmd.ExecuteNonQuery()
-                    End Using
-                End If
+                'If Frm.GridView5.GetRowCellValue(selectedRowHandle, "Status") = 0 Then
+                '    sSQL.AppendLine("DELETE FROM PRICELIST_TEMP WHERE ID = " & toSQLValueS(Frm.GridView5.GetRowCellValue(selectedRowHandle, "ID").ToString))
+                '    Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
+                '        oCmd.ExecuteNonQuery()
+                '    End Using
+                'End If
 
                 If Frm.GridView5.GetRowCellValue(selectedRowHandle, "Status") = 2 Then
                     Try
@@ -211,7 +211,7 @@ Public Class PriceListBatchUpdateKanellopoulos
                     End Try
                     sSQL.Clear()
                 End If
-                If Frm.GridView5.GetRowCellValue(selectedRowHandle, "Status") = 1 Then
+                If Frm.GridView5.GetRowCellValue(selectedRowHandle, "Status") = 0 Or Frm.GridView5.GetRowCellValue(selectedRowHandle, "Status") = 1 Then
                     Try
                         'Εισαγωγή εγγραφών από Excel sthn Βάση
                         sSQL.Clear()
@@ -496,7 +496,8 @@ Public Class PriceListBatchUpdateKanellopoulos
             End If
             sdr.Close()
             Status = dt.Rows(Row)("Status")
-            If dt.Rows(Row)("Status") = 0 Then Return False Else Return True
+            'If dt.Rows(Row)("Status") = 0 Then Return False Else Return True
+            Return True
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try

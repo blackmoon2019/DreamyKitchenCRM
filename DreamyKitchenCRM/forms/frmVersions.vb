@@ -57,6 +57,7 @@ Public Class frmVersions
 
     Private Sub cmdSave_Click(sender As Object, e As EventArgs) Handles cmdSave.Click
         Dim sResult As Boolean
+        Dim sSQL As String
         Try
             If Valid.ValidateForm(LayoutControl1) Then
                 Select Case Mode
@@ -66,6 +67,12 @@ Public Class frmVersions
                         sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "DM_VER", LayoutControl1,,, sID)
                 End Select
                 If sResult Then
+                    sSQL = "update TECH_SUP set BuildVersion  = " & toSQLValue(txtNam) & " where ID = " & toSQLValueS(cbotechnical.EditValue.ToString)
+                    'Εκτέλεση QUERY
+                    Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
+                        oCmd.ExecuteNonQuery()
+                    End Using
+
                     'Καθαρισμός Controls
                     If Mode = FormMode.NewRecord Then Cls.ClearCtrls(LayoutControl1)
                     txtCode.Text = DBQ.GetNextId("DM_VER")
