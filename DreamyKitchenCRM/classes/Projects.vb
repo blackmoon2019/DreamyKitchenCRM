@@ -899,8 +899,8 @@ Public Class Projects
                     End If
                 End If
                 sSQL = "  select   PosoParastatikou as Trapezika,ProjectTotal - PosoParastatikou as Metrhta,
-                         (SELECT isnull(sum(amt),0) as amt FROM TRANSD WHERE cash =1 and transhID=" & toSQLValueS(ID) & ") as CreditCash,
-                         (SELECT isnull(sum(amt),0) as amt FROM TRANSD WHERE cash =0 and transhID=" & toSQLValueS(ID) & ") as CreditBank
+                         (SELECT isnull(sum(amt),0) as amt FROM TRANSD WHERE cash =1 and isCredit = 1 and transhID=" & toSQLValueS(ID) & ") as CreditCash,
+                         (SELECT isnull(sum(amt),0) as amt FROM TRANSD WHERE cash =0 and isCredit = 1 and transhID=" & toSQLValueS(ID) & ") as CreditBank
                         FROM vw_ANALYSH_KOSTOYS WHERE ID = " & toSQLValueS(ID)
                 Cmd = New SqlCommand(sSQL, CNDB)
                 Dim sdr As SqlDataReader = Cmd.ExecuteReader()

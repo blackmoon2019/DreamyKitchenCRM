@@ -576,9 +576,7 @@
     <Compile Include="forms\frmMain.Designer.vb">
       <DependentUpon>frmMain.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\frmMain.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="forms\frmMain.vb" />
     <Compile Include="forms\frmNotes.Designer.vb">
       <DependentUpon>frmNotes.vb</DependentUpon>
     </Compile>

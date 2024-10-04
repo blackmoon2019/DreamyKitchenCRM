@@ -165,6 +165,8 @@ Partial Class frmMain
         Me.RibbonPageGroup9 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.RibbonPageGroup10 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.RibbonPageGroup12 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
+        Me.Μα = New DevExpress.XtraBars.Ribbon.RibbonPage()
+        Me.RibbonPageGroup23 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.RibbonPage2 = New DevExpress.XtraBars.Ribbon.RibbonPage()
         Me.RibbonPageGroup2 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.RibbonPage7 = New DevExpress.XtraBars.Ribbon.RibbonPage()
@@ -182,8 +184,6 @@ Partial Class frmMain
         Me.RibbonPageGroup14 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.RibbonPage5 = New DevExpress.XtraBars.Ribbon.RibbonPage()
         Me.RibbonPageGroup5 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
-        Me.Μα = New DevExpress.XtraBars.Ribbon.RibbonPage()
-        Me.RibbonPageGroup23 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.RepositoryItemHypertextLabel1 = New DevExpress.XtraEditors.Repository.RepositoryItemHypertextLabel()
         Me.RepositoryItemHypertextLabel2 = New DevExpress.XtraEditors.Repository.RepositoryItemHypertextLabel()
         Me.RepositoryItemHyperLinkEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
@@ -212,6 +212,7 @@ Partial Class frmMain
         '
         'RibbonControl1
         '
+        Me.RibbonControl1.AllowCustomization = True
         Me.RibbonControl1.EmptyAreaImageOptions.ImagePadding = New System.Windows.Forms.Padding(27, 25, 27, 25)
         Me.RibbonControl1.ExpandCollapseItem.Id = 0
         Me.RibbonControl1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.RibbonControl1.ExpandCollapseItem, Me.bbUsers, Me.bbMailSettings, Me.BarButtonItem1, Me.BarClose, Me.bbRights, Me.SkinDropDownButtonItem1, Me.BarMdiChildrenListItem1, Me.bbDate, Me.BarEditItem1, Me.BarEditItem2, Me.bbUser, Me.bbServer, Me.bbDB, Me.bbLink, Me.bbCCT, Me.bbCOU, Me.bbAreas, Me.bbADR, Me.bbDOY, Me.bbPRF, Me.bbVersion, Me.bbStatus, Me.bbSource, Me.bbSalers, Me.BBCusMovs, Me.BBCalendar, Me.BBCusStatistics1, Me.BBNotes, Me.bbLabels, Me.BBChangeUsr, Me.ΒΒvalueListItem, Me.bbCatErm, Me.bbERM, Me.bbBench, Me.bbMech, Me.bboffer, Me.BarButtonItem2, Me.bbTechnicalSupport, Me.bbTechCateg, Me.bbColors, Me.bbColorCAT, Me.bbEpendisis, Me.bbDimensions, Me.bbCalculations, Me.bbCatSubErm, Me.BBSer, Me.BBInst, Me.BBCalendarInst, Me.bbTRANSH, Me.bbBanks, Me.bbEmploye, Me.bbDep, Me.bbEmpMov, Me.bbStatusPre, Me.BBPersonalCalendar, Me.BBPersonalCalendarStatus, Me.BBInstM, Me.BBPayroll, Me.BBPayrolStatus, Me.bbEMP_T, Me.BBEllipse, Me.bbConstrCat, Me.bbConstr, Me.BBPayrollConstr, Me.bbJobs, Me.BBScanFileNames, Me.BBStatistics2, Me.BBStatistics3, Me.BBProjectCosts, Me.BBUpdate, Me.BBNotes2, Me.BBPay, Me.BBSup, Me.BBBuy_C, Me.BBuy, Me.BBSupInvoicesPayment, Me.BBTransactions, Me.BBPrivateAgreement, Me.BBcctOffer, Me.BBParam, Me.BBCloset, Me.BBDoors, Me.BBSpecialConstr, Me.BBCCctOrdersKitchen, Me.BBEquipment, Me.BBDevices, Me.BBequipmentCat, Me.BBCCctOrdersCloset, Me.BBCCctDoorsCloset, Me.BBSpecialOrder, Me.BBEpStatus, Me.BarMdiChildrenListItem2, Me.BarDockingMenuItem1, Me.BBEpopteia, Me.BarSubItem1, Me.BBSupOrders, Me.BBEpopteiaTrans, Me.BBTransConstr, Me.BBEpopteiaTable, Me.BBEpopteiaChart, Me.BBTransCost, Me.bbDimensionsCat, Me.BBConstruct, Me.BBTechSup, Me.BBVer, Me.BBEMP_P, Me.BBOrderFormNumbers, Me.bbEmpConstrMov, Me.BBinvBuyTypes, Me.BBBulkInsertInvoices, Me.BBProjectJobs, Me.BBBaseCatERP, Me.BBTransh_C, Me.BBPayType, Me.BBProject, Me.BBFileCat, Me.BBProjectCheckList, Me.BBExtPartners, Me.BBProjectJobsSUP, Me.BBatchUpdatePriceList})
@@ -1376,6 +1377,18 @@ Partial Class frmMain
         Me.RibbonPageGroup12.Name = "RibbonPageGroup12"
         Me.RibbonPageGroup12.Text = "Κατασκευαστικό"
         '
+        'Μα
+        '
+        Me.Μα.Groups.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPageGroup() {Me.RibbonPageGroup23})
+        Me.Μα.Name = "Μα"
+        Me.Μα.Text = "Μαζικές Λειτουργίες"
+        '
+        'RibbonPageGroup23
+        '
+        Me.RibbonPageGroup23.ItemLinks.Add(Me.BBatchUpdatePriceList)
+        Me.RibbonPageGroup23.Name = "RibbonPageGroup23"
+        Me.RibbonPageGroup23.Text = "Λειτουργίες"
+        '
         'RibbonPage2
         '
         Me.RibbonPage2.Groups.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPageGroup() {Me.RibbonPageGroup2})
@@ -1513,18 +1526,6 @@ Partial Class frmMain
         Me.RibbonPageGroup5.ItemLinks.Add(Me.BBVer)
         Me.RibbonPageGroup5.Name = "RibbonPageGroup5"
         Me.RibbonPageGroup5.Text = "Βοήθεια"
-        '
-        'Μα
-        '
-        Me.Μα.Groups.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPageGroup() {Me.RibbonPageGroup23})
-        Me.Μα.Name = "Μα"
-        Me.Μα.Text = "Μαζικές Λειτουργίες"
-        '
-        'RibbonPageGroup23
-        '
-        Me.RibbonPageGroup23.ItemLinks.Add(Me.BBatchUpdatePriceList)
-        Me.RibbonPageGroup23.Name = "RibbonPageGroup23"
-        Me.RibbonPageGroup23.Text = "Λειτουργίες"
         '
         'RepositoryItemHypertextLabel1
         '
