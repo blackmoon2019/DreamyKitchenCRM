@@ -83,7 +83,7 @@ Public Class ProjectJobs
         If HasConnectedOrder = False And sComeFrom = 0 Then If CheckIfHasRecordsForOrder() = True Then Return False
         If sComeFrom = 0 Then
             If Frm.GridView1.DataRowCount > 0 Then
-                If CheckIfHasSendInfEmail() = False Then Return False
+                'If CheckIfHasSendInfEmail() = False Then Return False
                 If CheckIfHasSendInfCompleteEmail() = False Then Return False
                 If CheckIfProjectJobsAreCompleted() = True And Frm.txtfProjectNameComplete.EditValue = Nothing Then
                     XtraMessageBox.Show("Όλες οι εργασίες είναι ολοκληρωμένες χωρίς να έχετε επισυνάψει έντυπο ολοκλήρωσης. Δεν μπορεί να αποθηκευθεί η εγγραφή.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)

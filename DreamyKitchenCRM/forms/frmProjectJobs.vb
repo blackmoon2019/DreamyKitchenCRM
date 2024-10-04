@@ -342,7 +342,7 @@ Public Class frmProjectJobs
     End Sub
 
     Private Sub frmProjectJobs_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
-        If ProjectJobs.ValidationsExit = False Then e.Cancel = True : Exit Sub
+        'If ProjectJobs.ValidationsExit = False Then e.Cancel = True : Exit Sub
     End Sub
     Private Sub cboTanshFCategory_ButtonPressed(sender As Object, e As ButtonPressedEventArgs) Handles cboTanshFCategory.ButtonPressed
         Select Case e.Button.Index

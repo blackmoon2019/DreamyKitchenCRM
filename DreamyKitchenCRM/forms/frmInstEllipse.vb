@@ -160,7 +160,7 @@ Public Class frmInstEllipse
         If HasConnectedOrder = False And sComeFrom = 0 Then If CheckIfHasRecordsForOrder() = True Then Return False
         If sComeFrom = 0 Then
             If GridView1.DataRowCount > 0 Then
-                If CheckIfHasSendInfEmail() = False Then Return False
+                'If CheckIfHasSendInfEmail() = False Then Return False
                 If CheckIfInstJobsAreCompleted() = True And txtInstellipseFilenameComplete.EditValue = Nothing Then
                     XtraMessageBox.Show("Όλες οι εκκρεμότητες είναι ολοκληρωμένες χωρίς να έχετε επισυνάψει έντυπο ολοκλήρωσης. Δεν μπορεί να αποθηκευθεί η εγγραφή.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
                     Return False

@@ -64,6 +64,8 @@ Partial Public Class RepCUSProjectJobsSUP
         Me.XrPictureBox1 = New DevExpress.XtraReports.UI.XRPictureBox()
         Me.XrLabel1 = New DevExpress.XtraReports.UI.XRLabel()
         Me.ID = New DevExpress.XtraReports.Parameters.Parameter()
+        Me.XrTableCell9 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrCheckBox4 = New DevExpress.XtraReports.UI.XRCheckBox()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -107,7 +109,7 @@ Partial Public Class RepCUSProjectJobsSUP
         '
         'Detail
         '
-        Me.Detail.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrCheckBox3, Me.XrCheckBox2, Me.XrCheckBox1, Me.XrTable1})
+        Me.Detail.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrCheckBox4, Me.XrCheckBox3, Me.XrCheckBox2, Me.XrCheckBox1, Me.XrTable1})
         Me.Detail.HeightF = 25.00007!
         Me.Detail.Name = "Detail"
         '
@@ -118,10 +120,10 @@ Partial Public Class RepCUSProjectJobsSUP
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.XrCheckBox3.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "CheckBoxState", "[missing]")})
         Me.XrCheckBox3.GlyphOptions.Alignment = DevExpress.Utils.HorzAlignment.Center
-        Me.XrCheckBox3.LocationFloat = New DevExpress.Utils.PointFloat(372.4748!, 0!)
+        Me.XrCheckBox3.LocationFloat = New DevExpress.Utils.PointFloat(354.2126!, 0!)
         Me.XrCheckBox3.Name = "XrCheckBox3"
         Me.XrCheckBox3.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrCheckBox3.SizeF = New System.Drawing.SizeF(105.5555!, 25.00007!)
+        Me.XrCheckBox3.SizeF = New System.Drawing.SizeF(113.2043!, 25.00007!)
         Me.XrCheckBox3.StylePriority.UseBorders = False
         Me.XrCheckBox3.StylePriority.UseTextAlignment = False
         Me.XrCheckBox3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
@@ -133,10 +135,10 @@ Partial Public Class RepCUSProjectJobsSUP
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.XrCheckBox2.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "CheckBoxState", "[replacement]")})
         Me.XrCheckBox2.GlyphOptions.Alignment = DevExpress.Utils.HorzAlignment.Center
-        Me.XrCheckBox2.LocationFloat = New DevExpress.Utils.PointFloat(478.0303!, 0!)
+        Me.XrCheckBox2.LocationFloat = New DevExpress.Utils.PointFloat(467.4168!, 0!)
         Me.XrCheckBox2.Name = "XrCheckBox2"
         Me.XrCheckBox2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrCheckBox2.SizeF = New System.Drawing.SizeF(128.3739!, 25.00007!)
+        Me.XrCheckBox2.SizeF = New System.Drawing.SizeF(109.2557!, 25.00007!)
         Me.XrCheckBox2.StylePriority.UseBorders = False
         Me.XrCheckBox2.StylePriority.UseTextAlignment = False
         Me.XrCheckBox2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
@@ -148,10 +150,10 @@ Partial Public Class RepCUSProjectJobsSUP
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.XrCheckBox1.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "CheckBoxState", "[orderError]")})
         Me.XrCheckBox1.GlyphOptions.Alignment = DevExpress.Utils.HorzAlignment.Center
-        Me.XrCheckBox1.LocationFloat = New DevExpress.Utils.PointFloat(606.4042!, 0!)
+        Me.XrCheckBox1.LocationFloat = New DevExpress.Utils.PointFloat(576.6725!, 0!)
         Me.XrCheckBox1.Name = "XrCheckBox1"
         Me.XrCheckBox1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrCheckBox1.SizeF = New System.Drawing.SizeF(100.5958!, 25.00007!)
+        Me.XrCheckBox1.SizeF = New System.Drawing.SizeF(95.66364!, 25.00007!)
         Me.XrCheckBox1.StylePriority.UseBorders = False
         Me.XrCheckBox1.StylePriority.UseTextAlignment = False
         Me.XrCheckBox1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
@@ -162,7 +164,7 @@ Partial Public Class RepCUSProjectJobsSUP
         Me.XrTable1.Name = "XrTable1"
         Me.XrTable1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96.0!)
         Me.XrTable1.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow1})
-        Me.XrTable1.SizeF = New System.Drawing.SizeF(372.4748!, 25.0!)
+        Me.XrTable1.SizeF = New System.Drawing.SizeF(354.2126!, 25.0!)
         '
         'XrTableRow1
         '
@@ -185,7 +187,7 @@ Partial Public Class RepCUSProjectJobsSUP
         Me.XrTableCell1.Text = "XrTableCell1"
         Me.XrTableCell1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         Me.XrTableCell1.TextFormatString = "{0}"
-        Me.XrTableCell1.Weight = 0.17860679078900643R
+        Me.XrTableCell1.Weight = 0.169849815472353R
         '
         'XrTableCell2
         '
@@ -199,7 +201,7 @@ Partial Public Class RepCUSProjectJobsSUP
         Me.XrTableCell2.StylePriority.UseTextAlignment = False
         Me.XrTableCell2.Text = "XrTableCell2"
         Me.XrTableCell2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        Me.XrTableCell2.Weight = 1.6035692658286065R
+        Me.XrTableCell2.Weight = 1.524947259348004R
         '
         'PageHeader
         '
@@ -213,11 +215,11 @@ Partial Public Class RepCUSProjectJobsSUP
         Me.XrTable3.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
             Or DevExpress.XtraPrinting.BorderSide.Right) _
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
-        Me.XrTable3.LocationFloat = New DevExpress.Utils.PointFloat(9.999974!, 9.999996!)
+        Me.XrTable3.LocationFloat = New DevExpress.Utils.PointFloat(9.999974!, 10.00002!)
         Me.XrTable3.Name = "XrTable3"
         Me.XrTable3.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96.0!)
         Me.XrTable3.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow2, Me.XrTableRow5, Me.XrTableRow6})
-        Me.XrTable3.SizeF = New System.Drawing.SizeF(687.0!, 104.4643!)
+        Me.XrTable3.SizeF = New System.Drawing.SizeF(757.9999!, 104.4643!)
         Me.XrTable3.StylePriority.UseBorderColor = False
         Me.XrTable3.StylePriority.UseBorders = False
         '
@@ -321,11 +323,11 @@ Partial Public Class RepCUSProjectJobsSUP
         Me.XrTable2.Name = "XrTable2"
         Me.XrTable2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96.0!)
         Me.XrTable2.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow3})
-        Me.XrTable2.SizeF = New System.Drawing.SizeF(707.0!, 35.11905!)
+        Me.XrTable2.SizeF = New System.Drawing.SizeF(767.9999!, 35.11903!)
         '
         'XrTableRow3
         '
-        Me.XrTableRow3.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell7, Me.XrTableCell8, Me.XrTableCell6, Me.XrTableCell5, Me.XrTableCell10})
+        Me.XrTableRow3.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell7, Me.XrTableCell8, Me.XrTableCell6, Me.XrTableCell5, Me.XrTableCell10, Me.XrTableCell9})
         Me.XrTableRow3.Name = "XrTableRow3"
         Me.XrTableRow3.Weight = 1.0R
         '
@@ -381,7 +383,7 @@ Partial Public Class RepCUSProjectJobsSUP
         Me.XrTableCell6.StylePriority.UseTextAlignment = False
         Me.XrTableCell6.Text = "Δεν Παρελήφθησαν"
         Me.XrTableCell6.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell6.Weight = 3.3703783281867365R
+        Me.XrTableCell6.Weight = 3.800961380324924R
         '
         'XrTableCell5
         '
@@ -399,7 +401,7 @@ Partial Public Class RepCUSProjectJobsSUP
         Me.XrTableCell5.StylePriority.UseTextAlignment = False
         Me.XrTableCell5.Text = "Αντικατάσταση"
         Me.XrTableCell5.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell5.Weight = 4.0989665603916237R
+        Me.XrTableCell5.Weight = 3.6683837644189765R
         '
         'XrTableCell10
         '
@@ -417,7 +419,7 @@ Partial Public Class RepCUSProjectJobsSUP
         Me.XrTableCell10.StylePriority.UseTextAlignment = False
         Me.XrTableCell10.Text = "Λάθος από παραγγελία"
         Me.XrTableCell10.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell10.Weight = 3.2120169506490308R
+        Me.XrTableCell10.Weight = 3.2120166944834905R
         '
         'XrLabel13
         '
@@ -427,7 +429,7 @@ Partial Public Class RepCUSProjectJobsSUP
         Me.XrLabel13.LocationFloat = New DevExpress.Utils.PointFloat(0!, 161.2857!)
         Me.XrLabel13.Multiline = True
         Me.XrLabel13.Name = "XrLabel13"
-        Me.XrLabel13.SizeF = New System.Drawing.SizeF(707.0!, 23.91638!)
+        Me.XrLabel13.SizeF = New System.Drawing.SizeF(767.9999!, 23.91638!)
         Me.XrLabel13.StylePriority.UseBackColor = False
         Me.XrLabel13.StylePriority.UseFont = False
         Me.XrLabel13.StylePriority.UseForeColor = False
@@ -477,6 +479,39 @@ Partial Public Class RepCUSProjectJobsSUP
         Me.ID.ValueSourceSettings = DynamicListLookUpSettings1
         Me.ID.Visible = False
         '
+        'XrTableCell9
+        '
+        Me.XrTableCell9.BackColor = System.Drawing.Color.FromArgb(CType(CType(242, Byte), Integer), CType(CType(242, Byte), Integer), CType(CType(242, Byte), Integer))
+        Me.XrTableCell9.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
+            Or DevExpress.XtraPrinting.BorderSide.Right), DevExpress.XtraPrinting.BorderSide)
+        Me.XrTableCell9.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 9.0!, DevExpress.Drawing.DXFontStyle.Bold)
+        Me.XrTableCell9.ForeColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer))
+        Me.XrTableCell9.Multiline = True
+        Me.XrTableCell9.Name = "XrTableCell9"
+        Me.XrTableCell9.StylePriority.UseBackColor = False
+        Me.XrTableCell9.StylePriority.UseBorders = False
+        Me.XrTableCell9.StylePriority.UseFont = False
+        Me.XrTableCell9.StylePriority.UseForeColor = False
+        Me.XrTableCell9.StylePriority.UseTextAlignment = False
+        Me.XrTableCell9.Text = "Ολοκληρώθηκε"
+        Me.XrTableCell9.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        Me.XrTableCell9.Weight = 3.2120169506490308R
+        '
+        'XrCheckBox4
+        '
+        Me.XrCheckBox4.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
+            Or DevExpress.XtraPrinting.BorderSide.Right) _
+            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.XrCheckBox4.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "CheckBoxState", "[completed]")})
+        Me.XrCheckBox4.GlyphOptions.Alignment = DevExpress.Utils.HorzAlignment.Center
+        Me.XrCheckBox4.LocationFloat = New DevExpress.Utils.PointFloat(672.3362!, 0!)
+        Me.XrCheckBox4.Name = "XrCheckBox4"
+        Me.XrCheckBox4.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrCheckBox4.SizeF = New System.Drawing.SizeF(95.66376!, 25.00007!)
+        Me.XrCheckBox4.StylePriority.UseBorders = False
+        Me.XrCheckBox4.StylePriority.UseTextAlignment = False
+        Me.XrCheckBox4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        '
         'RepCUSProjectJobsSUP
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.TopMargin, Me.BottomMargin, Me.Detail, Me.PageHeader, Me.ReportHeader})
@@ -484,7 +519,7 @@ Partial Public Class RepCUSProjectJobsSUP
         Me.DataMember = "vw_PROJECT_JOBSSUP_D"
         Me.DataSource = Me.SqlDataSource1
         Me.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 9.0!)
-        Me.Margins = New DevExpress.Drawing.DXMargins(60.0!, 60.0!, 50.0!, 100.0!)
+        Me.Margins = New DevExpress.Drawing.DXMargins(28.0!, 31.0!, 50.0!, 100.0!)
         Me.PageHeight = 1169
         Me.PageWidth = 827
         Me.PaperKind = DevExpress.Drawing.Printing.DXPaperKind.A4
@@ -535,4 +570,6 @@ Partial Public Class RepCUSProjectJobsSUP
     Friend WithEvents XrCheckBox3 As DevExpress.XtraReports.UI.XRCheckBox
     Friend WithEvents XrCheckBox2 As DevExpress.XtraReports.UI.XRCheckBox
     Friend WithEvents XrCheckBox1 As DevExpress.XtraReports.UI.XRCheckBox
+    Friend WithEvents XrTableCell9 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrCheckBox4 As DevExpress.XtraReports.UI.XRCheckBox
 End Class

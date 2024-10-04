@@ -576,7 +576,9 @@
     <Compile Include="forms\frmMain.Designer.vb">
       <DependentUpon>frmMain.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\frmMain.vb" />
+    <Compile Include="forms\frmMain.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\frmNotes.Designer.vb">
       <DependentUpon>frmNotes.vb</DependentUpon>
     </Compile>
@@ -779,6 +781,30 @@
       <DependentUpon>RepCUSOfferKitchen1stPage.vb</DependentUpon>
     </Compile>
     <Compile Include="Reports\RepCUSOfferKitchen1stPage.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\RepCUSPrivateAgreement5ndPage.Designer.vb">
+      <DependentUpon>RepCUSPrivateAgreement5ndPage.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RepCUSPrivateAgreement5ndPage.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\RepCUSPrivateAgreement6ndPage.Designer.vb">
+      <DependentUpon>RepCUSPrivateAgreement6ndPage.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RepCUSPrivateAgreement6ndPage.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\RepCUSPrivateAgreement7ndPage.Designer.vb">
+      <DependentUpon>RepCUSPrivateAgreement7ndPage.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RepCUSPrivateAgreement7ndPage.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\RepCUSPrivateAgreement8ndPage.Designer.vb">
+      <DependentUpon>RepCUSPrivateAgreement8ndPage.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RepCUSPrivateAgreement8ndPage.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RepCUSProjectJobs.Designer.vb">
@@ -1186,6 +1212,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RepCUSOfferKitchen1stPage.resx">
       <DependentUpon>RepCUSOfferKitchen1stPage.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RepCUSPrivateAgreement5ndPage.resx">
+      <DependentUpon>RepCUSPrivateAgreement5ndPage.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RepCUSPrivateAgreement6ndPage.resx">
+      <DependentUpon>RepCUSPrivateAgreement6ndPage.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RepCUSPrivateAgreement7ndPage.resx">
+      <DependentUpon>RepCUSPrivateAgreement7ndPage.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RepCUSPrivateAgreement8ndPage.resx">
+      <DependentUpon>RepCUSPrivateAgreement8ndPage.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RepCUSProjectJobs.resx">
       <DependentUpon>RepCUSProjectJobs.vb</DependentUpon>

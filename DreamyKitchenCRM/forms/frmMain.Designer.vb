@@ -735,7 +735,7 @@ Partial Class frmMain
         '
         'BBEllipse
         '
-        Me.BBEllipse.Caption = "Εκρεμότητες Έργων"
+        Me.BBEllipse.Caption = "Εκρεμότητες Έργων από Τοποθέτηση"
         Me.BBEllipse.Id = 68
         Me.BBEllipse.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_bank_card_missing_40
         Me.BBEllipse.Name = "BBEllipse"
@@ -1204,7 +1204,7 @@ Partial Class frmMain
         '
         'BBProjectJobsSUP
         '
-        Me.BBProjectJobsSUP.Caption = "Εκκρεμότητες Κατασκευαστικού"
+        Me.BBProjectJobsSUP.Caption = "Εκκρεμότητες Παραλαβών"
         Me.BBProjectJobsSUP.Id = 127
         Me.BBProjectJobsSUP.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_under_construction_40
         Me.BBProjectJobsSUP.Name = "BBProjectJobsSUP"

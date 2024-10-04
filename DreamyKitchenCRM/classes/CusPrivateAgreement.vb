@@ -562,6 +562,27 @@ Public Class CusPrivateAgreement
             report.ModifyDocument(Sub(x)
                                       x.AddPages(report5.Pages)
                                   End Sub)
+
+            Dim report6 As New RepCUSPrivateAgreement5ndPage
+            report6.CreateDocument()
+            report.ModifyDocument(Sub(x)
+                                      x.AddPages(report6.Pages)
+                                  End Sub)
+            Dim report7 As New RepCUSPrivateAgreement6ndPage
+            report7.CreateDocument()
+            report.ModifyDocument(Sub(x)
+                                      x.AddPages(report7.Pages)
+                                  End Sub)
+            Dim report8 As New RepCUSPrivateAgreement7ndPage
+            report8.CreateDocument()
+            report.ModifyDocument(Sub(x)
+                                      x.AddPages(report8.Pages)
+                                  End Sub)
+            Dim report9 As New RepCUSPrivateAgreement8ndPage
+            report9.CreateDocument()
+            report.ModifyDocument(Sub(x)
+                                      x.AddPages(report9.Pages)
+                                  End Sub)
             Dim printTool As New ReportPrintTool(report)
             printTool.ShowRibbonPreview()
         End If
