@@ -565,7 +565,7 @@ Public Class Installations
         Dim Cmd As SqlCommand, sdr As SqlDataReader
         Dim EllipseID As String = ""
         Try
-            Cmd = New SqlCommand("Select TOP 1 ID FROM INST_ELLIPSE IE WHERE completed = 0 and IE.instID= " & toSQLValueS(ID), CNDB)
+            Cmd = New SqlCommand("Select TOP 1 ID FROM INST_ELLIPSE IE WHERE completed = 0 and comeFrom = 0 and IE.instID= " & toSQLValueS(ID), CNDB)
             sdr = Cmd.ExecuteReader()
             If (sdr.Read() = True) Then
                 EllipseID = sdr.GetGuid(sdr.GetOrdinal("ID")).ToString.ToUpper
