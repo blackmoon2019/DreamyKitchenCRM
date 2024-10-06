@@ -314,6 +314,7 @@
     <Compile Include="classes\ClearControls.vb" />
     <Compile Include="classes\CN.vb" />
     <Compile Include="classes\CombosManager.vb" />
+    <Compile Include="classes\InstEllipse.vb" />
     <Compile Include="classes\OfferOrders\CusOfferOrderCloset.vb" />
     <Compile Include="classes\OfferOrders\CusOfferOrderDoors.vb" />
     <Compile Include="classes\OfferOrders\CusOfferOrderKitchen.vb" />

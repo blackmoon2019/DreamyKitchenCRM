@@ -14,7 +14,11 @@ Public Class CN
         Dim DBConnection As New SqlConnection()
         Try
             ' connStr = "Password=Dr3@mySA;Persist Security Info=True;User ID=dreamy;Initial Catalog=DreamyKitchen;Data Source=10.10.5.7,1433;MultipleActiveResultSets=True"
-            If My.Settings.PROD = False Then connStr = "Data Source=10.10.5.7,1433;Initial Catalog=DreamyKitchenDEV;Persist Security Info=True;User ID=sa;Password=Dr3@mySA;MultipleActiveResultSets=True;Encrypt=False;TrustServerCertificate=True"
+            If My.Settings.PROD = False Then
+                connStr = "Data Source=10.10.5.7,1433;Initial Catalog=DreamyKitchenDEV;Persist Security Info=True;User ID=sa;Password=Dr3@mySA;MultipleActiveResultSets=True;Encrypt=False;TrustServerCertificate=True"
+            Else
+                connStr = "Data Source=10.10.5.7,1433;Initial Catalog=DreamyKitchen;Persist Security Info=True;User ID=sa;Password=Dr3@mySA;MultipleActiveResultSets=True;Encrypt=False;TrustServerCertificate=True"
+            End If
             DBConnection.ConnectionString = connStr
             DBConnection.Open()
 

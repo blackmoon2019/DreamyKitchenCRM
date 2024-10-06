@@ -25,10 +25,13 @@ Partial Public Class RepCUSEllipseForSUP
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(RepCUSEllipseForSUP))
         Dim CustomSqlQuery2 As DevExpress.DataAccess.Sql.CustomSqlQuery = New DevExpress.DataAccess.Sql.CustomSqlQuery()
         Dim QueryParameter2 As DevExpress.DataAccess.Sql.QueryParameter = New DevExpress.DataAccess.Sql.QueryParameter()
+        Dim QueryParameter3 As DevExpress.DataAccess.Sql.QueryParameter = New DevExpress.DataAccess.Sql.QueryParameter()
         Dim MasterDetailInfo1 As DevExpress.DataAccess.Sql.MasterDetailInfo = New DevExpress.DataAccess.Sql.MasterDetailInfo()
         Dim RelationColumnInfo1 As DevExpress.DataAccess.Sql.RelationColumnInfo = New DevExpress.DataAccess.Sql.RelationColumnInfo()
         Dim XrSummary1 As DevExpress.XtraReports.UI.XRSummary = New DevExpress.XtraReports.UI.XRSummary()
         Dim DynamicListLookUpSettings1 As DevExpress.XtraReports.Parameters.DynamicListLookUpSettings = New DevExpress.XtraReports.Parameters.DynamicListLookUpSettings()
+        Dim DynamicListLookUpSettings2 As DevExpress.XtraReports.Parameters.DynamicListLookUpSettings = New DevExpress.XtraReports.Parameters.DynamicListLookUpSettings()
+        Dim XrWatermark1 As DevExpress.XtraReports.UI.XRWatermark = New DevExpress.XtraReports.UI.XRWatermark()
         Me.SqlDataSource1 = New DevExpress.DataAccess.Sql.SqlDataSource(Me.components)
         Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
         Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
@@ -66,6 +69,10 @@ Partial Public Class RepCUSEllipseForSUP
         Me.XrPictureBox1 = New DevExpress.XtraReports.UI.XRPictureBox()
         Me.XrLabel1 = New DevExpress.XtraReports.UI.XRLabel()
         Me.ID = New DevExpress.XtraReports.Parameters.Parameter()
+        Me.supID = New DevExpress.XtraReports.Parameters.Parameter()
+        Me.XrTableRow7 = New DevExpress.XtraReports.UI.XRTableRow()
+        Me.XrTableCell14 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCell17 = New DevExpress.XtraReports.UI.XRTableCell()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -87,7 +94,10 @@ Partial Public Class RepCUSEllipseForSUP
         QueryParameter2.Name = "instEllipseID"
         QueryParameter2.Type = GetType(DevExpress.DataAccess.Expression)
         QueryParameter2.Value = New DevExpress.DataAccess.Expression("?ID", GetType(System.Guid))
-        CustomSqlQuery2.Parameters.AddRange(New DevExpress.DataAccess.Sql.QueryParameter() {QueryParameter2})
+        QueryParameter3.Name = "supID"
+        QueryParameter3.Type = GetType(DevExpress.DataAccess.Expression)
+        QueryParameter3.Value = New DevExpress.DataAccess.Expression("?supID", GetType(System.Guid))
+        CustomSqlQuery2.Parameters.AddRange(New DevExpress.DataAccess.Sql.QueryParameter() {QueryParameter2, QueryParameter3})
         CustomSqlQuery2.Sql = resources.GetString("CustomSqlQuery2.Sql")
         Me.SqlDataSource1.Queries.AddRange(New DevExpress.DataAccess.Sql.SqlQuery() {CustomSqlQuery1, CustomSqlQuery2})
         MasterDetailInfo1.DetailQueryName = "INST_ELLIPSE_JOBS"
@@ -206,7 +216,7 @@ Partial Public Class RepCUSEllipseForSUP
         'PageHeader
         '
         Me.PageHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrTable3, Me.XrTable2, Me.XrLabel13})
-        Me.PageHeader.HeightF = 220.3212!
+        Me.PageHeader.HeightF = 271.7101!
         Me.PageHeader.Name = "PageHeader"
         '
         'XrTable3
@@ -215,11 +225,11 @@ Partial Public Class RepCUSEllipseForSUP
         Me.XrTable3.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
             Or DevExpress.XtraPrinting.BorderSide.Right) _
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
-        Me.XrTable3.LocationFloat = New DevExpress.Utils.PointFloat(9.999992!, 9.999992!)
+        Me.XrTable3.LocationFloat = New DevExpress.Utils.PointFloat(9.999992!, 0!)
         Me.XrTable3.Name = "XrTable3"
         Me.XrTable3.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96.0!)
-        Me.XrTable3.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow2, Me.XrTableRow5, Me.XrTableRow6, Me.XrTableRow4})
-        Me.XrTable3.SizeF = New System.Drawing.SizeF(606.9999!, 139.2857!)
+        Me.XrTable3.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow7, Me.XrTableRow2, Me.XrTableRow5, Me.XrTableRow6, Me.XrTableRow4})
+        Me.XrTable3.SizeF = New System.Drawing.SizeF(606.9999!, 174.1071!)
         Me.XrTable3.StylePriority.UseBorderColor = False
         Me.XrTable3.StylePriority.UseBorders = False
         '
@@ -351,7 +361,7 @@ Partial Public Class RepCUSEllipseForSUP
         '
         'XrTable2
         '
-        Me.XrTable2.LocationFloat = New DevExpress.Utils.PointFloat(0!, 185.2021!)
+        Me.XrTable2.LocationFloat = New DevExpress.Utils.PointFloat(0!, 236.591!)
         Me.XrTable2.Name = "XrTable2"
         Me.XrTable2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96.0!)
         Me.XrTable2.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow3})
@@ -458,7 +468,7 @@ Partial Public Class RepCUSEllipseForSUP
         Me.XrLabel13.BackColor = System.Drawing.Color.FromArgb(CType(CType(242, Byte), Integer), CType(CType(242, Byte), Integer), CType(CType(242, Byte), Integer))
         Me.XrLabel13.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 14.0!, DevExpress.Drawing.DXFontStyle.Bold)
         Me.XrLabel13.ForeColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer))
-        Me.XrLabel13.LocationFloat = New DevExpress.Utils.PointFloat(0!, 161.2857!)
+        Me.XrLabel13.LocationFloat = New DevExpress.Utils.PointFloat(0!, 212.6746!)
         Me.XrLabel13.Multiline = True
         Me.XrLabel13.Name = "XrLabel13"
         Me.XrLabel13.SizeF = New System.Drawing.SizeF(627.0!, 23.91636!)
@@ -511,6 +521,53 @@ Partial Public Class RepCUSEllipseForSUP
         Me.ID.ValueSourceSettings = DynamicListLookUpSettings1
         Me.ID.Visible = False
         '
+        'supID
+        '
+        Me.supID.Description = "supID"
+        Me.supID.Name = "supID"
+        Me.supID.Type = GetType(System.Guid)
+        Me.supID.ValueInfo = "00000000-0000-0000-0000-000000000000"
+        DynamicListLookUpSettings2.DataMember = "INST_ELLIPSE_JOBS"
+        DynamicListLookUpSettings2.DataSource = Me.SqlDataSource1
+        DynamicListLookUpSettings2.DisplayMember = "nameSup"
+        DynamicListLookUpSettings2.FilterString = Nothing
+        DynamicListLookUpSettings2.SortMember = Nothing
+        DynamicListLookUpSettings2.ValueMember = "supID"
+        Me.supID.ValueSourceSettings = DynamicListLookUpSettings2
+        '
+        'XrTableRow7
+        '
+        Me.XrTableRow7.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell14, Me.XrTableCell17})
+        Me.XrTableRow7.Name = "XrTableRow7"
+        Me.XrTableRow7.Weight = 1.0R
+        '
+        'XrTableCell14
+        '
+        Me.XrTableCell14.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 10.0!, DevExpress.Drawing.DXFontStyle.Bold)
+        Me.XrTableCell14.ForeColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
+        Me.XrTableCell14.Multiline = True
+        Me.XrTableCell14.Name = "XrTableCell14"
+        Me.XrTableCell14.StylePriority.UseFont = False
+        Me.XrTableCell14.StylePriority.UseForeColor = False
+        Me.XrTableCell14.StylePriority.UseTextAlignment = False
+        Me.XrTableCell14.Text = "Προμηθευτής"
+        Me.XrTableCell14.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        Me.XrTableCell14.Weight = 1.4226495454489236R
+        '
+        'XrTableCell17
+        '
+        Me.XrTableCell17.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[ttl]")})
+        Me.XrTableCell17.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 10.0!, DevExpress.Drawing.DXFontStyle.Bold)
+        Me.XrTableCell17.ForeColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
+        Me.XrTableCell17.Multiline = True
+        Me.XrTableCell17.Name = "XrTableCell17"
+        Me.XrTableCell17.StylePriority.UseFont = False
+        Me.XrTableCell17.StylePriority.UseForeColor = False
+        Me.XrTableCell17.StylePriority.UseTextAlignment = False
+        Me.XrTableCell17.Text = "XrTableCell17"
+        Me.XrTableCell17.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        Me.XrTableCell17.Weight = 1.5773504545510764R
+        '
         'RepCUSEllipseForSUP
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.TopMargin, Me.BottomMargin, Me.Detail, Me.PageHeader, Me.ReportHeader})
@@ -522,9 +579,11 @@ Partial Public Class RepCUSEllipseForSUP
         Me.PageHeight = 1169
         Me.PageWidth = 827
         Me.PaperKind = DevExpress.Drawing.Printing.DXPaperKind.A4
-        Me.Parameters.AddRange(New DevExpress.XtraReports.Parameters.Parameter() {Me.ID})
+        Me.Parameters.AddRange(New DevExpress.XtraReports.Parameters.Parameter() {Me.ID, Me.supID})
         Me.ScriptLanguage = DevExpress.XtraReports.ScriptLanguage.VisualBasic
         Me.Version = "23.2"
+        XrWatermark1.Id = "Watermark1"
+        Me.Watermarks.AddRange(New DevExpress.XtraPrinting.Drawing.Watermark() {XrWatermark1})
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XrTable3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XrTable2, System.ComponentModel.ISupportInitialize).EndInit()
@@ -569,4 +628,8 @@ Partial Public Class RepCUSEllipseForSUP
     Friend WithEvents XrCheckBox2 As DevExpress.XtraReports.UI.XRCheckBox
     Friend WithEvents XrTableCell5 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrTableCell11 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents supID As DevExpress.XtraReports.Parameters.Parameter
+    Friend WithEvents XrTableRow7 As DevExpress.XtraReports.UI.XRTableRow
+    Friend WithEvents XrTableCell14 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTableCell17 As DevExpress.XtraReports.UI.XRTableCell
 End Class

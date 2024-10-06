@@ -63,8 +63,6 @@ Partial Class frmInstEllipse
         Me.cboEMP = New DevExpress.XtraEditors.LookUpEdit()
         Me.VwORDERMANAGERSBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.DreamyKitchenDataSet = New DreamyKitchenCRM.DreamyKitchenDataSet()
-        Me.cboSUP = New DevExpress.XtraEditors.LookUpEdit()
-        Me.VwSUPBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.cmdViewOrder = New DevExpress.XtraEditors.SimpleButton()
         Me.cmdNewInstEllipse = New DevExpress.XtraEditors.SimpleButton()
         Me.cmdConvertToOrder = New DevExpress.XtraEditors.SimpleButton()
@@ -79,6 +77,9 @@ Partial Class frmInstEllipse
         Me.colcompleted = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.coldtCompleted = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colcmt = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colsupID = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepSup = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
+        Me.VwSUPBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.chkSER = New DevExpress.XtraEditors.CheckedListBoxControl()
         Me.chkCompleted = New DevExpress.XtraEditors.CheckEdit()
@@ -116,7 +117,6 @@ Partial Class frmInstEllipse
         Me.LdtReceipt = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LfInstEllipseName = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LfInstEllipseName1 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LcboSup = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem23 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LfInstEllipseName2 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LfInstEllipseName3 = New DevExpress.XtraLayout.LayoutControlItem()
@@ -225,10 +225,10 @@ Partial Class frmInstEllipse
         CType(Me.cboEMP.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.VwORDERMANAGERSBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.cboSUP.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.VwSUPBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepSup, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.VwSUPBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.chkSER, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.chkCompleted.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboINST.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -265,7 +265,6 @@ Partial Class frmInstEllipse
         CType(Me.LdtReceipt, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LfInstEllipseName, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LfInstEllipseName1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LcboSup, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem23, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LfInstEllipseName2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LfInstEllipseName3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -375,7 +374,6 @@ Partial Class frmInstEllipse
         'LayoutControl1
         '
         Me.LayoutControl1.Controls.Add(Me.cboEMP)
-        Me.LayoutControl1.Controls.Add(Me.cboSUP)
         Me.LayoutControl1.Controls.Add(Me.cmdViewOrder)
         Me.LayoutControl1.Controls.Add(Me.cmdNewInstEllipse)
         Me.LayoutControl1.Controls.Add(Me.cmdConvertToOrder)
@@ -439,30 +437,6 @@ Partial Class frmInstEllipse
         '
         Me.DreamyKitchenDataSet.DataSetName = "DreamyKitchenDataSet"
         Me.DreamyKitchenDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
-        'cboSUP
-        '
-        Me.cboSUP.Location = New System.Drawing.Point(452, 118)
-        Me.cboSUP.Margin = New System.Windows.Forms.Padding(4)
-        Me.cboSUP.Name = "cboSUP"
-        Me.cboSUP.Properties.AllowMouseWheel = False
-        Me.cboSUP.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
-        Me.cboSUP.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
-        Me.cboSUP.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "ID", 31, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("code", "code", 49, DevExpress.Utils.FormatType.Numeric, "", False, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("Fullname", "Προμηθευτής", 82, DevExpress.Utils.FormatType.None, "", True, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ttl", "ttl", 28, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("bal", "bal", 36, DevExpress.Utils.FormatType.Numeric, "", False, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default])})
-        Me.cboSUP.Properties.DataSource = Me.VwSUPBindingSource
-        Me.cboSUP.Properties.DisplayMember = "Fullname"
-        Me.cboSUP.Properties.NullText = ""
-        Me.cboSUP.Properties.PopupSizeable = False
-        Me.cboSUP.Properties.ValueMember = "ID"
-        Me.cboSUP.Size = New System.Drawing.Size(1079, 26)
-        Me.cboSUP.StyleController = Me.LayoutControl1
-        Me.cboSUP.TabIndex = 21
-        Me.cboSUP.Tag = "supID,0,1,2"
-        '
-        'VwSUPBindingSource
-        '
-        Me.VwSUPBindingSource.DataMember = "vw_SUP"
-        Me.VwSUPBindingSource.DataSource = Me.DreamyKitchenDataSet
         '
         'cmdViewOrder
         '
@@ -535,6 +509,7 @@ Partial Class frmInstEllipse
         Me.GridControl1.Location = New System.Drawing.Point(12, 780)
         Me.GridControl1.MainView = Me.GridView1
         Me.GridControl1.Name = "GridControl1"
+        Me.GridControl1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepSup})
         Me.GridControl1.Size = New System.Drawing.Size(1531, 345)
         Me.GridControl1.TabIndex = 14
         Me.GridControl1.UseEmbeddedNavigator = True
@@ -542,7 +517,7 @@ Partial Class frmInstEllipse
         '
         'GridView1
         '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.colcode, Me.colname, Me.colnameSup, Me.colID, Me.colcompleted, Me.coldtCompleted, Me.colcmt})
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.colcode, Me.colname, Me.colnameSup, Me.colID, Me.colcompleted, Me.coldtCompleted, Me.colcmt, Me.colsupID})
         Me.GridView1.DetailHeight = 289
         Me.GridView1.GridControl = Me.GridControl1
         Me.GridView1.Name = "GridView1"
@@ -615,9 +590,36 @@ Partial Class frmInstEllipse
         Me.colcmt.VisibleIndex = 1
         Me.colcmt.Width = 904
         '
+        'colsupID
+        '
+        Me.colsupID.Caption = "Προμηθευτής"
+        Me.colsupID.ColumnEdit = Me.RepSup
+        Me.colsupID.FieldName = "supID"
+        Me.colsupID.MinWidth = 30
+        Me.colsupID.Name = "colsupID"
+        Me.colsupID.Visible = True
+        Me.colsupID.VisibleIndex = 5
+        Me.colsupID.Width = 112
+        '
+        'RepSup
+        '
+        Me.RepSup.AutoHeight = False
+        Me.RepSup.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepSup.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "ID", 30, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("code", "code", 46, DevExpress.Utils.FormatType.Numeric, "", False, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("Fullname", "Επωνυμία", 77, DevExpress.Utils.FormatType.None, "", True, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ttl", "Διακρ. Τίτλος", 27, DevExpress.Utils.FormatType.None, "", True, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("bal", "bal", 34, DevExpress.Utils.FormatType.Numeric, "", False, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("email", "email", 51, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("site", "site", 37, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default])})
+        Me.RepSup.DataSource = Me.VwSUPBindingSource
+        Me.RepSup.DisplayMember = "Fullname"
+        Me.RepSup.Name = "RepSup"
+        Me.RepSup.NullText = ""
+        Me.RepSup.ValueMember = "ID"
+        '
+        'VwSUPBindingSource
+        '
+        Me.VwSUPBindingSource.DataMember = "vw_SUP"
+        Me.VwSUPBindingSource.DataSource = Me.DreamyKitchenDataSet
+        '
         'LabelControl1
         '
-        Me.LabelControl1.Location = New System.Drawing.Point(24, 238)
+        Me.LabelControl1.Location = New System.Drawing.Point(24, 208)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(70, 19)
         Me.LabelControl1.StyleController = Me.LayoutControl1
@@ -629,10 +631,10 @@ Partial Class frmInstEllipse
         Me.chkSER.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.chkSER.CheckOnClick = True
         Me.chkSER.HorizontalScrollbar = True
-        Me.chkSER.Location = New System.Drawing.Point(24, 261)
+        Me.chkSER.Location = New System.Drawing.Point(24, 231)
         Me.chkSER.Margin = New System.Windows.Forms.Padding(4)
         Me.chkSER.Name = "chkSER"
-        Me.chkSER.Size = New System.Drawing.Size(1507, 175)
+        Me.chkSER.Size = New System.Drawing.Size(1507, 205)
         Me.chkSER.SortOrder = System.Windows.Forms.SortOrder.Ascending
         Me.chkSER.StyleController = Me.LayoutControl1
         Me.chkSER.TabIndex = 5
@@ -677,7 +679,7 @@ Partial Class frmInstEllipse
         '
         'cboINST
         '
-        Me.cboINST.Location = New System.Drawing.Point(452, 148)
+        Me.cboINST.Location = New System.Drawing.Point(452, 118)
         Me.cboINST.Margin = New System.Windows.Forms.Padding(4)
         Me.cboINST.Name = "cboINST"
         Me.cboINST.Properties.AllowMouseWheel = False
@@ -724,7 +726,7 @@ Partial Class frmInstEllipse
         Me.txtCode.Properties.Appearance.Options.UseBackColor = True
         Me.txtCode.Properties.Appearance.Options.UseFont = True
         Me.txtCode.Properties.ReadOnly = True
-        Me.txtCode.Size = New System.Drawing.Size(75, 28)
+        Me.txtCode.Size = New System.Drawing.Size(103, 28)
         Me.txtCode.StyleController = Me.LayoutControl1
         Me.txtCode.TabIndex = 0
         Me.txtCode.Tag = "code,0"
@@ -763,7 +765,7 @@ Partial Class frmInstEllipse
         '
         'cboCUS
         '
-        Me.cboCUS.Location = New System.Drawing.Point(452, 178)
+        Me.cboCUS.Location = New System.Drawing.Point(452, 148)
         Me.cboCUS.Margin = New System.Windows.Forms.Padding(4)
         Me.cboCUS.Name = "cboCUS"
         Me.cboCUS.Properties.AllowMouseWheel = False
@@ -782,7 +784,7 @@ Partial Class frmInstEllipse
         '
         'cboTRANSH
         '
-        Me.cboTRANSH.Location = New System.Drawing.Point(452, 208)
+        Me.cboTRANSH.Location = New System.Drawing.Point(452, 178)
         Me.cboTRANSH.Margin = New System.Windows.Forms.Padding(4)
         Me.cboTRANSH.Name = "cboTRANSH"
         Me.cboTRANSH.Properties.AllowMouseWheel = False
@@ -903,7 +905,7 @@ Partial Class frmInstEllipse
         '
         Me.LayoutControlGroup1.AppearanceGroup.ForeColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.LayoutControlGroup1.AppearanceGroup.Options.UseForeColor = True
-        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LInst, Me.LayoutControlItem4, Me.EmptySpaceItem1, Me.LayoutControlItem6, Me.LayoutControlItem7, Me.LdtDateDelivered, Me.LTmINFrom, Me.LTmINTo, Me.LayoutControlItem5, Me.LayoutControlItem14, Me.LCus, Me.LTransh, Me.LdtReceipt, Me.LfInstEllipseName, Me.LfInstEllipseName1, Me.LcboSup, Me.LayoutControlItem23, Me.LfInstEllipseName2, Me.LfInstEllipseName3, Me.LfInstEllipseName4})
+        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LInst, Me.LayoutControlItem4, Me.EmptySpaceItem1, Me.LayoutControlItem6, Me.LayoutControlItem7, Me.LdtDateDelivered, Me.LTmINFrom, Me.LTmINTo, Me.LayoutControlItem5, Me.LayoutControlItem14, Me.LCus, Me.LTransh, Me.LdtReceipt, Me.LfInstEllipseName, Me.LfInstEllipseName1, Me.LayoutControlItem23, Me.LfInstEllipseName2, Me.LfInstEllipseName3, Me.LfInstEllipseName4})
         Me.LayoutControlGroup1.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlGroup1.Name = "LayoutControlGroup1"
         Me.LayoutControlGroup1.Size = New System.Drawing.Size(1535, 742)
@@ -916,7 +918,7 @@ Partial Class frmInstEllipse
         Me.LInst.CustomizationFormText = "Νομός"
         Me.LInst.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
         Me.LInst.ImageOptions.Image = CType(resources.GetObject("LInst.ImageOptions.Image"), System.Drawing.Image)
-        Me.LInst.Location = New System.Drawing.Point(0, 92)
+        Me.LInst.Location = New System.Drawing.Point(0, 62)
         Me.LInst.Name = "LInst"
         Me.LInst.Size = New System.Drawing.Size(1511, 30)
         Me.LInst.Tag = "1"
@@ -931,31 +933,31 @@ Partial Class frmInstEllipse
         Me.LayoutControlItem4.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlItem4.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem4.Name = "LayoutControlItem4"
-        Me.LayoutControlItem4.Size = New System.Drawing.Size(507, 32)
+        Me.LayoutControlItem4.Size = New System.Drawing.Size(535, 32)
         Me.LayoutControlItem4.Text = "Κωδικός"
         Me.LayoutControlItem4.TextSize = New System.Drawing.Size(416, 19)
         '
         'EmptySpaceItem1
         '
         Me.EmptySpaceItem1.AllowHotTrack = False
-        Me.EmptySpaceItem1.Location = New System.Drawing.Point(507, 0)
+        Me.EmptySpaceItem1.Location = New System.Drawing.Point(535, 0)
         Me.EmptySpaceItem1.Name = "EmptySpaceItem1"
-        Me.EmptySpaceItem1.Size = New System.Drawing.Size(1004, 32)
+        Me.EmptySpaceItem1.Size = New System.Drawing.Size(976, 32)
         Me.EmptySpaceItem1.TextSize = New System.Drawing.Size(0, 0)
         '
         'LayoutControlItem6
         '
         Me.LayoutControlItem6.Control = Me.chkSER
-        Me.LayoutControlItem6.Location = New System.Drawing.Point(0, 205)
+        Me.LayoutControlItem6.Location = New System.Drawing.Point(0, 175)
         Me.LayoutControlItem6.Name = "LayoutControlItem6"
-        Me.LayoutControlItem6.Size = New System.Drawing.Size(1511, 179)
+        Me.LayoutControlItem6.Size = New System.Drawing.Size(1511, 209)
         Me.LayoutControlItem6.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem6.TextVisible = False
         '
         'LayoutControlItem7
         '
         Me.LayoutControlItem7.Control = Me.LabelControl1
-        Me.LayoutControlItem7.Location = New System.Drawing.Point(0, 182)
+        Me.LayoutControlItem7.Location = New System.Drawing.Point(0, 152)
         Me.LayoutControlItem7.Name = "LayoutControlItem7"
         Me.LayoutControlItem7.Size = New System.Drawing.Size(1511, 23)
         Me.LayoutControlItem7.TextSize = New System.Drawing.Size(0, 0)
@@ -1032,7 +1034,7 @@ Partial Class frmInstEllipse
         Me.LCus.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LCus.CustomizationFormText = "Περιοχή"
         Me.LCus.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LCus.Location = New System.Drawing.Point(0, 122)
+        Me.LCus.Location = New System.Drawing.Point(0, 92)
         Me.LCus.Name = "LCus"
         Me.LCus.Size = New System.Drawing.Size(1511, 30)
         Me.LCus.Text = "Πελάτης"
@@ -1044,7 +1046,7 @@ Partial Class frmInstEllipse
         Me.LTransh.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LTransh.CustomizationFormText = "Περιοχή"
         Me.LTransh.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LTransh.Location = New System.Drawing.Point(0, 152)
+        Me.LTransh.Location = New System.Drawing.Point(0, 122)
         Me.LTransh.Name = "LTransh"
         Me.LTransh.Size = New System.Drawing.Size(1511, 30)
         Me.LTransh.Text = "Έργο Πελάτη"
@@ -1088,15 +1090,6 @@ Partial Class frmInstEllipse
         Me.LfInstEllipseName1.Size = New System.Drawing.Size(1511, 30)
         Me.LfInstEllipseName1.Text = "Έντυπο Ολοκλήρωσης(Υπογεγραμμένο)"
         Me.LfInstEllipseName1.TextSize = New System.Drawing.Size(416, 19)
-        '
-        'LcboSup
-        '
-        Me.LcboSup.Control = Me.cboSUP
-        Me.LcboSup.Location = New System.Drawing.Point(0, 62)
-        Me.LcboSup.Name = "LcboSup"
-        Me.LcboSup.Size = New System.Drawing.Size(1511, 30)
-        Me.LcboSup.Text = "Προμηθευτής"
-        Me.LcboSup.TextSize = New System.Drawing.Size(416, 19)
         '
         'LayoutControlItem23
         '
@@ -2017,10 +2010,10 @@ Partial Class frmInstEllipse
         CType(Me.cboEMP.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.VwORDERMANAGERSBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.cboSUP.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.VwSUPBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepSup, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.VwSUPBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.chkSER, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.chkCompleted.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboINST.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2057,7 +2050,6 @@ Partial Class frmInstEllipse
         CType(Me.LdtReceipt, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LfInstEllipseName, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LfInstEllipseName1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LcboSup, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem23, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LfInstEllipseName2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LfInstEllipseName3, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2226,8 +2218,6 @@ Partial Class frmInstEllipse
     Friend WithEvents LayoutControlItem22 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents ColAttchment As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents txtImageAttachment As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
-    Friend WithEvents cboSUP As DevExpress.XtraEditors.LookUpEdit
-    Friend WithEvents LcboSup As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents DreamyKitchenDataSet As DreamyKitchenDataSet
     Friend WithEvents VwSUPBindingSource As BindingSource
     Friend WithEvents Vw_SUPTableAdapter As DreamyKitchenDataSetTableAdapters.vw_SUPTableAdapter
@@ -2277,4 +2267,6 @@ Partial Class frmInstEllipse
     Friend WithEvents VwFILECATBindingSource As BindingSource
     Friend WithEvents Vw_FILE_CATTableAdapter As DreamyKitchenDataSetTableAdapters.vw_FILE_CATTableAdapter
     Friend WithEvents VwSCANFILENAMESBindingSource As BindingSource
+    Friend WithEvents colsupID As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepSup As DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit
 End Class
