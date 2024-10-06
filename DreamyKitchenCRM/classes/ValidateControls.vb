@@ -1,4 +1,5 @@
 ﻿Imports System.Data.SqlClient
+Imports DevExpress.CodeParser.CodeStyle.Formatting.Rules.Spacing.Parentheses
 Imports DevExpress.XtraEditors
 Imports DevExpress.XtraLayout
 
@@ -116,7 +117,7 @@ Public Class ValidateControls
                     If isOrder = True Then If AgreementExist() = True Then Return False
                     ' Έλεγχος ώστε το Συμφωνηθέν ΦΠΑ να μην ξεπερνάει ποτέ το Κανονικό ΦΠΑ
                     If isOrder = True Then
-                        Dim NormalVat As Double = (DbnullToZero(f.txtTotalErmariaVat) * 1.24) - DbnullToZero(f.txtTotalErmariaVat)
+                        Dim NormalVat As Double = Math.Round((DbnullToZero(f.txtTotalErmariaVat) * 1.24) - DbnullToZero(f.txtTotalErmariaVat), 2)
                         Dim PartOfVatVat As Double = DbnullToZero(f.txtPartofVat)
                         If PartOfVatVat > NormalVat Then
                             XtraMessageBox.Show("Λανθασμένη καταχώριση ποσού ΦΠΑ", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -162,7 +163,7 @@ Public Class ValidateControls
                     If isOrder = True Then If AgreementExist() = True Then Return False
                     ' Έλεγχος ώστε το Συμφωνηθέν ΦΠΑ να μην ξεπερνάει ποτέ το Κανονικό ΦΠΑ
                     If isOrder = True Then
-                        Dim NormalVat As Double = (DbnullToZero(f.txtTotalDoorsVat) * 1.24) - DbnullToZero(f.txtTotalDoorsVat)
+                        Dim NormalVat As Double = Math.Round((DbnullToZero(f.txtTotalDoorsVat) * 1.24) - DbnullToZero(f.txtTotalDoorsVat), 2)
                         Dim PartOfVatVat As Double = DbnullToZero(f.txtPartofVat)
                         If PartOfVatVat > NormalVat Then
                             XtraMessageBox.Show("Δεν μπορεί το συμφωνηθέν ΦΠΑ να είναι μεγαλύτερο από το κανονικό", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -211,7 +212,7 @@ Public Class ValidateControls
                     If isOrder = True Then If AgreementExist() = True Then Return False
                     ' Έλεγχος ώστε το Συμφωνηθέν ΦΠΑ να μην ξεπερνάει ποτέ το Κανονικό ΦΠΑ
                     If isOrder = True Then
-                        Dim NormalVat As Double = (DbnullToZero(f.txtTotalClosetVat) * 1.24) - DbnullToZero(f.txtTotalClosetVat)
+                        Dim NormalVat As Double = Math.Round((DbnullToZero(f.txtTotalClosetVat) * 1.24) - DbnullToZero(f.txtTotalClosetVat), 2)
                         Dim PartOfVatVat As Double = DbnullToZero(f.txtPartofVat)
                         If PartOfVatVat > NormalVat Then
                             XtraMessageBox.Show("Δεν μπορεί το συμφωνηθέν ΦΠΑ να είναι μεγαλύτερο από το κανονικό", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -255,7 +256,7 @@ Public Class ValidateControls
                     If isOrder = True Then If AgreementExist() = True Then Return False
                     ' Έλεγχος ώστε το Συμφωνηθέν ΦΠΑ να μην ξεπερνάει ποτέ το Κανονικό ΦΠΑ
                     If isOrder = True Then
-                        Dim NormalVat As Double = (DbnullToZero(f.txtTotalSpecialVat) * 1.24) - DbnullToZero(f.txtTotalSpecialVat)
+                        Dim NormalVat As Double = Math.Round((DbnullToZero(f.txtTotalSpecialVat) * 1.24) - DbnullToZero(f.txtTotalSpecialVat), 2)
                         Dim PartOfVatVat As Double = DbnullToZero(f.txtPartofVat)
                         If PartOfVatVat > NormalVat Then
                             XtraMessageBox.Show("Δεν μπορεί το συμφωνηθέν ΦΠΑ να είναι μεγαλύτερο από το κανονικό", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)

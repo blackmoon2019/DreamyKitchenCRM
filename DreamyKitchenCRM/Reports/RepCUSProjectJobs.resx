@@ -119,7 +119,7 @@
   </resheader>
   <data name="CustomSqlQuery1.Sql" xml:space="preserve">
     <value>select "vw_CCT"."Fullname", "vw_CCT"."phn",
-       ADR.name as ADR_Name,
+       ADR.name + ' ' + ADR.Ar as ADR_Name,
 	 AREAS.name  as AREAS_Name,
        "vw_PROJECT_JOBS"."visitDate",
        "vw_PROJECT_JOBS"."visitTimeF",

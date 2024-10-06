@@ -31,8 +31,6 @@ Partial Class frmProject
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
         Me.chkcompProject = New DevExpress.XtraEditors.CheckEdit()
         Me.cboInvoiceType = New DevExpress.XtraEditors.LookUpEdit()
-        Me.VwINVTYPESBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.DreamyKitchenDataSet = New DreamyKitchenCRM.DreamyKitchenDataSet()
         Me.MemoEdit1 = New DevExpress.XtraEditors.TextEdit()
         Me.cmdOpenTransh = New DevExpress.XtraEditors.SimpleButton()
         Me.cmdExit = New DevExpress.XtraEditors.SimpleButton()
@@ -42,14 +40,10 @@ Partial Class frmProject
         Me.txtCodeH = New DevExpress.XtraEditors.TextEdit()
         Me.cboSaler = New DevExpress.XtraEditors.LookUpEdit()
         Me.cboTransC = New DevExpress.XtraEditors.CheckedComboBoxEdit()
-        Me.VwTRANSHCBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.DM_TRANS = New DreamyKitchenCRM.DM_TRANS()
         Me.cboCOU = New DevExpress.XtraEditors.LookUpEdit()
         Me.cboAREAS = New DevExpress.XtraEditors.LookUpEdit()
         Me.cboADR = New DevExpress.XtraEditors.LookUpEdit()
         Me.cboCompany = New DevExpress.XtraEditors.LookUpEdit()
-        Me.VwCOMPBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.DM_CCT = New DreamyKitchenCRM.DM_CCT()
         Me.cboCompProject = New DevExpress.XtraEditors.LookUpEdit()
         Me.Root = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LCodeH = New DevExpress.XtraLayout.LayoutControlItem()
@@ -71,6 +65,12 @@ Partial Class frmProject
         Me.LCompProject = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.VwINVTYPESBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.DreamyKitchenDataSet = New DreamyKitchenCRM.DreamyKitchenDataSet()
+        Me.VwTRANSHCBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.DM_TRANS = New DreamyKitchenCRM.DM_TRANS()
+        Me.VwCOMPBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.DM_CCT = New DreamyKitchenCRM.DM_CCT()
         Me.Vw_COMPTableAdapter = New DreamyKitchenCRM.DM_CCTTableAdapters.vw_COMPTableAdapter()
         Me.Vw_INVTYPESTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_INVTYPESTableAdapter()
         Me.Vw_TRANSH_CTableAdapter = New DreamyKitchenCRM.DM_TRANSTableAdapters.vw_TRANSH_CTableAdapter()
@@ -78,8 +78,6 @@ Partial Class frmProject
         Me.LayoutControl1.SuspendLayout()
         CType(Me.chkcompProject.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboInvoiceType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.VwINVTYPESBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MemoEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboCUS.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dtCharge.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -87,14 +85,10 @@ Partial Class frmProject
         CType(Me.txtCodeH.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboSaler.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboTransC.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.VwTRANSHCBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DM_TRANS, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboCOU.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboAREAS.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboADR.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboCompany.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.VwCOMPBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DM_CCT, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboCompProject.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Root, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LCodeH, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -116,6 +110,12 @@ Partial Class frmProject
         CType(Me.LCompProject, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.VwINVTYPESBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.VwTRANSHCBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DM_TRANS, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.VwCOMPBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DM_CCT, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
@@ -174,16 +174,6 @@ Partial Class frmProject
         Me.cboInvoiceType.StyleController = Me.LayoutControl1
         Me.cboInvoiceType.TabIndex = 98
         Me.cboInvoiceType.Tag = "invType,0,1,2"
-        '
-        'VwINVTYPESBindingSource
-        '
-        Me.VwINVTYPESBindingSource.DataMember = "vw_INVTYPES"
-        Me.VwINVTYPESBindingSource.DataSource = Me.DreamyKitchenDataSet
-        '
-        'DreamyKitchenDataSet
-        '
-        Me.DreamyKitchenDataSet.DataSetName = "DreamyKitchenDataSet"
-        Me.DreamyKitchenDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
         'MemoEdit1
         '
@@ -306,16 +296,6 @@ Partial Class frmProject
         Me.cboTransC.TabIndex = 36
         Me.cboTransC.Tag = ""
         '
-        'VwTRANSHCBindingSource
-        '
-        Me.VwTRANSHCBindingSource.DataMember = "vw_TRANSH_C"
-        Me.VwTRANSHCBindingSource.DataSource = Me.DM_TRANS
-        '
-        'DM_TRANS
-        '
-        Me.DM_TRANS.DataSetName = "DM_TRANS"
-        Me.DM_TRANS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
         'cboCOU
         '
         Me.cboCOU.Location = New System.Drawing.Point(198, 299)
@@ -379,16 +359,6 @@ Partial Class frmProject
         Me.cboCompany.StyleController = Me.LayoutControl1
         Me.cboCompany.TabIndex = 96
         Me.cboCompany.Tag = "compID,0,1,2"
-        '
-        'VwCOMPBindingSource
-        '
-        Me.VwCOMPBindingSource.DataMember = "vw_COMP"
-        Me.VwCOMPBindingSource.DataSource = Me.DM_CCT
-        '
-        'DM_CCT
-        '
-        Me.DM_CCT.DataSetName = "DM_CCT"
-        Me.DM_CCT.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
         'cboCompProject
         '
@@ -613,6 +583,36 @@ Partial Class frmProject
         Me.LayoutControlItem2.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem2.TextVisible = False
         '
+        'VwINVTYPESBindingSource
+        '
+        Me.VwINVTYPESBindingSource.DataMember = "vw_INVTYPES"
+        Me.VwINVTYPESBindingSource.DataSource = Me.DreamyKitchenDataSet
+        '
+        'DreamyKitchenDataSet
+        '
+        Me.DreamyKitchenDataSet.DataSetName = "DreamyKitchenDataSet"
+        Me.DreamyKitchenDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'VwTRANSHCBindingSource
+        '
+        Me.VwTRANSHCBindingSource.DataMember = "vw_TRANSH_C"
+        Me.VwTRANSHCBindingSource.DataSource = Me.DM_TRANS
+        '
+        'DM_TRANS
+        '
+        Me.DM_TRANS.DataSetName = "DM_TRANS"
+        Me.DM_TRANS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'VwCOMPBindingSource
+        '
+        Me.VwCOMPBindingSource.DataMember = "vw_COMP"
+        Me.VwCOMPBindingSource.DataSource = Me.DM_CCT
+        '
+        'DM_CCT
+        '
+        Me.DM_CCT.DataSetName = "DM_CCT"
+        Me.DM_CCT.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
         'Vw_COMPTableAdapter
         '
         Me.Vw_COMPTableAdapter.ClearBeforeFill = True
@@ -642,8 +642,6 @@ Partial Class frmProject
         Me.LayoutControl1.ResumeLayout(False)
         CType(Me.chkcompProject.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboInvoiceType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.VwINVTYPESBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MemoEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboCUS.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dtCharge.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -651,14 +649,10 @@ Partial Class frmProject
         CType(Me.txtCodeH.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboSaler.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboTransC.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.VwTRANSHCBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DM_TRANS, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboCOU.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboAREAS.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboADR.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboCompany.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.VwCOMPBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DM_CCT, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboCompProject.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Root, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LCodeH, System.ComponentModel.ISupportInitialize).EndInit()
@@ -680,6 +674,12 @@ Partial Class frmProject
         CType(Me.LCompProject, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.VwINVTYPESBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.VwTRANSHCBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DM_TRANS, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.VwCOMPBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DM_CCT, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

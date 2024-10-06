@@ -88,6 +88,18 @@ Namespace My
             End Set
         End Property
         
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
+        Public Property PROD() As Boolean
+            Get
+                Return CType(Me("PROD"),Boolean)
+            End Get
+            Set
+                Me("PROD") = value
+            End Set
+        End Property
+        
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
