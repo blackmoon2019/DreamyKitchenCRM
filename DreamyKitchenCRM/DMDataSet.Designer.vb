@@ -14543,6 +14543,8 @@ Partial Public Class DMDataSet
         
         Private columnvisitDate As Global.System.Data.DataColumn
         
+        Private columnRealName As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Sub New()
@@ -14739,6 +14741,14 @@ Partial Public Class DMDataSet
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property RealNameColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnRealName
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -14795,9 +14805,10 @@ Partial Public Class DMDataSet
                     ByVal transhID As System.Guid,  _
                     ByVal supID As System.Guid,  _
                     ByVal Modifier As String,  _
-                    ByVal visitDate As Date) As vw_PROJECT_JOBS_DRow
+                    ByVal visitDate As Date,  _
+                    ByVal RealName As String) As vw_PROJECT_JOBS_DRow
             Dim rowvw_PROJECT_JOBS_DRow As vw_PROJECT_JOBS_DRow = CType(Me.NewRow,vw_PROJECT_JOBS_DRow)
-            Dim columnValuesArray() As Object = New Object() {ID, code, projectJobID, description, descriptionSup, cost, cmt, completed, dtCompleted, toOrder, modifiedBy, modifiedOn, createdOn, createdBy, empID, cusID, transhID, supID, Modifier, visitDate}
+            Dim columnValuesArray() As Object = New Object() {ID, code, projectJobID, description, descriptionSup, cost, cmt, completed, dtCompleted, toOrder, modifiedBy, modifiedOn, createdOn, createdBy, empID, cusID, transhID, supID, Modifier, visitDate, RealName}
             rowvw_PROJECT_JOBS_DRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowvw_PROJECT_JOBS_DRow)
             Return rowvw_PROJECT_JOBS_DRow
@@ -14846,6 +14857,7 @@ Partial Public Class DMDataSet
             Me.columnsupID = MyBase.Columns("supID")
             Me.columnModifier = MyBase.Columns("Modifier")
             Me.columnvisitDate = MyBase.Columns("visitDate")
+            Me.columnRealName = MyBase.Columns("RealName")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -14891,6 +14903,8 @@ Partial Public Class DMDataSet
             MyBase.Columns.Add(Me.columnModifier)
             Me.columnvisitDate = New Global.System.Data.DataColumn("visitDate", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnvisitDate)
+            Me.columnRealName = New Global.System.Data.DataColumn("RealName", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnRealName)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnID}, true))
             Me.columnID.AllowDBNull = false
             Me.columnID.Unique = true
@@ -14906,6 +14920,7 @@ Partial Public Class DMDataSet
             Me.columnempID.AllowDBNull = false
             Me.columncusID.AllowDBNull = false
             Me.columnModifier.MaxLength = 200
+            Me.columnRealName.MaxLength = 200
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -28968,6 +28983,21 @@ Partial Public Class DMDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property RealName() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tablevw_PROJECT_JOBS_D.RealNameColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'RealName' in table 'vw_PROJECT_JOBS_D' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablevw_PROJECT_JOBS_D.RealNameColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Function IsdescriptionNull() As Boolean
             Return Me.IsNull(Me.tablevw_PROJECT_JOBS_D.descriptionColumn)
         End Function
@@ -29120,6 +29150,18 @@ Partial Public Class DMDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Sub SetvisitDateNull()
             Me(Me.tablevw_PROJECT_JOBS_D.visitDateColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Function IsRealNameNull() As Boolean
+            Return Me.IsNull(Me.tablevw_PROJECT_JOBS_D.RealNameColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Sub SetRealNameNull()
+            Me(Me.tablevw_PROJECT_JOBS_D.RealNameColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -37818,8 +37860,14 @@ Namespace DMDataSetTableAdapters
             tableMapping.ColumnMappings.Add("ID", "ID")
             tableMapping.ColumnMappings.Add("code", "code")
             tableMapping.ColumnMappings.Add("projectJobID", "projectJobID")
-            tableMapping.ColumnMappings.Add("description", "description")
             tableMapping.ColumnMappings.Add("descriptionSup", "descriptionSup")
+            tableMapping.ColumnMappings.Add("createdOn", "createdOn")
+            tableMapping.ColumnMappings.Add("empID", "empID")
+            tableMapping.ColumnMappings.Add("cusID", "cusID")
+            tableMapping.ColumnMappings.Add("transhID", "transhID")
+            tableMapping.ColumnMappings.Add("supID", "supID")
+            tableMapping.ColumnMappings.Add("RealName", "RealName")
+            tableMapping.ColumnMappings.Add("description", "description")
             tableMapping.ColumnMappings.Add("cost", "cost")
             tableMapping.ColumnMappings.Add("cmt", "cmt")
             tableMapping.ColumnMappings.Add("completed", "completed")
@@ -37827,14 +37875,7 @@ Namespace DMDataSetTableAdapters
             tableMapping.ColumnMappings.Add("toOrder", "toOrder")
             tableMapping.ColumnMappings.Add("modifiedBy", "modifiedBy")
             tableMapping.ColumnMappings.Add("modifiedOn", "modifiedOn")
-            tableMapping.ColumnMappings.Add("createdOn", "createdOn")
             tableMapping.ColumnMappings.Add("createdBy", "createdBy")
-            tableMapping.ColumnMappings.Add("empID", "empID")
-            tableMapping.ColumnMappings.Add("cusID", "cusID")
-            tableMapping.ColumnMappings.Add("transhID", "transhID")
-            tableMapping.ColumnMappings.Add("supID", "supID")
-            tableMapping.ColumnMappings.Add("Modifier", "Modifier")
-            tableMapping.ColumnMappings.Add("visitDate", "visitDate")
             Me._adapter.TableMappings.Add(tableMapping)
         End Sub
         
@@ -37851,8 +37892,10 @@ Namespace DMDataSetTableAdapters
             Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(0) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT vw_PROJECT_JOBS_D.*"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM   vw_PROJECT_JOBS_D"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"where projectJobID=@project"& _ 
-                "JobID"
+            Me._commandCollection(0).CommandText = "SELECT ID, code, projectJobID, descriptionSup, createdOn, empID, cusID, transhID,"& _ 
+                " supID, RealName, description, cost, cmt, completed, dtCompleted, toOrder, modif"& _ 
+                "iedBy, modifiedOn, createdBy"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM   vw_PROJECT_JOBS_D"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE (projectJobID = @p"& _ 
+                "rojectJobID)"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@projectJobID", Global.System.Data.SqlDbType.UniqueIdentifier, 16, Global.System.Data.ParameterDirection.Input, 0, 0, "projectJobID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
         End Sub

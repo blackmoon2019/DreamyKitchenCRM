@@ -68,8 +68,6 @@ Public Class frmProjectJobs
     End Sub
 
     Private Sub frmProjectJobs_Load(sender As Object, e As EventArgs) Handles Me.Load
-        'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_FILE_CAT' table. You can move, or remove it, as needed.
-        Me.Vw_FILE_CATTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_FILE_CAT)
         ProjectJobs.Initialize(Me, sID, Mode)
         ProjectJobs.LoadForm()
         ComeFrom = ProjectJobs.ComeFrom
@@ -269,7 +267,7 @@ Public Class frmProjectJobs
                     End If
                 Else
                     txtSubject.EditValue = ProgProps.PJInfSubjectSup
-                    txtTo.EditValue = cboSUP.GetColumnValue("email")
+                    'txtTo.EditValue = cboSUP.GetColumnValue("email")
                     DefProjAppointment.Enabled = False
                     DefProjComplete.Enabled = False
                     cmdSendEmailComplete.Enabled = False

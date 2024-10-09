@@ -35,6 +35,7 @@ Public Class ProjectJobs
         ID = sID
         Mode = sMode
         HandleGridEmbeddedNavigatorButtons()
+        Frm.Vw_FILE_CATTableAdapter.Fill(Frm.DreamyKitchenDataSet.vw_FILE_CAT)
         Frm.CCT_TRANSHTableAdapter.Fill(Frm.DM_TRANS.CCT_TRANSH)
         Frm.Vw_SUPTableAdapter.Fill(Frm.DreamyKitchenDataSet.vw_SUP)
         Frm.Vw_ORDER_MANAGERSTableAdapter.Fill(Frm.DreamyKitchenDataSet.vw_ORDER_MANAGERS)
@@ -261,8 +262,9 @@ Public Class ProjectJobs
             With Frm.GridView1
                 sSQL.Clear()
                 If NewRec Then
-                    sSQL.AppendLine("INSERT INTO PROJECT_JOBS_D (projectJobID,description,descriptionSup,cmt,completed,toOrder,cost,dtCompleted,[modifiedBy],[createdby],[createdOn])")
+                    sSQL.AppendLine("INSERT INTO PROJECT_JOBS_D (projectJobID,supID,description,descriptionSup,cmt,completed,toOrder,cost,dtCompleted,[modifiedBy],[createdby],[createdOn])")
                     sSQL.AppendLine("Select " & toSQLValueS(ID) & ",")
+                    sSQL.AppendLine(toSQLValueS(.GetRowCellValue(.FocusedRowHandle, "supID").ToString) & ",")
                     sSQL.AppendLine(toSQLValueS(.GetRowCellValue(.FocusedRowHandle, "description").ToString) & ",")
                     sSQL.AppendLine(toSQLValueS(.GetRowCellValue(.FocusedRowHandle, "descriptionSup").ToString) & ",")
                     sSQL.AppendLine(toSQLValueS(.GetRowCellValue(.FocusedRowHandle, "cmt").ToString) & ",")
@@ -283,6 +285,7 @@ Public Class ProjectJobs
                 Else
                     sSQL.AppendLine("UPDATE PROJECT_JOBS_D	SET ")
                     sSQL.AppendLine("modifiedBY = " & toSQLValueS(UserProps.ID.ToString) & ",")
+                    sSQL.AppendLine("supID = " & toSQLValueS(.GetRowCellValue(.FocusedRowHandle, "supID").ToString) & ",")
                     sSQL.AppendLine("cmt = " & toSQLValueS(.GetRowCellValue(.FocusedRowHandle, "cmt").ToString) & ",")
                     CompletedCell = .GetRowCellValue(.FocusedRowHandle, "completed").ToString : If CompletedCell = "" Then CompletedCell = "0"
                     sSQL.AppendLine("completed = " & toSQLValueS(CompletedCell) & ",")
@@ -393,7 +396,6 @@ Public Class ProjectJobs
                     Using oCmd As New SqlCommand("ClonePROJECTJOBS", CNDB)
                         oCmd.CommandType = CommandType.StoredProcedure
                         oCmd.Parameters.AddWithValue("@ProjectJobID", ID)
-                        oCmd.Parameters.AddWithValue("@supID", Frm.cboSUP.EditValue.ToString)
                         oCmd.Parameters.AddWithValue("@empID", Frm.cboEmp.EditValue.ToString)
                         oCmd.ExecuteNonQuery()
                     End Using
