@@ -15,7 +15,7 @@ Public Class frmProjectJobs
     Private CalledFromCtrl As Boolean
     Private HasConnectedOrder As Boolean = False
     Private ScanFile As ScanToPDF
-    Private Prog_Prop As New ProgProp
+
     Private Valid As New ValidateControls
     Private ProjectJobs As New ProjectJobs
     Private LoadForms As New FormLoader
@@ -254,32 +254,8 @@ Public Class frmProjectJobs
     End Sub
     Private Sub TabPane1_SelectedPageChanged(sender As Object, e As SelectedPageChangedEventArgs) Handles TabPane1.SelectedPageChanged
         Select Case TabPane1.SelectedPageIndex
-            Case 1
-                Prog_Prop.GetProgEmailPJ()
-
-                If sComeFrom = 0 Then
-                    txtSubject.EditValue = ProgProps.PJInfSubject
-                    txtTo.EditValue = cboCUS.GetColumnValue("email")
-                    If txtfProjectNameComplete.EditValue IsNot Nothing Then
-                        cmdSendEmailComplete.Enabled = True : DefProjComplete.Enabled = True
-                    Else
-                        cmdSendEmailComplete.Enabled = False : DefProjComplete.Enabled = False
-                    End If
-                Else
-                    txtSubject.EditValue = ProgProps.PJInfSubjectSup
-                    'txtTo.EditValue = cboSUP.GetColumnValue("email")
-                    DefProjAppointment.Enabled = False
-                    DefProjComplete.Enabled = False
-                    cmdSendEmailComplete.Enabled = False
-                    txtBody.EditValue = ProgProps.PJInfBodySup.Replace("{CUS}", cboCUS.Text)
-                    txtSubject.EditValue = ProgProps.PJInfSubjectSup
-                End If
-                If dtVisitDate.EditValue = Nothing Or txtTmIN.EditValue = "00:00" Or txtTmOUT.EditValue = "00:00" Then cmdSendApointmentEmail.Enabled = False Else cmdSendApointmentEmail.Enabled = True
-                Me.PROJECT_JOBS_MAILTableAdapter.FillByProjectJobID(Me.DMDataSet.PROJECT_JOBS_MAIL, System.Guid.Parse(sID))
-                LoadForms.RestoreLayoutFromXml(GridView3, "PROJECT_JOBS_MAIL.xml")
-            Case 2
-                LoadForms.RestoreLayoutFromXml(GridView4, "vw_TRANSH_F_PROJECT_JOBS_def.xml")
-                TRANSH_FTableAdapter.FillByTranshID(DM_TRANS.TRANSH_F, System.Guid.Parse(cboTRANSH.EditValue.ToString))
+            Case 1 : ProjectJobs.EmailTabSelected()
+            Case 2 : ProjectJobs.FilesTabSelected()
         End Select
     End Sub
 
@@ -296,6 +272,9 @@ Public Class frmProjectJobs
     Private Sub GridView3_PopupMenuShowing(sender As Object, e As PopupMenuShowingEventArgs) Handles GridView3.PopupMenuShowing
         LoadForms.PopupMenuShow(e, GridView3, "PROJECT_JOBS_MAIL.xml", "vw_PROJECT_JOBS_MAIL")
     End Sub
+    Private Sub GridView3_DoubleClick(sender As Object, e As EventArgs) Handles GridView3.DoubleClick
+        ProjectJobs.OpenEmailAttachment()
+    End Sub
     Private Sub txtFiles_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles txtFiles.ButtonClick
         Dim sFilename As String
         Select Case e.Button.Index
@@ -311,6 +290,7 @@ Public Class frmProjectJobs
             Case 2 : txtFiles.EditValue = Nothing
         End Select
     End Sub
+
 
     Private Sub cmdSaveTransF_Click(sender As Object, e As EventArgs) Handles cmdSaveTransF.Click
         XtraOpenFileDialog2.Tag = cboTanshFCategory.EditValue.ToString

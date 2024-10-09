@@ -129,7 +129,7 @@
        "vw_PROJECT_JOBS"."ID"
   from ("dbo"."vw_PROJECT_JOBS" "vw_PROJECT_JOBS"
   inner join "dbo"."vw_CCT" "vw_CCT" on ("vw_CCT"."ID" = "vw_PROJECT_JOBS"."cusID")
-  inner join "dbo"."vw_TRANSH" "vw_TRANSH" on ("vw_TRANSH"."ID" = "vw_PROJECT_JOBS"."transhID")
+  left join "dbo"."vw_TRANSH" "vw_TRANSH" on ("vw_TRANSH"."ID" = "vw_PROJECT_JOBS"."transhID")
   left join "dbo"."ADR"  on ("ADR"."ID" = "vw_TRANSH"."AdrID")
   left join "dbo"."AREAS"  on ("AREAS"."ID" = "vw_TRANSH"."AreaID" )) where ("vw_PROJECT_JOBS"."ID" = @ID)</value>
   </data>

@@ -1042,7 +1042,7 @@ Public Class InstEllipse
 
                         ' Εισαγωγή ιστορικού email
                         sSQL = "INSERT INTO INST_MAIL (instID,instEllipseID,emailFrom,emailTo,emailSubject,emailBody,DateofEmail,[createdBy],[createdOn],ComeFrom,emailMode,Attachment)  
-                        Select " & toSQLValueS(sINST_ID) & "," & toSQLValueS(ID) & "," & toSQLValueS(ProgProps.InstEmailAccountFrom) & "," &
+                        Select " & toSQLValueS(sINST_ID) & "," & toSQLValueS(ID) & "," & toSQLValueS(ProgProps.InstEllipseEmailAccountSupFrom) & "," &
                                         toSQLValueS(sEmailTo) & "," & toSQLValue(Frm.txtSubject) & "," &
                                         toSQLValue(Frm.txtBody) & ",getdate(), " &
                                         toSQLValueS(UserProps.ID.ToString) & ", getdate(), " & sComeFrom & "," & emailMode & ",  * FROM  Openrowset( Bulk " & toSQLValueS(ProgProps.ServerPath & Path.GetFileName(sFile)) & ", Single_Blob) as F;"

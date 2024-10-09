@@ -7,13 +7,13 @@
 <DiagramLayout xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ex:showrelationlabel="False" ViewPortX="-10" ViewPortY="-47" xmlns:ex="urn:schemas-microsoft-com:xml-msdatasource-layout-extended" xmlns="urn:schemas-microsoft-com:xml-msdatasource-layout">
   <Shapes>
     <Shape ID="DesignTable:vw_CONSTR_TYPE" ZOrder="34" X="944" Y="48" Height="175" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="100" />
-    <Shape ID="DesignTable:vw_BUY_O" ZOrder="5" X="504" Y="663" Height="423" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="348" />
+    <Shape ID="DesignTable:vw_BUY_O" ZOrder="6" X="504" Y="663" Height="423" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="348" />
     <Shape ID="DesignTable:vw_DOC_TYPES" ZOrder="11" X="487" Y="1250" Height="237" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="131" />
     <Shape ID="DesignTable:KANELLOPOULOS" ZOrder="14" X="1007" Y="1265" Height="425" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="358" />
     <Shape ID="DesignTable:KANELLOPOULOS_O" ZOrder="33" X="1553" Y="1409" Height="237" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="162" />
     <Shape ID="DesignTable:vw_TECH_SUP_F" ZOrder="10" X="1173" Y="892" Height="423" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="348" />
     <Shape ID="DesignTable:INST_MAIL" ZOrder="22" X="1954" Y="954" Height="516" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="410" />
-    <Shape ID="DesignTable:INST_ELLIPSE_JOBS" ZOrder="2" X="2380" Y="1036" Height="425" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="358" />
+    <Shape ID="DesignTable:INST_ELLIPSE_JOBS" ZOrder="3" X="2380" Y="1036" Height="425" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="358" />
     <Shape ID="DesignTable:SUP_ORDERS_MAIL" ZOrder="31" X="1327" Y="-4" Height="454" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="379" />
     <Shape ID="DesignTable:BASE_CAT" ZOrder="21" X="2089" Y="94" Height="330" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="255" />
     <Shape ID="DesignTable:vw_VALUELISTITEM" ZOrder="17" X="548" Y="-20" Height="485" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="410" />
@@ -32,13 +32,13 @@
     <Shape ID="DesignTable:vw_VALUELISTITEMRafieresV" ZOrder="23" X="2777" Y="206" Height="485" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="410" />
     <Shape ID="DesignTable:FORMRIGHTS" ZOrder="13" X="338" Y="613" Height="290" Width="292" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="223" />
     <Shape ID="DesignTable:vw_ExtPartners" ZOrder="12" X="860" Y="909" Height="155" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="88" />
-    <Shape ID="DesignTable:vw_PROJECT_JOBS_D" ZOrder="1" X="50" Y="925" Height="425" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="358" />
-    <Shape ID="DesignTable:PROJECT_JOBS_MAIL" ZOrder="9" X="1633" Y="922" Height="425" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="358" />
-    <Shape ID="DesignTable:vw_PROJECT_JOBSSUP_D" ZOrder="8" X="326" Y="909" Height="425" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="358" />
-    <Shape ID="DesignTable:PROJECT_JOBSSUP_MAIL" ZOrder="7" X="1358" Y="897" Height="425" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="358" />
-    <Shape ID="DesignTable:PRICELISTS_KEYWORDS" ZOrder="4" X="715" Y="1147" Height="371" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="304" />
-    <Shape ID="DesignTable:PRICELIST_TEMP" ZOrder="3" X="522" Y="1043" Height="425" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="358" />
-    <Shape ID="DesignTable:PRICELISTS_PRM" ZOrder="6" X="258" Y="1158" Height="398" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="331" />
+    <Shape ID="DesignTable:vw_PROJECT_JOBS_D" ZOrder="2" X="50" Y="925" Height="425" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="358" />
+    <Shape ID="DesignTable:PROJECT_JOBS_MAIL" ZOrder="1" X="1633" Y="922" Height="425" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="358" />
+    <Shape ID="DesignTable:vw_PROJECT_JOBSSUP_D" ZOrder="9" X="326" Y="909" Height="425" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="358" />
+    <Shape ID="DesignTable:PROJECT_JOBSSUP_MAIL" ZOrder="8" X="1358" Y="897" Height="425" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="358" />
+    <Shape ID="DesignTable:PRICELISTS_KEYWORDS" ZOrder="5" X="715" Y="1147" Height="371" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="304" />
+    <Shape ID="DesignTable:PRICELIST_TEMP" ZOrder="4" X="522" Y="1043" Height="425" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="358" />
+    <Shape ID="DesignTable:PRICELISTS_PRM" ZOrder="7" X="258" Y="1158" Height="398" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="331" />
   </Shapes>
   <Connectors>
     <Connector ID="DesignRelation:FK_KANELLOPOULOS_O_KANELLOPOULOS" ZOrder="32" LineWidth="11">

@@ -195,7 +195,7 @@
     <value>840, 17</value>
   </metadata>
   <metadata name="CCTTRANSHBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 63</value>
+    <value>2437, 17</value>
   </metadata>
   <metadata name="DM_TRANS.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>2279, 17</value>
@@ -275,10 +275,10 @@
 </value>
   </data>
   <metadata name="PopupMenu1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1020, 63</value>
+    <value>740, 63</value>
   </metadata>
   <metadata name="BarManager1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1194, 63</value>
+    <value>914, 63</value>
   </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>211</value>
@@ -406,7 +406,7 @@
 </value>
   </data>
   <metadata name="PROJECTJOBSMAILBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1366, 63</value>
+    <value>1086, 63</value>
   </metadata>
   <data name="txtImageAttachment.ContextImageOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -427,10 +427,10 @@
 </value>
   </data>
   <metadata name="VwFILECATBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>2032, 63</value>
+    <value>1752, 63</value>
   </metadata>
   <metadata name="TRANSHFBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>2570, 63</value>
+    <value>2290, 63</value>
   </metadata>
   <metadata name="Vw_ORDER_MANAGERSTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>1446, 17</value>
@@ -439,27 +439,27 @@
     <value>2045, 17</value>
   </metadata>
   <metadata name="CCT_TRANSHTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>297, 63</value>
+    <value>17, 63</value>
   </metadata>
   <metadata name="XtraOpenFileDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>574, 63</value>
+    <value>294, 63</value>
   </metadata>
   <metadata name="BehaviorManager1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>805, 63</value>
+    <value>525, 63</value>
   </metadata>
   <metadata name="PROJECT_JOBS_MAILTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1697, 63</value>
+    <value>1417, 63</value>
   </metadata>
   <metadata name="Vw_FILE_CATTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>2299, 63</value>
+    <value>2019, 63</value>
   </metadata>
   <metadata name="TRANSH_FTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 109</value>
+    <value>2548, 63</value>
   </metadata>
   <metadata name="VwSCANFILENAMESBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>296, 116</value>
+    <value>17, 109</value>
   </metadata>
   <metadata name="XtraOpenFileDialog2.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>248, 194</value>
+    <value>359, 109</value>
   </metadata>
 </root>

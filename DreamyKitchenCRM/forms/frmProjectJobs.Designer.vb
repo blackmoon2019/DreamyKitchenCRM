@@ -37,8 +37,6 @@ Partial Class frmProjectJobs
         Me.TabPane1 = New DevExpress.XtraBars.Navigation.TabPane()
         Me.TabNavigationPage1 = New DevExpress.XtraBars.Navigation.TabNavigationPage()
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
-        Me.VwSUPBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.DreamyKitchenDataSet = New DreamyKitchenCRM.DreamyKitchenDataSet()
         Me.cmdViewOrder = New DevExpress.XtraEditors.SimpleButton()
         Me.cmdNewProjectJob = New DevExpress.XtraEditors.SimpleButton()
         Me.cmdConvertToOrder = New DevExpress.XtraEditors.SimpleButton()
@@ -55,6 +53,8 @@ Partial Class frmProjectJobs
         Me.coldtCompleted = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colsupID = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepSup = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
+        Me.VwSUPBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.DreamyKitchenDataSet = New DreamyKitchenCRM.DreamyKitchenDataSet()
         Me.chkCompleted = New DevExpress.XtraEditors.CheckEdit()
         Me.chkSER = New DevExpress.XtraEditors.CheckedListBoxControl()
         Me.cmdExit = New DevExpress.XtraEditors.SimpleButton()
@@ -189,12 +189,12 @@ Partial Class frmProjectJobs
         Me.TabNavigationPage1.SuspendLayout()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
-        CType(Me.VwSUPBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepCost, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepSup, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.VwSUPBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.chkCompleted.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.chkSER, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboCUS.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -347,16 +347,6 @@ Partial Class frmProjectJobs
         Me.LayoutControl1.Size = New System.Drawing.Size(1484, 1095)
         Me.LayoutControl1.TabIndex = 2
         Me.LayoutControl1.Text = "LayoutControl1"
-        '
-        'VwSUPBindingSource
-        '
-        Me.VwSUPBindingSource.DataMember = "vw_SUP"
-        Me.VwSUPBindingSource.DataSource = Me.DreamyKitchenDataSet
-        '
-        'DreamyKitchenDataSet
-        '
-        Me.DreamyKitchenDataSet.DataSetName = "DreamyKitchenDataSet"
-        Me.DreamyKitchenDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
         'cmdViewOrder
         '
@@ -538,6 +528,16 @@ Partial Class frmProjectJobs
         Me.RepSup.Name = "RepSup"
         Me.RepSup.NullText = ""
         Me.RepSup.ValueMember = "ID"
+        '
+        'VwSUPBindingSource
+        '
+        Me.VwSUPBindingSource.DataMember = "vw_SUP"
+        Me.VwSUPBindingSource.DataSource = Me.DreamyKitchenDataSet
+        '
+        'DreamyKitchenDataSet
+        '
+        Me.DreamyKitchenDataSet.DataSetName = "DreamyKitchenDataSet"
+        Me.DreamyKitchenDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
         'chkCompleted
         '
@@ -1834,12 +1834,12 @@ Partial Class frmProjectJobs
         Me.TabNavigationPage1.ResumeLayout(False)
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl1.ResumeLayout(False)
-        CType(Me.VwSUPBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepCost, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepSup, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.VwSUPBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.chkCompleted.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.chkSER, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboCUS.Properties, System.ComponentModel.ISupportInitialize).EndInit()

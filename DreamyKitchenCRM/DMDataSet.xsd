@@ -3268,7 +3268,7 @@ SELECT ID, code, supID, FromValue, ToValue, value, Parameter, modifiedBy, modifi
                 </xs:simpleType>
               </xs:element>
               <xs:element name="visitDate" msprop:Generator_ColumnPropNameInTable="visitDateColumn" msprop:Generator_ColumnPropNameInRow="visitDate" msprop:Generator_UserColumnName="visitDate" msprop:Generator_ColumnVarNameInTable="columnvisitDate" type="xs:dateTime" minOccurs="0" />
-              <xs:element name="RealName" msprop:Generator_ColumnPropNameInRow="RealName" msprop:Generator_ColumnPropNameInTable="RealNameColumn" msprop:Generator_ColumnVarNameInTable="columnRealName" msprop:Generator_UserColumnName="RealName" minOccurs="0">
+              <xs:element name="RealName" msprop:Generator_UserColumnName="RealName" msprop:Generator_ColumnPropNameInTable="RealNameColumn" msprop:Generator_ColumnPropNameInRow="RealName" msprop:Generator_ColumnVarNameInTable="columnRealName" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="200" />
@@ -3330,7 +3330,7 @@ SELECT ID, code, supID, FromValue, ToValue, value, Parameter, modifiedBy, modifi
                 </xs:simpleType>
               </xs:element>
               <xs:element name="emailMode" msprop:Generator_ColumnPropNameInTable="emailModeColumn" msprop:Generator_ColumnPropNameInRow="emailMode" msprop:Generator_UserColumnName="emailMode" msprop:Generator_ColumnVarNameInTable="columnemailMode" type="xs:int" minOccurs="0" />
-              <xs:element name="FullTranshDescription" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInTable="FullTranshDescriptionColumn" msprop:Generator_ColumnPropNameInRow="FullTranshDescription" msprop:Generator_UserColumnName="FullTranshDescription" msprop:Generator_ColumnVarNameInTable="columnFullTranshDescription" minOccurs="0">
+              <xs:element name="FullTranshDescription" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInTable="FullTranshDescriptionColumn" msprop:nullValue="_throw" msprop:Generator_ColumnPropNameInRow="FullTranshDescription" msprop:Generator_UserColumnName="FullTranshDescription" msprop:Generator_ColumnVarNameInTable="columnFullTranshDescription" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="2147483647" />
@@ -3718,7 +3718,7 @@ SELECT ID, code, supID, FromValue, ToValue, value, Parameter, modifiedBy, modifi
   </xs:element>
   <xs:annotation>
     <xs:appinfo>
-      <msdata:Relationship name="FK_KANELLOPOULOS_O_KANELLOPOULOS" msdata:parent="KANELLOPOULOS" msdata:child="KANELLOPOULOS_O" msdata:parentkey="ID" msdata:childkey="kanID" msprop:Generator_UserParentTable="KANELLOPOULOS" msprop:Generator_UserChildTable="KANELLOPOULOS_O" msprop:Generator_RelationVarName="relationFK_KANELLOPOULOS_O_KANELLOPOULOS" msprop:Generator_ChildPropName="GetKANELLOPOULOS_ORows" msprop:Generator_UserRelationName="FK_KANELLOPOULOS_O_KANELLOPOULOS" msprop:Generator_ParentPropName="KANELLOPOULOSRow" />
+      <msdata:Relationship name="FK_KANELLOPOULOS_O_KANELLOPOULOS" msdata:parent="KANELLOPOULOS" msdata:child="KANELLOPOULOS_O" msdata:parentkey="ID" msdata:childkey="kanID" msprop:Generator_UserParentTable="KANELLOPOULOS" msprop:Generator_UserChildTable="KANELLOPOULOS_O" msprop:Generator_RelationVarName="relationFK_KANELLOPOULOS_O_KANELLOPOULOS" msprop:Generator_ChildPropName="GetKANELLOPOULOS_ORows" msprop:Generator_ParentPropName="KANELLOPOULOSRow" msprop:Generator_UserRelationName="FK_KANELLOPOULOS_O_KANELLOPOULOS" />
     </xs:appinfo>
   </xs:annotation>
 </xs:schema>

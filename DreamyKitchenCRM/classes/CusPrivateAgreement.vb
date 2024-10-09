@@ -320,8 +320,7 @@ Public Class CusPrivateAgreement
                 While sdr.Read()
                     If sdr.GetBoolean(sdr.GetOrdinal("cash")) = "0" Then
                         If sdr.IsDBNull(sdr.GetOrdinal("amt")) = False Then
-                            Frm.txtCloseBank.EditValue =
-                                (sdr.GetOrdinal("amt"))
+                            Frm.txtCloseBank.EditValue = sdr.GetDecimal(sdr.GetOrdinal("amt"))
                         Else
                             Frm.txtCloseBank.EditValue = Nothing
                         End If

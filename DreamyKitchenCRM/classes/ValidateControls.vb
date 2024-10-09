@@ -518,10 +518,10 @@ Public Class ValidateControls
                         XtraMessageBox.Show("Όλες οι εργασίες είναι ολοκληρωμένες. Δεν μπορεί να αποθηκευθεί η εγγραφή.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
                         Return False
                     End If
-                    If f.cboSUP.EditValue = Nothing Then
-                        XtraMessageBox.Show("Δεν έχετε επιλέξει Προμηθευτή.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                        Return False
-                    End If
+                    'If f.cboSUP.EditValue = Nothing Then
+                    '    XtraMessageBox.Show("Δεν έχετε επιλέξει Προμηθευτή.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    '    Return False
+                    'End If
             End Select
             Return True
         Catch ex As Exception
