@@ -493,10 +493,10 @@ Public Class ValidateControls
                             End If
                         End If
                         'isOrder = sComeFrom
-                        If f.ComeFrom = 1 And f.cboSUP.EditValue = Nothing Then
-                            XtraMessageBox.Show("Δεν έχετε επιλέξει Προμηθευτή.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                            Return False
-                        End If
+                        'If f.ComeFrom = 1 And f.cboSUP.EditValue = Nothing Then
+                        '    XtraMessageBox.Show("Δεν έχετε επιλέξει Προμηθευτή.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        '    Return False
+                        'End If
                         Return True
                     Else
                         If f.Mode = FormMode.NewRecord Then
@@ -507,10 +507,11 @@ Public Class ValidateControls
                             XtraMessageBox.Show("Όλες οι εργασίες είναι ολοκληρωμένες. Δεν μπορεί να αποθηκευθεί η εγγραφή.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
                             Return False
                         End If
-                        If f.cboSUP.EditValue = Nothing Then
-                            XtraMessageBox.Show("Δεν έχετε επιλέξει Προμηθευτή.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                            Return False
-                        End If
+
+                        'If f.cboSUP.EditValue = Nothing Then
+                        '    XtraMessageBox.Show("Δεν έχετε επιλέξει Προμηθευτή.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        '    Return False
+                        'End If
                     End If
                 Case "frmProjectJobsSUP"
                     Dim f As frmProjectJobsSUP = frm
@@ -518,10 +519,10 @@ Public Class ValidateControls
                         XtraMessageBox.Show("Όλες οι εργασίες είναι ολοκληρωμένες. Δεν μπορεί να αποθηκευθεί η εγγραφή.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
                         Return False
                     End If
-                    If f.cboSUP.EditValue = Nothing Then
-                        XtraMessageBox.Show("Δεν έχετε επιλέξει Προμηθευτή.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                        Return False
-                    End If
+                    'If f.cboSUP.EditValue = Nothing Then
+                    '    XtraMessageBox.Show("Δεν έχετε επιλέξει Προμηθευτή.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    '    Return False
+                    'End If
             End Select
             Return True
         Catch ex As Exception
@@ -530,6 +531,7 @@ Public Class ValidateControls
         End Try
 
     End Function
+
     Private Function CheckIfProjectJobsDAreCompleted() As Boolean
         Dim Cmd As SqlCommand, sdr As SqlDataReader
         Dim sSQL As String

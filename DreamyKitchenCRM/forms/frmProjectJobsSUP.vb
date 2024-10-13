@@ -155,8 +155,6 @@ Public Class frmProjectJobsSUP
         ProjectJobsSUP.CreateOrder()
     End Sub
 
-
-
     Private Sub cmdPrintAll_Click(sender As Object, e As EventArgs) Handles cmdPrintAll.Click
         ProjectJobsSUP.PrintDocument()
     End Sub
@@ -203,15 +201,8 @@ Public Class frmProjectJobsSUP
     End Sub
     Private Sub TabPane1_SelectedPageChanged(sender As Object, e As SelectedPageChangedEventArgs) Handles TabPane1.SelectedPageChanged
         Select Case TabPane1.SelectedPageIndex
-            Case 1
-                Prog_Prop.GetProgEmailPJ()
-                'txtSubject.EditValue = ProgProps.PJInfSubjectSup
-                txtTo.EditValue = ProgProps.PJEmailSupTo
-                Me.PROJECT_JOBSSUP_MAILTableAdapter.FillByProjectJobSUPID(Me.DMDataSet.PROJECT_JOBSSUP_MAIL, System.Guid.Parse(sID))
-                LoadForms.RestoreLayoutFromXml(GridView3, "PROJECT_JOBSSUP_MAIL.xml")
-            Case 2
-                LoadForms.RestoreLayoutFromXml(GridView4, "vw_TRANSH_F_PROJECT_JOBSSUP_def.xml")
-                TRANSH_FTableAdapter.FillByTranshID(DM_TRANS.TRANSH_F, System.Guid.Parse(cboTRANSH.EditValue.ToString))
+            Case 1 : ProjectJobsSUP.EmailTabSelected()
+            Case 2 : ProjectJobsSUP.FilesTabSelected()
         End Select
     End Sub
 
@@ -228,6 +219,7 @@ Public Class frmProjectJobsSUP
     Private Sub GridView3_PopupMenuShowing(sender As Object, e As PopupMenuShowingEventArgs) Handles GridView3.PopupMenuShowing
         LoadForms.PopupMenuShow(e, GridView3, "PROJECT_JOBSSUP_MAIL.xml", "vw_PROJECT_JOBSSUP_MAIL")
     End Sub
+
     Private Sub txtFiles_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles txtFiles.ButtonClick
         Dim sFilename As String
         Select Case e.Button.Index

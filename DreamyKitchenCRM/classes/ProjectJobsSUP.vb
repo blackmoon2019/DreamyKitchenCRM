@@ -2,8 +2,7 @@
 Imports DevExpress.XtraEditors
 Imports DevExpress.XtraReports.UI
 Imports System.Data.SqlClient
-Imports DevExpress.XtraBars.Navigation
-Imports DevExpress.XtraPrinting.Export
+Imports DreamyKitchenCRM.DM_TRANSTableAdapters
 
 Public Class ProjectJobsSUP
     Dim Frm As frmProjectJobsSUP
@@ -13,6 +12,7 @@ Public Class ProjectJobsSUP
     Private LoadForms As New FormLoader
     Private Cls As New ClearControls
     Private UserPermissions As New CheckPermissions
+    Private Prog_Prop As New ProgProp
     Private emailMode As Int16
     Private EmailSended As Boolean = False
     Private ID As String
@@ -93,6 +93,38 @@ Public Class ProjectJobsSUP
 
         Return True
     End Function
+    Public Sub EmailTabSelected()
+        Prog_Prop.GetProgEmailPJ()
+        'txtSubject.EditValue = ProgProps.PJInfSubjectSup
+        Dim supID As String : Frm.txtTo.EditValue = GetSupplierEmails(supID) : Frm.txtTo.Tag = supID
+        Frm.PROJECT_JOBSSUP_MAILTableAdapter.FillByProjectJobSUPID(Frm.DMDataSet.PROJECT_JOBSSUP_MAIL, System.Guid.Parse(ID))
+        LoadForms.RestoreLayoutFromXml(Frm.GridView3, "PROJECT_JOBSSUP_MAIL.xml")
+    End Sub
+    Private Function GetSupplierEmails(ByRef supID As String) As String
+        Try
+            Dim Cmd As SqlCommand, sdr As SqlDataReader
+            Cmd = New SqlCommand("Select email,supID FROM SUP inner join PROJECT_JOBSSUP_D PJD on PJD.supID=SUP.id WHERE email is not null and projectJobID= " & toSQLValueS(ID), CNDB)
+            sdr = Cmd.ExecuteReader()
+            GetSupplierEmails = ""
+            If sdr.HasRows Then
+                While sdr.Read()
+                    If GetSupplierEmails.Contains(sdr.GetString(sdr.GetOrdinal("email"))) = False Then
+                        GetSupplierEmails = GetSupplierEmails & IIf(GetSupplierEmails <> "", ";", "") & sdr.GetString(sdr.GetOrdinal("email"))
+                        supID = supID & IIf(supID <> "", ";", "") & sdr.GetGuid(sdr.GetOrdinal("supID")).ToString
+                    End If
+                End While
+            End If
+            sdr.Close()
+            Return GetSupplierEmails
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Function
+
+    Public Sub FilesTabSelected()
+        LoadForms.RestoreLayoutFromXml(Frm.GridView4, "vw_TRANSH_F_PROJECT_JOBSSUP_def.xml")
+        If Frm.cboTRANSH.EditValue IsNot Nothing Then Frm.TRANSH_FTableAdapter.FillByTranshID(Frm.DM_TRANS.TRANSH_F, System.Guid.Parse(Frm.cboTRANSH.EditValue.ToString))
+    End Sub
     Private Function CheckIfHasSendInfEmail() As Boolean
         Dim Cmd As SqlCommand, sdr As SqlDataReader
         Dim sSQL As New System.Text.StringBuilder
@@ -246,8 +278,9 @@ Public Class ProjectJobsSUP
             With Frm.GridView1
                 sSQL.Clear()
                 If NewRec Then
-                    sSQL.AppendLine("INSERT INTO PROJECT_JOBSSUP_D (projectJobID,description,cmt,completed,missing,replacement,orderError,toOrder,dtCompleted,[modifiedBy],[createdby],[createdOn])")
+                    sSQL.AppendLine("INSERT INTO PROJECT_JOBSSUP_D (projectJobID,supID,description,cmt,completed,missing,replacement,orderError,toOrder,dtCompleted,[modifiedBy],[createdby],[createdOn])")
                     sSQL.AppendLine("Select " & toSQLValueS(ID) & ",")
+                    sSQL.AppendLine(toSQLValueS(.GetRowCellValue(.FocusedRowHandle, "supID").ToString) & ",")
                     sSQL.AppendLine(toSQLValueS(.GetRowCellValue(.FocusedRowHandle, "description").ToString) & ",")
                     sSQL.AppendLine(toSQLValueS(.GetRowCellValue(.FocusedRowHandle, "cmt").ToString) & ",")
                     CompletedCell = .GetRowCellValue(.FocusedRowHandle, "completed").ToString : If CompletedCell = "" Then CompletedCell = "0"
@@ -272,6 +305,7 @@ Public Class ProjectJobsSUP
                 Else
                     sSQL.AppendLine("UPDATE PROJECT_JOBSSUP_D	SET ")
                     sSQL.AppendLine("modifiedBY = " & toSQLValueS(UserProps.ID.ToString) & ",")
+                    sSQL.AppendLine("supID = " & toSQLValueS(.GetRowCellValue(.FocusedRowHandle, "supID").ToString) & ",")
                     sSQL.AppendLine("cmt = " & toSQLValueS(.GetRowCellValue(.FocusedRowHandle, "cmt").ToString) & ",")
                     CompletedCell = .GetRowCellValue(.FocusedRowHandle, "completed").ToString : If CompletedCell = "" Then CompletedCell = "0"
                     sSQL.AppendLine("completed = " & toSQLValueS(CompletedCell) & ",")
@@ -329,7 +363,7 @@ Public Class ProjectJobsSUP
             Using oCmd As New SqlCommand(sSQL, CNDB)
                 oCmd.ExecuteNonQuery()
             End Using
-            Frm.Vw_PROJECT_JOBS_DTableAdapter.FillByProjectJobID(Frm.DMDataSet.vw_PROJECT_JOBS_D, System.Guid.Parse(ID))
+            Frm.Vw_PROJECT_JOBSSUP_DTableAdapter.FillByProjectJobSUPID(Frm.DMDataSet.vw_PROJECT_JOBSSUP_D, System.Guid.Parse(ID))
         End If
     End Sub
     Public Function CheckIfHasConnectedOrder() As Boolean
@@ -358,6 +392,22 @@ Public Class ProjectJobsSUP
         sdr.Close()
 
     End Function
+
+    Private Function CheckIfSupplierExist()
+        Dim Cmd As SqlCommand, sdr As SqlDataReader
+        Dim sSQL As String
+        sSQL = "SELECT top 1 supID  FROM PROJECT_JOBSSUP_D WHERE supID is null and projectJobID= " & toSQLValueS(ID)
+        Cmd = New SqlCommand(sSQL.ToString, CNDB)
+        sdr = Cmd.ExecuteReader()
+        Dim supID As String
+        If (sdr.Read() = True) Then
+            If sdr.IsDBNull(sdr.GetOrdinal("supID")) = False Then supID = sdr.GetGuid(sdr.GetOrdinal("supID")).ToString Else supID = ""
+            If supID <> "" Then Return True Else Return False
+        Else
+            Return True
+        End If
+        sdr.Close()
+    End Function
     Public Sub CreateOrder()
         Try
             Valid.ID = ID
@@ -366,16 +416,15 @@ Public Class ProjectJobsSUP
                 XtraMessageBox.Show("Δεν έχετε καταχωρήσει εργασίες. Δεν μπορεί να αποθηκευθεί η εγγραφή.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Exit Sub
             End If
-            'If CheckIfHasProjectJobsDForOrder() = False Then
-            '    XtraMessageBox.Show("Δεν έχετε επιλέξει εργασίες προς Παραγγελία. Δεν μπορεί να γίνει η μετατροπή.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
-            '    Exit Sub
-            'End If
+            If CheckIfSupplierExist() = False Then
+                XtraMessageBox.Show("Όλες οι προς εργασίες πρέπει να έχουν προμηθευτή.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Exit Sub
+            End If
 
             If XtraMessageBox.Show("Θέλετε να μετατραπούν οι εργασίες σε παραγγελία?", ProgProps.ProgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
-                Using oCmd As New SqlCommand("CreateSupOrder", CNDB)
+                Using oCmd As New SqlCommand("CreateOrderFromProjectJobSup", CNDB)
                     oCmd.CommandType = CommandType.StoredProcedure
-                    oCmd.Parameters.AddWithValue("@ProjectJobID", ID)
-                    oCmd.Parameters.AddWithValue("@supID", Frm.cboSUP.EditValue.ToString)
+                    oCmd.Parameters.AddWithValue("@projectJobSupID", ID)
                     oCmd.ExecuteNonQuery()
                 End Using
                 XtraMessageBox.Show("Η παραγγελία δημιουργήθηκε με επιτυχία.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -521,12 +570,16 @@ Public Class ProjectJobsSUP
     End Sub
 
     Public Sub PrintDocument()
-        Dim report As New RepCUSProjectJobsSUP
-        report.Parameters.Item(0).Value = ID
-        report.CreateDocument()
-        Dim printTool As New ReportPrintTool(report)
-        printTool.ShowRibbonPreview()
-
+        Dim supID As String, sSupID() As String : GetSupplierEmails(supID) : Frm.txtTo.Tag = supID
+        sSupID = Frm.txtTo.Tag.ToString.Split(";")
+        For Each supID In sSupID
+            Dim report As New RepCUSProjectJobsSUP
+            report.Parameters.Item(0).Value = ID
+            report.Parameters.Item(1).Value = supID
+            report.CreateDocument()
+            Dim printTool As New ReportPrintTool(report)
+            printTool.ShowRibbonPreview()
+        Next
     End Sub
     Public Sub FileSelect()
         Frm.XtraOpenFileDialog1.FilterIndex = 1
@@ -603,7 +656,7 @@ Public Class ProjectJobsSUP
         Dim Cmd As SqlCommand, sdr As SqlDataReader
         Dim Emails As New SendEmail
         Dim statusMsg As String
-        Dim sEmailTo As String
+        Dim sEmailTo As String, sEmailsTo() As String, sSupID() As String
         Dim sSubject As String
         Dim sBody As String
         Dim sFile As String
@@ -611,54 +664,59 @@ Public Class ProjectJobsSUP
         Dim sSQL As String
         Try
 
+            sEmailsTo = Frm.txtTo.EditValue.ToString.Split(";")
+            sSupID = Frm.txtTo.Tag.ToString.Split(";")
+            Dim sIndex As Int16 = 0
+            For Each sEmailTo In sEmailsTo
+                Dim report As New RepCUSProjectJobsSUP()
+                report.Parameters.Item(0).Value = ID
+                If sEmailTo.Length > 0 Then
+                    report.Parameters.Item(1).Value = sSupID(sIndex)
+                    sBody = Frm.txtBody.EditValue
+                    sSubject = Frm.txtSubject.EditValue
+                    sFile = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) & "\Downloads\Ενημερώτικό έντυπο εργασιών προμηθευτή.pdf"
+                    sFile2 = Frm.txtAttachFile.EditValue
+                    report.CreateDocument()
+                    report.ExportToPdf(sFile)
+                    report.Dispose()
+                    report = Nothing
+                    My.Computer.FileSystem.CopyFile(sFile, ProgProps.ServerPath & Path.GetFileName(sFile), True)
+                    If sFile2.Length > 0 Then My.Computer.FileSystem.CopyFile(sFile2, ProgProps.ServerPath & Path.GetFileName(sFile2), True)
 
-            Dim report As New RepCUSProjectJobsSUP()
-            report.Parameters.Item(0).Value = ID
-            sEmailTo = Frm.txtTo.EditValue
-            sBody = Frm.txtBody.EditValue
-            sSubject = Frm.txtSubject.EditValue
-            sFile = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) & "\Downloads\Ενημερώτικό έντυπο εργασιών προμηθευτή.pdf"
-            sFile2 = Frm.txtAttachFile.EditValue
-            report.CreateDocument()
-            report.ExportToPdf(sFile)
-            report.Dispose()
-            report = Nothing
-            My.Computer.FileSystem.CopyFile(sFile, ProgProps.ServerPath & Path.GetFileName(sFile), True)
-            If sFile2.Length > 0 Then My.Computer.FileSystem.CopyFile(sFile2, ProgProps.ServerPath & Path.GetFileName(sFile2), True)
-            'sEmailTo = "dreamykitchen@gmail.com"
-            'sEmailTo = "johnmavroselinos@gmail.com"
 
-            If CNDB.Database <> "DreamyKitchen" Or Debugger.IsAttached = True Then sEmailTo = "johnmavroselinos@gmail.com;dreamykitchen@gmail.com"
+                    If CNDB.Database <> "DreamyKitchen" Or Debugger.IsAttached = True Then sEmailTo = "johnmavroselinos@gmail.com;dreamykitchen@gmail.com"
 
-            If Emails.SendEmail(ProgProps.PJEmailSupFrom, sSubject, sBody, sEmailTo, sFile & IIf(sFile2.Length > 0, ";", "") & sFile2, statusMsg) = True Then
-                Select Case emailMode
-                    Case 1 : sSQL = "Update PROJECT_JOBSSUP SET emailApp = 1,DateOfEmailApp=getdate() WHERE ID = " & toSQLValueS(ID)
-                End Select
+                    If Emails.SendEmail(ProgProps.PJEmailSupFrom, sSubject, sBody, sEmailTo, sFile & IIf(sFile2.Length > 0, ";", "") & sFile2, statusMsg) = True Then
+                        Select Case emailMode
+                            Case 1 : sSQL = "Update PROJECT_JOBSSUP SET emailApp = 1,DateOfEmailApp=getdate() WHERE ID = " & toSQLValueS(ID)
+                        End Select
 
-                Cmd = New SqlCommand(sSQL, CNDB) : Cmd.ExecuteNonQuery()
-                ' Εισαγωγή ιστορικού email
-                sSQL = "INSERT INTO [PROJECT_JOBSSUP_MAIL] (projectjobID,emailFrom,emailTo,emailSubject,emailBody,DateofEmail,[createdBy],[createdOn],ComeFrom,emailMode,Attachment2Name,Attachment " & IIf(sFile2.Length > 0, ",Attachment2)", ")") &
-                        "Select " & toSQLValueS(ID) & "," &
-                                    toSQLValueS(ProgProps.PJEmailSupFrom) & "," &
-                                    toSQLValue(Frm.txtTo) & "," &
-                                    toSQLValue(Frm.txtSubject) & "," &
-                                    toSQLValue(Frm.txtBody) & ",getdate(), " &
-                                    toSQLValueS(UserProps.ID.ToString) &
-                                    ", getdate(), " &
-                                    sComeFrom & "," &
-                                    emailMode & ", " &
-                                    IIf(sFile2.Length > 0, toSQLValueS(Path.GetFileName(sFile2)), "NULL") & ", " &
-                                     " * FROM  Openrowset( Bulk " & toSQLValueS(ProgProps.ServerPath & Path.GetFileName(sFile)) & ", Single_Blob) as F " &
-                                    IIf(sFile2.Length > 0, ",Openrowset( Bulk " & toSQLValueS(ProgProps.ServerPath & Path.GetFileName(sFile2)) & ", Single_Blob) as F2", "") & ";"
-                Using oCmd As New SqlCommand(sSQL, CNDB)
-                    oCmd.ExecuteNonQuery()
-                End Using
-                EmailSended = True : Frm.EmailSended = True
+                        Cmd = New SqlCommand(sSQL, CNDB) : Cmd.ExecuteNonQuery()
+                        ' Εισαγωγή ιστορικού email
+                        sSQL = "INSERT INTO [PROJECT_JOBSSUP_MAIL] (projectjobID,emailFrom,emailTo,emailSubject,emailBody,DateofEmail,[createdBy],[createdOn],ComeFrom,emailMode,Attachment2Name,Attachment " & IIf(sFile2.Length > 0, ",Attachment2)", ")") &
+                            "Select " & toSQLValueS(ID) & "," &
+                                        toSQLValueS(ProgProps.PJEmailSupFrom) & "," &
+                                        toSQLValueS(sEmailTo) & "," &
+                                        toSQLValue(Frm.txtSubject) & "," &
+                                        toSQLValue(Frm.txtBody) & ",getdate(), " &
+                                        toSQLValueS(UserProps.ID.ToString) &
+                                        ", getdate(), " &
+                                        sComeFrom & "," &
+                                        emailMode & ", " &
+                                        IIf(sFile2.Length > 0, toSQLValueS(Path.GetFileName(sFile2)), "NULL") & ", " &
+                                         " * FROM  Openrowset( Bulk " & toSQLValueS(ProgProps.ServerPath & Path.GetFileName(sFile)) & ", Single_Blob) as F " &
+                                        IIf(sFile2.Length > 0, ",Openrowset( Bulk " & toSQLValueS(ProgProps.ServerPath & Path.GetFileName(sFile2)) & ", Single_Blob) as F2", "") & ";"
+                        Using oCmd As New SqlCommand(sSQL, CNDB)
+                            oCmd.ExecuteNonQuery()
+                        End Using
+                        EmailSended = True : Frm.EmailSended = True
 
-                XtraMessageBox.Show("Το email στάλθηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
-            Else
-                XtraMessageBox.Show("Παρουσιάστηκε πρόβλημα με σφάλμα " & statusMsg, ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
-            End If
+                    Else
+                        XtraMessageBox.Show("Παρουσιάστηκε πρόβλημα με σφάλμα " & statusMsg, ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    End If
+                End If
+                sIndex = sIndex + 1
+            Next
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
