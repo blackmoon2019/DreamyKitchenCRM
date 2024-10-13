@@ -446,6 +446,10 @@ Public Class ProjectJobs
             Valid.ID = ID
             If Valid.ValiDationRules(Frm.Name, Frm, True, IIf(sComeFrom = 0, False, True)) = False Then Exit Sub
             If HasConnectedOrder Then
+                If CheckIfSupplierExist() = False Then
+                    XtraMessageBox.Show("Όλες οι προς εργασίες πρέπει να έχουν προμηθευτή.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Exit Sub
+                End If
                 Using oCmd As New SqlCommand("ClonePROJECTJOBSd", CNDB)
                     oCmd.CommandType = CommandType.StoredProcedure
                     oCmd.Parameters.AddWithValue("@ProjectJobID", ID)
@@ -462,7 +466,10 @@ Public Class ProjectJobs
                     XtraMessageBox.Show("Δεν έχετε επιλέξει εργασίες προς Παραγγελία. Δεν μπορεί να γίνει η μετατροπή.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
                     Exit Sub
                 End If
-
+                If CheckIfSupplierExist() = False Then
+                    XtraMessageBox.Show("Όλες οι προς εργασίες πρέπει να έχουν προμηθευτή.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Exit Sub
+                End If
                 If XtraMessageBox.Show("Θέλετε να μετατραπούν οι εργασίες σε παραγγελία?", ProgProps.ProgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
                     Using oCmd As New SqlCommand("ClonePROJECTJOBS", CNDB)
                         oCmd.CommandType = CommandType.StoredProcedure
@@ -479,6 +486,23 @@ Public Class ProjectJobs
         End Try
 
     End Sub
+    Private Function CheckIfSupplierExist()
+        Dim Cmd As SqlCommand, sdr As SqlDataReader
+        Dim sSQL As String
+        sSQL = "SELECT top 1 supID  FROM PROJECT_JOBS_D WHERE supID is null and projectJobID= " & toSQLValueS(ID)
+        Cmd = New SqlCommand(sSQL.ToString, CNDB)
+        sdr = Cmd.ExecuteReader()
+        Dim supID As String
+        If (sdr.Read() = True) Then
+            If sdr.IsDBNull(sdr.GetOrdinal("supID")) = False Then supID = sdr.GetGuid(sdr.GetOrdinal("supID")).ToString Else supID = ""
+            If supID <> "" Then Return True Else Return False
+        Else
+            Return True
+        End If
+        sdr.Close()
+    End Function
+
+
     Private Function CheckIfHasProjectJobsDForOrder() As Boolean
         Dim Cmd As SqlCommand, sdr As SqlDataReader
         Dim sSQL As String

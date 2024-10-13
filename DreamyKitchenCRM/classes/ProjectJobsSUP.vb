@@ -363,7 +363,7 @@ Public Class ProjectJobsSUP
             Using oCmd As New SqlCommand(sSQL, CNDB)
                 oCmd.ExecuteNonQuery()
             End Using
-            Frm.Vw_PROJECT_JOBS_DTableAdapter.FillByProjectJobID(Frm.DMDataSet.vw_PROJECT_JOBS_D, System.Guid.Parse(ID))
+            Frm.Vw_PROJECT_JOBSSUP_DTableAdapter.FillByProjectJobSUPID(Frm.DMDataSet.vw_PROJECT_JOBSSUP_D, System.Guid.Parse(ID))
         End If
     End Sub
     Public Function CheckIfHasConnectedOrder() As Boolean
@@ -392,6 +392,22 @@ Public Class ProjectJobsSUP
         sdr.Close()
 
     End Function
+
+    Private Function CheckIfSupplierExist()
+        Dim Cmd As SqlCommand, sdr As SqlDataReader
+        Dim sSQL As String
+        sSQL = "SELECT top 1 supID  FROM PROJECT_JOBSSUP_D WHERE supID is null and projectJobID= " & toSQLValueS(ID)
+        Cmd = New SqlCommand(sSQL.ToString, CNDB)
+        sdr = Cmd.ExecuteReader()
+        Dim supID As String
+        If (sdr.Read() = True) Then
+            If sdr.IsDBNull(sdr.GetOrdinal("supID")) = False Then supID = sdr.GetGuid(sdr.GetOrdinal("supID")).ToString Else supID = ""
+            If supID <> "" Then Return True Else Return False
+        Else
+            Return True
+        End If
+        sdr.Close()
+    End Function
     Public Sub CreateOrder()
         Try
             Valid.ID = ID
@@ -400,20 +416,17 @@ Public Class ProjectJobsSUP
                 XtraMessageBox.Show("Δεν έχετε καταχωρήσει εργασίες. Δεν μπορεί να αποθηκευθεί η εγγραφή.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Exit Sub
             End If
-            'If CheckIfHasProjectJobsDForOrder() = False Then
-            '    XtraMessageBox.Show("Δεν έχετε επιλέξει εργασίες προς Παραγγελία. Δεν μπορεί να γίνει η μετατροπή.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
-            '    Exit Sub
-            'End If
+            If CheckIfSupplierExist() = False Then
+                XtraMessageBox.Show("Όλες οι προς εργασίες πρέπει να έχουν προμηθευτή.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Exit Sub
+            End If
 
             If XtraMessageBox.Show("Θέλετε να μετατραπούν οι εργασίες σε παραγγελία?", ProgProps.ProgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
-                For i As Integer = 0 To Frm.GridView1.DataRowCount - 1
-                    Using oCmd As New SqlCommand("CreateSupOrder", CNDB)
-                        oCmd.CommandType = CommandType.StoredProcedure
-                        oCmd.Parameters.AddWithValue("@ProjectJobID", ID)
-                        oCmd.Parameters.AddWithValue("@supID", Frm.GridView1.GetRowCellValue(i, "supID"))
-                        oCmd.ExecuteNonQuery()
-                    End Using
-                Next
+                Using oCmd As New SqlCommand("CreateOrderFromProjectJobSup", CNDB)
+                    oCmd.CommandType = CommandType.StoredProcedure
+                    oCmd.Parameters.AddWithValue("@projectJobSupID", ID)
+                    oCmd.ExecuteNonQuery()
+                End Using
                 XtraMessageBox.Show("Η παραγγελία δημιουργήθηκε με επιτυχία.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
                 If CheckIfHasConnectedOrder() = True Then Frm.cmdConvertToOrder.Text = "Ενημέρωση Παραγγελίας" : HasConnectedOrder = True : 
             End If

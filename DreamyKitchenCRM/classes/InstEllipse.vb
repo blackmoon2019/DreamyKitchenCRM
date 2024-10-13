@@ -461,7 +461,7 @@ Public Class InstEllipse
     Private Function CheckIfSupplierExist()
         Dim Cmd As SqlCommand, sdr As SqlDataReader
         Dim sSQL As String
-        sSQL = "SELECT top 1 supID  FROM INST_ELLIPSE_JOBS WHERE instEllipseID= " & toSQLValueS(ID)
+        sSQL = "SELECT top 1 supID  FROM INST_ELLIPSE_JOBS WHERE supID is null and instEllipseID= " & toSQLValueS(ID)
         Cmd = New SqlCommand(sSQL.ToString, CNDB)
         sdr = Cmd.ExecuteReader()
         Dim supID As String
@@ -469,7 +469,7 @@ Public Class InstEllipse
             If sdr.IsDBNull(sdr.GetOrdinal("supID")) = False Then supID = sdr.GetGuid(sdr.GetOrdinal("supID")).ToString Else supID = ""
             If supID <> "" Then Return True Else Return False
         Else
-            Return False
+            Return True
         End If
         sdr.Close()
     End Function
@@ -1141,7 +1141,7 @@ Public Class InstEllipse
                 Exit Sub
             End If
             If CheckIfSupplierExist() = False Then
-                XtraMessageBox.Show("Καμμία Εκκρεμότητα δεν έχει προμηθευτή.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                XtraMessageBox.Show("Όλες οι προς παραγγελία εκκρεμότητες πρέπει να έχουν προμηθευτή.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Exit Sub
             End If
             If HasConnectedOrder Then
@@ -1160,6 +1160,10 @@ Public Class InstEllipse
                 End If
                 If CheckIfHasInstJobsForOrder() = False Then
                     XtraMessageBox.Show("Δεν έχετε επιλέξει εκκρεμότητες προς Παραγγελία. Δεν μπορεί να γίνει η μετατροπή.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Exit Sub
+                End If
+                If CheckIfSupplierExist() = False Then
+                    XtraMessageBox.Show("Όλες οι προς παραγγελία εκκρεμότητες πρέπει να έχουν προμηθευτή.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
                     Exit Sub
                 End If
                 If XtraMessageBox.Show("Θέλετε να μετατραπούν οι εκκρεμότητες σε παραγγελία?", ProgProps.ProgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then

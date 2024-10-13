@@ -892,10 +892,11 @@ Partial Class frmProjectJobs
         Me.LTransh.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LTransh.CustomizationFormText = "Έργο Πελάτη"
         Me.LTransh.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
+        Me.LTransh.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.rsz_11rsz_asterisk
         Me.LTransh.Location = New System.Drawing.Point(0, 92)
         Me.LTransh.Name = "LTransh"
         Me.LTransh.Size = New System.Drawing.Size(982, 30)
-        Me.LTransh.Tag = ""
+        Me.LTransh.Tag = "1"
         Me.LTransh.Text = "Έργο Πελάτη"
         Me.LTransh.TextSize = New System.Drawing.Size(282, 19)
         '

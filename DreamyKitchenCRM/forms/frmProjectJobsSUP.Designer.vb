@@ -37,8 +37,6 @@ Partial Class frmProjectJobsSUP
         Me.TabPane1 = New DevExpress.XtraBars.Navigation.TabPane()
         Me.TabNavigationPage1 = New DevExpress.XtraBars.Navigation.TabNavigationPage()
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
-        Me.VwSUPBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.DreamyKitchenDataSet = New DreamyKitchenCRM.DreamyKitchenDataSet()
         Me.cmdConvertToOrder = New DevExpress.XtraEditors.SimpleButton()
         Me.cmdPrintAll = New DevExpress.XtraEditors.SimpleButton()
         Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
@@ -52,6 +50,8 @@ Partial Class frmProjectJobsSUP
         Me.colmissing = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colsupID = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepSUP = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
+        Me.VwSUPBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.DreamyKitchenDataSet = New DreamyKitchenCRM.DreamyKitchenDataSet()
         Me.RepCost = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.chkCompleted = New DevExpress.XtraEditors.CheckEdit()
         Me.cmdExit = New DevExpress.XtraEditors.SimpleButton()
@@ -155,6 +155,7 @@ Partial Class frmProjectJobsSUP
         Me.XtraOpenFileDialog2 = New DevExpress.XtraEditors.XtraOpenFileDialog(Me.components)
         Me.Vw_PROJECT_JOBSSUP_DTableAdapter = New DreamyKitchenCRM.DMDataSetTableAdapters.vw_PROJECT_JOBSSUP_DTableAdapter()
         Me.PROJECT_JOBSSUP_MAILTableAdapter = New DreamyKitchenCRM.DMDataSetTableAdapters.PROJECT_JOBSSUP_MAILTableAdapter()
+        Me.EmptySpaceItem5 = New DevExpress.XtraLayout.EmptySpaceItem()
         CType(Me.VwPROJECTJOBSSUPDBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DMDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TabPane1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -162,11 +163,11 @@ Partial Class frmProjectJobsSUP
         Me.TabNavigationPage1.SuspendLayout()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
-        CType(Me.VwSUPBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepSUP, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.VwSUPBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepCost, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.chkCompleted.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboCUS.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -232,6 +233,7 @@ Partial Class frmProjectJobsSUP
         CType(Me.EmptySpaceItem4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.VwORDERMANAGERSBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.VwSCANFILENAMESBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.EmptySpaceItem5, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'VwPROJECTJOBSSUPDBindingSource
@@ -293,16 +295,6 @@ Partial Class frmProjectJobsSUP
         Me.LayoutControl1.Size = New System.Drawing.Size(1484, 1095)
         Me.LayoutControl1.TabIndex = 2
         Me.LayoutControl1.Text = "LayoutControl1"
-        '
-        'VwSUPBindingSource
-        '
-        Me.VwSUPBindingSource.DataMember = "vw_SUP"
-        Me.VwSUPBindingSource.DataSource = Me.DreamyKitchenDataSet
-        '
-        'DreamyKitchenDataSet
-        '
-        Me.DreamyKitchenDataSet.DataSetName = "DreamyKitchenDataSet"
-        Me.DreamyKitchenDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
         'cmdConvertToOrder
         '
@@ -448,6 +440,16 @@ Partial Class frmProjectJobsSUP
         Me.RepSUP.NullText = ""
         Me.RepSUP.ValueMember = "ID"
         '
+        'VwSUPBindingSource
+        '
+        Me.VwSUPBindingSource.DataMember = "vw_SUP"
+        Me.VwSUPBindingSource.DataSource = Me.DreamyKitchenDataSet
+        '
+        'DreamyKitchenDataSet
+        '
+        Me.DreamyKitchenDataSet.DataSetName = "DreamyKitchenDataSet"
+        Me.DreamyKitchenDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
         'RepCost
         '
         Me.RepCost.AutoHeight = False
@@ -535,7 +537,7 @@ Partial Class frmProjectJobsSUP
         Me.txtCode.Properties.Appearance.Options.UseBackColor = True
         Me.txtCode.Properties.Appearance.Options.UseFont = True
         Me.txtCode.Properties.ReadOnly = True
-        Me.txtCode.Size = New System.Drawing.Size(1142, 28)
+        Me.txtCode.Size = New System.Drawing.Size(142, 28)
         Me.txtCode.StyleController = Me.LayoutControl1
         Me.txtCode.TabIndex = 0
         Me.txtCode.Tag = "code,0"
@@ -641,7 +643,7 @@ Partial Class frmProjectJobsSUP
         '
         'LayoutControlGroup1
         '
-        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem4, Me.LCus, Me.LTransh, Me.LayoutControlItem9, Me.LfInstEllipseName1, Me.LayoutControlItem14, Me.LayoutControlItem6, Me.LayoutControlItem3, Me.EmptySpaceItem3})
+        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem4, Me.LCus, Me.LTransh, Me.LayoutControlItem9, Me.LfInstEllipseName1, Me.LayoutControlItem14, Me.LayoutControlItem6, Me.LayoutControlItem3, Me.EmptySpaceItem3, Me.EmptySpaceItem5})
         Me.LayoutControlGroup1.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlGroup1.Name = "LayoutControlGroup1"
         Me.LayoutControlGroup1.Size = New System.Drawing.Size(1464, 578)
@@ -655,7 +657,7 @@ Partial Class frmProjectJobsSUP
         Me.LayoutControlItem4.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlItem4.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem4.Name = "LayoutControlItem4"
-        Me.LayoutControlItem4.Size = New System.Drawing.Size(1440, 32)
+        Me.LayoutControlItem4.Size = New System.Drawing.Size(440, 32)
         Me.LayoutControlItem4.Text = "Κωδικός"
         Me.LayoutControlItem4.TextSize = New System.Drawing.Size(282, 19)
         '
@@ -679,10 +681,11 @@ Partial Class frmProjectJobsSUP
         Me.LTransh.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LTransh.CustomizationFormText = "Έργο Πελάτη"
         Me.LTransh.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
+        Me.LTransh.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.rsz_11rsz_asterisk
         Me.LTransh.Location = New System.Drawing.Point(0, 62)
         Me.LTransh.Name = "LTransh"
         Me.LTransh.Size = New System.Drawing.Size(1440, 30)
-        Me.LTransh.Tag = ""
+        Me.LTransh.Tag = "1"
         Me.LTransh.Text = "Έργο Πελάτη"
         Me.LTransh.TextSize = New System.Drawing.Size(282, 19)
         '
@@ -1455,6 +1458,14 @@ Partial Class frmProjectJobsSUP
         '
         Me.PROJECT_JOBSSUP_MAILTableAdapter.ClearBeforeFill = True
         '
+        'EmptySpaceItem5
+        '
+        Me.EmptySpaceItem5.AllowHotTrack = False
+        Me.EmptySpaceItem5.Location = New System.Drawing.Point(440, 0)
+        Me.EmptySpaceItem5.Name = "EmptySpaceItem5"
+        Me.EmptySpaceItem5.Size = New System.Drawing.Size(1000, 32)
+        Me.EmptySpaceItem5.TextSize = New System.Drawing.Size(0, 0)
+        '
         'frmProjectJobsSUP
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 19.0!)
@@ -1464,7 +1475,7 @@ Partial Class frmProjectJobsSUP
         Me.IconOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.favicon
         Me.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.Name = "frmProjectJobsSUP"
-        Me.Text = "Εκκρεμότητες Κατασκευαστικού"
+        Me.Text = "Εκκρεμότητες Παραλαβών"
         CType(Me.VwPROJECTJOBSSUPDBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DMDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TabPane1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1472,11 +1483,11 @@ Partial Class frmProjectJobsSUP
         Me.TabNavigationPage1.ResumeLayout(False)
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl1.ResumeLayout(False)
-        CType(Me.VwSUPBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepSUP, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.VwSUPBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepCost, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.chkCompleted.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboCUS.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1542,6 +1553,7 @@ Partial Class frmProjectJobsSUP
         CType(Me.EmptySpaceItem4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.VwORDERMANAGERSBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.VwSCANFILENAMESBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.EmptySpaceItem5, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1669,4 +1681,5 @@ Partial Class frmProjectJobsSUP
     Friend WithEvents LayoutControlItem2 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents colsupID As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepSUP As DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit
+    Friend WithEvents EmptySpaceItem5 As DevExpress.XtraLayout.EmptySpaceItem
 End Class

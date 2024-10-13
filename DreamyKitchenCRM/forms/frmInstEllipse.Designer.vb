@@ -1997,7 +1997,7 @@ Partial Class frmInstEllipse
         Me.IconOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.favicon
         Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "frmInstEllipse"
-        Me.Text = "Εκκρεμότητες Έργου"
+        Me.Text = "Εκρεμότητες Έργων από Τοποθέτηση"
         CType(Me.INSTELLIPSEJOBSBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DmDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CCTTRANSHBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
