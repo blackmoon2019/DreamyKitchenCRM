@@ -45,7 +45,7 @@ Public Class ProjectJobsSUP
         Frm.Vw_SUPTableAdapter.Fill(Frm.DreamyKitchenDataSet.vw_SUP)
         Frm.Vw_ORDER_MANAGERSTableAdapter.FillByConstrDep(Frm.DreamyKitchenDataSet.vw_ORDER_MANAGERS)
         If Mode = FormMode.EditRecord Then Frm.Vw_PROJECT_JOBSSUP_DTableAdapter.FillByProjectJobSUPID(Frm.DMDataSet.vw_PROJECT_JOBSSUP_D, System.Guid.Parse(ID))
-        UserPermissions.GetUserPermissions("Εκκρεμότητες Κατασκευαστικού")
+        UserPermissions.GetUserPermissions("Εκκρεμότητες Παραλαβών")
     End Sub
     Public Sub LoadForm()
         sComeFrom = 1

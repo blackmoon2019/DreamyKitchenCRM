@@ -113,7 +113,7 @@ Public Class frmCalendarInst
                 Dim frmInstEllipse As frmInstEllipse = New frmInstEllipse()
                 frmInstEllipse.ID = apt.CustomFields.Item("EllipseID").ToString
                 frmInstEllipse.INST_ID = apt.Id
-                frmInstEllipse.Text = "Εκκρεμότητες Έργων"
+                frmInstEllipse.Text = "Εκρεμότητες Έργων από Τοποθέτηση"
                 frmInstEllipse.Mode = FormMode.EditRecord
                 frmInstEllipse.CalledFromControl = False
                 frmInstEllipse.ShowDialog()
@@ -329,7 +329,7 @@ Public Class frmCalendarInst
         For i As Integer = 0 To SchedulerControl1.SelectedAppointments.Count - 1
             Dim apt As Appointment = SchedulerControl1.SelectedAppointments(i)
             Dim frmInstEllipse As New frmInstEllipse
-            frmInstEllipse.Text = "Εκκρεμότητες Έργων"
+            frmInstEllipse.Text = "Εκρεμότητες Έργων από Τοποθέτηση"
             frmInstEllipse.Mode = FormMode.NewRecord
             frmInstEllipse.INST_ID = apt.Id
             frmInstEllipse.CalledFromControl = False
@@ -368,8 +368,8 @@ Public Class frmCalendarInst
     End Class
 
     Private Sub BBEllipse_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBEllipse.ItemClick
-        Dim form As frmScroller = New frmScroller("Εκκρεμότητες Έργων")
-        form.Text = "Εκκρεμότητες Έργων"
+        Dim form As frmScroller = New frmScroller("Εκρεμότητες Έργων από Τοποθέτηση")
+        form.Text = "Εκρεμότητες Έργων από Τοποθέτηση"
         form.DataTable = "vw_INST_ELLIPSE"
         form.DataDetail = "INST_ELLIPSE_JOBS"
         form.WindowState = FormWindowState.Maximized

@@ -1613,7 +1613,7 @@ Public Class frmScroller
                 frmProjectCost.Show()
             Case "vw_INST_ELLIPSE"
                 Dim frmInstEllipse As New frmInstEllipse
-                frmInstEllipse.Text = "Εκκρεμότητες Έργων"
+                frmInstEllipse.Text = "Εκρεμότητες Έργων από Τοποθέτηση"
                 frmInstEllipse.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
                 frmInstEllipse.MdiParent = frmMain
                 frmInstEllipse.Mode = FormMode.EditRecord
@@ -1838,7 +1838,7 @@ Public Class frmScroller
                 frmProjectJobs.Show()
             Case "vw_PROJECT_JOBSSUP"
                 Dim frmProjectJobsSUP As New frmProjectJobsSUP
-                frmProjectJobsSUP.Text = "Εκκρεμότητες Κατασκευαστικού"
+                frmProjectJobsSUP.Text = "Εκκρεμότητες Παραλαβών"
                 frmProjectJobsSUP.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
                 frmProjectJobsSUP.MdiParent = frmMain
                 frmProjectJobsSUP.Mode = FormMode.EditRecord
@@ -2625,7 +2625,7 @@ Public Class frmScroller
                 frmConstrunction.Show()
             Case "vw_INST_ELLIPSE"
                 Dim frmInstEllipse As New frmInstEllipse
-                frmInstEllipse.Text = "Εκκρεμότητες Έργων"
+                frmInstEllipse.Text = "Εκρεμότητες Έργων από Τοποθέτηση"
                 frmInstEllipse.MdiParent = frmMain
                 frmInstEllipse.Mode = FormMode.NewRecord
                 frmInstEllipse.Scroller = GridView1
@@ -2749,7 +2749,7 @@ Public Class frmScroller
                 frmProjectJobs.Show()
             Case "vw_PROJECT_JOBSSUP"
                 Dim frmProjectJobsSUP As New frmProjectJobsSUP
-                frmProjectJobsSUP.Text = "Εκκρεμότητες Κατασκευαστικού"
+                frmProjectJobsSUP.Text = "Εκκρεμότητες Παραλαβών"
                 frmProjectJobsSUP.MdiParent = frmMain
                 frmProjectJobsSUP.Mode = FormMode.NewRecord
                 frmProjectJobsSUP.Scroller = GridView1
@@ -3340,7 +3340,7 @@ Public Class frmScroller
                         AdapterDetail.Fill(sdataSet, sDataDetail)
                         Dim keyColumn As DataColumn = sdataSet.Tables(IIf(sDataTable = "", sDataTable2, sDataTable)).Columns("ID")
                         Dim foreignKeyColumn As DataColumn = sdataSet.Tables(sDataDetail).Columns("projectJobID")
-                        sdataSet.Relations.Add("Εκκρεμότητες Κατασκευαστικού", keyColumn, foreignKeyColumn, False)
+                        sdataSet.Relations.Add("Εκκρεμότητες Παραλαβών", keyColumn, foreignKeyColumn, False)
                         GridView1.Columns.Clear() : GridView2.Columns.Clear()
                         grdMain.DataSource = sdataSet.Tables(IIf(sDataTable = "", sDataTable2, sDataTable))
                         grdMain.ForceInitialize()

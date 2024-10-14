@@ -135,6 +135,7 @@ Public Class InstEllipse
                         ' Έλεγχος επισύναψης εντύπου και καταχώρησης εκκρεμοτήτων
                         If ValidateRecord() Then sResult = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "INST_ELLIPSE", Frm.LayoutControl1,,, sID, True, "comefrom", sComeFrom)
                     Case FormMode.EditRecord
+                        sID = ID
                         If sComeFrom = 0 Then
                             If ValidateRecord() Then sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "INST_ELLIPSE", Frm.LayoutControl1,,, sID, True)
                         Else
@@ -1241,7 +1242,7 @@ Public Class InstEllipse
     End Sub
     Public Sub ViewOrder()
         Dim frmInstEllipse As New frmInstEllipse
-        frmInstEllipse.Text = "Εκκρεμότητες Έργων"
+        frmInstEllipse.Text = "Εκρεμότητες Έργων από Τοποθέτηση"
         frmInstEllipse.Mode = FormMode.EditRecord
         frmInstEllipse.ID = ConnectedOrderID
         frmInstEllipse.INST_ID = sINST_ID

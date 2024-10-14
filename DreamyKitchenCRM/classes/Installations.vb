@@ -448,7 +448,7 @@ Public Class Installations
 
     Public Sub OpenInstEllipseForm(ByVal NewRecord As Boolean)
         Dim frmInstEllipse As New frmInstEllipse
-        frmInstEllipse.Text = "Εκκρεμότητες Έργων"
+        frmInstEllipse.Text = "Εκρεμότητες Έργων από Τοποθέτηση"
         frmInstEllipse.CalledFromControl = False
         If NewRecord Then
             frmInstEllipse.Mode = FormMode.NewRecord
@@ -458,7 +458,7 @@ Public Class Installations
             frmInstEllipse.ComeFrom = 0
             frmInstEllipse.ShowDialog()
         Else
-            frmInstEllipse.Text = "Εκκρεμότητες Έργων"
+            frmInstEllipse.Text = "Εκρεμότητες Έργων από Τοποθέτηση"
             frmInstEllipse.Mode = FormMode.EditRecord
             frmInstEllipse.ID = Frm.GridView1.GetRowCellValue(Frm.GridView1.FocusedRowHandle, "ID").ToString
             frmInstEllipse.Scroller = Frm.GridView1
