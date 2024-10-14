@@ -650,21 +650,25 @@ Public Class InstEllipse
     End Function
 
     Private Sub AddRecord()
-        Frm.cmdNewInstEllipse.Enabled = False
-        Frm.txtCode.Text = DBQ.GetNextId("INST_ELLIPSE")
-        If sINST_ID IsNot Nothing Then Frm.cboINST.EditValue = System.Guid.Parse(sINST_ID)
-        FillCbo.FillCheckedListINST_ELLIPSE_SER(Frm.chkSER, FormMode.NewRecord)
-        Frm.cmdSendEmail.Enabled = False : Frm.cmdPrintAll.Enabled = False : Frm.cmdSendApointmentEmail.Enabled = False : Frm.cmdDefEmail.Enabled = False
-        Frm.txtInstellipseFilename.ReadOnly = False : Frm.txtInstellipseFilenameD.ReadOnly = False
-        Frm.txtInstellipseFilenameC.ReadOnly = False : Frm.txtInstellipseFilenameSC.ReadOnly = False
-        EnabletxtInstellipseFilename() : EnabletxtInstellipseFilenameComplete()
-        '΅Εισαγωγή εγγραφής απευθείας στην βάση
-        Dim sResult As Boolean = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "INST_ELLIPSE", Frm.LayoutControl1,,, ID, True, "comefrom", sComeFrom)
-        If sResult = False Then
-            XtraMessageBox.Show("Υπήρξε πρόβλημα κατά την διαδικασία ανοίγματος εκκρεμότητας.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
-            Frm.Close()
-        End If
-        Mode = FormMode.EditRecord
+        Try
+            Frm.cmdNewInstEllipse.Enabled = False
+            Frm.txtCode.Text = DBQ.GetNextId("INST_ELLIPSE")
+            If sINST_ID IsNot Nothing Then Frm.cboINST.EditValue = System.Guid.Parse(sINST_ID)
+            FillCbo.FillCheckedListINST_ELLIPSE_SER(Frm.chkSER, FormMode.NewRecord)
+            Frm.cmdSendEmail.Enabled = False : Frm.cmdPrintAll.Enabled = False : Frm.cmdSendApointmentEmail.Enabled = False : Frm.cmdDefEmail.Enabled = False
+            Frm.txtInstellipseFilename.ReadOnly = False : Frm.txtInstellipseFilenameD.ReadOnly = False
+            Frm.txtInstellipseFilenameC.ReadOnly = False : Frm.txtInstellipseFilenameSC.ReadOnly = False
+            EnabletxtInstellipseFilename() : EnabletxtInstellipseFilenameComplete()
+            '΅Εισαγωγή εγγραφής απευθείας στην βάση
+            Dim sResult As Boolean = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "INST_ELLIPSE", Frm.LayoutControl1,,, ID, True, "comefrom", sComeFrom)
+            If sResult = False Then
+                XtraMessageBox.Show("Υπήρξε πρόβλημα κατά την διαδικασία ανοίγματος εκκρεμότητας.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Frm.Close()
+            End If
+            Mode = FormMode.EditRecord
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
     End Sub
     Public Sub GridView5ValidateRow(e As ValidateRowEventArgs)
         Dim sSQL As New System.Text.StringBuilder

@@ -456,7 +456,7 @@ Public Class Installations
             frmInstEllipse.cboCUS.EditValue = Frm.cboCUS.EditValue
             frmInstEllipse.cboTRANSH.EditValue = Frm.cboTRANSH.EditValue
             frmInstEllipse.ComeFrom = 0
-            frmInstEllipse.Show()
+            frmInstEllipse.ShowDialog()
         Else
             frmInstEllipse.Text = "Εκκρεμότητες Έργων"
             frmInstEllipse.Mode = FormMode.EditRecord

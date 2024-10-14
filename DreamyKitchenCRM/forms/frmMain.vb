@@ -559,7 +559,7 @@ Public Class frmMain
     End Sub
 
     Private Sub BBEllipse_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBEllipse.ItemClick
-        Dim form As frmScroller = New frmScroller("Εκκρεμότητες Έργων") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
+        Dim form As frmScroller = New frmScroller("Εκρεμότητες Έργων από Τοποθέτηση") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
         form.DataTable = "vw_INST_ELLIPSE"
         form.DataDetail = "INST_ELLIPSE_JOBS"
         form.MdiParent = Me
@@ -940,7 +940,7 @@ Public Class frmMain
     End Sub
 
     Private Sub BBProjectJobsSUP_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBProjectJobsSUP.ItemClick
-        Dim form As frmScroller = New frmScroller("Εκκρεμότητες Κατασκευαστικού") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
+        Dim form As frmScroller = New frmScroller("Εκκρεμότητες Παραλαβών") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
         form.DataTable = "vw_PROJECT_JOBSSUP"
         form.DataDetail = "PROJECT_JOBSSUP_D"
         form.MdiParent = Me

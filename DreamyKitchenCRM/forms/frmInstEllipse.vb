@@ -70,6 +70,7 @@ Public Class frmInstEllipse
     End Property
 
     Private Sub frmInstEllipse_Load(sender As Object, e As EventArgs) Handles Me.Load
+        InstEllipse.INST_ID = sINST_ID
         InstEllipse.Initialize(Me, sID, Mode)
         InstEllipse.LoadForm()
         ComeFrom = InstEllipse.ComeFrom
