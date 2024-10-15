@@ -570,8 +570,8 @@ Public Class ProjectJobsSUP
     End Sub
 
     Public Sub PrintDocument()
-        Dim supID As String, sSupID() As String : GetSupplierEmails(supID) : Frm.txtTo.Tag = supID
-        If sSupID Is Nothing Then XtraMessageBox.Show("Δεν βρέθηκαν προμηθευτές", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
+        Dim supID As String = "", sSupID() As String : GetSupplierEmails(supID) : Frm.txtTo.Tag = supID
+        If supID = "" Then XtraMessageBox.Show("Δεν βρέθηκαν προμηθευτές", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
         sSupID = Frm.txtTo.Tag.ToString.Split(";")
         For Each supID In sSupID
             Dim report As New RepCUSProjectJobsSUP
