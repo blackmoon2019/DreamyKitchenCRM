@@ -339,6 +339,7 @@
     <Compile Include="classes\Projects.vb" />
     <Compile Include="classes\ScanToPDF.vb" />
     <Compile Include="classes\SendEmail.vb" />
+    <Compile Include="classes\SupOrders.vb" />
     <Compile Include="classes\Transactions.vb" />
     <Compile Include="classes\ValidateControls.vb" />
     <Compile Include="classes\XML_Serialization.vb" />

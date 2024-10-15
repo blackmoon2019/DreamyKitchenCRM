@@ -2,9 +2,7 @@
 Imports DevExpress.XtraEditors
 Imports DevExpress.XtraReports.UI
 Imports System.Data.SqlClient
-Imports DevExpress.XtraBars.Navigation
-Imports DreamyKitchenCRM.Main
-Imports DreamyKitchenCRM.DM_TRANSTableAdapters
+
 
 Public Class ProjectJobs
     Dim Frm As frmProjectJobs

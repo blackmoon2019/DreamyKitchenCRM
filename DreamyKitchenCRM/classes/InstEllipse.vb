@@ -1,17 +1,8 @@
-﻿Imports DevExpress.CodeParser
-Imports DevExpress.XtraEditors
-Imports DevExpress.XtraExport.Helpers
+﻿Imports DevExpress.XtraEditors
 Imports DevExpress.XtraGrid.Views.Base
-Imports DevExpress.XtraGrid.Views.Grid
-Imports DevExpress.XtraLayout
 Imports DevExpress.XtraReports.UI
-Imports DreamyKitchenCRM.DM_TRANSTableAdapters
-Imports DreamyKitchenCRM.Main
 Imports System.Data.SqlClient
 Imports System.IO
-Imports System.Net
-Imports System.Runtime.Remoting.Metadata.W3cXsd2001
-Imports System.Windows.Forms.VisualStyles.VisualStyleElement.Tab
 
 Public Class InstEllipse
     Private Frm As frmInstEllipse
@@ -21,6 +12,7 @@ Public Class InstEllipse
     Private Valid As New ValidateControls
     Private ScanFile As ScanToPDF
     Private Prog_Prop As New ProgProp
+    Private UserPermissions As New CheckPermissions
     Public Mode As Byte
     Private ID As String
     Private sINST_ID As String
@@ -65,6 +57,7 @@ Public Class InstEllipse
         Frm.Vw_SUPTableAdapter.Fill(Frm.DreamyKitchenDataSet.vw_SUP)
         Frm.CCT_TRANSHTableAdapter.Fill(Frm.DM_TRANS.CCT_TRANSH)
         AddHandler Frm.GridControl1.EmbeddedNavigator.ButtonClick, AddressOf Grid_EmbeddedNavigator_ButtonClick
+        UserPermissions.GetUserPermissions("Εκρεμότητες Έργων από Τοποθέτηση")
     End Sub
     Public Sub LoadForm()
         FillCbo.INST(Frm.cboINST)
