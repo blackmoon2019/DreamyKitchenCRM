@@ -1732,6 +1732,50 @@ SELECT ID, code, supID, FromValue, ToValue, value, Parameter, modifiedBy, modifi
             </Mappings>
             <Sources />
           </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="SUP_ORDERSDTableAdapter" GeneratorDataComponentClassName="SUP_ORDERSDTableAdapter" Name="SUP_ORDERSD" UserDataComponentName="SUP_ORDERSDTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchenDEV.dbo.SUP_ORDERSD" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT SUP_ORDERSD.*
+FROM   SUP_ORDERSD</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="ID" DataSetColumn="ID" />
+              <Mapping SourceColumn="code" DataSetColumn="code" />
+              <Mapping SourceColumn="supOrderID" DataSetColumn="supOrderID" />
+              <Mapping SourceColumn="supID" DataSetColumn="supID" />
+              <Mapping SourceColumn="cmt" DataSetColumn="cmt" />
+              <Mapping SourceColumn="modifiedBy" DataSetColumn="modifiedBy" />
+              <Mapping SourceColumn="modifiedOn" DataSetColumn="modifiedOn" />
+              <Mapping SourceColumn="createdOn" DataSetColumn="createdOn" />
+              <Mapping SourceColumn="createdBy" DataSetColumn="createdBy" />
+              <Mapping SourceColumn="orderType" DataSetColumn="orderType" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_SUP_ORDER_TYPESTableAdapter" GeneratorDataComponentClassName="vw_SUP_ORDER_TYPESTableAdapter" Name="vw_SUP_ORDER_TYPES" UserDataComponentName="vw_SUP_ORDER_TYPESTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchenDEV.dbo.vw_SUP_ORDER_TYPES" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT vw_SUP_ORDER_TYPES.*
+FROM   vw_SUP_ORDER_TYPES</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="OrderTypeName" DataSetColumn="OrderTypeName" />
+              <Mapping SourceColumn="OrderTypeNo" DataSetColumn="OrderTypeNo" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
         </Tables>
         <Sources />
       </DataSource>
@@ -3268,7 +3312,7 @@ SELECT ID, code, supID, FromValue, ToValue, value, Parameter, modifiedBy, modifi
                 </xs:simpleType>
               </xs:element>
               <xs:element name="visitDate" msprop:Generator_ColumnPropNameInTable="visitDateColumn" msprop:Generator_ColumnPropNameInRow="visitDate" msprop:Generator_UserColumnName="visitDate" msprop:Generator_ColumnVarNameInTable="columnvisitDate" type="xs:dateTime" minOccurs="0" />
-              <xs:element name="RealName" msprop:Generator_UserColumnName="RealName" msprop:Generator_ColumnPropNameInTable="RealNameColumn" msprop:Generator_ColumnPropNameInRow="RealName" msprop:Generator_ColumnVarNameInTable="columnRealName" minOccurs="0">
+              <xs:element name="RealName" msprop:Generator_ColumnPropNameInTable="RealNameColumn" msprop:Generator_ColumnPropNameInRow="RealName" msprop:Generator_UserColumnName="RealName" msprop:Generator_ColumnVarNameInTable="columnRealName" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="200" />
@@ -3581,6 +3625,42 @@ SELECT ID, code, supID, FromValue, ToValue, value, Parameter, modifiedBy, modifi
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="SUP_ORDERSD" msprop:Generator_RowClassName="SUP_ORDERSDRow" msprop:Generator_RowEvHandlerName="SUP_ORDERSDRowChangeEventHandler" msprop:Generator_RowDeletedName="SUP_ORDERSDRowDeleted" msprop:Generator_RowDeletingName="SUP_ORDERSDRowDeleting" msprop:Generator_RowEvArgName="SUP_ORDERSDRowChangeEvent" msprop:Generator_TablePropName="SUP_ORDERSD" msprop:Generator_RowChangedName="SUP_ORDERSDRowChanged" msprop:Generator_UserTableName="SUP_ORDERSD" msprop:Generator_RowChangingName="SUP_ORDERSDRowChanging" msprop:Generator_TableClassName="SUP_ORDERSDDataTable" msprop:Generator_TableVarName="tableSUP_ORDERSD">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_UserColumnName="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnVarNameInTable="columnID" type="xs:string" />
+              <xs:element name="code" msprop:Generator_UserColumnName="code" msprop:Generator_ColumnPropNameInTable="codeColumn" msprop:Generator_ColumnPropNameInRow="code" msprop:Generator_ColumnVarNameInTable="columncode" type="xs:int" />
+              <xs:element name="supOrderID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_UserColumnName="supOrderID" msprop:Generator_ColumnPropNameInTable="supOrderIDColumn" msprop:Generator_ColumnPropNameInRow="supOrderID" msprop:Generator_ColumnVarNameInTable="columnsupOrderID" type="xs:string" />
+              <xs:element name="supID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_UserColumnName="supID" msprop:Generator_ColumnPropNameInTable="supIDColumn" msprop:Generator_ColumnPropNameInRow="supID" msprop:Generator_ColumnVarNameInTable="columnsupID" type="xs:string" />
+              <xs:element name="cmt" msprop:Generator_UserColumnName="cmt" msprop:Generator_ColumnPropNameInTable="cmtColumn" msprop:Generator_ColumnPropNameInRow="cmt" msprop:Generator_ColumnVarNameInTable="columncmt" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="modifiedBy" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_UserColumnName="modifiedBy" msprop:Generator_ColumnPropNameInTable="modifiedByColumn" msprop:Generator_ColumnPropNameInRow="modifiedBy" msprop:Generator_ColumnVarNameInTable="columnmodifiedBy" type="xs:string" />
+              <xs:element name="modifiedOn" msprop:Generator_UserColumnName="modifiedOn" msprop:Generator_ColumnPropNameInTable="modifiedOnColumn" msprop:Generator_ColumnPropNameInRow="modifiedOn" msprop:Generator_ColumnVarNameInTable="columnmodifiedOn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="createdOn" msprop:Generator_UserColumnName="createdOn" msprop:Generator_ColumnPropNameInTable="createdOnColumn" msprop:Generator_ColumnPropNameInRow="createdOn" msprop:Generator_ColumnVarNameInTable="columncreatedOn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="createdBy" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_UserColumnName="createdBy" msprop:Generator_ColumnPropNameInTable="createdByColumn" msprop:Generator_ColumnPropNameInRow="createdBy" msprop:Generator_ColumnVarNameInTable="columncreatedBy" type="xs:string" minOccurs="0" />
+              <xs:element name="orderType" msprop:Generator_UserColumnName="orderType" msprop:Generator_ColumnPropNameInTable="orderTypeColumn" msprop:Generator_ColumnPropNameInRow="orderType" msprop:Generator_ColumnVarNameInTable="columnorderType" type="xs:int" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="vw_SUP_ORDER_TYPES" msprop:Generator_RowClassName="vw_SUP_ORDER_TYPESRow" msprop:Generator_RowEvHandlerName="vw_SUP_ORDER_TYPESRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_SUP_ORDER_TYPESRowDeleted" msprop:Generator_RowDeletingName="vw_SUP_ORDER_TYPESRowDeleting" msprop:Generator_RowEvArgName="vw_SUP_ORDER_TYPESRowChangeEvent" msprop:Generator_TablePropName="vw_SUP_ORDER_TYPES" msprop:Generator_RowChangedName="vw_SUP_ORDER_TYPESRowChanged" msprop:Generator_UserTableName="vw_SUP_ORDER_TYPES" msprop:Generator_RowChangingName="vw_SUP_ORDER_TYPESRowChanging" msprop:Generator_TableClassName="vw_SUP_ORDER_TYPESDataTable" msprop:Generator_TableVarName="tablevw_SUP_ORDER_TYPES">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="OrderTypeName" msprop:Generator_UserColumnName="OrderTypeName" msprop:Generator_ColumnPropNameInTable="OrderTypeNameColumn" msprop:Generator_ColumnPropNameInRow="OrderTypeName" msprop:Generator_ColumnVarNameInTable="columnOrderTypeName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="22" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="OrderTypeNo" msprop:Generator_UserColumnName="OrderTypeNo" msprop:Generator_ColumnPropNameInTable="OrderTypeNoColumn" msprop:Generator_ColumnPropNameInRow="OrderTypeNo" msprop:Generator_ColumnVarNameInTable="columnOrderTypeNo" type="xs:int" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:choice>
     </xs:complexType>
     <xs:unique name="Constraint1" msdata:PrimaryKey="true">
@@ -3713,6 +3793,10 @@ SELECT ID, code, supID, FromValue, ToValue, value, Parameter, modifiedBy, modifi
     </xs:unique>
     <xs:unique name="PRICELISTS_PRM_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:PRICELISTS_PRM" />
+      <xs:field xpath="mstns:ID" />
+    </xs:unique>
+    <xs:unique name="SUP_ORDERSD_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:SUP_ORDERSD" />
       <xs:field xpath="mstns:ID" />
     </xs:unique>
   </xs:element>

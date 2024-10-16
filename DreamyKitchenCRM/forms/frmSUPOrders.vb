@@ -67,9 +67,9 @@ Public Class frmSUPOrders
     End Sub
     Private Sub cboEMP_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboEMP.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageSup(cboSUP, FormMode.NewRecord)
-            Case 2 : ManageCbo.ManageSup(cboSUP, FormMode.EditRecord)
-            Case 3 : cboSUP.EditValue = Nothing
+            Case 1 : ManageCbo.ManageEMP(cboEMP, FormMode.NewRecord)
+            Case 2 : ManageCbo.ManageEMP(cboEMP, FormMode.EditRecord)
+            Case 3 : cboEMP.EditValue = Nothing
         End Select
     End Sub
     Private Sub cboCUS_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboCUS.ButtonClick
@@ -100,13 +100,6 @@ Public Class frmSUPOrders
         End Select
     End Sub
 
-    Private Sub cboSUP_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboSUP.ButtonClick
-        Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageSup(cboSUP, FormMode.NewRecord)
-            Case 2 : ManageCbo.ManageSup(cboSUP, FormMode.EditRecord)
-            Case 3 : cboSUP.EditValue = Nothing
-        End Select
-    End Sub
     Private Sub frmSUPOrders_Resize(sender As Object, e As EventArgs) Handles Me.Resize
         If Me.WindowState = FormWindowState.Maximized Then frmMain.XtraTabbedMdiManager1.Dock(Me, frmMain.XtraTabbedMdiManager1)
     End Sub
@@ -130,8 +123,6 @@ Public Class frmSUPOrders
     Private Sub cmdSendEmail_Click(sender As Object, e As EventArgs) Handles cmdSendEmail.Click
         SupOrders.ValidateEmail()
     End Sub
-
-
     Private Sub TabPane1_SelectedPageChanged(sender As Object, e As SelectedPageChangedEventArgs) Handles TabPane1.SelectedPageChanged
         Select Case TabPane1.SelectedPageIndex
             Case 1 : SupOrders.EmailTabSelected()

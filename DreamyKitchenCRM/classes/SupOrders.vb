@@ -32,6 +32,8 @@ Public Class SupOrders
         Frm.Vw_CCTTableAdapter.Fill(Frm.DreamyKitchenDataSet.vw_CCT)
         Frm.Vw_SUPTableAdapter.Fill(Frm.DreamyKitchenDataSet.vw_SUP)
         Frm.Vw_ORDER_MANAGERSTableAdapter.Fill(Frm.DreamyKitchenDataSet.vw_ORDER_MANAGERS)
+        Frm.Vw_SUP_ORDER_TYPESTableAdapter.Fill(Frm.DMDataSet.vw_SUP_ORDER_TYPES)
+        Frm.SUP_ORDERSDTableAdapter.Fill(Frm.DMDataSet.SUP_ORDERSD)
 
 
         'AddHandler Frm.GridControl1.EmbeddedNavigator.ButtonClick, AddressOf Grid_EmbeddedNavigator_ButtonClick
@@ -112,7 +114,7 @@ Public Class SupOrders
             Dim b() As Byte = GetFile(Frm.GridView1.GetRowCellValue(Frm.GridView1.FocusedRowHandle, "ID").ToString, "SUP_ORDERS_F", sFilename)
             fs.Write(b, 0, b.Length)
             fs.Close()
-            ;/ShellExecute(ProgProps.TempFolderPath & sFilename)
+            ShellExecute(ProgProps.TempFolderPath & sFilename)
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
