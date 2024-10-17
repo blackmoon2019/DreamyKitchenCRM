@@ -52,7 +52,7 @@ Public Class DBQueries
                     Case "CCT_F" : sSQL.AppendLine("INSERT INTO CCT_F (cctID,filename,comefrom,extension, [modifiedBy],[createdby],[createdOn],isinvoice,[files])")
                     Case "TRANSH_F" : sSQL.AppendLine("INSERT INTO TRANSH_F (transhID,filename,fileCatID,ownerID,[belongsTo],comefrom,extension, [modifiedBy],[createdby],[createdOn],[files])")
                     Case "NOTES_F" : sSQL.AppendLine("INSERT INTO NOTES_F (notesID,filename,comefrom,extension, [modifiedBy],[createdby],[createdOn],[files])")
-                    Case "SUP_ORDERS_F" : sSQL.AppendLine("INSERT INTO SUP_ORDERS_F (supOrderID,filename,comefrom,extension, [modifiedBy],[createdby],[createdOn],[files])")
+                    Case "SUP_ORDERS_F" : sSQL.AppendLine("INSERT INTO SUP_ORDERS_F (supOrderDID,filename,comefrom,extension, [modifiedBy],[createdby],[createdOn],[files])")
                 End Select
                 Dim extension As String = Path.GetExtension(control.FileNames(i))
                 Dim FilePath As String = Path.GetDirectoryName(control.FileNames(i))

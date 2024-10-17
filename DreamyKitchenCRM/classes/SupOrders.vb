@@ -33,10 +33,10 @@ Public Class SupOrders
         Frm.Vw_SUPTableAdapter.Fill(Frm.DreamyKitchenDataSet.vw_SUP)
         Frm.Vw_ORDER_MANAGERSTableAdapter.Fill(Frm.DreamyKitchenDataSet.vw_ORDER_MANAGERS)
         Frm.Vw_SUP_ORDER_TYPESTableAdapter.Fill(Frm.DMDataSet.vw_SUP_ORDER_TYPES)
-        Frm.SUP_ORDERSDTableAdapter.Fill(Frm.DMDataSet.SUP_ORDERSD)
+        'Frm.SUP_ORDERSDTableAdapter.Fill(Frm.DMDataSet.SUP_ORDERSD)
+        Frm.Vw_SUP_ORDERSDTableAdapter.Fill(Frm.DMDataSet.vw_SUP_ORDERSD)
 
-
-        'AddHandler Frm.GridControl1.EmbeddedNavigator.ButtonClick, AddressOf Grid_EmbeddedNavigator_ButtonClick
+        AddHandler Frm.GridControl3.EmbeddedNavigator.ButtonClick, AddressOf Grid_EmbeddedNavigator_ButtonClick
         UserPermissions.GetUserPermissions("Παραγγελίες Προμηθευτών")
     End Sub
     Public Sub LoadForm()
@@ -44,16 +44,20 @@ Public Class SupOrders
             Case FormMode.NewRecord
                 Frm.txtCode.Text = DBQ.GetNextId("SUP_ORDERS")
                 Frm.cboEMP.EditValue = System.Guid.Parse(UserProps.ID.ToString.ToUpper)
+                Frm.LblComeFrom.Text = "Αρχική"
+                LoadForms.RestoreLayoutFromXml(Frm.GridView3, "SUP_ORDERS_D_def.xml")
+                Frm.GridView3.OptionsBehavior.Editable = False : Frm.GridView3.OptionsBehavior.ReadOnly = True
             Case FormMode.EditRecord
-
                 LoadForms.LoadForm(Frm.LayoutControl1, "Select * from SUP_ORDERS where id = " & toSQLValueS(ID), sFields)
                 sComeFrom = sFields("comeFrom")
                 Select Case sComeFrom
+                    Case 0 : Frm.LblComeFrom.Text = "Αρχική"
                     Case 1 : Frm.LblComeFrom.Text = "Η παραγγελία δημιουργήθηκε από εκκρεμότητα τοποθέτησης"
                     Case 2 : Frm.LblComeFrom.Text = "Η παραγγελία δημιουργήθηκε από εργασία"
                     Case 3 : Frm.LblComeFrom.Text = "Η παραγγελία δημιουργήθηκε από εκκρεμότητα κατασκευαστικού"
                     Case Else : Frm.LblComeFrom.Text = "" : Frm.cmdPrintAll.Enabled = False
                 End Select
+                LoadForms.RestoreLayoutFromXml(Frm.GridView3, "SUP_ORDERS_D_def.xml")
         End Select
         Frm.cmdSave.Enabled = IIf(Mode = FormMode.NewRecord, UserProps.AllowInsert, UserProps.AllowEdit)
     End Sub
@@ -69,18 +73,18 @@ Public Class SupOrders
                         ID = sGuid
                     Case FormMode.EditRecord
                         sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "SUP_ORDERS", Frm.LayoutControl1,,, ID, True)
-                        sGuid = ID
                 End Select
-                If Frm.txtFiles.Text <> "" Then
-                    sResult = DBQ.InsertDataFiles(Frm.XtraOpenFileDialog1, sGuid, "SUP_ORDERS_F")
-                    LoadForms.LoadDataToGrid(Frm.GridControl1, Frm.GridView1, "select ID,supOrderID,files,filename,comefrom,createdon,realname From vw_SUP_ORDERS_F where supOrderID = '" & sGuid & "'")
-                    LoadForms.RestoreLayoutFromXml(Frm.GridView1, "vw_SUP_ORDERS_F.xml")
-                End If
+                'If Frm.txtFiles.Text <> "" Then
+                '    sResult = DBQ.InsertDataFiles(Frm.XtraOpenFileDialog1, sGuid, "SUP_ORDERS_F")
+                '    LoadForms.LoadDataToGrid(Frm.GridControl1, Frm.GridView1, "select ID,supOrderID,files,filename,comefrom,createdon,realname From vw_SUP_ORDERS_F where supOrderID = '" & sGuid & "'")
+                '    LoadForms.RestoreLayoutFromXml(Frm.GridView1, "vw_SUP_ORDERS_F.xml")
+                'End If
                 LoadForms.RestoreLayoutFromXml(Frm.GridView1, "vw_SUP_ORDERS_F_def.xml")
                 If sResult = True Then
                     XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
                     If Mode = FormMode.NewRecord Then Mode = FormMode.EditRecord
-                    Frm.txtFiles.EditValue = Nothing
+                    'Frm.txtFiles.EditValue = Nothing
+                    Frm.GridView3.OptionsBehavior.Editable = True : Frm.GridView3.OptionsBehavior.ReadOnly = False
                 End If
             End If
 
@@ -88,6 +92,115 @@ Public Class SupOrders
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
 
+    End Sub
+    Public Sub SaveRecordD(ByVal e As DevExpress.XtraGrid.Views.Base.ValidateRowEventArgs)
+        Dim sSQLS As New System.Text.StringBuilder
+        Dim sGuid As String
+        Try
+            sSQLS.Clear()
+            If Frm.GridView3.RowCount = 0 Then Exit Sub
+            If e.RowHandle = Frm.GridControl3.NewItemRowHandle Then
+                If Frm.GridView3.GetRowCellValue(Frm.GridView3.FocusedRowHandle, "supID").ToString = "" Then
+                    e.ErrorText = "Παρακαλώ επιλεξτε προμηθευτή"
+                    e.Valid = False
+                    Exit Sub
+                End If
+                If Frm.GridView3.GetRowCellValue(Frm.GridView3.FocusedRowHandle, "orderType").ToString = "" Then
+                    e.ErrorText = "Παρακαλώ επιλέξτε κατηγορία παραγγελίας"
+                    e.Valid = False
+                    Exit Sub
+                End If
+                sGuid = Guid.NewGuid.ToString
+                Frm.GridView3.SetRowCellValue(Frm.GridView3.FocusedRowHandle, "supOrderID", ID)
+                sSQLS.AppendLine("INSERT INTO SUP_ORDERSD (ID,supOrderID,supID,orderType,cmt,createdOn,createdBy,modifiedBy)")
+                sSQLS.AppendLine("Select " & toSQLValueS(sGuid) & ",")
+                sSQLS.AppendLine(toSQLValueS(ID) & ",")
+                sSQLS.AppendLine(toSQLValueS(Frm.GridView3.GetRowCellValue(Frm.GridView3.FocusedRowHandle, "supID").ToString) & ",")
+                sSQLS.AppendLine(toSQLValueS(Frm.GridView3.GetRowCellValue(Frm.GridView3.FocusedRowHandle, "orderType").ToString, True) & ",")
+                sSQLS.AppendLine(toSQLValueS(Frm.GridView3.GetRowCellValue(Frm.GridView3.FocusedRowHandle, "cmt").ToString) & ",")
+                sSQLS.AppendLine("getdate()" & ",")
+                sSQLS.AppendLine(toSQLValueS(UserProps.ID.ToString) & ",")
+                sSQLS.AppendLine(toSQLValueS(UserProps.ID.ToString))
+                'Εκτέλεση QUERY
+                Using oCmd As New SqlCommand(sSQLS.ToString, CNDB)
+                    oCmd.ExecuteNonQuery()
+                End Using
+                SaveRecordF(sGuid)
+            Else
+                If Frm.GridView3.GetRowCellValue(Frm.GridView3.FocusedRowHandle, "supID").ToString = "" Then
+                    e.ErrorText = "Παρακαλώ επιλεξτε προμηθευτή"
+                    e.Valid = False
+                    Exit Sub
+                End If
+                If Frm.GridView3.GetRowCellValue(Frm.GridView3.FocusedRowHandle, "orderType").ToString = "" Then
+                    e.ErrorText = "Παρακαλώ επιλέξτε κατηγορία παραγγελίας"
+                    e.Valid = False
+                    Exit Sub
+                End If
+                sGuid = Frm.GridView3.GetRowCellValue(Frm.GridView3.FocusedRowHandle, "ID").ToString
+                sSQLS.AppendLine("UPDATE SUP_ORDERSD SET  ")
+                sSQLS.AppendLine("supID = " & toSQLValueS(Frm.GridView3.GetRowCellValue(Frm.GridView3.FocusedRowHandle, "supID").ToString) & ",")
+                sSQLS.AppendLine("cmt = " & toSQLValueS(Frm.GridView3.GetRowCellValue(Frm.GridView3.FocusedRowHandle, "cmt").ToString) & ",")
+                sSQLS.AppendLine("orderType = " & toSQLValueS(Frm.GridView3.GetRowCellValue(Frm.GridView3.FocusedRowHandle, "orderType").ToString, True) & ",")
+                sSQLS.AppendLine("modifiedBy = " & toSQLValueS(UserProps.ID.ToString) & ",")
+                sSQLS.AppendLine("modifiedOn = getdate()")
+                sSQLS.Append("WHERE ID = " & toSQLValueS(sGuid))
+                'Εκτέλεση QUERY
+                Using oCmd As New SqlCommand(sSQLS.ToString, CNDB)
+                    oCmd.ExecuteNonQuery()
+                End Using
+                SaveRecordF(sGuid)
+            End If
+            'Frm.SUP_ORDERSDTableAdapter.Fill(Frm.DMDataSet.SUP_ORDERSD)
+            Frm.Vw_SUP_ORDERSDTableAdapter.Fill(Frm.DMDataSet.vw_SUP_ORDERSD)
+            LoadForms.RestoreLayoutFromXml(Frm.GridView3, "SUP_ORDERS_D_def.xml")
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+    Public Sub SaveRecordF(ByVal sID As String)
+        Try
+            Dim sResultF As Boolean
+            Using oCmd As New SqlCommand("DELETE FROM SUP_ORDERS_F WHERE supOrderDID = " & toSQLValueS(sID), CNDB)
+                oCmd.ExecuteNonQuery()
+            End Using
+            sResultF = DBQ.InsertDataFiles(Frm.XtraOpenFileDialog1, sID, "SUP_ORDERS_F")
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    Private Sub Grid_EmbeddedNavigator_ButtonClick(ByVal sender As Object, ByVal e As DevExpress.XtraEditors.NavigatorButtonClickEventArgs)
+        Select Case e.Button.ButtonType
+            Case e.Button.ButtonType.Remove : DeleteRecordD() : e.Handled = True
+            Case e.Button.ButtonType.Append
+        End Select
+    End Sub
+    Public Sub DeleteRecordF()
+        Try
+            If Frm.GridView3.GetRowCellValue(Frm.GridView3.FocusedRowHandle, "HasFiles").ToString = "False" Then Exit Sub
+            Using oCmd As New SqlCommand("DELETE FROM SUP_ORDERS_F WHERE supOrderDID = " & toSQLValueS(Frm.GridView3.GetRowCellValue(Frm.GridView3.FocusedRowHandle, "ID").ToString), CNDB)
+                oCmd.ExecuteNonQuery()
+            End Using
+            Frm.Vw_SUP_ORDERSDTableAdapter.Fill(Frm.DMDataSet.vw_SUP_ORDERSD)
+            XtraMessageBox.Show("Τα αρχεία διαγράφηκαν", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+    Public Sub DeleteRecordD()
+        Dim sSQL As String
+        If Frm.GridView3.GetRowCellValue(Frm.GridView3.FocusedRowHandle, "ID") = Nothing Then Exit Sub
+        If XtraMessageBox.Show("Θέλετε να διαγραφεί η τρέχουσα εγγραφή?", ProgProps.ProgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+            sSQL = "DELETE FROM SUP_ORDERSD WHERE ID = '" & Frm.GridView3.GetRowCellValue(Frm.GridView3.FocusedRowHandle, "ID").ToString & "'"
+
+            Using oCmd As New SqlCommand(sSQL, CNDB)
+                oCmd.ExecuteNonQuery()
+            End Using
+            XtraMessageBox.Show("Η εγγραφή διαγράφηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
+            'Frm.SUP_ORDERSDTableAdapter.Fill(Frm.DMDataSet.SUP_ORDERSD)
+            Frm.Vw_SUP_ORDERSDTableAdapter.Fill(Frm.DMDataSet.vw_SUP_ORDERSD)
+        End If
     End Sub
     Public Sub DeleteRecord()
         Dim sSQL As String
@@ -119,6 +232,30 @@ Public Class SupOrders
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
 
+    End Sub
+    Public Sub OpenFiles()
+        Try
+            Dim sSQL As String
+            Dim cmd As SqlCommand
+            Dim sdr As SqlDataReader
+            Dim bytes As Byte()
+            Dim sFileName As String
+            Dim sID As String = Frm.GridView3.GetRowCellValue(Frm.GridView3.FocusedRowHandle, "ID").ToString
+            sSQL = "Select filename, files From SUP_ORDERS_F  WHERE supOrderDID = " & toSQLValueS(sID)
+            cmd = New SqlCommand(sSQL, CNDB) : sdr = cmd.ExecuteReader()
+
+            While sdr.Read()
+                sFileName = sdr.GetString(sdr.GetOrdinal("filename").ToString).ToString
+                Dim fs As IO.FileStream = New IO.FileStream(ProgProps.TempFolderPath & sFileName, IO.FileMode.Create)
+                bytes = DirectCast(sdr("files"), Byte())
+                fs.Write(bytes, 0, bytes.Length)
+                fs.Close()
+                ShellExecute(ProgProps.TempFolderPath & sFileName)
+            End While
+            sdr.Close()
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
     End Sub
     Public Sub SendEmail()
         Dim Cmd As SqlCommand, sdr As SqlDataReader

@@ -2,6 +2,8 @@
 Imports DevExpress.XtraBars.Navigation
 Imports DevExpress.XtraEditors
 Imports DevExpress.XtraEditors.Controls
+Imports DevExpress.XtraExport.Helpers
+Imports DevExpress.XtraGrid.Views.Base
 Imports DevExpress.XtraGrid.Views.Grid
 Imports DevExpress.XtraReports.UI
 Public Class frmSUPOrders
@@ -86,7 +88,7 @@ Public Class frmSUPOrders
         Dim sCusID As String
         If cboCUS.EditValue Is Nothing Then sCusID = toSQLValueS(Guid.Empty.ToString) Else sCusID = toSQLValueS(cboCUS.EditValue.ToString)
         Dim sSQL As New System.Text.StringBuilder
-        sSQL.AppendLine("Select T.id,FullTranshDescription,Description
+        sSQL.AppendLine("Select T.id,FullTranshDescription,Description,offerCusAcceptance
                         from vw_TRANSH t
                         where  T.cusid = " & sCusID & "order by description")
         FillCbo.TRANSH(cboTRANSH, sSQL)
@@ -140,5 +142,29 @@ Public Class frmSUPOrders
 
     Private Sub cmdPrintAll_Click(sender As Object, e As EventArgs) Handles cmdPrintAll.Click
         SupOrders.PrintAll()
+    End Sub
+
+    Private Sub GridView3_ValidateRow(sender As Object, e As ValidateRowEventArgs) Handles GridView3.ValidateRow
+        SupOrders.SaveRecordD(e)
+    End Sub
+
+    Private Sub GridView3_PopupMenuShowing(sender As Object, e As PopupMenuShowingEventArgs) Handles GridView3.PopupMenuShowing
+        If e.MenuType = GridMenuType.Column Then LoadForms.PopupMenuShow(e, GridView3, "SUP_ORDERS_D_def.xml", "SUP_ORDERSD")
+    End Sub
+
+    Private Sub GridView3_KeyDown(sender As Object, e As KeyEventArgs) Handles GridView3.KeyDown
+        If e.KeyCode = Keys.Delete And UserProps.AllowDelete = True Then SupOrders.DeleteRecordD()
+    End Sub
+
+    Private Sub cmdSaveTransF_Click(sender As Object, e As EventArgs) Handles cmdSaveTransF.Click
+
+    End Sub
+
+    Private Sub RepFiles_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles RepFiles.ButtonClick
+        Select Case e.Button.Index
+            Case 0 : SupOrders.FilesSelection() : GridView3.SetRowCellValue(GridView3.FocusedRowHandle, "HasFiles", 1)
+            Case 1 : SupOrders.OpenFiles()
+            Case 2 : SupOrders.DeleteRecordF()
+        End Select
     End Sub
 End Class
