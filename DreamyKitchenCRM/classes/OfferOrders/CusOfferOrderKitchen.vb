@@ -1,8 +1,11 @@
-﻿Imports DevExpress.XtraEditors
+﻿Imports DevExpress.Spreadsheet
+Imports DevExpress.XtraEditors
 Imports DevExpress.XtraLayout
 Imports DevExpress.XtraReports.UI
 Imports DreamyKitchenCRM.DM_TRANSTableAdapters
 Imports System.Data.SqlClient
+Imports System.Reflection
+Imports System.Text
 
 Public Class CusOfferOrderKitchen
     Private FillCbo As New FillCombos
@@ -435,14 +438,80 @@ Public Class CusOfferOrderKitchen
             Else
                 Dim Projects As New Projects
                 Projects.CalculateTotAmtAndBal(Frm.cboTRANSH.EditValue.ToString, sIsOrder)
+                If CreateSupOrder() = False Then XtraMessageBox.Show("Παρουσιάστηκε πρόβλημα στην δημιουργία παραγγελίας σε προμηθευτή", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
                 If msg Then XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
+
             End If
         Else
             If msg Then XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
         End If
 
     End Sub
+    Private Function CreateSupOrder() As Boolean
+        Try
+            Dim sSQL As New System.Text.StringBuilder
+            Dim sGuid As String
+            sSQL.AppendLine("DELETE From SUP_ORDERSD   Where supOrderID in(select ID from SUP_ORDERS Where cctOrdersKitchenID = " & toSQLValueS(ID) & ")")
+            'Εκτέλεση QUERY
+            Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
+                oCmd.ExecuteNonQuery()
+            End Using
+            sSQL.Clear()
+            sSQL.AppendLine("DELETE From SUP_ORDERS   Where cctOrdersKitchenID = " & toSQLValueS(ID))
+            'Εκτέλεση QUERY
+            Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
+                oCmd.ExecuteNonQuery()
+            End Using
+            sSQL.Clear()
 
+            sGuid = System.Guid.NewGuid.ToString
+            sSQL.AppendLine("INSERT INTO SUP_ORDERS (ID,cctOrdersKitchenID,cusID,empID,transhID,dtOrder,comeFrom,createdOn,createdBy,modifiedBy)")
+            sSQL.AppendLine("Select " & toSQLValueS(sGuid) & ",")
+            sSQL.AppendLine(toSQLValueS(ID) & ",")
+            sSQL.AppendLine(toSQLValueS(Frm.cboCUS.EditValue.ToString) & ",")
+            sSQL.AppendLine(toSQLValueS("586BCF26-031E-4187-895F-3C43C6081C13") & ",")
+            sSQL.AppendLine(toSQLValueS(Frm.cboTRANSH.EditValue.ToString) & ",")
+            sSQL.AppendLine("getdate()" & ",")
+            sSQL.AppendLine("4" & ",")
+            sSQL.AppendLine("getdate()" & ",")
+            sSQL.AppendLine(toSQLValueS(UserProps.ID.ToString) & ",")
+            sSQL.AppendLine(toSQLValueS(UserProps.ID.ToString))
+            'Εκτέλεση QUERY
+            Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
+                oCmd.ExecuteNonQuery()
+            End Using
+
+            sSQL.Clear()
+            Dim supID As New System.Text.StringBuilder
+            For I = 0 To Frm.GridView1.RowCount - 1
+                Dim Selected As Boolean = Frm.GridView1.GetRowCellValue(I, "checked")
+                Selected = Frm.GridView1.GetRowCellValue(I, "checked")
+                If Selected = True Then
+                    If supID.ToString.Contains(Frm.GridView1.GetRowCellValue(I, "suppID").ToString) = False Then
+                        supID.AppendLine(Frm.GridView1.GetRowCellValue(I, "suppID").ToString)
+                        sSQL.AppendLine("INSERT INTO SUP_ORDERSD (ID,supOrderID,supID,orderType,createdOn,createdBy,modifiedBy)")
+                        sSQL.AppendLine("Select newid() ,")
+                        sSQL.AppendLine(toSQLValueS(sGuid) & ",")
+                        sSQL.AppendLine(toSQLValueS(Frm.GridView1.GetRowCellValue(I, "suppID").ToString) & ",")
+                        sSQL.AppendLine("4,")
+                        sSQL.AppendLine("getdate()" & ",")
+                        sSQL.AppendLine(toSQLValueS(UserProps.ID.ToString) & ",")
+                        sSQL.AppendLine(toSQLValueS(UserProps.ID.ToString))
+                        'Εκτέλεση QUERY
+                        Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
+                            oCmd.ExecuteNonQuery()
+                        End Using
+                        sSQL.Clear()
+                    End If
+                End If
+            Next
+            Return True
+
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return False
+        End Try
+    End Function
     Public Sub ConvertToOrder()
         Try
             Dim OrderID As String

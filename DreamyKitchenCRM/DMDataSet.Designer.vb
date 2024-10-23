@@ -99,6 +99,8 @@ Partial Public Class DMDataSet
     
     Private relationFK_KANELLOPOULOS_O_KANELLOPOULOS As Global.System.Data.DataRelation
     
+    Private relationFK_SUP_ORDERSD_MAIL_SUP_ORDERS As Global.System.Data.DataRelation
+    
     Private _schemaSerializationMode As Global.System.Data.SchemaSerializationMode = Global.System.Data.SchemaSerializationMode.IncludeSchema
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -1037,6 +1039,7 @@ Partial Public Class DMDataSet
             End If
         End If
         Me.relationFK_KANELLOPOULOS_O_KANELLOPOULOS = Me.Relations("FK_KANELLOPOULOS_O_KANELLOPOULOS")
+        Me.relationFK_SUP_ORDERSD_MAIL_SUP_ORDERS = Me.Relations("FK_SUP_ORDERSD_MAIL_SUP_ORDERS")
     End Sub
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -1121,6 +1124,8 @@ Partial Public Class DMDataSet
         MyBase.Tables.Add(Me.tablevw_SUP_ORDERSD)
         Me.relationFK_KANELLOPOULOS_O_KANELLOPOULOS = New Global.System.Data.DataRelation("FK_KANELLOPOULOS_O_KANELLOPOULOS", New Global.System.Data.DataColumn() {Me.tableKANELLOPOULOS.IDColumn}, New Global.System.Data.DataColumn() {Me.tableKANELLOPOULOS_O.kanIDColumn}, false)
         Me.Relations.Add(Me.relationFK_KANELLOPOULOS_O_KANELLOPOULOS)
+        Me.relationFK_SUP_ORDERSD_MAIL_SUP_ORDERS = New Global.System.Data.DataRelation("FK_SUP_ORDERSD_MAIL_SUP_ORDERS", New Global.System.Data.DataColumn() {Me.tableSUP_ORDERSD.IDColumn}, New Global.System.Data.DataColumn() {Me.tableSUP_ORDERS_MAIL.supOrderDIDColumn}, false)
+        Me.Relations.Add(Me.relationFK_SUP_ORDERSD_MAIL_SUP_ORDERS)
     End Sub
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -4838,6 +4843,8 @@ Partial Public Class DMDataSet
         
         Private columncreatedBy As Global.System.Data.DataColumn
         
+        Private columnsupOrderDID As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Sub New()
@@ -4962,6 +4969,14 @@ Partial Public Class DMDataSet
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property supOrderDIDColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnsupOrderDID
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -4998,9 +5013,12 @@ Partial Public Class DMDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Overloads Function AddSUP_ORDERS_MAILRow(ByVal ID As System.Guid, ByVal supOrderID As System.Guid, ByVal emailFrom As String, ByVal emailTo As String, ByVal emailSubject As String, ByVal emailBody As String, ByVal emailMode As Integer, ByVal DateOfEmail As Date, ByVal createdOn As Date, ByVal createdBy As System.Guid) As SUP_ORDERS_MAILRow
+        Public Overloads Function AddSUP_ORDERS_MAILRow(ByVal ID As System.Guid, ByVal supOrderID As System.Guid, ByVal emailFrom As String, ByVal emailTo As String, ByVal emailSubject As String, ByVal emailBody As String, ByVal emailMode As Integer, ByVal DateOfEmail As Date, ByVal createdOn As Date, ByVal createdBy As System.Guid, ByVal parentSUP_ORDERSDRowByFK_SUP_ORDERSD_MAIL_SUP_ORDERS As SUP_ORDERSDRow) As SUP_ORDERS_MAILRow
             Dim rowSUP_ORDERS_MAILRow As SUP_ORDERS_MAILRow = CType(Me.NewRow,SUP_ORDERS_MAILRow)
-            Dim columnValuesArray() As Object = New Object() {ID, Nothing, supOrderID, emailFrom, emailTo, emailSubject, emailBody, emailMode, DateOfEmail, createdOn, createdBy}
+            Dim columnValuesArray() As Object = New Object() {ID, Nothing, supOrderID, emailFrom, emailTo, emailSubject, emailBody, emailMode, DateOfEmail, createdOn, createdBy, Nothing}
+            If (Not (parentSUP_ORDERSDRowByFK_SUP_ORDERSD_MAIL_SUP_ORDERS) Is Nothing) Then
+                columnValuesArray(11) = parentSUP_ORDERSDRowByFK_SUP_ORDERSD_MAIL_SUP_ORDERS(0)
+            End If
             rowSUP_ORDERS_MAILRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowSUP_ORDERS_MAILRow)
             Return rowSUP_ORDERS_MAILRow
@@ -5040,6 +5058,7 @@ Partial Public Class DMDataSet
             Me.columnDateOfEmail = MyBase.Columns("DateOfEmail")
             Me.columncreatedOn = MyBase.Columns("createdOn")
             Me.columncreatedBy = MyBase.Columns("createdBy")
+            Me.columnsupOrderDID = MyBase.Columns("supOrderDID")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -5067,6 +5086,8 @@ Partial Public Class DMDataSet
             MyBase.Columns.Add(Me.columncreatedOn)
             Me.columncreatedBy = New Global.System.Data.DataColumn("createdBy", GetType(Global.System.Guid), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columncreatedBy)
+            Me.columnsupOrderDID = New Global.System.Data.DataColumn("supOrderDID", GetType(Global.System.Guid), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnsupOrderDID)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnID}, true))
             Me.columnID.AllowDBNull = false
             Me.columnID.Unique = true
@@ -5075,7 +5096,6 @@ Partial Public Class DMDataSet
             Me.columncode.AutoIncrementStep = -1
             Me.columncode.AllowDBNull = false
             Me.columncode.ReadOnly = true
-            Me.columnsupOrderID.AllowDBNull = false
             Me.columnemailFrom.AllowDBNull = false
             Me.columnemailFrom.MaxLength = 100
             Me.columnemailTo.AllowDBNull = false
@@ -18686,6 +18706,8 @@ Partial Public Class DMDataSet
         
         Private columnHasFiles As Global.System.Data.DataColumn
         
+        Private columnemail As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Sub New()
@@ -18842,6 +18864,14 @@ Partial Public Class DMDataSet
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property emailColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnemail
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -18878,9 +18908,25 @@ Partial Public Class DMDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Overloads Function Addvw_SUP_ORDERSDRow(ByVal ID As System.Guid, ByVal code As Integer, ByVal supOrderID As System.Guid, ByVal supID As System.Guid, ByVal cmt As String, ByVal modifiedBy As System.Guid, ByVal modifiedOn As Date, ByVal createdOn As Date, ByVal createdBy As System.Guid, ByVal Fullname As String, ByVal ttl As String, ByVal Modifier As String, ByVal orderType As Integer, ByVal OrderTypeName As String, ByVal HasFiles As Boolean) As vw_SUP_ORDERSDRow
+        Public Overloads Function Addvw_SUP_ORDERSDRow( _
+                    ByVal ID As System.Guid,  _
+                    ByVal code As Integer,  _
+                    ByVal supOrderID As System.Guid,  _
+                    ByVal supID As System.Guid,  _
+                    ByVal cmt As String,  _
+                    ByVal modifiedBy As System.Guid,  _
+                    ByVal modifiedOn As Date,  _
+                    ByVal createdOn As Date,  _
+                    ByVal createdBy As System.Guid,  _
+                    ByVal Fullname As String,  _
+                    ByVal ttl As String,  _
+                    ByVal Modifier As String,  _
+                    ByVal orderType As Integer,  _
+                    ByVal OrderTypeName As String,  _
+                    ByVal HasFiles As Boolean,  _
+                    ByVal email As String) As vw_SUP_ORDERSDRow
             Dim rowvw_SUP_ORDERSDRow As vw_SUP_ORDERSDRow = CType(Me.NewRow,vw_SUP_ORDERSDRow)
-            Dim columnValuesArray() As Object = New Object() {ID, code, supOrderID, supID, cmt, modifiedBy, modifiedOn, createdOn, createdBy, Fullname, ttl, Modifier, orderType, OrderTypeName, HasFiles}
+            Dim columnValuesArray() As Object = New Object() {ID, code, supOrderID, supID, cmt, modifiedBy, modifiedOn, createdOn, createdBy, Fullname, ttl, Modifier, orderType, OrderTypeName, HasFiles, email}
             rowvw_SUP_ORDERSDRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowvw_SUP_ORDERSDRow)
             Return rowvw_SUP_ORDERSDRow
@@ -18924,6 +18970,7 @@ Partial Public Class DMDataSet
             Me.columnorderType = MyBase.Columns("orderType")
             Me.columnOrderTypeName = MyBase.Columns("OrderTypeName")
             Me.columnHasFiles = MyBase.Columns("HasFiles")
+            Me.columnemail = MyBase.Columns("email")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -18959,6 +19006,8 @@ Partial Public Class DMDataSet
             MyBase.Columns.Add(Me.columnOrderTypeName)
             Me.columnHasFiles = New Global.System.Data.DataColumn("HasFiles", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnHasFiles)
+            Me.columnemail = New Global.System.Data.DataColumn("email", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnemail)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnID}, true))
             Me.columnID.AllowDBNull = false
             Me.columnID.Unique = true
@@ -18975,6 +19024,7 @@ Partial Public Class DMDataSet
             Me.columnOrderTypeName.AllowDBNull = false
             Me.columnOrderTypeName.MaxLength = 22
             Me.columnHasFiles.ReadOnly = true
+            Me.columnemail.MaxLength = 50
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -21063,7 +21113,11 @@ Partial Public Class DMDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Property supOrderID() As System.Guid
             Get
-                Return CType(Me(Me.tableSUP_ORDERS_MAIL.supOrderIDColumn),Global.System.Guid)
+                Try 
+                    Return CType(Me(Me.tableSUP_ORDERS_MAIL.supOrderIDColumn),Global.System.Guid)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'supOrderID' in table 'SUP_ORDERS_MAIL' is DBNull.", e)
+                End Try
             End Get
             Set
                 Me(Me.tableSUP_ORDERS_MAIL.supOrderIDColumn) = value
@@ -21176,6 +21230,44 @@ Partial Public Class DMDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property supOrderDID() As System.Guid
+            Get
+                Try 
+                    Return CType(Me(Me.tableSUP_ORDERS_MAIL.supOrderDIDColumn),Global.System.Guid)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'supOrderDID' in table 'SUP_ORDERS_MAIL' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableSUP_ORDERS_MAIL.supOrderDIDColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property SUP_ORDERSDRow() As SUP_ORDERSDRow
+            Get
+                Return CType(Me.GetParentRow(Me.Table.ParentRelations("FK_SUP_ORDERSD_MAIL_SUP_ORDERS")),SUP_ORDERSDRow)
+            End Get
+            Set
+                Me.SetParentRow(value, Me.Table.ParentRelations("FK_SUP_ORDERSD_MAIL_SUP_ORDERS"))
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Function IssupOrderIDNull() As Boolean
+            Return Me.IsNull(Me.tableSUP_ORDERS_MAIL.supOrderIDColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Sub SetsupOrderIDNull()
+            Me(Me.tableSUP_ORDERS_MAIL.supOrderIDColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Function IsemailModeNull() As Boolean
             Return Me.IsNull(Me.tableSUP_ORDERS_MAIL.emailModeColumn)
         End Function
@@ -21220,6 +21312,18 @@ Partial Public Class DMDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Sub SetcreatedByNull()
             Me(Me.tableSUP_ORDERS_MAIL.createdByColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Function IssupOrderDIDNull() As Boolean
+            Return Me.IsNull(Me.tableSUP_ORDERS_MAIL.supOrderDIDColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Sub SetsupOrderDIDNull()
+            Me(Me.tableSUP_ORDERS_MAIL.supOrderDIDColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -32520,6 +32624,16 @@ Partial Public Class DMDataSet
         Public Sub SetcreatedByNull()
             Me(Me.tableSUP_ORDERSD.createdByColumn) = Global.System.Convert.DBNull
         End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Function GetSUP_ORDERS_MAILRows() As SUP_ORDERS_MAILRow()
+            If (Me.Table.ChildRelations("FK_SUP_ORDERSD_MAIL_SUP_ORDERS") Is Nothing) Then
+                Return New SUP_ORDERS_MAILRow(-1) {}
+            Else
+                Return CType(MyBase.GetChildRows(Me.Table.ChildRelations("FK_SUP_ORDERSD_MAIL_SUP_ORDERS")),SUP_ORDERS_MAILRow())
+            End If
+        End Function
     End Class
     
     '''<summary>
@@ -32770,6 +32884,21 @@ Partial Public Class DMDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property email() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tablevw_SUP_ORDERSD.emailColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'email' in table 'vw_SUP_ORDERSD' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablevw_SUP_ORDERSD.emailColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Function IscmtNull() As Boolean
             Return Me.IsNull(Me.tablevw_SUP_ORDERSD.cmtColumn)
         End Function
@@ -32850,6 +32979,18 @@ Partial Public Class DMDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Sub SetHasFilesNull()
             Me(Me.tablevw_SUP_ORDERSD.HasFilesColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Function IsemailNull() As Boolean
+            Return Me.IsNull(Me.tablevw_SUP_ORDERSD.emailColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Sub SetemailNull()
+            Me(Me.tablevw_SUP_ORDERSD.emailColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -36126,20 +36267,24 @@ Namespace DMDataSetTableAdapters
             tableMapping.ColumnMappings.Add("DateOfEmail", "DateOfEmail")
             tableMapping.ColumnMappings.Add("createdOn", "createdOn")
             tableMapping.ColumnMappings.Add("createdBy", "createdBy")
+            tableMapping.ColumnMappings.Add("supOrderDID", "supOrderDID")
             Me._adapter.TableMappings.Add(tableMapping)
             Me._adapter.DeleteCommand = New Global.System.Data.SqlClient.SqlCommand()
             Me._adapter.DeleteCommand.Connection = Me.Connection
             Me._adapter.DeleteCommand.CommandText = "DELETE FROM [SUP_ORDERS_MAIL] WHERE (([ID] = @Original_ID) AND ([code] = @Origina"& _ 
-                "l_code) AND ([supOrderID] = @Original_supOrderID) AND ([emailFrom] = @Original_e"& _ 
-                "mailFrom) AND ([emailTo] = @Original_emailTo) AND ([emailSubject] = @Original_em"& _ 
-                "ailSubject) AND ((@IsNull_emailMode = 1 AND [emailMode] IS NULL) OR ([emailMode]"& _ 
-                " = @Original_emailMode)) AND ((@IsNull_DateOfEmail = 1 AND [DateOfEmail] IS NULL"& _ 
-                ") OR ([DateOfEmail] = @Original_DateOfEmail)) AND ((@IsNull_createdOn = 1 AND [c"& _ 
-                "reatedOn] IS NULL) OR ([createdOn] = @Original_createdOn)) AND ((@IsNull_created"& _ 
-                "By = 1 AND [createdBy] IS NULL) OR ([createdBy] = @Original_createdBy)))"
+                "l_code) AND ((@IsNull_supOrderID = 1 AND [supOrderID] IS NULL) OR ([supOrderID] "& _ 
+                "= @Original_supOrderID)) AND ([emailFrom] = @Original_emailFrom) AND ([emailTo] "& _ 
+                "= @Original_emailTo) AND ([emailSubject] = @Original_emailSubject) AND ((@IsNull"& _ 
+                "_emailMode = 1 AND [emailMode] IS NULL) OR ([emailMode] = @Original_emailMode)) "& _ 
+                "AND ((@IsNull_DateOfEmail = 1 AND [DateOfEmail] IS NULL) OR ([DateOfEmail] = @Or"& _ 
+                "iginal_DateOfEmail)) AND ((@IsNull_createdOn = 1 AND [createdOn] IS NULL) OR ([c"& _ 
+                "reatedOn] = @Original_createdOn)) AND ((@IsNull_createdBy = 1 AND [createdBy] IS"& _ 
+                " NULL) OR ([createdBy] = @Original_createdBy)) AND ((@IsNull_supOrderDID = 1 AND"& _ 
+                " [supOrderDID] IS NULL) OR ([supOrderDID] = @Original_supOrderDID)))"
             Me._adapter.DeleteCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_ID", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ID", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_code", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "code", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_supOrderID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "supOrderID", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_supOrderID", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "supOrderID", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_emailFrom", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "emailFrom", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_emailTo", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "emailTo", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
@@ -36152,14 +36297,17 @@ Namespace DMDataSetTableAdapters
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_createdOn", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "createdOn", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_createdBy", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "createdBy", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_createdBy", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "createdBy", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_supOrderDID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "supOrderDID", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_supOrderDID", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "supOrderDID", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand = New Global.System.Data.SqlClient.SqlCommand()
             Me._adapter.InsertCommand.Connection = Me.Connection
             Me._adapter.InsertCommand.CommandText = "INSERT INTO [SUP_ORDERS_MAIL] ([ID], [supOrderID], [emailFrom], [emailTo], [email"& _ 
-                "Subject], [emailBody], [emailMode], [DateOfEmail], [createdOn], [createdBy]) VAL"& _ 
-                "UES (@ID, @supOrderID, @emailFrom, @emailTo, @emailSubject, @emailBody, @emailMo"& _ 
-                "de, @DateOfEmail, @createdOn, @createdBy);"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT ID, code, supOrderID, emailFr"& _ 
-                "om, emailTo, emailSubject, emailBody, emailMode, DateOfEmail, createdOn, created"& _ 
-                "By FROM SUP_ORDERS_MAIL WHERE (ID = @ID)"
+                "Subject], [emailBody], [emailMode], [DateOfEmail], [createdOn], [createdBy], [su"& _ 
+                "pOrderDID]) VALUES (@ID, @supOrderID, @emailFrom, @emailTo, @emailSubject, @emai"& _ 
+                "lBody, @emailMode, @DateOfEmail, @createdOn, @createdBy, @supOrderDID);"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT "& _ 
+                "ID, code, supOrderID, emailFrom, emailTo, emailSubject, emailBody, emailMode, Da"& _ 
+                "teOfEmail, createdOn, createdBy, supOrderDID FROM SUP_ORDERS_MAIL WHERE (ID = @I"& _ 
+                "D)"
             Me._adapter.InsertCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@ID", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@supOrderID", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "supOrderID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
@@ -36171,22 +36319,25 @@ Namespace DMDataSetTableAdapters
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DateOfEmail", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "DateOfEmail", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@createdOn", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "createdOn", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@createdBy", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "createdBy", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@supOrderDID", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "supOrderDID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand = New Global.System.Data.SqlClient.SqlCommand()
             Me._adapter.UpdateCommand.Connection = Me.Connection
             Me._adapter.UpdateCommand.CommandText = "UPDATE [SUP_ORDERS_MAIL] SET [ID] = @ID, [supOrderID] = @supOrderID, [emailFrom] "& _ 
                 "= @emailFrom, [emailTo] = @emailTo, [emailSubject] = @emailSubject, [emailBody] "& _ 
                 "= @emailBody, [emailMode] = @emailMode, [DateOfEmail] = @DateOfEmail, [createdOn"& _ 
-                "] = @createdOn, [createdBy] = @createdBy WHERE (([ID] = @Original_ID) AND ([code"& _ 
-                "] = @Original_code) AND ([supOrderID] = @Original_supOrderID) AND ([emailFrom] ="& _ 
-                " @Original_emailFrom) AND ([emailTo] = @Original_emailTo) AND ([emailSubject] = "& _ 
-                "@Original_emailSubject) AND ((@IsNull_emailMode = 1 AND [emailMode] IS NULL) OR "& _ 
-                "([emailMode] = @Original_emailMode)) AND ((@IsNull_DateOfEmail = 1 AND [DateOfEm"& _ 
-                "ail] IS NULL) OR ([DateOfEmail] = @Original_DateOfEmail)) AND ((@IsNull_createdO"& _ 
-                "n = 1 AND [createdOn] IS NULL) OR ([createdOn] = @Original_createdOn)) AND ((@Is"& _ 
-                "Null_createdBy = 1 AND [createdBy] IS NULL) OR ([createdBy] = @Original_createdB"& _ 
-                "y)));"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT ID, code, supOrderID, emailFrom, emailTo, emailSubject, emailBody,"& _ 
-                " emailMode, DateOfEmail, createdOn, createdBy FROM SUP_ORDERS_MAIL WHERE (ID = @"& _ 
-                "ID)"
+                "] = @createdOn, [createdBy] = @createdBy, [supOrderDID] = @supOrderDID WHERE ((["& _ 
+                "ID] = @Original_ID) AND ([code] = @Original_code) AND ((@IsNull_supOrderID = 1 A"& _ 
+                "ND [supOrderID] IS NULL) OR ([supOrderID] = @Original_supOrderID)) AND ([emailFr"& _ 
+                "om] = @Original_emailFrom) AND ([emailTo] = @Original_emailTo) AND ([emailSubjec"& _ 
+                "t] = @Original_emailSubject) AND ((@IsNull_emailMode = 1 AND [emailMode] IS NULL"& _ 
+                ") OR ([emailMode] = @Original_emailMode)) AND ((@IsNull_DateOfEmail = 1 AND [Dat"& _ 
+                "eOfEmail] IS NULL) OR ([DateOfEmail] = @Original_DateOfEmail)) AND ((@IsNull_cre"& _ 
+                "atedOn = 1 AND [createdOn] IS NULL) OR ([createdOn] = @Original_createdOn)) AND "& _ 
+                "((@IsNull_createdBy = 1 AND [createdBy] IS NULL) OR ([createdBy] = @Original_cre"& _ 
+                "atedBy)) AND ((@IsNull_supOrderDID = 1 AND [supOrderDID] IS NULL) OR ([supOrderD"& _ 
+                "ID] = @Original_supOrderDID)));"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT ID, code, supOrderID, emailFrom, emailTo"& _ 
+                ", emailSubject, emailBody, emailMode, DateOfEmail, createdOn, createdBy, supOrde"& _ 
+                "rDID FROM SUP_ORDERS_MAIL WHERE (ID = @ID)"
             Me._adapter.UpdateCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@ID", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@supOrderID", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "supOrderID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
@@ -36198,8 +36349,10 @@ Namespace DMDataSetTableAdapters
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DateOfEmail", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "DateOfEmail", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@createdOn", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "createdOn", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@createdBy", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "createdBy", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@supOrderDID", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "supOrderDID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_ID", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ID", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_code", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "code", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_supOrderID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "supOrderID", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_supOrderID", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "supOrderID", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_emailFrom", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "emailFrom", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_emailTo", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "emailTo", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
@@ -36212,6 +36365,8 @@ Namespace DMDataSetTableAdapters
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_createdOn", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "createdOn", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_createdBy", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "createdBy", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_createdBy", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "createdBy", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_supOrderDID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "supOrderDID", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_supOrderDID", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "supOrderDID", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -36228,8 +36383,8 @@ Namespace DMDataSetTableAdapters
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
             Me._commandCollection(0).CommandText = "SELECT ID, code, supOrderID, emailFrom, emailTo, emailSubject, emailBody, emailMo"& _ 
-                "de, DateOfEmail, createdOn, createdBy"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM   SUP_ORDERS_MAIL"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE (supOrderID"& _ 
-                " = @supOrderID)"
+                "de, DateOfEmail, createdOn, createdBy, supOrderDID"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM   SUP_ORDERS_MAIL"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHER"& _ 
+                "E (supOrderID = @supOrderID)"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@supOrderID", Global.System.Data.SqlDbType.UniqueIdentifier, 16, Global.System.Data.ParameterDirection.Input, 0, 0, "supOrderID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
         End Sub
@@ -36238,9 +36393,13 @@ Namespace DMDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, true)>  _
-        Public Overloads Overridable Function FillBYSupOrderID(ByVal dataTable As DMDataSet.SUP_ORDERS_MAILDataTable, ByVal supOrderID As System.Guid) As Integer
+        Public Overloads Overridable Function FillBYSupOrderID(ByVal dataTable As DMDataSet.SUP_ORDERS_MAILDataTable, ByVal supOrderID As Global.System.Nullable(Of Global.System.Guid)) As Integer
             Me.Adapter.SelectCommand = Me.CommandCollection(0)
-            Me.Adapter.SelectCommand.Parameters(0).Value = CType(supOrderID,System.Guid)
+            If (supOrderID.HasValue = true) Then
+                Me.Adapter.SelectCommand.Parameters(0).Value = CType(supOrderID.Value,System.Guid)
+            Else
+                Me.Adapter.SelectCommand.Parameters(0).Value = Global.System.DBNull.Value
+            End If
             If (Me.ClearBeforeFill = true) Then
                 dataTable.Clear
             End If
@@ -41769,6 +41928,7 @@ Namespace DMDataSetTableAdapters
             tableMapping.ColumnMappings.Add("orderType", "orderType")
             tableMapping.ColumnMappings.Add("OrderTypeName", "OrderTypeName")
             tableMapping.ColumnMappings.Add("HasFiles", "HasFiles")
+            tableMapping.ColumnMappings.Add("email", "email")
             Me._adapter.TableMappings.Add(tableMapping)
         End Sub
         
@@ -41786,17 +41946,19 @@ Namespace DMDataSetTableAdapters
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
             Me._commandCollection(0).CommandText = "SELECT ID, code, supOrderID, supID, cmt, modifiedBy, modifiedOn, createdOn, creat"& _ 
-                "edBy, Fullname, ttl, Modifier, orderType, OrderTypeName, HasFiles FROM vw_SUP_OR"& _ 
-                "DERSD"
+                "edBy, Fullname, ttl, Modifier, orderType, OrderTypeName, HasFiles, email"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM  "& _ 
+                " vw_SUP_ORDERSD"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"where supOrderID=@supOrderID "
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@supOrderID", Global.System.Data.SqlDbType.UniqueIdentifier, 16, Global.System.Data.ParameterDirection.Input, 0, 0, "supOrderID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, true)>  _
-        Public Overloads Overridable Function Fill(ByVal dataTable As DMDataSet.vw_SUP_ORDERSDDataTable) As Integer
+        Public Overloads Overridable Function FillBysupOrderID(ByVal dataTable As DMDataSet.vw_SUP_ORDERSDDataTable, ByVal supOrderID As System.Guid) As Integer
             Me.Adapter.SelectCommand = Me.CommandCollection(0)
+            Me.Adapter.SelectCommand.Parameters(0).Value = CType(supOrderID,System.Guid)
             If (Me.ClearBeforeFill = true) Then
                 dataTable.Clear
             End If
@@ -41808,8 +41970,9 @@ Namespace DMDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], true)>  _
-        Public Overloads Overridable Function GetData() As DMDataSet.vw_SUP_ORDERSDDataTable
+        Public Overloads Overridable Function GetData(ByVal supOrderID As System.Guid) As DMDataSet.vw_SUP_ORDERSDDataTable
             Me.Adapter.SelectCommand = Me.CommandCollection(0)
+            Me.Adapter.SelectCommand.Parameters(0).Value = CType(supOrderID,System.Guid)
             Dim dataTable As DMDataSet.vw_SUP_ORDERSDDataTable = New DMDataSet.vw_SUP_ORDERSDDataTable()
             Me.Adapter.Fill(dataTable)
             Return dataTable

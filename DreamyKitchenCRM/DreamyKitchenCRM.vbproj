@@ -749,6 +749,12 @@
     <Compile Include="Reports\RepCompOffer.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reports\RepCUSDevices.Designer.vb">
+      <DependentUpon>RepCUSDevices.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RepCUSDevices.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\RepCUSEllipse.Designer.vb">
       <DependentUpon>RepCUSEllipse.vb</DependentUpon>
     </Compile>
@@ -1196,6 +1202,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RepCompOffer.resx">
       <DependentUpon>RepCompOffer.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RepCUSDevices.resx">
+      <DependentUpon>RepCUSDevices.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RepCUSEllipse.resx">
       <DependentUpon>RepCUSEllipse.vb</DependentUpon>

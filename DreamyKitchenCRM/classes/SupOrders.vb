@@ -1,4 +1,6 @@
 ﻿Imports System.Data.SqlClient
+Imports System.IO
+Imports System.Runtime.Remoting.Metadata.W3cXsd2001
 Imports DevExpress.XtraEditors
 Imports DevExpress.XtraReports.UI
 
@@ -34,7 +36,7 @@ Public Class SupOrders
         Frm.Vw_ORDER_MANAGERSTableAdapter.Fill(Frm.DreamyKitchenDataSet.vw_ORDER_MANAGERS)
         Frm.Vw_SUP_ORDER_TYPESTableAdapter.Fill(Frm.DMDataSet.vw_SUP_ORDER_TYPES)
         'Frm.SUP_ORDERSDTableAdapter.Fill(Frm.DMDataSet.SUP_ORDERSD)
-        Frm.Vw_SUP_ORDERSDTableAdapter.Fill(Frm.DMDataSet.vw_SUP_ORDERSD)
+        Frm.Vw_SUP_ORDERSDTableAdapter.FillBysupOrderID(Frm.DMDataSet.vw_SUP_ORDERSD, System.Guid.Parse(ID))
 
         AddHandler Frm.GridControl3.EmbeddedNavigator.ButtonClick, AddressOf Grid_EmbeddedNavigator_ButtonClick
         UserPermissions.GetUserPermissions("Παραγγελίες Προμηθευτών")
@@ -55,9 +57,15 @@ Public Class SupOrders
                     Case 1 : Frm.LblComeFrom.Text = "Η παραγγελία δημιουργήθηκε από εκκρεμότητα τοποθέτησης"
                     Case 2 : Frm.LblComeFrom.Text = "Η παραγγελία δημιουργήθηκε από εργασία"
                     Case 3 : Frm.LblComeFrom.Text = "Η παραγγελία δημιουργήθηκε από εκκρεμότητα κατασκευαστικού"
+                    Case 4 : Frm.LblComeFrom.Text = "Η παραγγελία δημιουργήθηκε από συσκευές"
                     Case Else : Frm.LblComeFrom.Text = "" : Frm.cmdPrintAll.Enabled = False
                 End Select
                 LoadForms.RestoreLayoutFromXml(Frm.GridView3, "SUP_ORDERS_D_def.xml")
+                If sComeFrom <> 0 Then
+                    Frm.GridView3.Columns.Item("Files").Visible = False
+                    Frm.GridView3.Columns.Item("HasFiles").Visible = False
+                End If
+
         End Select
         Frm.cmdSave.Enabled = IIf(Mode = FormMode.NewRecord, UserProps.AllowInsert, UserProps.AllowEdit)
     End Sub
@@ -152,7 +160,7 @@ Public Class SupOrders
                 SaveRecordF(sGuid)
             End If
             'Frm.SUP_ORDERSDTableAdapter.Fill(Frm.DMDataSet.SUP_ORDERSD)
-            Frm.Vw_SUP_ORDERSDTableAdapter.Fill(Frm.DMDataSet.vw_SUP_ORDERSD)
+            Frm.Vw_SUP_ORDERSDTableAdapter.FillBysupOrderID(Frm.DMDataSet.vw_SUP_ORDERSD, System.Guid.Parse(ID))
             LoadForms.RestoreLayoutFromXml(Frm.GridView3, "SUP_ORDERS_D_def.xml")
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -182,7 +190,7 @@ Public Class SupOrders
             Using oCmd As New SqlCommand("DELETE FROM SUP_ORDERS_F WHERE supOrderDID = " & toSQLValueS(Frm.GridView3.GetRowCellValue(Frm.GridView3.FocusedRowHandle, "ID").ToString), CNDB)
                 oCmd.ExecuteNonQuery()
             End Using
-            Frm.Vw_SUP_ORDERSDTableAdapter.Fill(Frm.DMDataSet.vw_SUP_ORDERSD)
+            Frm.Vw_SUP_ORDERSDTableAdapter.FillBysupOrderID(Frm.DMDataSet.vw_SUP_ORDERSD, System.Guid.Parse(ID))
             XtraMessageBox.Show("Τα αρχεία διαγράφηκαν", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -199,7 +207,7 @@ Public Class SupOrders
             End Using
             XtraMessageBox.Show("Η εγγραφή διαγράφηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
             'Frm.SUP_ORDERSDTableAdapter.Fill(Frm.DMDataSet.SUP_ORDERSD)
-            Frm.Vw_SUP_ORDERSDTableAdapter.Fill(Frm.DMDataSet.vw_SUP_ORDERSD)
+            Frm.Vw_SUP_ORDERSDTableAdapter.FillBysupOrderID(Frm.DMDataSet.vw_SUP_ORDERSD, System.Guid.Parse(ID))
         End If
     End Sub
     Public Sub DeleteRecord()
@@ -257,53 +265,75 @@ Public Class SupOrders
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
-    Public Sub SendEmail()
+    Public Sub SendEmail(ByVal sID As String, sEmailTo As String, sSupID As String)
         Dim Cmd As SqlCommand, sdr As SqlDataReader
         Dim Emails As New SendEmail
+        'Dim sEmailsTo() As String, sSupID() As String
         Dim statusMsg As String = ""
-        Dim sEmailTo As String
         Dim sSubject As String
         Dim sBody As String
         Dim sFile As String = ""
         Dim sSQL As String
+        Dim Attachments As Dictionary(Of String, String)
         Try
 
-
-
-            sEmailTo = Frm.txtTo.EditValue
+            'sEmailTo = Frm.txtTo.EditValue
             sBody = Frm.txtBody.EditValue
             sSubject = Frm.txtSubject.EditValue
 
-            'sEmailTo = "dreamykitchen@gmail.com"
-            'sEmailTo = "johnmavroselinos@gmail.com"
-            If CNDB.Database <> "DreamyKitchen" Or Debugger.IsAttached = True Then sEmailTo = "johnmavroselinos@gmail.com;dreamykitchen@gmail.com"
+            'sEmailsTo = Frm.txtTo.EditValue.ToString.Split(";")
+            'sSupID = Frm.txtTo.Tag.ToString.Split(";")
+            Dim sIndex As Int16 = 0
+            'For Each sEmailTo In sEmailsTo
+            If sEmailTo.Length > 0 Then
+                If CNDB.Database <> "DreamyKitchen" Or Debugger.IsAttached = True Then sEmailTo = "johnmavroselinos@gmail.com"
 
-            Dim Attachments As New Dictionary(Of String, String) : Attachments.Add(ID, "SUP_ORDERS_F")
-            If Emails.SendEmail(ProgProps.EmailOrdersFrom, sSubject, sBody, sEmailTo, sFile, statusMsg, Attachments) = True Then
-                sSQL = "Update SUP_ORDERS SET email = 1,DateOfEmail=getdate() WHERE ID = " & toSQLValueS(ID)
+                'Συσκευές
+                If sComeFrom = 4 Then sFile = ExportDevicesReport(sSupID)
+                'Αρχική
+                If sComeFrom = 0 Then Attachments = New Dictionary(Of String, String) : Attachments.Add(sID, "SUP_ORDERS_F")
 
+                If Emails.SendEmail(ProgProps.EmailOrdersFrom, sSubject, sBody, sEmailTo, sFile, statusMsg, Attachments) = True Then
+                    sSQL = "Update SUP_ORDERS SET email = 1,DateOfEmail=getdate() WHERE ID = " & toSQLValueS(ID)
+                    Cmd = New SqlCommand(sSQL, CNDB) : Cmd.ExecuteNonQuery()
 
-                Cmd = New SqlCommand(sSQL, CNDB) : Cmd.ExecuteNonQuery()
-
-                ' Εισαγωγή ιστορικού email
-                sSQL = "INSERT INTO SUP_ORDERS_MAIL (supOrderID,emailFrom,emailTo,emailSubject,emailBody,DateofEmail,[createdBy],[createdOn])  
-                        values (" & toSQLValueS(ID) & "," & toSQLValueS(ProgProps.SupportEmail.ToString) & "," &
-                                    toSQLValue(Frm.txtTo) & "," & toSQLValue(Frm.txtSubject) & "," &
-                                    toSQLValue(Frm.txtBody) & ",getdate(), " &
-                                    toSQLValueS(UserProps.ID.ToString) & ", getdate() )"
-                Using oCmd As New SqlCommand(sSQL, CNDB)
-                    oCmd.ExecuteNonQuery()
-                End Using
-
-
-                XtraMessageBox.Show("Το email στάλθηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
-            Else
-                XtraMessageBox.Show("Παρουσιάστηκε πρόβλημα με σφάλμα " & statusMsg, ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    ' Εισαγωγή ιστορικού email
+                    sSQL = "INSERT INTO SUP_ORDERS_MAIL (supOrderID,supOrderDID,emailFrom,emailTo,emailSubject,emailBody,DateofEmail,[createdBy],[createdOn])  
+                        values (" & toSQLValueS(ID) & "," & toSQLValueS(sID) & "," & toSQLValueS(ProgProps.SupportEmail.ToString) & "," &
+                        toSQLValueS(sEmailTo) & "," & toSQLValue(Frm.txtSubject) & "," &
+                        toSQLValue(Frm.txtBody) & ",getdate(), " &
+                        toSQLValueS(UserProps.ID.ToString) & ", getdate() )"
+                    Using oCmd As New SqlCommand(sSQL, CNDB)
+                        oCmd.ExecuteNonQuery()
+                    End Using
+                Else
+                    XtraMessageBox.Show("Παρουσιάστηκε πρόβλημα με σφάλμα " & statusMsg, ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                End If
             End If
+            sIndex = sIndex + 1
+            'Next
+
+
+
+
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
+    Private Function ExportDevicesReport(ByVal sSupID As String) As String
+        Dim sfile As String
+        sfile = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) & "\Downloads\Έντυπο Παραγγελίας Συσκευών.pdf"
+        Dim report As New RepCUSDevices()
+        report.Parameters.Item(0).Value = sFields("ID")
+        report.Parameters.Item(1).Value = sSupID
+
+        report.CreateDocument()
+        report.ExportToPdf(sfile)
+        report.Dispose()
+        report = Nothing
+        My.Computer.FileSystem.CopyFile(sfile, ProgProps.ServerPath & Path.GetFileName(sfile), True)
+        Return ProgProps.ServerPath & Path.GetFileName(sfile)
+    End Function
     Public Sub PrintAll()
         If sComeFrom = 1 Then
             Dim report As New RepCUSEllipseForSUP
@@ -323,23 +353,44 @@ Public Class SupOrders
             report.CreateDocument()
             Dim printTool As New ReportPrintTool(report)
             printTool.ShowRibbonPreview()
+        ElseIf sComeFrom = 4 Then
+            For i As Integer = 0 To Frm.GridView3.DataRowCount - 1
+                Dim report As New RepCUSDevices
+                report.Parameters.Item(0).Value = sFields("ID")
+                report.Parameters.Item(1).Value = Frm.GridView3.GetRowCellValue(i, "supID").ToString
+                report.CreateDocument()
+                Dim printTool As New ReportPrintTool(report)
+                printTool.ShowRibbonPreview()
+            Next i
+
+
         End If
     End Sub
     Public Sub ValidateEmail()
         If Frm.txtBody.Text = "" Then XtraMessageBox.Show("Παρακαλώ συμπληρώστε κείμενο", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
         If Frm.txtSubject.Text = "" Then XtraMessageBox.Show("Παρακαλώ συμπληρώστε το θέμα", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
         If Frm.txtTo.Text = "" Then XtraMessageBox.Show("Δεν υπάρχει καταχωρήμενο email στον προμηθευτή.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
-        If XtraMessageBox.Show("Θέλετε να αποσταλεί το Email με όλα τα επισυναπτόμενα αρχεία ?", ProgProps.ProgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
-            SendEmail()
-            Frm.SUP_ORDERS_MAILTableAdapter.FillBYSupOrderID(Frm.DMDataSet.SUP_ORDERS_MAIL, System.Guid.Parse(ID))
-        End If
-    End Sub
-    Public Sub EmailTabSelected()
-        If ID IsNot Nothing Then Frm.SUP_ORDERS_MAILTableAdapter.FillBYSupOrderID(Frm.DMDataSet.SUP_ORDERS_MAIL, System.Guid.Parse(ID))
-        Prog_Prop.GetProgEmailSupFROM()
-        Prog_Prop.GetProgEmailSupTO()
-        LoadForms.RestoreLayoutFromXml(Frm.GridView2, "SUP_ORDERS_MAIL_def.xml")
-        Frm.txtTo.EditValue = ProgProps.EmailOrdersTo
+        Select Case sComeFrom
+            Case 0 'Αρχική
+                If XtraMessageBox.Show("Θέλετε να αποσταλεί το Email με όλα τα επισυναπτόμενα αρχεία ?", ProgProps.ProgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+                    For i As Integer = 0 To Frm.GridView3.DataRowCount - 1
+                        SendEmail(Frm.GridView3.GetRowCellValue(i, "ID").ToString, Frm.GridView3.GetRowCellValue(i, "email").ToString, Frm.GridView3.GetRowCellValue(i, "supID").ToString)
+                    Next i
+                    Frm.SUP_ORDERS_MAILTableAdapter.FillBYSupOrderID(Frm.DMDataSet.SUP_ORDERS_MAIL, System.Guid.Parse(ID))
+                End If
+
+            Case 1
+            Case 2
+            Case 3
+            Case 4
+                If XtraMessageBox.Show("Θέλετε να αποσταλεί το Email την παραγγελία ?", ProgProps.ProgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+                    For i As Integer = 0 To Frm.GridView3.DataRowCount - 1
+                        SendEmail(Frm.GridView3.GetRowCellValue(i, "ID").ToString, Frm.GridView3.GetRowCellValue(i, "email").ToString, Frm.GridView3.GetRowCellValue(i, "supID").ToString)
+                    Next i
+                    Frm.SUP_ORDERS_MAILTableAdapter.FillBYSupOrderID(Frm.DMDataSet.SUP_ORDERS_MAIL, System.Guid.Parse(ID))
+                End If
+
+        End Select
     End Sub
     Public Sub FilesTabSelected()
         LoadForms.RestoreLayoutFromXml(Frm.GridView1, "vw_SUP_ORDERS_F_def.xml")
@@ -361,4 +412,31 @@ Public Class SupOrders
             Next I
         End If
     End Sub
+    Public Sub EmailTabSelected()
+        Prog_Prop.GetProgEmailSupFROM()
+        'Prog_Prop.GetProgEmailSupTO()
+        Dim supID As String : Frm.txtTo.EditValue = GetSupplierEmails(supID) : Frm.txtTo.Tag = supID
+        If ID IsNot Nothing Then Frm.SUP_ORDERS_MAILTableAdapter.FillBYSupOrderID(Frm.DMDataSet.SUP_ORDERS_MAIL, System.Guid.Parse(ID))
+        LoadForms.RestoreLayoutFromXml(Frm.GridView2, "SUP_ORDERS_MAIL_def.xml")
+    End Sub
+    Private Function GetSupplierEmails(ByRef supID As String) As String
+        Try
+            Dim Cmd As SqlCommand, sdr As SqlDataReader
+            Cmd = New SqlCommand("Select email,supID FROM SUP inner join dbo.SUP_ORDERSD SOD on SOD.supID=SUP.id WHERE email is not null and supOrderID= " & toSQLValueS(ID), CNDB)
+            sdr = Cmd.ExecuteReader()
+            GetSupplierEmails = ""
+            If sdr.HasRows Then
+                While sdr.Read()
+                    If GetSupplierEmails.Contains(sdr.GetString(sdr.GetOrdinal("email"))) = False Then
+                        GetSupplierEmails = GetSupplierEmails & IIf(GetSupplierEmails <> "", ";", "") & sdr.GetString(sdr.GetOrdinal("email"))
+                        supID = supID & IIf(supID <> "", ";", "") & sdr.GetGuid(sdr.GetOrdinal("supID")).ToString
+                    End If
+                End While
+            End If
+            sdr.Close()
+            Return GetSupplierEmails
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Function
 End Class

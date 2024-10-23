@@ -64,7 +64,7 @@ Public Class SendEmail
                 Next
                 Smtp_Server.Send(e_mail)
             ElseIf GetAttachmentsFromTable IsNot Nothing Then
-                Dim sSQL As String = "select files,filename FROM " & GetAttachmentsFromTable.Values(0).ToString & "  where supOrderID = " & toSQLValueS(GetAttachmentsFromTable.Keys(0).ToString)
+                Dim sSQL As String = "select files,filename FROM " & GetAttachmentsFromTable.Values(0).ToString & "  where supOrderDID = " & toSQLValueS(GetAttachmentsFromTable.Keys(0).ToString)
                 Dim cmd As SqlCommand
                 Dim sdr As SqlDataReader
                 cmd = New SqlCommand(sSQL, CNDB)

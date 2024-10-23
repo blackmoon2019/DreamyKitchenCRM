@@ -49,9 +49,10 @@ Partial Class frmSUPOrders
         Me.colmodifiedOn = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colsupOrderID1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colcmt = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colFiles = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepFiles = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.colHasFiles = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colemail = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.cmdPrintAll = New DevExpress.XtraEditors.SimpleButton()
         Me.LblComeFrom = New DevExpress.XtraEditors.LabelControl()
         Me.cmdExit = New DevExpress.XtraEditors.SimpleButton()
@@ -351,7 +352,7 @@ Partial Class frmSUPOrders
         '
         'GridView3
         '
-        Me.GridView3.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.colID1, Me.colsupID, Me.colorderType, Me.colcreatedOn1, Me.colcreatedBy1, Me.colmodifiedBy, Me.colmodifiedOn, Me.colsupOrderID1, Me.colcmt, Me.GridColumn1, Me.colHasFiles})
+        Me.GridView3.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.colID1, Me.colsupID, Me.colorderType, Me.colcreatedOn1, Me.colcreatedBy1, Me.colmodifiedBy, Me.colmodifiedOn, Me.colsupOrderID1, Me.colcmt, Me.colFiles, Me.colHasFiles, Me.colemail})
         Me.GridView3.DetailHeight = 289
         Me.GridView3.GridControl = Me.GridControl3
         Me.GridView3.Name = "GridView3"
@@ -375,7 +376,7 @@ Partial Class frmSUPOrders
         Me.colsupID.Name = "colsupID"
         Me.colsupID.Visible = True
         Me.colsupID.VisibleIndex = 1
-        Me.colsupID.Width = 112
+        Me.colsupID.Width = 284
         '
         'RepSup
         '
@@ -397,7 +398,7 @@ Partial Class frmSUPOrders
         Me.colorderType.Name = "colorderType"
         Me.colorderType.Visible = True
         Me.colorderType.VisibleIndex = 0
-        Me.colorderType.Width = 112
+        Me.colorderType.Width = 284
         '
         'RepSupOrderTypes
         '
@@ -458,17 +459,17 @@ Partial Class frmSUPOrders
         Me.colcmt.Name = "colcmt"
         Me.colcmt.Visible = True
         Me.colcmt.VisibleIndex = 2
-        Me.colcmt.Width = 112
+        Me.colcmt.Width = 434
         '
-        'GridColumn1
+        'colFiles
         '
-        Me.GridColumn1.Caption = "Αρχεία"
-        Me.GridColumn1.ColumnEdit = Me.RepFiles
-        Me.GridColumn1.MinWidth = 30
-        Me.GridColumn1.Name = "GridColumn1"
-        Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 3
-        Me.GridColumn1.Width = 112
+        Me.colFiles.Caption = "Αρχεία"
+        Me.colFiles.ColumnEdit = Me.RepFiles
+        Me.colFiles.MinWidth = 30
+        Me.colFiles.Name = "colFiles"
+        Me.colFiles.Visible = True
+        Me.colFiles.VisibleIndex = 3
+        Me.colFiles.Width = 112
         '
         'RepFiles
         '
@@ -487,7 +488,14 @@ Partial Class frmSUPOrders
         Me.colHasFiles.OptionsColumn.ReadOnly = True
         Me.colHasFiles.Visible = True
         Me.colHasFiles.VisibleIndex = 4
-        Me.colHasFiles.Width = 112
+        Me.colHasFiles.Width = 308
+        '
+        'colemail
+        '
+        Me.colemail.FieldName = "email"
+        Me.colemail.MinWidth = 30
+        Me.colemail.Name = "colemail"
+        Me.colemail.Width = 112
         '
         'cmdPrintAll
         '
@@ -903,7 +911,7 @@ Partial Class frmSUPOrders
         Me.TabNavigationPage2.Controls.Add(Me.LayoutControl2)
         Me.TabNavigationPage2.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.TabNavigationPage2.Name = "TabNavigationPage2"
-        Me.TabNavigationPage2.Size = New System.Drawing.Size(1448, 1082)
+        Me.TabNavigationPage2.Size = New System.Drawing.Size(1482, 1075)
         '
         'LayoutControl2
         '
@@ -913,7 +921,7 @@ Partial Class frmSUPOrders
         Me.LayoutControl2.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.LayoutControl2.Name = "LayoutControl2"
         Me.LayoutControl2.Root = Me.LayoutControlGroup1
-        Me.LayoutControl2.Size = New System.Drawing.Size(1448, 1082)
+        Me.LayoutControl2.Size = New System.Drawing.Size(1482, 1075)
         Me.LayoutControl2.TabIndex = 0
         Me.LayoutControl2.Text = "LayoutControl2"
         '
@@ -930,7 +938,7 @@ Partial Class frmSUPOrders
         Me.LayoutControl4.Name = "LayoutControl4"
         Me.LayoutControl4.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = New System.Drawing.Rectangle(1438, 612, 1137, 700)
         Me.LayoutControl4.Root = Me.LayoutControlGroup31
-        Me.LayoutControl4.Size = New System.Drawing.Size(1424, 1058)
+        Me.LayoutControl4.Size = New System.Drawing.Size(1458, 1051)
         Me.LayoutControl4.TabIndex = 10
         Me.LayoutControl4.Text = "LayoutControl4"
         '
@@ -940,7 +948,7 @@ Partial Class frmSUPOrders
         Me.LabelControl3.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.LabelControl3.Appearance.Options.UseFont = True
         Me.LabelControl3.Appearance.Options.UseForeColor = True
-        Me.LabelControl3.Location = New System.Drawing.Point(12, 372)
+        Me.LabelControl3.Location = New System.Drawing.Point(12, 370)
         Me.LabelControl3.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.LabelControl3.Name = "LabelControl3"
         Me.LabelControl3.Size = New System.Drawing.Size(133, 22)
@@ -951,10 +959,10 @@ Partial Class frmSUPOrders
         'cmdSendEmail
         '
         Me.cmdSendEmail.ImageOptions.Image = CType(resources.GetObject("cmdSendEmail.ImageOptions.Image"), System.Drawing.Image)
-        Me.cmdSendEmail.Location = New System.Drawing.Point(1106, 332)
+        Me.cmdSendEmail.Location = New System.Drawing.Point(1132, 330)
         Me.cmdSendEmail.Margin = New System.Windows.Forms.Padding(4)
         Me.cmdSendEmail.Name = "cmdSendEmail"
-        Me.cmdSendEmail.Size = New System.Drawing.Size(306, 36)
+        Me.cmdSendEmail.Size = New System.Drawing.Size(314, 36)
         Me.cmdSendEmail.StyleController = Me.LayoutControl4
         Me.cmdSendEmail.TabIndex = 6
         Me.cmdSendEmail.Text = "Αποστολή Email"
@@ -964,7 +972,7 @@ Partial Class frmSUPOrders
         Me.txtBody.Location = New System.Drawing.Point(77, 72)
         Me.txtBody.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.txtBody.Name = "txtBody"
-        Me.txtBody.Size = New System.Drawing.Size(1335, 256)
+        Me.txtBody.Size = New System.Drawing.Size(1369, 254)
         Me.txtBody.StyleController = Me.LayoutControl4
         Me.txtBody.TabIndex = 4
         '
@@ -973,7 +981,7 @@ Partial Class frmSUPOrders
         Me.txtTo.Location = New System.Drawing.Point(77, 12)
         Me.txtTo.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.txtTo.Name = "txtTo"
-        Me.txtTo.Size = New System.Drawing.Size(1335, 26)
+        Me.txtTo.Size = New System.Drawing.Size(1369, 26)
         Me.txtTo.StyleController = Me.LayoutControl4
         Me.txtTo.TabIndex = 2
         '
@@ -982,11 +990,11 @@ Partial Class frmSUPOrders
         Me.GridControl2.Cursor = System.Windows.Forms.Cursors.Default
         Me.GridControl2.DataSource = Me.SUPORDERSMAILBindingSource
         Me.GridControl2.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
-        Me.GridControl2.Location = New System.Drawing.Point(12, 398)
+        Me.GridControl2.Location = New System.Drawing.Point(12, 396)
         Me.GridControl2.MainView = Me.GridView2
         Me.GridControl2.Margin = New System.Windows.Forms.Padding(4)
         Me.GridControl2.Name = "GridControl2"
-        Me.GridControl2.Size = New System.Drawing.Size(1400, 648)
+        Me.GridControl2.Size = New System.Drawing.Size(1434, 643)
         Me.GridControl2.TabIndex = 7
         Me.GridControl2.UseEmbeddedNavigator = True
         Me.GridControl2.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView2})
@@ -1124,7 +1132,7 @@ Partial Class frmSUPOrders
         Me.txtSubject.Location = New System.Drawing.Point(77, 42)
         Me.txtSubject.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.txtSubject.Name = "txtSubject"
-        Me.txtSubject.Size = New System.Drawing.Size(1335, 26)
+        Me.txtSubject.Size = New System.Drawing.Size(1369, 26)
         Me.txtSubject.StyleController = Me.LayoutControl4
         Me.txtSubject.TabIndex = 3
         '
@@ -1134,15 +1142,15 @@ Partial Class frmSUPOrders
         Me.LayoutControlGroup31.GroupBordersVisible = False
         Me.LayoutControlGroup31.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem17, Me.LayoutControlItem18, Me.LayoutControlItem19, Me.LayoutControlItem21, Me.LayoutControlItem22, Me.LayoutControlItem23, Me.EmptySpaceItem4})
         Me.LayoutControlGroup31.Name = "LayoutControlGroup31"
-        Me.LayoutControlGroup31.Size = New System.Drawing.Size(1424, 1058)
+        Me.LayoutControlGroup31.Size = New System.Drawing.Size(1458, 1051)
         Me.LayoutControlGroup31.TextVisible = False
         '
         'LayoutControlItem17
         '
         Me.LayoutControlItem17.Control = Me.GridControl2
-        Me.LayoutControlItem17.Location = New System.Drawing.Point(0, 386)
+        Me.LayoutControlItem17.Location = New System.Drawing.Point(0, 384)
         Me.LayoutControlItem17.Name = "LayoutControlItem17"
-        Me.LayoutControlItem17.Size = New System.Drawing.Size(1404, 652)
+        Me.LayoutControlItem17.Size = New System.Drawing.Size(1438, 647)
         Me.LayoutControlItem17.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem17.TextVisible = False
         '
@@ -1151,7 +1159,7 @@ Partial Class frmSUPOrders
         Me.LayoutControlItem18.Control = Me.txtTo
         Me.LayoutControlItem18.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem18.Name = "LayoutControlItem18"
-        Me.LayoutControlItem18.Size = New System.Drawing.Size(1404, 30)
+        Me.LayoutControlItem18.Size = New System.Drawing.Size(1438, 30)
         Me.LayoutControlItem18.Text = "Προς"
         Me.LayoutControlItem18.TextSize = New System.Drawing.Size(53, 19)
         '
@@ -1160,7 +1168,7 @@ Partial Class frmSUPOrders
         Me.LayoutControlItem19.Control = Me.txtBody
         Me.LayoutControlItem19.Location = New System.Drawing.Point(0, 60)
         Me.LayoutControlItem19.Name = "LayoutControlItem19"
-        Me.LayoutControlItem19.Size = New System.Drawing.Size(1404, 260)
+        Me.LayoutControlItem19.Size = New System.Drawing.Size(1438, 258)
         Me.LayoutControlItem19.Text = "Κείμενο"
         Me.LayoutControlItem19.TextSize = New System.Drawing.Size(53, 19)
         '
@@ -1171,34 +1179,34 @@ Partial Class frmSUPOrders
         Me.LayoutControlItem21.CustomizationFormText = "Προς"
         Me.LayoutControlItem21.Location = New System.Drawing.Point(0, 30)
         Me.LayoutControlItem21.Name = "LayoutControlItem21"
-        Me.LayoutControlItem21.Size = New System.Drawing.Size(1404, 30)
+        Me.LayoutControlItem21.Size = New System.Drawing.Size(1438, 30)
         Me.LayoutControlItem21.Text = "Θέμα"
         Me.LayoutControlItem21.TextSize = New System.Drawing.Size(53, 19)
         '
         'LayoutControlItem22
         '
         Me.LayoutControlItem22.Control = Me.LabelControl3
-        Me.LayoutControlItem22.Location = New System.Drawing.Point(0, 360)
+        Me.LayoutControlItem22.Location = New System.Drawing.Point(0, 358)
         Me.LayoutControlItem22.Name = "LayoutControlItem22"
-        Me.LayoutControlItem22.Size = New System.Drawing.Size(1404, 26)
+        Me.LayoutControlItem22.Size = New System.Drawing.Size(1438, 26)
         Me.LayoutControlItem22.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem22.TextVisible = False
         '
         'LayoutControlItem23
         '
         Me.LayoutControlItem23.Control = Me.cmdSendEmail
-        Me.LayoutControlItem23.Location = New System.Drawing.Point(1094, 320)
+        Me.LayoutControlItem23.Location = New System.Drawing.Point(1120, 318)
         Me.LayoutControlItem23.Name = "LayoutControlItem23"
-        Me.LayoutControlItem23.Size = New System.Drawing.Size(310, 40)
+        Me.LayoutControlItem23.Size = New System.Drawing.Size(318, 40)
         Me.LayoutControlItem23.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem23.TextVisible = False
         '
         'EmptySpaceItem4
         '
         Me.EmptySpaceItem4.AllowHotTrack = False
-        Me.EmptySpaceItem4.Location = New System.Drawing.Point(0, 320)
+        Me.EmptySpaceItem4.Location = New System.Drawing.Point(0, 318)
         Me.EmptySpaceItem4.Name = "EmptySpaceItem4"
-        Me.EmptySpaceItem4.Size = New System.Drawing.Size(1094, 40)
+        Me.EmptySpaceItem4.Size = New System.Drawing.Size(1120, 40)
         Me.EmptySpaceItem4.TextSize = New System.Drawing.Size(0, 0)
         '
         'LayoutControlGroup1
@@ -1207,7 +1215,7 @@ Partial Class frmSUPOrders
         Me.LayoutControlGroup1.GroupBordersVisible = False
         Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem6})
         Me.LayoutControlGroup1.Name = "LayoutControlGroup1"
-        Me.LayoutControlGroup1.Size = New System.Drawing.Size(1448, 1082)
+        Me.LayoutControlGroup1.Size = New System.Drawing.Size(1482, 1075)
         Me.LayoutControlGroup1.TextVisible = False
         '
         'LayoutControlItem6
@@ -1215,7 +1223,7 @@ Partial Class frmSUPOrders
         Me.LayoutControlItem6.Control = Me.LayoutControl4
         Me.LayoutControlItem6.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem6.Name = "LayoutControlItem6"
-        Me.LayoutControlItem6.Size = New System.Drawing.Size(1428, 1062)
+        Me.LayoutControlItem6.Size = New System.Drawing.Size(1462, 1055)
         Me.LayoutControlItem6.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem6.TextVisible = False
         '
@@ -1594,7 +1602,7 @@ Partial Class frmSUPOrders
     Friend WithEvents colmodifiedOn As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents colsupOrderID1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents colcmt As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colFiles As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepSupOrderTypes As DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit
     Friend WithEvents VwSUPORDERTYPESBindingSource As BindingSource
     Friend WithEvents Vw_SUP_ORDER_TYPESTableAdapter As DMDataSetTableAdapters.vw_SUP_ORDER_TYPESTableAdapter
@@ -1603,4 +1611,5 @@ Partial Class frmSUPOrders
     Friend WithEvents VwSUPORDERSDBindingSource As BindingSource
     Friend WithEvents Vw_SUP_ORDERSDTableAdapter As DMDataSetTableAdapters.vw_SUP_ORDERSDTableAdapter
     Friend WithEvents colHasFiles As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colemail As DevExpress.XtraGrid.Columns.GridColumn
 End Class
